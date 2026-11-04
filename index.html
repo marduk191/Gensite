@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="marduk191 — a green-phosphor archive of all GitHub repositories, Hugging Face models, datasets and spaces, and every Civitai release. ComfyUI nodes, quantized checkpoints, workflows and distillation trainers.">
+<title>marduk191 — Technology crap dug up from the interweb</title>
+<style>
+:root{--bg:#020A04;--ink:#4DFF7C;--muted:#2FBF5C;--acc:#C8FFD6;--surf:#06180B;--line:#14502A;--case:#CFC8B4;--case2:#A9A28C;--mono:"Lucida Console","Courier New",Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:#2A2822;color:var(--ink);font:16px/1.55 var(--mono);padding:clamp(0px,2.5vw,32px)}
+h1,h2,h3,p,ul,pre,dl,dd,table,figure{margin:0}ul{padding:0;list-style:none}
+a{color:var(--acc);text-underline-offset:.2em}
+a:focus-visible,button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.skip{position:absolute;left:8px;top:-90px;background:var(--acc);color:#000;padding:8px 12px;z-index:9;font-weight:700}.skip:focus{top:8px}
+.case{max-width:1120px;margin:0 auto;background:linear-gradient(#D8D1BD,var(--case2));border-radius:22px;padding:clamp(10px,2.4vw,26px) clamp(10px,2.4vw,26px) 14px;box-shadow:0 14px 40px #000a,inset 0 2px 0 #fff8}
+.tube{position:relative;background:var(--bg);border-radius:clamp(14px,4vw,44px)/clamp(14px,3.5vw,36px);border:10px solid #151510;box-shadow:inset 0 0 90px #0a5a2a99,inset 0 0 12px #000;padding:clamp(14px,3vw,34px);overflow:hidden;text-shadow:0 0 6px #1cff6a66}
+.tube:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#0000 0 2px,#0006 2px 3px),radial-gradient(ellipse at center,#0000 55%,#000b 100%)}
+.tube>*{position:relative;z-index:1}
+.badge{display:flex;justify-content:space-between;align-items:center;color:#4C4736;font:700 .78rem var(--mono);letter-spacing:.2em;padding:12px 6px 0;text-transform:uppercase}
+.badge i{display:inline-block;width:10px;height:10px;border-radius:50%;background:#2c9a4c;margin-left:8px;box-shadow:0 0 6px #2c9a4c}
+.boot{color:var(--muted);font-size:.85rem;white-space:pre-wrap}
+h1{font-size:clamp(2.2rem,8vw,4.6rem);line-height:1;color:var(--acc);letter-spacing:-.04em;margin:16px 0 4px;text-shadow:0 0 14px #4dff7ccc;overflow-wrap:anywhere}
+.cur{display:inline-block;width:.5em;height:.9em;background:var(--ink);vertical-align:-.1em;margin-left:.1em}
+.ps{color:var(--acc)}.ps:before{content:"marduk191@interweb:~$ ";color:var(--muted)}
+nav{margin:18px 0 6px;display:flex;flex-wrap:wrap;gap:6px}
+nav a{color:var(--ink);border:1px solid var(--line);padding:8px 12px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;background:var(--surf)}
+nav a:hover{background:var(--ink);color:#020A04;text-shadow:none}
+section{padding-top:26px;margin-top:26px;border-top:1px dashed var(--line)}
+h2{font-size:1.05rem;color:var(--acc);font-weight:700;margin-bottom:12px;letter-spacing:.02em}
+h2:before{content:"$ ";color:var(--muted)}
+h3{color:var(--acc);font-size:.95rem;margin:14px 0 6px}
+.lede{max-width:70ch}
+.counts{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.counts span{border:1px solid var(--line);background:var(--surf);padding:6px 10px;color:var(--acc);font-size:.85rem}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.filters button{font:inherit;background:none;color:var(--ink);border:1px solid var(--line);padding:6px 12px;min-height:40px;cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--ink);color:#020A04;text-shadow:none}
+.fc{color:var(--muted);font-size:.85rem;margin:6px 0 10px}
+/* catalog styling to match the CRT look */
+.gs-catalog{margin:0}
+.gs-catalog-list{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
+.gs-catalog-item{border:1px solid var(--line);background:var(--surf);padding:12px 14px}
+.gs-catalog-item a{color:var(--acc);text-decoration:none;border-bottom:1px dotted var(--muted)}
+.gs-catalog-item a:hover{background:var(--ink);color:#020A04;text-shadow:none}
+.gs-catalog-versions{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+.gs-catalog-versions a{font-size:.78rem;border:1px solid var(--line);padding:3px 7px;color:var(--ink)}
+/* featured cards */
+.sig{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.sig div{border:1px solid var(--line);padding:12px;background:var(--surf)}
+.sig b{color:var(--acc);display:block;margin-bottom:4px}
+.plates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.plates figure{border:1px solid var(--line);background:var(--surf);padding:8px}
+.plates img{width:100%;height:auto;display:block;border:1px solid #0d0}
+.plates figcaption{color:var(--muted);font-size:.78rem;padding-top:6px;overflow-wrap:anywhere}
+.two{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:22px}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:5px 10px 5px 0;vertical-align:top}
+th{color:var(--muted);font-weight:400;border-bottom:1px solid var(--line)}
+td.perm{color:var(--muted)}
+.rank{color:var(--acc)}
+.motd{white-space:pre-wrap;color:var(--acc);border-left:3px solid var(--ink);padding-left:14px}
+.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.links div{border:1px solid var(--line);background:var(--surf);padding:10px 12px}
+footer{margin-top:28px;color:var(--muted);font-size:.85rem}
+@media (max-width:760px){.two,.sig,.plates{grid-template-columns:1fr}body{font-size:15px}.tube{border-width:6px}.badge{font-size:.62rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="case">
+<div class="tube">
+<header>
+<pre class="boot" aria-hidden="true">PHOSPHOR-BIOS v1.07   640K OK   EXT 3072K OK
+Mounting /interweb ... done   Loading catalogs ... done
+github: 128 repos   huggingface: 48 entries   civitai: 23 models</pre>
+<h1>marduk<span class="cur" aria-hidden="true"></span>191</h1>
+<p class="ps">cat welcome.txt</p>
+<p class="lede"><strong>Technology crap dug up from the interweb.</strong> This is a complete, self-maintained archive of everything published under the marduk191 handle: every GitHub repository, every Hugging Face model, dataset and space, and every Civitai release with its versions. The work spans ComfyUI custom nodes, quantized checkpoint collections (FP8, GGUF), distillation trainers, restoration workflows — and, further back, Android kernel and recovery work for the Pantech Burst.</p>
+<div class="counts" aria-label="Catalog totals verified via public APIs on this capture">
+<span>github.com/marduk191 — 128 repositories</span>
+<span>huggingface.co/marduk191 — 43 models · 3 datasets · 2 spaces</span>
+<span>civitai.com/user/marduk191 — 23 models · 51 versions</span>
+</div>
+<nav aria-label="Primary">
+<a href="#github">ls /github</a>
+<a href="#huggingface">ls /huggingface</a>
+<a href="#civitai">ls /civitai</a>
+<a href="#plates">gallery</a>
+<a href="#story">about</a>
+<a href="#links">links</a>
+</nav>
+</header>
+
+<main id="main">
+
+<section id="github" aria-labelledby="h-github">
+<h2 id="h-github">ls -l /github — all 128 repositories</h2>
+<p>The complete repository catalog for <a href="https://github.com/marduk191">github.com/marduk191</a>, pulled from GitHub's public API: every repository owned by the account, including forks and archived projects. Notable entries include <strong>ComfyUI-Fluxpromptenhancer</strong> (a prompt enhancer node for flux.1), <strong>comfyui_gguf_marduk191</strong> (GGUF quantized-model nodes with Q2_K–Q8_K support), <strong>ComfyUI-TF32-Enabler</strong>, <strong>ComfyUI-LavaSR</strong>, <strong>comfyui_SLA-sage</strong> and <strong>z-image-distillation-trainer</strong>.</p>
+<div class="gs-catalog" id="cat-github">
+<section class="gs-catalog gs-catalog-complete gs-catalog-github" data-status="complete" data-count="128">
+<style>.gs-catalog{margin:2rem 0;font:inherit;color:inherit}.gs-catalog-head{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:baseline}.gs-catalog-status{padding:.15rem .6rem;border:1px solid currentColor;border-radius:999px;font-size:.8em}.gs-catalog-counts,.gs-catalog-issues{margin:.5rem 0;padding-left:1.2rem}.gs-catalog-list{list-style:none;margin:1rem 0;padding:0;display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr))}.gs-catalog-item{border:1px solid rgba(128,128,128,.4);border-radius:.6rem;padding:1rem;overflow-wrap:anywhere}.gs-catalog-item h3{margin:.1rem 0 .4rem;font-size:1.05em}.gs-catalog-kind{font-size:.75em;opacity:.7;text-transform:uppercase}.gs-catalog-meta,.gs-catalog-versions{margin:.4rem 0 0;padding-left:1.1rem;font-size:.9em}.gs-catalog a{color:inherit}</style>
+<div class="gs-catalog-head"><h2>GitHub projects for marduk191</h2><span class="gs-catalog-status">Complete</span> <a href="https://github.com/marduk191" rel="noopener noreferrer">Profile</a></div>
+<ul class="gs-catalog-counts"><li>Total records: 128</li>
+<li>repository: 128</li>
+</ul>
+<ul class="gs-catalog-list">
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/p9070_Bootimage_tool" rel="noopener noreferrer">marduk191/p9070_Bootimage_tool</a></h3>
+<p>Tool for working with boot and recovery images on the Pantech Burst</p>
+<ul class="gs-catalog-meta"><li>Language: Shell</li><li>Stars: 0</li><li>Forks: 0</li><li>Archived</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/wireless-tools-android" rel="noopener noreferrer">marduk191/wireless-tools-android</a></h3>
+<p>Allows to build wireless-tools (http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html) binaries for Android devices</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li><li>Archived</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Superuser" rel="noopener noreferrer">marduk191/Superuser</a></h3>
+<ul class="gs-catalog-meta"><li>Language: C</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li><li>Archived</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/presto_repair" rel="noopener noreferrer">marduk191/presto_repair</a></h3>
+<p>A windows script to install the proper bootchain files to the Pantech p9070 for AOSP based operation.</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/android_kernel_pantech_p9070" rel="noopener noreferrer">marduk191/android_kernel_pantech_p9070</a></h3>
+<p>Pantech Burst P9070 (presto) - android kernel tree</p>
+<ul class="gs-catalog-meta"><li>Language: C</li><li>Stars: 1</li><li>Forks: 0</li><li>Fork</li><li>Archived</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/popcorn-app" rel="noopener noreferrer">marduk191/popcorn-app</a></h3>
+<p>An experiment using the peerflix module of nodejs and connecting a bunch of APIs.</p>
+<ul class="gs-catalog-meta"><li>Language: CSS</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/mkbootimg_tools" rel="noopener noreferrer">marduk191/mkbootimg_tools</a></h3>
+<p>Unpack and repack boot.img,support dtb(dt.img).</p>
+<ul class="gs-catalog-meta"><li>Language: Shell</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li><li>Archived</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Presto_TWRP_Theme" rel="noopener noreferrer">marduk191/Presto_TWRP_Theme</a></h3>
+<p>Theme for my Presto TWRP build</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/android_hardware_libhardware_legacy" rel="noopener noreferrer">marduk191/android_hardware_libhardware_legacy</a></h3>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li><li>Archived</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/conky" rel="noopener noreferrer">marduk191/conky</a></h3>
+<p>My conky script</p>
+<ul class="gs-catalog-meta"><li>Language: Ruby</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/android_kernel_pantech_msm8660-common" rel="noopener noreferrer">marduk191/android_kernel_pantech_msm8660-common</a></h3>
+<p>Pantech Burst P9070 (presto) - android kernel tree</p>
+<ul class="gs-catalog-meta"><li>Language: C</li><li>Stars: 0</li><li>Forks: 1</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/android_kernel_pantech_msm8660-common_OC" rel="noopener noreferrer">marduk191/android_kernel_pantech_msm8660-common_OC</a></h3>
+<p>Overclock modules for The presto cm11 kernel</p>
+<ul class="gs-catalog-meta"><li>Language: C</li><li>Stars: 0</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/marduk191.github.io" rel="noopener noreferrer">marduk191/marduk191.github.io</a></h3>
+<p>My open source stie</p>
+<ul class="gs-catalog-meta"><li>Language: HTML</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/my_PDT_scripts" rel="noopener noreferrer">marduk191/my_PDT_scripts</a></h3>
+<p>Various scripts I use to keep my repos on track with PDT sources.</p>
+<ul class="gs-catalog-meta"><li>Language: Shell</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/android_device_pantech_msm8x60-common" rel="noopener noreferrer">marduk191/android_device_pantech_msm8x60-common</a></h3>
+<p>Pantech msm8x60 common - android device tree</p>
+<ul class="gs-catalog-meta"><li>Language: Shell</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/android_device_pantech_msm8660-common" rel="noopener noreferrer">marduk191/android_device_pantech_msm8660-common</a></h3>
+<p>Pantech msm8660 common - android device tree</p>
+<ul class="gs-catalog-meta"><li>Language: Shell</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/wikiart" rel="noopener noreferrer">marduk191/wikiart</a></h3>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Areola_kernel_packer" rel="noopener noreferrer">marduk191/Areola_kernel_packer</a></h3>
+<p>Packs kernels using aroma as an installer</p>
+<ul class="gs-catalog-meta"><li>Language: Shell</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/presto_aroma_recovery_packer" rel="noopener noreferrer">marduk191/presto_aroma_recovery_packer</a></h3>
+<p>Aroma style recovery packer made easy</p>
+<ul class="gs-catalog-meta"><li>Language: Shell</li><li>Stars: 0</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/philz_touch_cwm6" rel="noopener noreferrer">marduk191/philz_touch_cwm6</a></h3>
+<p>PhilZ Touch (cwm based recovery)</p>
+<ul class="gs-catalog-meta"><li>Language: C</li><li>Stars: 0</li><li>Forks: 1</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/vendor_du" rel="noopener noreferrer">marduk191/vendor_du</a></h3>
+<p>Vendor files for Dirty Unicorn</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/frameworks_base" rel="noopener noreferrer">marduk191/frameworks_base</a></h3>
+<p>Dirty Unicorns patched frameworks_base for Pantech Burst</p>
+<ul class="gs-catalog-meta"><li>Language: Java</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/frameworks_av" rel="noopener noreferrer">marduk191/frameworks_av</a></h3>
+<p>Dirty Unicorns patched frameworks_av for Pantech Burst</p>
+<ul class="gs-catalog-meta"><li>Language: C++</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/android_device_pantech_presto" rel="noopener noreferrer">marduk191/android_device_pantech_presto</a></h3>
+<p>Pantech Burst P9070 (presto) - android device tree</p>
+<ul class="gs-catalog-meta"><li>Language: C++</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/frameworks_base-1" rel="noopener noreferrer">marduk191/frameworks_base-1</a></h3>
+<p>android frameworks base</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/frameworks_av-1" rel="noopener noreferrer">marduk191/frameworks_av-1</a></h3>
+<p>android frameworks av</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/android_bootable_recovery" rel="noopener noreferrer">marduk191/android_bootable_recovery</a></h3>
+<p>Patched TWRP for Pantech Presto.</p>
+<ul class="gs-catalog-meta"><li>Language: C</li><li>Stars: 2</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/plugin.video.movie25" rel="noopener noreferrer">marduk191/plugin.video.movie25</a></h3>
+<p>Mashup 1.4.0 without update code</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/android_kernel_htc_a3ul" rel="noopener noreferrer">marduk191/android_kernel_htc_a3ul</a></h3>
+<ul class="gs-catalog-meta"><li>Language: C</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/btool" rel="noopener noreferrer">marduk191/btool</a></h3>
+<p>Android pack and unpack script for abootimg</p>
+<ul class="gs-catalog-meta"><li>Language: Shell</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ytconv" rel="noopener noreferrer">marduk191/ytconv</a></h3>
+<p>yad gui for converting YouTube videos with ffmpeg</p>
+<ul class="gs-catalog-meta"><li>Language: Shell</li><li>Stars: 0</li><li>Forks: 0</li><li>Archived</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/recovery_manifest" rel="noopener noreferrer">marduk191/recovery_manifest</a></h3>
+<p>A barebone omni manifest to build TWRP easily</p>
+<ul class="gs-catalog-meta"><li>Stars: 21</li><li>Forks: 46</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/YPC" rel="noopener noreferrer">marduk191/YPC</a></h3>
+<p>Create kodi plugins for your YouTube channel</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/kodiaddons" rel="noopener noreferrer">marduk191/kodiaddons</a></h3>
+<p>My kodi repository</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/krepotools" rel="noopener noreferrer">marduk191/krepotools</a></h3>
+<p>A Kodi repository template</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/test" rel="noopener noreferrer">marduk191/test</a></h3>
+<p>bullshit to test github crap</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/GIsnag" rel="noopener noreferrer">marduk191/GIsnag</a></h3>
+<p>This is a bash script to download images from Google Images</p>
+<ul class="gs-catalog-meta"><li>Language: Shell</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/chrome_themes" rel="noopener noreferrer">marduk191/chrome_themes</a></h3>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/tcreator" rel="noopener noreferrer">marduk191/tcreator</a></h3>
+<p>A sox script written for bash to automate the creation of sine test tones</p>
+<ul class="gs-catalog-meta"><li>Language: Shell</li><li>Stars: 1</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/android_kernel_asus_fugu" rel="noopener noreferrer">marduk191/android_kernel_asus_fugu</a></h3>
+<ul class="gs-catalog-meta"><li>Language: C</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/sword" rel="noopener noreferrer">marduk191/sword</a></h3>
+<p>SWORD:A GUI for zer0byte&#x27;s DropBox</p>
+<ul class="gs-catalog-meta"><li>Language: HTML</li><li>Stars: 2</li><li>Forks: 1</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/plugin.video.watchwrestling" rel="noopener noreferrer">marduk191/plugin.video.watchwrestling</a></h3>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/nmkd-mirror" rel="noopener noreferrer">marduk191/nmkd-mirror</a></h3>
+<p>mirror of the nmkd ESRGAN models</p>
+<ul class="gs-catalog-meta"><li>Stars: 1</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/sd-discord-rich_presence" rel="noopener noreferrer">marduk191/sd-discord-rich_presence</a></h3>
+<p>Discord Rich Presence for AUTOMATIC1111&#x27;s Stable Diffusion WebUI</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/SDXL-A1111-Styles" rel="noopener noreferrer">marduk191/SDXL-A1111-Styles</a></h3>
+<p>&quot;Welcome to this repository hosting a `styles.csv` file with 850+ styles for Stable Diffusion XL, These diverse styles can enhance your project&#x27;s output. Feel free to explore, utilize, and provide feedback. Happy creating!&quot;</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Stable-diffusion-stuff" rel="noopener noreferrer">marduk191/Stable-diffusion-stuff</a></h3>
+<p>A repository to host my random stable diffusion stuff that doesn&#x27;t warrant a proper release.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 1</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI_Comfyroll_CustomNodes" rel="noopener noreferrer">marduk191/ComfyUI_Comfyroll_CustomNodes</a></h3>
+<p>Custom nodes for SDXL and SD1.5 including Multi-ControlNet, LoRA, Aspect Ratio, Process Switches, and many more nodes.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui-marnodes" rel="noopener noreferrer">marduk191/comfyui-marnodes</a></h3>
+<p>my simple little random nodes for ComfyUI</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 3</li><li>Forks: 3</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-Manager" rel="noopener noreferrer">marduk191/ComfyUI-Manager</a></h3>
+<p>ComfyUI-Manager is an extension designed to enhance the usability of ComfyUI. It offers management functions to install, remove, disable, and enable various custom nodes of ComfyUI. Furthermore, this extension provides a hub feature and convenience functions to access a wide range of information within ComfyUI.</p>
+<ul class="gs-catalog-meta"><li>Language: JavaScript</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/SD3_perturbed" rel="noopener noreferrer">marduk191/SD3_perturbed</a></h3>
+<p>a small script for shuffling weights to use for perturbed guidance in Stable Diffusion 3</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Comfyui_saftensors_hdd_patch" rel="noopener noreferrer">marduk191/Comfyui_saftensors_hdd_patch</a></h3>
+<p>An update to utils.py to speed up loading safetensor files from HDD. Speeds improve from around 30-35MB/s to around 199MB/s using local spinning disks or networked NAS.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 9</li><li>Forks: 1</li><li>Archived</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/wth-diffusion" rel="noopener noreferrer">marduk191/wth-diffusion</a></h3>
+<p>wth diffusion site</p>
+<ul class="gs-catalog-meta"><li>Language: Batchfile</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-mardukRR" rel="noopener noreferrer">marduk191/ComfyUI-mardukRR</a></h3>
+<p>custom node of comfyui.</p>
+<ul class="gs-catalog-meta"><li>Language: JavaScript</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-Fluxpromptenhancer" rel="noopener noreferrer">marduk191/ComfyUI-Fluxpromptenhancer</a></h3>
+<p>A Prompt Enhancer for flux.1 in ComfyUI</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 122</li><li>Forks: 13</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/llama_cpp_python-0.2.90-cp312-cp312-win_amd64.whl" rel="noopener noreferrer">marduk191/llama_cpp_python-0.2.90-cp312-cp312-win_amd64.whl</a></h3>
+<p>prebuilt wheel for llama_cpp_python-0.2.90-cp312-cp312-win_amd64.whl</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/SmolLM2-Prompt-Enhancer" rel="noopener noreferrer">marduk191/SmolLM2-Prompt-Enhancer</a></h3>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 3</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/PortableBuildTools" rel="noopener noreferrer">marduk191/PortableBuildTools</a></h3>
+<p>Portable VS Build Tools installer</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui-unsafe-torch" rel="noopener noreferrer">marduk191/comfyui-unsafe-torch</a></h3>
+<p>patch torch.load to unsafe</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyAutoInstall" rel="noopener noreferrer">marduk191/ComfyAutoInstall</a></h3>
+<p>A batch file to install the latest ComfyUI, make a venv within it and automatically install Triton and SageAttention for Hunyaun etc workflows.</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/batch_menu" rel="noopener noreferrer">marduk191/batch_menu</a></h3>
+<p>A menu for batch files</p>
+<ul class="gs-catalog-meta"><li>Language: Batchfile</li><li>Stars: 2</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Diffusion_model_fp8_learned_rounding_GUI" rel="noopener noreferrer">marduk191/Diffusion_model_fp8_learned_rounding_GUI</a></h3>
+<p>A user-friendly GUI application for converting PyTorch models to FP8 (8-bit floating-point) format using learned rounding techniques</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Diffusion_model_Quantize_and_upload" rel="noopener noreferrer">marduk191/Diffusion_model_Quantize_and_upload</a></h3>
+<p>A windows script to quantize diffusion models and upload them to your huggingface repository</p>
+<ul class="gs-catalog-meta"><li>Language: Batchfile</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/llama.cpp" rel="noopener noreferrer">marduk191/llama.cpp</a></h3>
+<p>LLM inference in C/C++</p>
+<ul class="gs-catalog-meta"><li>Language: C++</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/diffusion_model_pretraining_merge" rel="noopener noreferrer">marduk191/diffusion_model_pretraining_merge</a></h3>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 2</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/diffusion_model_tensor_operations_library" rel="noopener noreferrer">marduk191/diffusion_model_tensor_operations_library</a></h3>
+<p>A comprehensive PyTorch-based library for advanced tensor operations, merging, and interpolation techniques.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 1</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/gguf_converter_bf16_gui" rel="noopener noreferrer">marduk191/gguf_converter_bf16_gui</a></h3>
+<p>a tkinter GUI for converting safetensors to BF16 gguf</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 1</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Diffusion_model_Quantize_and_upload_gui" rel="noopener noreferrer">marduk191/Diffusion_model_Quantize_and_upload_gui</a></h3>
+<p>A Python GUI application for quantizing AI models and automatically uploading them to Hugging Face repositories.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 1</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Diffusion_model_fp8_learned_rounding_TPEC-Quant_GUI" rel="noopener noreferrer">marduk191/Diffusion_model_fp8_learned_rounding_TPEC-Quant_GUI</a></h3>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 2</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Diffusion_model_fp8_learned_rounding_TPEC-FAST_GUI" rel="noopener noreferrer">marduk191/Diffusion_model_fp8_learned_rounding_TPEC-FAST_GUI</a></h3>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/marduk191" rel="noopener noreferrer">marduk191/marduk191</a></h3>
+<p>Main page</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/fp16_learned_rounding" rel="noopener noreferrer">marduk191/fp16_learned_rounding</a></h3>
+<p>A script for converting fp32 diffusion and models and text encoders to fp16 with learned rounding based on svd methods</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 1</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/marduk191_Image_Gallery" rel="noopener noreferrer">marduk191/marduk191_Image_Gallery</a></h3>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfy_chrome" rel="noopener noreferrer">marduk191/comfy_chrome</a></h3>
+<p>A Chrome extension that allows you to right-click on any image in your browser and send it directly to a ComfyUI workflow via api</p>
+<ul class="gs-catalog-meta"><li>Language: JavaScript</li><li>Stars: 2</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui_cmdtls" rel="noopener noreferrer">marduk191/comfyui_cmdtls</a></h3>
+<p>A comprehensive set of ComfyUI custom nodes for file system operations, file browsing, upload/download, and shell command execution.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 1</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/workflow-comfyui-single-image-to-lora-flux" rel="noopener noreferrer">marduk191/workflow-comfyui-single-image-to-lora-flux</a></h3>
+<p>Single image to Lora Model for Flux in ComfyUI using Llm and Flux Kontext</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfy_explorer_to_api" rel="noopener noreferrer">marduk191/comfy_explorer_to_api</a></h3>
+<p>A Windows File Explorer extension that allows you to right-click on images and send them directly to ComfyUI workflows with automatic seed generation.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 1</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/yandex_scraper" rel="noopener noreferrer">marduk191/yandex_scraper</a></h3>
+<p>A Python script for downloading images from Yandex Images using text-based search or reverse image search.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 1</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui_wheel_installer" rel="noopener noreferrer">marduk191/comfyui_wheel_installer</a></h3>
+<p>A custom ComfyUI node that installs Python wheels from pre-configured URLs. This node provides a dropdown widget to select and install wheels directly from your ComfyUI workflow. Features</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 1</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui_qwen_runninghub" rel="noopener noreferrer">marduk191/comfyui_qwen_runninghub</a></h3>
+<p>Custom ComfyUI nodes for integrating RunningHub&#x27;s AI image and video generation services into your workflows. This package is a conversion of the freeqwenimage web application into ComfyUI custom nodes, allowing you to use RunningHub&#x27;s AI capabilities directly in ComfyUI.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 3</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Comfy_API_Testing" rel="noopener noreferrer">marduk191/Comfy_API_Testing</a></h3>
+<p>A comprehensive, production-ready interface for sending and managing ComfyUI workflows via API. This tool provides advanced features including a modern web interface, WebSocket support for real-time progress monitoring, batch processing, workflow templating, and queue management.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Comfy_GUI_marduk191" rel="noopener noreferrer">marduk191/Comfy_GUI_marduk191</a></h3>
+<p>Used to create a full-featured, user-friendly GUI for ComfyUI with a customizable interface and powerful workflow editor.</p>
+<ul class="gs-catalog-meta"><li>Language: TypeScript</li><li>Stars: 1</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui_discord_bot_marduk191" rel="noopener noreferrer">marduk191/comfyui_discord_bot_marduk191</a></h3>
+<p>A Discord bot that integrates with your local ComfyUI installation to generate AI images directly from Discord. Users can send text prompts, upload input images, and configure KSampler settings for customized image generation.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui_mixed_precision" rel="noopener noreferrer">marduk191/comfyui_mixed_precision</a></h3>
+<p>Advanced quantization and mixed precision support for ComfyUI models. This custom node pack enables you to work with models using various precision formats (4-bit to 32-bit) and apply state-of-the-art quantization techniques.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui_gguf_marduk191" rel="noopener noreferrer">marduk191/comfyui_gguf_marduk191</a></h3>
+<p>A comprehensive set of custom nodes for working with GGUF (GPT-Generated Unified Format) quantized models in ComfyUI. These nodes enable you to load and use quantized diffusion models, reducing memory usage while maintaining quality.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 3</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Nyuu_GUI" rel="noopener noreferrer">marduk191/Nyuu_GUI</a></h3>
+<p>A full-featured graphical user interface for Nyuu, the high-performance Usenet binary posting tool. Built with Python and tkinter, this GUI makes posting to Usenet simple and accessible.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 2</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/SCG_LocalVLM" rel="noopener noreferrer">marduk191/SCG_LocalVLM</a></h3>
+<p>ComfyUI QwenVL and Qwen wrapper</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/hf_site_builder" rel="noopener noreferrer">marduk191/hf_site_builder</a></h3>
+<p>A modern, customizable website builder for Hugging Face Spaces to showcase your AI models and datasets.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ae_training_marduk191" rel="noopener noreferrer">marduk191/ae_training_marduk191</a></h3>
+<p>A comprehensive Python implementation for training Variational Autoencoders (VAE) compatible with FLUX.1 and similar image generation models.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/z-image-distillation-trainer" rel="noopener noreferrer">marduk191/z-image-distillation-trainer</a></h3>
+<p>Single-file Python implementation of Decoupled-DMD (Distribution Matching Distillation) for creating few-step Z-Image models. Includes both a comprehensive CLI trainer and a full-featured Tkinter GUI.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 11</li><li>Forks: 6</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui_SLA-sage" rel="noopener noreferrer">marduk191/comfyui_SLA-sage</a></h3>
+<p>Sparse-Linear Attention (SLA) nodes for ComfyUI</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 14</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Comfyui_Auto_installer_marduk191" rel="noopener noreferrer">marduk191/Comfyui_Auto_installer_marduk191</a></h3>
+<ul class="gs-catalog-meta"><li>Language: Batchfile</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/SLA" rel="noopener noreferrer">marduk191/SLA</a></h3>
+<p>SLA: Beyond Sparsity in Diffusion Transformers via Fine-Tunable Sparse–Linear Attention</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 1</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/SpargeAttn" rel="noopener noreferrer">marduk191/SpargeAttn</a></h3>
+<p>[ICML2025] SpargeAttention: A training-free sparse attention that accelerates any model inference.</p>
+<ul class="gs-catalog-meta"><li>Language: Cuda</li><li>Stars: 1</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/SDXL_Decoupled-DMD" rel="noopener noreferrer">marduk191/SDXL_Decoupled-DMD</a></h3>
+<p>Ultra-fast SDXL distillation using Decoupled Distribution Matching Distillation (DMD)</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 2</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/LFM2-350M_trainer_marduk191" rel="noopener noreferrer">marduk191/LFM2-350M_trainer_marduk191</a></h3>
+<p>An optimized Supervised Fine-Tuning (SFT) toolkit for the Liquid LFM2-350M model</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI_LFM2-350M" rel="noopener noreferrer">marduk191/ComfyUI_LFM2-350M</a></h3>
+<p>A ComfyUI node for loading my custom tuned LFM2-350M model trained on 60k base pairs to work as a prompt enhancer for z-image turbo or any other long token model.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 2</li><li>Forks: 2</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Civitai_scraper" rel="noopener noreferrer">marduk191/Civitai_scraper</a></h3>
+<p>A Python tool to scrape image prompts from Civitai</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 5</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-TF32-Enabler" rel="noopener noreferrer">marduk191/ComfyUI-TF32-Enabler</a></h3>
+<p>Automatically enables TensorFloat-32 (TF32) acceleration for NVIDIA RTX 30/40/50 series GPUs in ComfyUI.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 12</li><li>Forks: 2</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Chrome_ddl" rel="noopener noreferrer">marduk191/Chrome_ddl</a></h3>
+<p>A Chrome extension to download Discord direct message history in HTML format with automatic scrolling.</p>
+<ul class="gs-catalog-meta"><li>Language: JavaScript</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUIMini" rel="noopener noreferrer">marduk191/ComfyUIMini</a></h3>
+<p>A mobile-friendly WebUI to run ComfyUI workflows.</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/qwen3_mcp" rel="noopener noreferrer">marduk191/qwen3_mcp</a></h3>
+<p>MCP server for LM Studio with 80+ tools - file ops, git, web search, skills system</p>
+<ul class="gs-catalog-meta"><li>Language: JavaScript</li><li>Stars: 14</li><li>Forks: 4</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-NAFNet" rel="noopener noreferrer">marduk191/ComfyUI-NAFNet</a></h3>
+<p>ComfyUI nodes for NAFNet image restoration - denoising, deblurring, stereo super-resolution</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-NAFNet_plus" rel="noopener noreferrer">marduk191/ComfyUI-NAFNet_plus</a></h3>
+<p>ComfyUI nodes for NAFNet, SCUNet, and Restormer image restoration - great for astrophotography</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-Plushfork" rel="noopener noreferrer">marduk191/ComfyUI-Plushfork</a></h3>
+<p>Custom node for ComfyUI/Stable Diffustion</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-Advanced-Math-Expression" rel="noopener noreferrer">marduk191/ComfyUI-Advanced-Math-Expression</a></h3>
+<p>An advanced math expression node for ComfyUI with support for infinite dynamic expressions and variable inputs.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-ZImageTurboHQNodes" rel="noopener noreferrer">marduk191/ComfyUI-ZImageTurboHQNodes</a></h3>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 3</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-Frame-Interpolation" rel="noopener noreferrer">marduk191/ComfyUI-Frame-Interpolation</a></h3>
+<p>A custom node set for Video Frame Interpolation in ComfyUI.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-LavaSR" rel="noopener noreferrer">marduk191/ComfyUI-LavaSR</a></h3>
+<p>ComfyUI custom nodes for LavaSR — a fast speech enhancement and audio super-resolution model that upsamples degraded audio to 48 kHz with noise reduction.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 12</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-Node-for-Adaptive-Spectral-Feature-Forecasting-for-Diffusion-Sampling-Acceleration" rel="noopener noreferrer">marduk191/ComfyUI-Node-for-Adaptive-Spectral-Feature-Forecasting-for-Diffusion-Sampling-Acceleration</a></h3>
+<p>Node for the Adaptive Spectral Feature Forecasting for Diffusion Sampling Acceleration</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-CacheDiT" rel="noopener noreferrer">marduk191/ComfyUI-CacheDiT</a></h3>
+<p>Cache-DiT Node for Comfyui</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/scg_Foundation-1-comfyUI" rel="noopener noreferrer">marduk191/scg_Foundation-1-comfyUI</a></h3>
+<p>ComfyUI nodes for RoyalCities Foundation-1 — structured text-to-sample music generation with full BPM, key, timbre, and FX control</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI_HeartMuLa" rel="noopener noreferrer">marduk191/ComfyUI_HeartMuLa</a></h3>
+<p>ComfyUI custom nodes for AI music generation, lyrics transcription, source separation, and audio visualization — powered by the HeartMuLa model family.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Comfyui-Subgraph_to_Node_Converter" rel="noopener noreferrer">marduk191/Comfyui-Subgraph_to_Node_Converter</a></h3>
+<p>ComfyUI Subgraph → Node Converter A single-file ComfyUI custom node that converts any subgraph saved inside a workflow JSON into a real, installable Python custom node — without ever leaving ComfyUI.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-fp8_cublas" rel="noopener noreferrer">marduk191/ComfyUI-fp8_cublas</a></h3>
+<p>ComfyUI custom node that patches loaded models (Flux, SDXL, etc.) to run Linear layers in FP8 or MXFP8, unlocking tensor-core throughput on Ada Lovelace (RTX 4090) and Blackwell (RTX 5090) GPUs.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 1</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI_Matchering" rel="noopener noreferrer">marduk191/ComfyUI_Matchering</a></h3>
+<p>Open Source Audio Matching and Mastering</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui-voxtral" rel="noopener noreferrer">marduk191/comfyui-voxtral</a></h3>
+<p>ComfyUI custom nodes for Mistral&#x27;s Voxtral TTS</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 1</li><li>Forks: 2</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/ComfyUI-MOSS-TTS" rel="noopener noreferrer">marduk191/ComfyUI-MOSS-TTS</a></h3>
+<p>ComfyUI custom nodes for MOSS-TTS</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Comfyui_hfKernels" rel="noopener noreferrer">marduk191/Comfyui_hfKernels</a></h3>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui-nucleus" rel="noopener noreferrer">marduk191/comfyui-nucleus</a></h3>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 1</li><li>Forks: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui-fp32_toolkit" rel="noopener noreferrer">marduk191/comfyui-fp32_toolkit</a></h3>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/lora-dataset-studio" rel="noopener noreferrer">marduk191/lora-dataset-studio</a></h3>
+<p>Turn a character, style, or concept into a ready-to-train LoRA dataset - consistent multi-angle shots, smart captions (prose / Danbooru / e621 / dedicated taggers), and trainer-ready configs for Flux, SDXL, Krea, Pony &amp; more. Local or cloud, per stage. No training launched, no telemetry.</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Fizgig" rel="noopener noreferrer">marduk191/Fizgig</a></h3>
+<p>Krea 2 &amp; Klein 9B LoRA Studio — train, profile, repair, and extract Krea 2 &amp; Flux 2 Klein 9B LoRAs</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Idiot-Lora-Builder" rel="noopener noreferrer">marduk191/Idiot-Lora-Builder</a></h3>
+<ul class="gs-catalog-meta"><li>Language: TypeScript</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyui-identity-forge" rel="noopener noreferrer">marduk191/comfyui-identity-forge</a></h3>
+<p>A character forge for ComfyUI: dial in or randomize every detail - face, hair, body, wardrobe, mood - and get a coherent, reproducible person, canonically-described cosplayer, or creature as ready-to-render prompt text + JSON. Hundreds of characters and archetypes, billions of seed-stable combinations. Pure Python, no LLM, no dependencies.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/comfyUI-JigSaw-Hi-Res" rel="noopener noreferrer">marduk191/comfyUI-JigSaw-Hi-Res</a></h3>
+<p>YaRN/NTK-based RoPE rescaling for Flux/Krea2 in ComfyUI — generate at resolutions beyond training without repeating-pattern artifacts.</p>
+<ul class="gs-catalog-meta"><li>Language: Python</li><li>Stars: 0</li><li>Forks: 1</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Strata" rel="noopener noreferrer">marduk191/Strata</a></h3>
+<p>Qwen3.8-Flash-Next on any consumer hardware: one-click install for Windows / Linux. Strata inference engine, OpenAI/Anthropic API on localhost, optional image input.</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li><li>Fork</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/testing1" rel="noopener noreferrer">marduk191/testing1</a></h3>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-repository"><span class="gs-catalog-kind">repository</span><h3><a href="https://github.com/marduk191/Gensite" rel="noopener noreferrer">marduk191/Gensite</a></h3>
+<p>A github project website generator</p>
+<ul class="gs-catalog-meta"><li>Stars: 0</li><li>Forks: 0</li></ul>
+</li>
+</ul></section>
+</div>
+</section>
+
+<section id="huggingface" aria-labelledby="h-hf">
+<h2 id="h-hf">ls -l /huggingface — all 48 entries (43 models, 3 datasets, 2 spaces)</h2>
+<p>The full Hugging Face catalog for <a href="https://huggingface.co/marduk191">huggingface.co/marduk191</a>, covering models, datasets and spaces. Highlights include the <strong>flux1-kontext-dev-quants</strong> GGUF quantizations (Q2_K through BF16), the <strong>Flux.1_collection</strong>, experiment archives for krea2, lfm2 and qwen-image, the <strong>Workflows</strong> dataset, and a space that displays the latest GitHub releases.</p>
+<div class="gs-catalog" id="cat-hf">
+<section class="gs-catalog gs-catalog-complete gs-catalog-huggingface" data-status="complete" data-count="48">
+<style>.gs-catalog{margin:2rem 0;font:inherit;color:inherit}.gs-catalog-head{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:baseline}.gs-catalog-status{padding:.15rem .6rem;border:1px solid currentColor;border-radius:999px;font-size:.8em}.gs-catalog-counts,.gs-catalog-issues{margin:.5rem 0;padding-left:1.2rem}.gs-catalog-list{list-style:none;margin:1rem 0;padding:0;display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr))}.gs-catalog-item{border:1px solid rgba(128,128,128,.4);border-radius:.6rem;padding:1rem;overflow-wrap:anywhere}.gs-catalog-item h3{margin:.1rem 0 .4rem;font-size:1.05em}.gs-catalog-kind{font-size:.75em;opacity:.7;text-transform:uppercase}.gs-catalog-meta,.gs-catalog-versions{margin:.4rem 0 0;padding-left:1.1rem;font-size:.9em}.gs-catalog a{color:inherit}</style>
+<div class="gs-catalog-head"><h2>Hugging Face projects for marduk191</h2><span class="gs-catalog-status">Complete</span> <a href="https://huggingface.co/marduk191" rel="noopener noreferrer">Profile</a></div>
+<ul class="gs-catalog-counts"><li>Total records: 48</li>
+<li>dataset: 3</li>
+<li>model: 43</li>
+<li>space: 2</li>
+</ul>
+<ul class="gs-catalog-list">
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/VAE" rel="noopener noreferrer">marduk191/VAE</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 2</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/marduk191_insightface_face_models" rel="noopener noreferrer">marduk191/marduk191_insightface_face_models</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 2</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/sd3-Perturbed" rel="noopener noreferrer">marduk191/sd3-Perturbed</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 3</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Flux.1_collection" rel="noopener noreferrer">marduk191/Flux.1_collection</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 20</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Experimental_Models_marduk191" rel="noopener noreferrer">marduk191/Experimental_Models_marduk191</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 4</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Auraflow0.3_collection" rel="noopener noreferrer">marduk191/Auraflow0.3_collection</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 3</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/SD3.5_fp8_SS_ALL.marduk191" rel="noopener noreferrer">marduk191/SD3.5_fp8_SS_ALL.marduk191</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 2</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/auraflow_0.3_quantized" rel="noopener noreferrer">marduk191/auraflow_0.3_quantized</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 53</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/project0_real1smV3FP16_quants" rel="noopener noreferrer">marduk191/project0_real1smV3FP16_quants</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 2</li><li>Downloads: 115</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/flux1-kontext-dev-quants" rel="noopener noreferrer">marduk191/flux1-kontext-dev-quants</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 2</li><li>Downloads: 360</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/junk" rel="noopener noreferrer">marduk191/junk</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 1</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Browns_Return_SDXL_Turbo" rel="noopener noreferrer">marduk191/Browns_Return_SDXL_Turbo</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/GNER_T5_XXL_quants" rel="noopener noreferrer">marduk191/GNER_T5_XXL_quants</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 2</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/T5_XXL_Variants" rel="noopener noreferrer">marduk191/T5_XXL_Variants</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 3</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/flan-t5-xxl-lora-samsum_quants" rel="noopener noreferrer">marduk191/flan-t5-xxl-lora-samsum_quants</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/qwen-image_experiments" rel="noopener noreferrer">marduk191/qwen-image_experiments</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Google-t5-efficient-xxl" rel="noopener noreferrer">marduk191/Google-t5-efficient-xxl</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 1</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Pseudo-Modern_Anime" rel="noopener noreferrer">marduk191/Pseudo-Modern_Anime</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Pseudo-Modern_Anime-NL" rel="noopener noreferrer">marduk191/Pseudo-Modern_Anime-NL</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Cant_believe_its_not_Photon" rel="noopener noreferrer">marduk191/Cant_believe_its_not_Photon</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/SDXL_extractions" rel="noopener noreferrer">marduk191/SDXL_extractions</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Ultralytics_models" rel="noopener noreferrer">marduk191/Ultralytics_models</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/lfm2-350m-dp-marduk191" rel="noopener noreferrer">marduk191/lfm2-350m-dp-marduk191</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 13</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/lfm2-350m-dp2-marduk191" rel="noopener noreferrer">marduk191/lfm2-350m-dp2-marduk191</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 7</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/LFM2-350M-heretic" rel="noopener noreferrer">marduk191/LFM2-350M-heretic</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 17</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/ZIT_Loras" rel="noopener noreferrer">marduk191/ZIT_Loras</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Comfyui_windows_portable_builds" rel="noopener noreferrer">marduk191/Comfyui_windows_portable_builds</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 1</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/cp3.12_cu12.8_windows_wheels" rel="noopener noreferrer">marduk191/cp3.12_cu12.8_windows_wheels</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/rife" rel="noopener noreferrer">marduk191/rife</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 1</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/cp312_cu130_windows_wheels" rel="noopener noreferrer">marduk191/cp312_cu130_windows_wheels</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 1</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Z-Image_MXFP8" rel="noopener noreferrer">marduk191/Z-Image_MXFP8</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/WAN_MXFP8" rel="noopener noreferrer">marduk191/WAN_MXFP8</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 2</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/The_ltX-files" rel="noopener noreferrer">marduk191/The_ltX-files</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/ComfyUI_HeartMuLa" rel="noopener noreferrer">marduk191/ComfyUI_HeartMuLa</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Qwen3-8B-ABC" rel="noopener noreferrer">marduk191/Qwen3-8B-ABC</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Qwen3.5-27B_MXFP8" rel="noopener noreferrer">marduk191/Qwen3.5-27B_MXFP8</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Ministral-3-3B-Instruct-2512-BF16-Heretic" rel="noopener noreferrer">marduk191/Ministral-3-3B-Instruct-2512-BF16-Heretic</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/acestep1.5XL_ComfyUI_aio-marduk191" rel="noopener noreferrer">marduk191/acestep1.5XL_ComfyUI_aio-marduk191</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/krea2_experiments" rel="noopener noreferrer">marduk191/krea2_experiments</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/krea2_loras" rel="noopener noreferrer">marduk191/krea2_loras</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Minmax_music3_experiments" rel="noopener noreferrer">marduk191/Minmax_music3_experiments</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/qwen-image_misc" rel="noopener noreferrer">marduk191/qwen-image_misc</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://huggingface.co/marduk191/Moss-Image-misc" rel="noopener noreferrer">marduk191/Moss-Image-misc</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 0</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-dataset"><span class="gs-catalog-kind">dataset</span><h3><a href="https://huggingface.co/datasets/marduk191/Workflows" rel="noopener noreferrer">marduk191/Workflows</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 3</li><li>Downloads: 101</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-dataset"><span class="gs-catalog-kind">dataset</span><h3><a href="https://huggingface.co/datasets/marduk191/white_noise" rel="noopener noreferrer">marduk191/white_noise</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 5</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-dataset"><span class="gs-catalog-kind">dataset</span><h3><a href="https://huggingface.co/datasets/marduk191/lfm2-350m-dp-marduk191" rel="noopener noreferrer">marduk191/lfm2-350m-dp-marduk191</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>Downloads: 7</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-space"><span class="gs-catalog-kind">space</span><h3><a href="https://huggingface.co/spaces/marduk191/GitHub_Releases" rel="noopener noreferrer">marduk191/GitHub_Releases</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>SDK: static</li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-space"><span class="gs-catalog-kind">space</span><h3><a href="https://huggingface.co/spaces/marduk191/testing" rel="noopener noreferrer">marduk191/testing</a></h3>
+<ul class="gs-catalog-meta"><li>Likes: 0</li><li>SDK: gradio</li></ul>
+</li>
+</ul></section>
+</div>
+</section>
+
+<section id="civitai" aria-labelledby="h-civ">
+<h2 id="h-civ">ls -l /civitai — all 23 releases, every version</h2>
+<p>The complete Civitai model catalog for <a href="https://civitai.com/user/marduk191">civitai.com/user/marduk191</a>, joined on the public API. From <strong>marduk191's Flux.1 collection</strong> (stock flux.1 in fp8/fp16 single files with CLIP, T5 and VAE baked in) through <strong>Can't believe it's not Photon</strong>, the <strong>Pseudo-Modern Anime</strong> checkpoints, SUPIR restore workflows, and Z-Image turbo MXFP8 — each entry lists its published versions.</p>
+<div class="gs-catalog" id="cat-civ">
+<section class="gs-catalog gs-catalog-complete gs-catalog-civitai" data-status="complete" data-count="23">
+<style>.gs-catalog{margin:2rem 0;font:inherit;color:inherit}.gs-catalog-head{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:baseline}.gs-catalog-status{padding:.15rem .6rem;border:1px solid currentColor;border-radius:999px;font-size:.8em}.gs-catalog-counts,.gs-catalog-issues{margin:.5rem 0;padding-left:1.2rem}.gs-catalog-list{list-style:none;margin:1rem 0;padding:0;display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr))}.gs-catalog-item{border:1px solid rgba(128,128,128,.4);border-radius:.6rem;padding:1rem;overflow-wrap:anywhere}.gs-catalog-item h3{margin:.1rem 0 .4rem;font-size:1.05em}.gs-catalog-kind{font-size:.75em;opacity:.7;text-transform:uppercase}.gs-catalog-meta,.gs-catalog-versions{margin:.4rem 0 0;padding-left:1.1rem;font-size:.9em}.gs-catalog a{color:inherit}</style>
+<div class="gs-catalog-head"><h2>Civitai projects for marduk191</h2><span class="gs-catalog-status">Complete</span> <a href="https://civitai.com/user/marduk191" rel="noopener noreferrer">Profile</a></div>
+<ul class="gs-catalog-counts"><li>Total records: 23</li>
+<li>model: 23</li>
+<li>Versions/releases: 51</li>
+</ul>
+<ul class="gs-catalog-list">
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/640734" rel="noopener noreferrer">640734</a></h3>
+<p>I compiled a little collection of flux.1 models. there are fp8 models with fp8 t5 and fp8 models with fp16 t5 for both dev and schnell. Single files for use with the regular checkpoint loader. there are also fp16 models available now. all models have clip, t5, and vae baked in. THESE ARE ALL STOCK FLUX.1 Forr flux kontext, see here https://civitai.com/articles/16348/flux1-kontext-dev-quantized-models-available ` These all use bf16 upcasting, use the appropriate flags if you are tuning on gtx ca…</p>
+<ul class="gs-catalog-meta"><li>Likes: 349</li><li>Downloads: 4365</li><li>Type: Checkpoint</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/640734?modelVersionId=1865988" rel="noopener noreferrer">flux1-dev_8x8_scaled</a></li><li><a href="https://civitai.com/models/640734?modelVersionId=716624" rel="noopener noreferrer">flux.1_dev_8x8</a></li><li><a href="https://civitai.com/models/640734?modelVersionId=717079" rel="noopener noreferrer">flux.1_dev_fp8_fp16t5</a></li><li><a href="https://civitai.com/models/640734?modelVersionId=716923" rel="noopener noreferrer">flux.1_dev_16x16</a></li><li><a href="https://civitai.com/models/640734?modelVersionId=716971" rel="noopener noreferrer">flux.1_schnell_8x8</a></li><li><a href="https://civitai.com/models/640734?modelVersionId=716625" rel="noopener noreferrer">flux.1_schnell_fp8_fp16t5</a></li><li><a href="https://civitai.com/models/640734?modelVersionId=716994" rel="noopener noreferrer">flux.1_schnell_16x16</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/111362" rel="noopener noreferrer">111362</a></h3>
+<p>A ComfyUI workflow is now available for this model HERE . Tips Welcome: https://ko-fi.com/marduk191 on-site generation is available on tensorart for generation. ~ Recommended Settings: Steps: 20 CFG: 2-4.5 Sampler: DPM++ 2m sde Scheduler: karras Denoise: 1 VAE: Baked (vae-ft-mse-840000-ema-pruned) ~ Recommended Negative: ERA09NEGV2 ~ Discord: https://discord.gg/btCfTh4jgt</p>
+<ul class="gs-catalog-meta"><li>Likes: 136</li><li>Downloads: 1493</li><li>Type: Checkpoint</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/111362?modelVersionId=120126" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/316993" rel="noopener noreferrer">316993</a></h3>
+<p>there is a non-lightning version available above. This is an early version of an Anime model I have been working on lately that finally got to a starting point. Trying to fuse the darkpizza oldschool Japanime look with some modern anime looks. It&#x27;s missing some concepts and cohesion still, but this is a start. All cover images are random prompts thrown at it with basic adetailer. Yes, the hands somewhat suck lol. Please use the embedded VAE. This is put together for simple text prompts that tur…</p>
+<ul class="gs-catalog-meta"><li>Likes: 117</li><li>Downloads: 1419</li><li>Type: Checkpoint</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/316993?modelVersionId=355519" rel="noopener noreferrer">v1.0</a></li><li><a href="https://civitai.com/models/316993?modelVersionId=363050" rel="noopener noreferrer">v1.0- NL</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/619254" rel="noopener noreferrer">619254</a></h3>
+<p>This is a basic workflow for flux.1 Dev. Everything except models needed should work fne in the manager. Read below for model links. ` Features: First pass Hiresfix Second pass refinement 4x upscaler for a total of 5x ` Models needed: Checkpoints: https://civitai.com/models/640734/marduk191s-flux1-collection Upscale models: https://openmodeldb.info/models/4x-Nomos8kSCHAT-S hires upscaler: https://openmodeldb.info/models/4x-RealWebPhoto-v4-dat2 ` Tip jar: https://ko-fi.com/marduk191 Discord: htt…</p>
+<ul class="gs-catalog-meta"><li>Likes: 82</li><li>Downloads: 2750</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/619254?modelVersionId=774761" rel="noopener noreferrer">v4.1</a></li><li><a href="https://civitai.com/models/619254?modelVersionId=773470" rel="noopener noreferrer">V4.0 flux.1 Dev</a></li><li><a href="https://civitai.com/models/619254?modelVersionId=705679" rel="noopener noreferrer">v3.1 dev fix</a></li><li><a href="https://civitai.com/models/619254?modelVersionId=697724" rel="noopener noreferrer">v2.3 schnell</a></li><li><a href="https://civitai.com/models/619254?modelVersionId=695212" rel="noopener noreferrer">v2.0 schnell</a></li><li><a href="https://civitai.com/models/619254?modelVersionId=693856" rel="noopener noreferrer">v1.1 schnell</a></li><li><a href="https://civitai.com/models/619254?modelVersionId=692237" rel="noopener noreferrer">v1.0 schnell</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/469160" rel="noopener noreferrer">469160</a></h3>
+<p>This is a workflow for detailing and restoring using SUPIR. Should work in 10gb (barely). removed all images because civit marks simple anime as x rated for no reason now Models: SUPIR: https://github.com/kijai/ComfyUI-SUPIR Upscale Models: https://github.com/marduk191/nmkd-mirror My Favorite checkpoint for detailing: https://civitai.com/models/175094?modelVersionId=226341 Discord: https://discord.gg/s3kj9VqpKc Feel free to leave me a tip if you enjoy my work &amp;gt; Tip Jar Tip: These modular wor…</p>
+<ul class="gs-catalog-meta"><li>Likes: 45</li><li>Downloads: 1059</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/469160?modelVersionId=705063" rel="noopener noreferrer">v1.1</a></li><li><a href="https://civitai.com/models/469160?modelVersionId=522007" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/187732" rel="noopener noreferrer">187732</a></h3>
+<p>**Discontinued due to efficiency nodes being constantly broken. Documentation can now be found HERE This is a semi-basic ComfyUI workflow I use for 21:9 upscales. This workflow is LCM ready straight out of the box, make sure you are on the latest update from efficiencynodes. Contents: Efficiency loader Efficiency K-Sampler Latent Upscaling Efficiency lora stacker Pixel Upscalers Detailer Face swap (REActor) Watermarked image saver YMC image save set for dated folders Previews for each step in t…</p>
+<ul class="gs-catalog-meta"><li>Likes: 44</li><li>Downloads: 1080</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/187732?modelVersionId=521957" rel="noopener noreferrer">v3.2</a></li><li><a href="https://civitai.com/models/187732?modelVersionId=219115" rel="noopener noreferrer">v3.1</a></li><li><a href="https://civitai.com/models/187732?modelVersionId=210825" rel="noopener noreferrer">v1.1</a></li><li><a href="https://civitai.com/models/187732?modelVersionId=210811" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/242158" rel="noopener noreferrer">242158</a></h3>
+<p>Tips Welcome: https://ko-fi.com/marduk191 It&#x27;s available on Tensorart for on-site generation HERE V2 available in my ko-fi shop https://ko-fi.com/marduk191/shop ~ block merged dpo hybrid general model. Display images are unedited raw model output so you know what to expect before upscaling or modifying images. Improved text support, Improved clip recognition, Low CFG support, Regular stepping (slight reduction), etc.. Model weights used in this merge are under &quot;version info&quot; ~ Recommended Setti…</p>
+<ul class="gs-catalog-meta"><li>Likes: 40</li><li>Downloads: 388</li><li>Type: Checkpoint</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/242158?modelVersionId=273230" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/279378" rel="noopener noreferrer">279378</a></h3>
+<p>**This workflow is still updated to the newest nodes, it is just not developed anymore as i work on 3.1. Make sure you update to the newest comfyui and manager verisons. This uses many custom group nodes. This is just a custom little workflow for AnimagineXL 3.0 with all the bulit ins. ` Features: Prompt builder IPAdapter classic Controlnet Detailers Upscalers Easy Lora Standard Lora WD tagger from image ` Models needed: ANIMAGINE XL 3.0 azazeals-voodoo-anime Canny Openpose Depth 1x_nmkdresampl…</p>
+<ul class="gs-catalog-meta"><li>Likes: 36</li><li>Downloads: 872</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/279378?modelVersionId=652790" rel="noopener noreferrer">v2.1</a></li><li><a href="https://civitai.com/models/279378?modelVersionId=346829" rel="noopener noreferrer">v2.0</a></li><li><a href="https://civitai.com/models/279378?modelVersionId=314693" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/459807" rel="noopener noreferrer">459807</a></h3>
+<p>This is an inpaint workflow designed for turbo models. It has automatic detection and fixing abilities. Fully capable of textual inpainting (with a mask) or using ultralytics (ADetailer) models for auto detection and promptless inpainting in 8-10 steps. I got the best results with turbo as it was designed around that model. Feel free to leave me a tip if you enjoy my work &amp;gt; Tip Jar -Prompt for what you are trying to change. Some adjustments may be made with quality words. -Mask Switch: selec…</p>
+<ul class="gs-catalog-meta"><li>Likes: 32</li><li>Downloads: 999</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/459807?modelVersionId=511736" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/237306" rel="noopener noreferrer">237306</a></h3>
+<p>This workflow is EOL and will probably not be updated anymore. it&#x27;s here for archival purposes. This is a workflow for inserting characters into separate generated backgrounds. Features: Image loader Mask editor for loaded image Auto project sizing Empty latent support Inline character levels adjustments Project resampling, with clip adjustment support Works with or without a mask, users choice. Tip Jar</p>
+<ul class="gs-catalog-meta"><li>Likes: 32</li><li>Downloads: 484</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/237306?modelVersionId=267552" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/610058" rel="noopener noreferrer">610058</a></h3>
+<p>A workflow for creating coloring pages for kids. you might want to disable the upscale with model node, i&#x27;ll update it on next run. i did 600ppi instead of 300ppi. you can print gigantic books with that lol. Controlnets used: Mistoline: https://huggingface.co/TheMistoAI/MistoLine ` Optional models that can be replaced: Checkpoint: https://civitai.com/models/185258/colorfulxl LLM: any of your choosing. (disabled by defaut) ` For the print version: Upscale model: https://openmodeldb.info/models/4…</p>
+<ul class="gs-catalog-meta"><li>Likes: 27</li><li>Downloads: 285</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/610058?modelVersionId=681978" rel="noopener noreferrer">v2.0_upscaler</a></li><li><a href="https://civitai.com/models/610058?modelVersionId=681903" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/649545" rel="noopener noreferrer">649545</a></h3>
+<p>A collection of quantized Auraflow models. ` auraflow_0.3_fp8_fp16TE-marduk191 is Auraflow 0.3 with an 8 bit quantized model and a 16 bit text encoder. auraflow_0.3_8x8-marduk191 is Auraflow 0.3 with an 8 bit quantized model and a 8 bit text encoder. ` GGUF quants are now available here https://huggingface.co/marduk191/auraflow_0.3_quantized/tree/main Donations welcome: https://ko-fi.com/marduk191</p>
+<ul class="gs-catalog-meta"><li>Likes: 25</li><li>Downloads: 431</li><li>Type: Checkpoint</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/649545?modelVersionId=726709" rel="noopener noreferrer">auraflow_0.3_fp8_fp16TE</a></li><li><a href="https://civitai.com/models/649545?modelVersionId=726789" rel="noopener noreferrer">auraflow_0.3_8x8</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/670911" rel="noopener noreferrer">670911</a></h3>
+<p>A custom workflow for Flux and flux dev. This is for more advanced users, but not over the top or anything, just a bit more than the plain flow. ` Features: Advanced LLM Prompting with plush nodes Fully gguf ready Lora loader ready Hires and tiled ksampler Inpainting IMG2IMG TXT2IMG Civit metadata saver 1st pass deblur 2k and 4k compatible (before upscales). 2x hires upscale 4x model upscale custom image sharpening ` Model needed for this workflow: -4x dat2 https://openmodeldb.info/models/4x-Re…</p>
+<ul class="gs-catalog-meta"><li>Likes: 23</li><li>Downloads: 407</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/670911?modelVersionId=751062" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/532824" rel="noopener noreferrer">532824</a></h3>
+<p>Tip jar: https://ko-fi.com/marduk191 A workflow for AnimagineXL v3.1 with new character and tag support for 3.1. this is not fully backwards compatible with the 3.0 workflow (updates for both are in progress) designed on the newest comfyui and nodes for the 06-22-2024 update, keep up to date or don&#x27;t use it. more to come in this description as it is finished, this is not optimized and has close to 1000 custom nodes in it. Loras and addons: https://civitai.com/search/models?sortBy=models_v9&amp;amp;…</p>
+<ul class="gs-catalog-meta"><li>Likes: 18</li><li>Downloads: 672</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/532824?modelVersionId=633684" rel="noopener noreferrer">B1.3</a></li><li><a href="https://civitai.com/models/532824?modelVersionId=615712" rel="noopener noreferrer">B1.2</a></li><li><a href="https://civitai.com/models/532824?modelVersionId=593145" rel="noopener noreferrer">B1.1</a></li><li><a href="https://civitai.com/models/532824?modelVersionId=592211" rel="noopener noreferrer">v.B1</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/200502" rel="noopener noreferrer">200502</a></h3>
+<p>This is a workflow for getting great results from &quot;Can&#x27;t Believe It&#x27;s Not Proton&quot; This is a middle mouse button workflow because of compactness. Middle button drags the workspace around. Left clicking to drag will be a disaster most of the time lol. Model Link Tip Jar</p>
+<ul class="gs-catalog-meta"><li>Likes: 18</li><li>Downloads: 514</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/200502?modelVersionId=225629" rel="noopener noreferrer">Beta 1</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/573366" rel="noopener noreferrer">573366</a></h3>
+<p>MY take on outpainting with the fooocus inpaint suite in comfyUI. Tips: https://ko-fi.com/marduk191 Discord Support: https://discord.gg/s3kj9VqpKc Related repositories with documentation: https://huggingface.co/mys/ggml_llava-v1.5-7b https://github.com/Acly/comfyui-inpaint-nodes https://github.com/cubiq/ComfyUI_IPAdapter_plus</p>
+<ul class="gs-catalog-meta"><li>Likes: 18</li><li>Downloads: 430</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/573366?modelVersionId=639167" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/314028" rel="noopener noreferrer">314028</a></h3>
+<p>Tip Jar This will be the last Alpha version I release here due to trolling without reading. ` Update comfy, update all your nodes, this runs on the newest update for cascade. The models for this workflow can be downloaded from huggingface at https://huggingface.co/stabilityai/stable-cascade/tree/main/comfyui_checkpoints , Or in the manager. They go in your normal checkpoints folder like all other checkpoint models. This is not compatible with the bare builds, it is built on the 2 model comfy me…</p>
+<ul class="gs-catalog-meta"><li>Likes: 16</li><li>Downloads: 570</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/314028?modelVersionId=356739" rel="noopener noreferrer">Discontinued</a></li><li><a href="https://civitai.com/models/314028?modelVersionId=354766" rel="noopener noreferrer">Alpha 2</a></li><li><a href="https://civitai.com/models/314028?modelVersionId=352334" rel="noopener noreferrer">Alpha 1</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/2459970" rel="noopener noreferrer">2459970</a></h3>
+<p>This is stock Z-Image Turbo converted to MXFP8 (1024 Top K) for Blackwell cards. Averages around 2it/s at normal resolutions. ComfyUI, aimdo, kitchen, torch, triton, and nvidia drivers all need to be on latest for cu13 to see the benefits. Good news, the stock Diffusion model loader works so you can run with dynamic vram now. Need a RunPod? get a bonus through our affiliate: https://runpod.io?ref=95lv494t Tips welcome, these take about 4 hours to do high quality on RunPod: https://marduk191.git…</p>
+<ul class="gs-catalog-meta"><li>Likes: 15</li><li>Downloads: 284</li><li>Type: Checkpoint</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/2459970?modelVersionId=2765946" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/599714" rel="noopener noreferrer">599714</a></h3>
+<p>A tiled diffusion workflow using AuraSR. This takes standard SDXL sized inputs. anything larger will take very large amounts of vram. This workflow was designed around sdxl lightning with this model: https://civitai.com/models/321390/mjolnir-sdxl-lightning SDXL Controlnet tile from here: https://huggingface.co/xinsir/controlnet-tile-sdxl-1.0/tree/main face_yolov8n-seg2_60.pt from here: https://huggingface.co/jags/yolov8_model_segmentation-set/tree/main This uses the following repos and/or model…</p>
+<ul class="gs-catalog-meta"><li>Likes: 12</li><li>Downloads: 256</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/599714?modelVersionId=670249" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/504472" rel="noopener noreferrer">504472</a></h3>
+<p>A starter workflow with easy settings. ** update: Nodes are in manager now Leave a tip: https://ko-fi.com/marduk191 Discord Support: https://discord.gg/s3kj9VqpKc</p>
+<ul class="gs-catalog-meta"><li>Likes: 11</li><li>Downloads: 381</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/504472?modelVersionId=652743" rel="noopener noreferrer">v1.1</a></li><li><a href="https://civitai.com/models/504472?modelVersionId=560742" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/504531" rel="noopener noreferrer">504531</a></h3>
+<p>A quick widget to hold your ksampler settings. Repo here: https://github.com/marduk191/comfyui-marnodes Workflow example here: https://civitai.com/models/504472/marduk191s-beginner-comfyui-workflow Leave a tip: https://ko-fi.com/marduk191 Discord Support: https://discord.gg/s3kj9VqpKc</p>
+<ul class="gs-catalog-meta"><li>Likes: 11</li><li>Downloads: 131</li><li>Type: Other</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/504531?modelVersionId=829490" rel="noopener noreferrer">v1.0.7</a></li><li><a href="https://civitai.com/models/504531?modelVersionId=560810" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/572717" rel="noopener noreferrer">572717</a></h3>
+<p>This is a basic workflow for Auraflow 0.1. This is a very big model. it does run on 10-12gb, but it uses a T5 text encoder so it will be quite slow. The model is available here: https://huggingface.co/fal/AuraFlow , please read the model card, that&#x27;s the information people were given about the model, the model is available to download there as well. VLM Nodes are used to get better prompts, you must look in the repo of nodes for instructions. https://github.com/gokayfem/ComfyUI_VLM_nodes . If y…</p>
+<ul class="gs-catalog-meta"><li>Likes: 9</li><li>Downloads: 266</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/572717?modelVersionId=638401" rel="noopener noreferrer">v1.0</a></li></ul>
+</li>
+<li class="gs-catalog-item gs-catalog-model"><span class="gs-catalog-kind">model</span><h3><a href="https://civitai.com/models/494036" rel="noopener noreferrer">494036</a></h3>
+<p>This idea didn&#x27;t go over well and was adopted by larger devs that have social media bases. It probably won&#x27;t be updated as it&#x27;s not worth my time and resources any more. Left for archives. A workflow for experimenting with block prompt injection. This is useful to cut down on embedding bleeding and also some useful ways to bypass blocks for ipadapter. We haven&#x27;t really worked out what all blocks are useful for, but the ones we know about are marked. if you have consistent results on a block ple…</p>
+<ul class="gs-catalog-meta"><li>Likes: 5</li><li>Downloads: 161</li><li>Type: Workflows</li></ul>
+<ul class="gs-catalog-versions"><li><a href="https://civitai.com/models/494036?modelVersionId=549258" rel="noopener noreferrer">V-Alpha-2</a></li></ul>
+</li>
+</ul></section>
+</div>
+</section>
+
+<section id="plates" aria-labelledby="h-plates">
+<h2 id="h-plates">display /plates — architecture under soft light</h2>
+<p>A plate rack for the archive: concrete forms, strange silhouettes, daylight raking across hard edges. Twelve plates, all local files.</p>
+<div class="plates">
+<figure><img src="assets/image-1.png" width="640" height="360" alt="Concrete brutalist tower caught in soft natural light, long shadows down its board-formed facade"><figcaption>plate 01 — tower</figcaption></figure>
+<figure><img src="assets/image-2.png" width="640" height="360" alt="Repetition of dark window openings across an imposing modernist facade under diffuse daylight"><figcaption>plate 02 — fenestration</figcaption></figure>
+<figure><img src="assets/image-3.png" width="640" height="360" alt="Cantilevered concrete volumes stacked at odd angles against a pale sky, soft light from one side"><figcaption>plate 03 — cantilever</figcaption></figure>
+<figure><img src="assets/image-4.png" width="640" height="360" alt="Curved ramp spiraling inside an empty concrete stair core, daylight falling from an oculus above"><figcaption>plate 04 — spiral</figcaption></figure>
+<figure><img src="assets/image-5.png" width="640" height="360" alt="Row of weathered stone arches receding into haze with warm low sunlight grazing the masonry"><figcaption>plate 05 — arcade</figcaption></figure>
+<figure><img src="assets/image-6.png" width="640" height="360" alt="Monolithic windowless structure on a flat plain, its severe geometry softened by hazy morning light"><figcaption>plate 06 — monolith</figcaption></figure>
+<figure><img src="assets/image-7.png" width="640" height="360" alt="Close-up of sculptural facade ribs casting soft diagonal shadows in natural daylight"><figcaption>plate 07 — ribs</figcaption></figure>
+<figure><img src="assets/image-8.png" width="640" height="360" alt="Twin dark towers joined by a sky bridge, photographed from below against overcast bright sky"><figcaption>plate 08 — skybridge</figcaption></figure>
+<figure><img src="assets/image-9.png" width="640" height="360" alt="Abandoned industrial hall with broken roof trusses admitting shafts of soft daylight"><figcaption>plate 09 — hall</figcaption></figure>
+<figure><img src="assets/image-10.png" width="640" height="360" alt="Stepped ziggurat-like concrete platform ascending toward a pale sky, edges lit by gentle afternoon light"><figcaption>plate 10 — ziggurat</figcaption></figure>
+<figure><img src="assets/image-11.png" width="640" height="360" alt="Sharp angular facade tilting over a reflecting pool that mirrors its dark geometry under diffuse light"><figcaption>plate 11 — mirror</figcaption></figure>
+<figure><img src="assets/image-12.png" width="640" height="360" alt="Cluster of bulbous cylindrical towers with small round windows, organic and eerie in soft natural light"><figcaption>plate 12 — silos</figcaption></figure>
+</div>
+</section>
+
+<section id="story" aria-labelledby="h-story">
+<h2 id="h-story">cat story.txt</h2>
+<div class="two">
+<div>
+<p>The archive has two clear eras. From 2012 onward: Android device work — bootimage tools, kernel trees and recovery packs for the Pantech Burst (presto), wireless-tools builds for Android, Kodi plugins, a Chrome theme. Around 2023 the handle pivoted hard into generative imaging: ComfyUI custom nodes, quantized single-file checkpoint collections, prompt enhancers, restoration and upscaling workflows, and distillation experiments — mirrored across GitHub, Hugging Face and Civitai.</p>
+<p>Recent verified activity includes a GitHub space that lists the latest releases, sparse-linear-attention nodes, TF32/FP8 acceleration enablers for RTX cards, speech-enhancement nodes, music-generation nodes, and single-file Python trainers for few-step models. Many releases land first on Discord or Ko-fi before reaching the main sites.</p>
+<h3>Recent signals (as captured from public pages)</h3>
+<ul class="links" style="margin-top:8px">
+<div><b class="rank">comfyui_SLA-sage</b>Sparse-Linear Attention (SLA) nodes for ComfyUI.</div>
+<div><b class="rank">ComfyUI-TF32-Enabler</b>Auto-enables TF32 acceleration for RTX 30/40/50 series GPUs in ComfyUI.</div>
+<div><b class="rank">ComfyUI-Fluxpromptenhancer</b>Prompt-enhancer node for flux.1; no longer maintained publicly as another version exists.</div>
+<div><b class="rank">z-image-distillation-trainer</b>Single-file Decoupled-DMD trainer with CLI and Tkinter GUI for few-step Z-Image models.</div>
+<div><b class="rank">ComfyUI-LavaSR</b>Speech enhancement / audio super-resolution nodes, degraded audio up to 48 kHz.</div>
+<div><b class="rank">flux1-kontext-dev-quants</b>GGUF quantizations of FLUX.1-Kontext-dev from Q2_K (4 GB) to BF16 (23.8 GB).</div>
+</ul>
+</div>
+<pre class="motd">MESSAGE OF THE DAY
+The monitor is warm.
+The coffee is cold.
+Everything ships quantized.
+
+Author's note (from Civitai): many releases do not
+make it to the main site; announcements and tips go
+out via Discord and Ko-fi first.</pre>
+</div>
+</section>
+
+<section id="links" aria-labelledby="h-links">
+<h2 id="h-links">man links</h2>
+<div class="links">
+<div><b class="rank">GitHub</b><a href="https://github.com/marduk191">github.com/marduk191</a></div>
+<div><b class="rank">Gists</b><a href="https://gist.github.com/marduk191">safetensor converters, mergers, extractors</a></div>
+<div><b class="rank">Hugging Face</b><a href="https://huggingface.co/marduk191">huggingface.co/marduk191</a></div>
+<div><b class="rank">Civitai</b><a href="https://civitai.com/user/marduk191">civitai.com/user/marduk191</a></div>
+<div><b class="rank">Blogspot</b><a href="https://marduk191.blogspot.com/">the old interweb dug-ups</a></div>
+<div><b class="rank">Discord</b><a href="https://discord.gg/s3kj9VqpKc">first word on new releases</a></div>
+<div><b class="rank">Ko-fi / tip jar</b><a href="https://ko-fi.com/marduk191">ko-fi.com/marduk191</a></div>
+<div><b class="rank">Donations</b><a href="https://marduk191.github.io/ghdonate.html">crypto, Cash App, PayPal</a></div>
+</div>
+</section>
+
+<section id="sources" aria-labelledby="h-src">
+<h2 id="h-src">tail -n 4 sources.log</h2>
+<p>All catalogs on this page were enumerated directly from the platforms' public APIs (GitHub repository list, Hugging Face models/datasets/spaces, Civitai models with versions) and cross-checked against the public profile pages. Counts shown are complete at capture time: 128 / 48 / 23+51. Profile stats quoted on the platform pages (followers, stars, downloads) change constantly and are not restated here as fixed numbers.</p>
+</section>
+
+</main>
+<footer>marduk191 archive page — static, self-contained, no backend. Catalogs generated from public APIs; external links open the live profiles.</footer>
+<div class="badge"><span>PHOSPHOR&middot;ARCHIVE</span><span>POWER<i></i></span></div>
+</div>
+</body>
+</html>
