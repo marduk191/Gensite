@@ -1,3 +1,5 @@
+<img width="1437" height="945" alt="image" src="https://github.com/user-attachments/assets/9bde1612-4d88-48e4-8ad0-5497f9a49127" />
+
 # Gensite
 
 A Windows desktop workspace for generating, editing, previewing and publishing static websites to GitHub Pages.
