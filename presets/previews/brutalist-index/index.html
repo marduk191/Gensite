@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Brutalist Index: a raw typographic index page template with huge numbered rows and a visible-structure toggle. Fictional demo content.">
+<title>Brutalist index — original page template (demo)</title>
+<style>
+:root{--bg:#D8D8D2;--ink:#000;--muted:#3B3B38;--accent:#FF3B00;--surface:#FFFFFF;--focus:#0000EE}
+*{box-sizing:border-box}
+body{margin:0;font:18px/1.35 "Courier New",Courier,monospace;color:var(--ink);background:var(--bg)}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;min-height:44px;border:3px solid var(--ink);background:var(--surface);border-radius:0;padding:4px 14px;text-transform:uppercase}
+button[aria-pressed=true]{background:var(--ink);color:var(--surface)}
+a:focus-visible,button:focus-visible{outline:4px solid var(--focus);outline-offset:0;background:#FFFF00;color:#000}
+.skip{position:absolute;left:0;top:-80px;background:#FFFF00;color:#000;padding:10px 14px;border:3px solid #000;z-index:9}
+.skip:focus{top:0}
+.demo{margin:0;padding:6px 12px;background:var(--ink);color:var(--surface);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding:10px 12px;border-bottom:6px solid var(--ink)}
+header nav{display:flex;flex-wrap:wrap;gap:0}
+header nav a{padding:8px 14px;border:3px solid var(--ink);margin-left:-3px;text-decoration:none;background:var(--surface);text-transform:uppercase;font-weight:700}
+header nav a:hover{background:var(--accent)}
+.title{border-bottom:6px solid var(--ink);padding:10px 12px 0;overflow:hidden}
+h1{font:900 clamp(4rem,19.5vw,19rem)/.8 Arial,Helvetica,sans-serif;letter-spacing:-.07em;text-transform:uppercase;margin:0 -.04em;padding-bottom:.08em}
+.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:12px;border-bottom:6px solid var(--ink);background:var(--surface)}
+.bar p{margin-right:auto;max-width:56ch}
+.bar .grp{display:flex}
+.bar .grp button+button{margin-left:-3px}
+#list{display:block}
+#list li{border-bottom:3px solid var(--ink)}
+#list a{display:grid;grid-template-columns:minmax(70px,10vw) 2.2fr minmax(0,1fr) 80px;align-items:baseline;gap:12px;padding:6px 12px;text-decoration:none}
+#list a:hover{background:var(--ink);color:var(--surface)}
+#list a:hover .no{color:var(--accent)}
+.no{font:700 clamp(1.4rem,5vw,4rem)/1 Arial,Helvetica,sans-serif;color:var(--accent)}
+.tt{font:900 clamp(2rem,7vw,6.5rem)/.95 Arial,Helvetica,sans-serif;letter-spacing:-.05em;text-transform:uppercase;overflow-wrap:break-word}
+.ds{font-size:.95rem}
+.yr{text-align:right;font-weight:700}
+.read{display:grid;grid-template-columns:repeat(2,1fr);border-top:6px solid var(--ink)}
+.read article{padding:14px 12px 28px;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+.read article:nth-child(2n){border-right:0}
+.read article:target{background:var(--accent)}
+.read h3{font:900 2.2rem/1 Arial,Helvetica,sans-serif;text-transform:uppercase;margin-bottom:10px}
+.cols{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:6px solid var(--ink)}
+.cols section{padding:14px 12px 30px;border-right:3px solid var(--ink);background:var(--surface)}
+.cols section:last-child{border-right:0;background:var(--accent)}
+.cols h2{font:900 1.6rem/1 Arial,Helvetica,sans-serif;text-transform:uppercase;margin-bottom:8px}
+footer{padding:12px;border-top:6px solid var(--ink);font-size:.85rem;text-transform:uppercase}
+body.show *{outline:1px solid #E00000;outline-offset:-1px}
+body.show main,body.show header,body.show footer,body.show section,body.show article,body.show nav{outline:2px solid #0000EE}
+@media (max-width:760px){#list a{grid-template-columns:54px 1fr;row-gap:2px}.ds{grid-column:2}.yr{grid-column:2;text-align:left}.read,.cols{grid-template-columns:1fr}.read article,.cols section{border-right:0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#list">Skip to index</a>
+<p class="demo">Demo template. Every entry, year and number is fictional sample content.</p>
+<header>
+<strong>PLAIN PRESS / INDEX No. 7 (sample)</strong>
+<nav aria-label="Primary"><a href="#index">Index</a><a href="#entries">Entries</a><a href="#colophon">Colophon</a></nav>
+</header>
+<main id="main">
+<section class="title" aria-labelledby="h1">
+<h1 id="h1">Index</h1>
+</section>
+<section id="index" aria-labelledby="h-list">
+<div class="bar">
+<p id="h-list">Ten words, one per row. Order them, or expose the structure underneath.</p>
+<div class="grp" role="group" aria-label="Sort order">
+<button type="button" id="by-n" aria-pressed="true">By number</button>
+<button type="button" id="by-a" aria-pressed="false">A–Z</button>
+<button type="button" id="by-z" aria-pressed="false">Z–A</button>
+</div>
+<button type="button" id="show" aria-pressed="false">Show structure</button>
+</div>
+<ul id="list">
+<li data-n="1" data-t="abacus"><a href="#e-abacus"><span class="no">01</span><span class="tt">Abacus</span><span class="ds">Counting without a screen</span><span class="yr">1988</span></a></li>
+<li data-n="2" data-t="bunker"><a href="#e-bunker"><span class="no">02</span><span class="tt">Bunker</span><span class="ds">Notes on thick walls</span><span class="yr">1991</span></a></li>
+<li data-n="3" data-t="concrete"><a href="#e-concrete"><span class="no">03</span><span class="tt">Concrete</span><span class="ds">What it does when it dries</span><span class="yr">1974</span></a></li>
+<li data-n="4" data-t="ditto"><a href="#e-ditto"><span class="no">04</span><span class="tt">Ditto</span><span class="ds">The copied page</span><span class="yr">2003</span></a></li>
+<li data-n="5" data-t="embargo"><a href="#entries"><span class="no">05</span><span class="tt">Embargo</span><span class="ds">A list of things withheld</span><span class="yr">1999</span></a></li>
+<li data-n="6" data-t="furnace"><a href="#entries"><span class="no">06</span><span class="tt">Furnace</span><span class="ds">Heat, as a typeface</span><span class="yr">1967</span></a></li>
+<li data-n="7" data-t="gutter"><a href="#entries"><span class="no">07</span><span class="tt">Gutter</span><span class="ds">The space between columns</span><span class="yr">1985</span></a></li>
+<li data-n="8" data-t="hinge"><a href="#entries"><span class="no">08</span><span class="tt">Hinge</span><span class="ds">Doors in documents</span><span class="yr">2011</span></a></li>
+<li data-n="9" data-t="index"><a href="#entries"><span class="no">09</span><span class="tt">Index</span><span class="ds">This page, described</span><span class="yr">2026</span></a></li>
+<li data-n="10" data-t="joist"><a href="#entries"><span class="no">10</span><span class="tt">Joist</span><span class="ds">Structure you can see</span><span class="yr">1979</span></a></li>
+</ul>
+<p id="status" role="status" class="bar" style="border-bottom:0;border-top:3px solid #000">Sorted by number.</p>
+</section>
+<section id="entries" aria-labelledby="h-ent">
+<h2 id="h-ent" class="bar" style="margin:0;border-top:6px solid #000;border-bottom:0;text-transform:uppercase">Entries 01–04</h2>
+<div class="read">
+<article id="e-abacus"><h3>01. Abacus</h3><p>Counting without a screen. Sample entry text for the demo index; plain, heavy and unpolished on purpose. Year shown is fictional (1988).</p></article>
+<article id="e-bunker"><h3>02. Bunker</h3><p>Notes on thick walls. Sample entry text for the demo index; plain, heavy and unpolished on purpose. Year shown is fictional (1991).</p></article>
+<article id="e-concrete"><h3>03. Concrete</h3><p>What it does when it dries. Sample entry text for the demo index; plain, heavy and unpolished on purpose. Year shown is fictional (1974).</p></article>
+<article id="e-ditto"><h3>04. Ditto</h3><p>The copied page. Sample entry text for the demo index; plain, heavy and unpolished on purpose. Year shown is fictional (2003).</p></article>
+</div>
+</section>
+<section id="colophon" class="cols" aria-labelledby="h-col">
+<section aria-labelledby="h-col"><h2 id="h-col">Colophon</h2><p>Set in default system faces. No images, no gradients, no shadows, on purpose.</p></section>
+<section aria-labelledby="h-rules"><h2 id="h-rules">Rules</h2><p>Borders are 3px or 6px. Colour is grey, black and one orange. Links are always underlined or inverted.</p></section>
+<section aria-labelledby="h-use"><h2 id="h-use">Use</h2><p>Replace the ten words with your projects, essays or releases. Demo only.</p></section>
+</section>
+</main>
+<footer>Demo brutalist index template — no tracking, no framework, one file.</footer>
+<script>
+(function(){
+var list=document.getElementById('list'),st=document.getElementById('status');
+var modes={'by-n':['number',function(a,b){return a.dataset.n-b.dataset.n;}],'by-a':['A–Z',function(a,b){return a.dataset.t<b.dataset.t?-1:1;}],'by-z':['Z–A',function(a,b){return a.dataset.t<b.dataset.t?1:-1;}]};
+Object.keys(modes).forEach(function(id){
+document.getElementById(id).addEventListener('click',function(){
+Object.keys(modes).forEach(function(k){document.getElementById(k).setAttribute('aria-pressed',String(k===id));});
+[].slice.call(list.children).sort(modes[id][1]).forEach(function(li){list.appendChild(li);});
+st.textContent='Sorted by '+modes[id][0]+'.';
+});
+});
+var s=document.getElementById('show');
+s.addEventListener('click',function(){
+var on=document.body.classList.toggle('show');
+s.setAttribute('aria-pressed',String(on));
+});
+})();
+</script>
+</body>
+</html>

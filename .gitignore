@@ -1,0 +1,25 @@
+# Python / local environments
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Per-user runtime state (created by the app)
+/settings.json
+/projects/
+/.native-backups/
+/.publishing/
+*.log
+
+# Kept on the author's disk but not part of the published project
+/tests/
+/tools/
+/docs/
+/legacy/
+/AGENTS.md
+
+# Editor / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini

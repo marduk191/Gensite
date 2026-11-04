@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Original grimoire page template: a spellbook and campaign codex on parchment. Fictional demo content and original artwork.">
+<title>Grimoire of the Ashen Lantern — demo page template</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#2b1a12;--page:#efe0ba;--page2:#e4d0a0;--ink:#3a2314;--muted:#6b4f33;--accent:#8c2f1b;--gold:#b88a2e;--focus:#0f4c5c}
+html{scroll-behavior:smooth;scroll-padding-top:1.5rem}
+body{margin:0;background:radial-gradient(ellipse at 50% 0,#4a2f20,var(--bg) 70%);color:var(--ink);font:18px/1.65 Georgia,"Palatino Linotype",Palatino,serif}
+h1,h2,h3,p,figure,ul,ol{margin:0}
+h1,h2,h3{font-family:"Palatino Linotype",Palatino,Georgia,serif;line-height:1.1;font-weight:700}
+a{color:var(--accent);text-underline-offset:.2em}
+button{font:inherit;color:inherit;cursor:pointer;min-height:44px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:3px;box-shadow:0 0 0 6px #fff8}
+.skip{position:absolute;left:12px;top:-80px;background:#fff;color:#000;padding:10px 14px;z-index:9}
+.skip:focus{top:10px}
+[hidden]{display:none!important}
+.wrap{max-width:1180px;margin:auto;padding:0 clamp(14px,4vw,40px)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;color:#f0dfb8;flex-wrap:wrap}
+.top a{color:#f0dfb8}
+.brand{font-family:Palatino,Georgia,serif;font-size:1.25rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none}
+.top nav{display:flex;gap:22px;flex-wrap:wrap}
+.demo{font-size:.82rem;color:#d9c391;text-align:center;padding-bottom:14px}
+.book{position:relative;display:grid;grid-template-columns:1fr 1fr;background:var(--page);border:1px solid #1d100a;border-radius:6px 6px 10px 10px;box-shadow:0 0 0 10px #4b2a1b,0 0 0 12px var(--gold),0 30px 60px #0008;margin:10px 12px 0;background-image:linear-gradient(90deg,transparent 47%,#0003 49.5%,#fff4 50%,#0003 50.5%,transparent 53%),radial-gradient(circle at 20% 15%,#fff3,transparent 40%),radial-gradient(circle at 80% 90%,#7a521a22,transparent 45%)}
+.leaf{padding:clamp(24px,4vw,56px);position:relative}
+.leaf:first-child{border-right:0}
+.ribbon{position:absolute;top:-10px;right:calc(50% + 40px);width:26px;height:150px;background:var(--accent);clip-path:polygon(0 0,100% 0,100% 100%,50% 88%,0 100%);box-shadow:2px 0 4px #0004}
+.eyebrow{font-variant:small-caps;letter-spacing:.2em;color:var(--muted);font-size:.9rem;margin-bottom:14px}
+h1{font-size:clamp(2.4rem,5vw,4rem);letter-spacing:-.01em;color:var(--accent)}
+.lede{margin-top:18px}
+.lede::first-letter{float:left;font-size:4.6rem;line-height:.8;padding:6px 10px 0 0;color:var(--accent);font-family:Palatino,Georgia,serif;font-weight:700}
+.rule{display:flex;align-items:center;gap:12px;color:var(--gold);margin:26px 0}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.sigil{display:block;width:100%;max-width:380px;margin:auto}
+figcaption{font-size:.82rem;color:var(--muted);text-align:center;margin-top:8px;font-style:italic}
+.btn{display:inline-block;border:2px solid var(--accent);background:var(--accent);color:#fbf1d6;padding:10px 24px;text-decoration:none;font-variant:small-caps;letter-spacing:.12em;font-weight:700;margin-top:22px}
+.btn.alt{background:transparent;color:var(--accent);margin-left:10px}
+.sec{margin-top:64px;color:#f0dfb8}
+.sec>.wrap>h2{font-size:clamp(1.8rem,3.5vw,2.6rem);color:#f6e7c0}
+.sec>.wrap>p.intro{max-width:60ch;margin-top:10px;color:#d9c391}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:26px 0 0;padding-left:8px}
+.tab{background:#5a3724;color:#f0dfb8;border:1px solid #1d100a;border-bottom:0;border-radius:10px 10px 0 0;padding:6px 18px;font-variant:small-caps;letter-spacing:.1em}
+.tab[aria-pressed=true]{background:var(--page);color:var(--ink);font-weight:700}
+.spells{background:var(--page);color:var(--ink);border:1px solid #1d100a;box-shadow:0 0 0 8px #4b2a1b,0 0 0 10px var(--gold);padding:clamp(18px,3vw,36px);margin:0 10px}
+.status{font-size:.88rem;color:var(--muted);margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.spell{border:1px solid var(--gold);padding:18px 18px 16px;background:linear-gradient(var(--page2),var(--page));position:relative}
+.spell::before{content:"";position:absolute;inset:4px;border:1px solid #b88a2e66;pointer-events:none}
+.spell h3{font-size:1.25rem}
+.meta{font-size:.82rem;font-variant:small-caps;letter-spacing:.14em;color:var(--muted);margin:4px 0 8px}
+.spell svg{width:44px;height:44px;float:right;margin:0 0 6px 8px}
+.codex{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,54px);margin-top:26px}
+.codex details{border-top:1px solid #f0dfb855;padding:14px 0}
+.codex summary{font-size:1.15rem;font-weight:700;cursor:pointer;min-height:44px;padding:6px 0;color:#f6e7c0}
+.codex details p{color:#e5d3a6;padding:4px 0 8px}
+.codex a{color:#f2c46b}
+footer{margin-top:70px;padding:28px 0 40px;border-top:1px solid #f0dfb844;color:#d9c391;font-size:.9rem;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:#f2c46b}
+@media(max-width:760px){body{font-size:16px}.book{grid-template-columns:1fr;box-shadow:0 0 0 6px #4b2a1b,0 0 0 8px var(--gold),0 20px 40px #0008;background-image:radial-gradient(circle at 20% 15%,#fff3,transparent 40%)}.ribbon{right:30px;height:100px}.codex{grid-template-columns:1fr}.spells{margin:0 6px}.btn.alt{margin-left:0}.top{padding:16px 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header class="top"><a class="brand" href="./index.html">The Ashen Lantern</a>
+<nav aria-label="Main navigation"><a href="#opening">Opening page</a><a href="#spells">Spell index</a><a href="#codex">Campaign codex</a></nav></header>
+<p class="demo">Demo template · Fictional campaign, spells and lore. All artwork is original sample SVG.</p>
+</div>
+<main id="main">
+<section id="opening" aria-labelledby="h-open">
+<div class="wrap">
+<div class="book">
+<span class="ribbon" aria-hidden="true"></span>
+<div class="leaf">
+<p class="eyebrow">Volume the First · A campaign codex</p>
+<h1 id="h-open">Grimoire of the Ashen Lantern</h1>
+<p class="lede">Within these pages a fictional circle of lamplighters has gathered every charm, ward and half-remembered rite learned along the Cinder Road. This is a demo page: replace the sample entries with your own spells, factions and chronicle.</p>
+<div class="rule" aria-hidden="true">❦</div>
+<p>Open the index to browse spells by school, or read the codex for places, rules of the table and a record of sessions.</p>
+<a class="btn" href="#spells">Open the spell index</a><a class="btn alt" href="#codex">Read the codex</a>
+</div>
+<div class="leaf">
+<figure>
+<svg class="sigil" viewBox="0 0 400 400" role="img" aria-label="Original demo artwork: a lantern inside a ring of runes and eight rays">
+<defs><radialGradient id="glow"><stop offset="0" stop-color="#f6c85f"/><stop offset="1" stop-color="#f6c85f" stop-opacity="0"/></radialGradient></defs>
+<circle cx="200" cy="200" r="185" fill="none" stroke="#3a2314" stroke-width="3"/>
+<circle cx="200" cy="200" r="170" fill="none" stroke="#b88a2e" stroke-width="1.5" stroke-dasharray="3 7"/>
+<circle cx="200" cy="200" r="120" fill="none" stroke="#3a2314" stroke-width="2"/>
+<g stroke="#8c2f1b" stroke-width="3" fill="none" stroke-linecap="round"><path d="M200 15v40M200 345v40M15 200h40M345 200h40M70 70l28 28M302 302l28 28M330 70l-28 28M98 302l-28 28"/></g>
+<g stroke="#3a2314" stroke-width="2.5" fill="none"><path d="M60 200l10-14 10 14-10 14zM320 200l10-14 10 14-10 14zM200 56l10 14-10 14-10-14zM200 316l10 14-10 14-10-14z"/></g>
+<circle cx="200" cy="208" r="90" fill="url(#glow)"/>
+<path d="M170 140h60l8 22h-76zM162 162h76v120h-76z" fill="#efe0ba" stroke="#3a2314" stroke-width="4"/>
+<path d="M200 292c-26-18-26-48 0-84 26 36 26 66 0 84z" fill="#d9822b" stroke="#8c2f1b" stroke-width="3"/>
+<path d="M200 270c-9-8-9-20 0-34 9 14 9 26 0 34z" fill="#f6c85f"/>
+<path d="M184 120a16 16 0 0132 0" fill="none" stroke="#3a2314" stroke-width="4"/>
+<path d="M172 282h56" stroke="#3a2314" stroke-width="5"/>
+</svg>
+<figcaption>Frontispiece · Original demo artwork</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+
+<section id="spells" class="sec" aria-labelledby="h-spells" data-filter-group>
+<div class="wrap">
+<h2 id="h-spells">Spell index</h2>
+<p class="intro">Six sample entries, tabbed by school. Rules text here is invented for the demo and not tied to any game system.</p>
+<div class="tabs" aria-label="Filter spells by school">
+<button type="button" class="tab" data-filter="all" aria-pressed="true">All</button>
+<button type="button" class="tab" data-filter="ward" aria-pressed="false">Wards</button>
+<button type="button" class="tab" data-filter="flame" aria-pressed="false">Flame</button>
+<button type="button" class="tab" data-filter="wander" aria-pressed="false">Wandering</button>
+</div>
+<div class="spells">
+<p class="status" role="status" aria-live="polite">6 spells shown</p>
+<div class="grid">
+<article class="spell" data-category="ward"><svg viewBox="0 0 44 44" role="img" aria-label="Shield sigil"><path d="M22 4l16 6v12c0 10-7 16-16 19C13 38 6 32 6 22V10z" fill="none" stroke="#8c2f1b" stroke-width="2.5"/></svg><h3>Hearth-Ward</h3><p class="meta">Ward · Rank 2 · Ritual</p><p>Chalk a circle at dusk; no cold nor uninvited whisper crosses it until the first light.</p></article>
+<article class="spell" data-category="flame"><svg viewBox="0 0 44 44" role="img" aria-label="Flame sigil"><path d="M22 4c10 10 12 18 8 26-2 4-5 7-8 10-8-5-12-16 0-36z" fill="none" stroke="#8c2f1b" stroke-width="2.5"/></svg><h3>Lantern Bolt</h3><p class="meta">Flame · Rank 1 · Instant</p><p>A thread of amber light leaps from your wick-hand and stings whatever it strikes.</p></article>
+<article class="spell" data-category="wander"><svg viewBox="0 0 44 44" role="img" aria-label="Footprint sigil"><path d="M8 34c10-4 14-12 28-26M30 8h6v6" fill="none" stroke="#8c2f1b" stroke-width="2.5"/></svg><h3>Mile-Folding</h3><p class="meta">Wandering · Rank 3 · Minute</p><p>Fold the road like cloth; one stride crosses a league, but the road remembers the debt.</p></article>
+<article class="spell" data-category="ward"><svg viewBox="0 0 44 44" role="img" aria-label="Eye sigil"><path d="M3 22c8-12 30-12 38 0-8 12-30 12-38 0z" fill="none" stroke="#8c2f1b" stroke-width="2.5"/><circle cx="22" cy="22" r="5" fill="#8c2f1b"/></svg><h3>Watcher’s Veil</h3><p class="meta">Ward · Rank 1 · Hour</p><p>Dim glass forms before your eyes, showing the hidden shape of any lock or snare.</p></article>
+<article class="spell" data-category="flame"><svg viewBox="0 0 44 44" role="img" aria-label="Ember sigil"><circle cx="22" cy="22" r="6" fill="#8c2f1b"/><path d="M22 4v8M22 32v8M4 22h8M32 22h8" stroke="#8c2f1b" stroke-width="2.5"/></svg><h3>Cinder Bloom</h3><p class="meta">Flame · Rank 4 · Instant</p><p>A seed of ember opens into a ring of falling sparks. Friends are spared; shadows are not.</p></article>
+<article class="spell" data-category="wander"><svg viewBox="0 0 44 44" role="img" aria-label="Feather sigil"><path d="M10 36C14 14 26 8 38 6 36 18 30 30 10 36zM10 36l14-14" fill="none" stroke="#8c2f1b" stroke-width="2.5"/></svg><h3>Moth-Step</h3><p class="meta">Wandering · Rank 1 · Round</p><p>Weigh nothing for one breath, and cross water, ash or rotten floorboards unmarked.</p></article>
+</div>
+</div>
+</div>
+</section>
+
+<section id="codex" class="sec" aria-labelledby="h-codex">
+<div class="wrap">
+<h2 id="h-codex">Campaign codex</h2>
+<p class="intro">Notes the circle keeps between sessions. Open an entry to read it.</p>
+<div class="codex">
+<div>
+<details open><summary>The Cinder Road</summary><p>A long causeway of black glass across the Ashfen. Lamps stand every mile; keeping them lit is the circle’s oldest oath.</p></details>
+<details><summary>The Lamplighters</summary><p>A guild of wanderers, half scholars and half couriers. Each carries one lantern and one secret they have promised not to read aloud.</p></details>
+<details><summary>Tavern of Low Tide</summary><p>The circle’s safe house. Its landlord, Mother Orrel, is a fictional character for this demo and keeps a ledger of every favour owed.</p></details>
+</div>
+<div>
+<details open><summary>Session 7 · The Drowned Archive</summary><p>The party found a flooded vault of unlit lamps. One answered to a name nobody had spoken. <a href="#spells">Return to the spell index</a>.</p></details>
+<details><summary>House rules of the table</summary><p>Rolls are honest. Secrets are passed on paper. Anyone may pause the scene by lifting a hand. Replace these with your own table’s agreements.</p></details>
+<details><summary>Open threads</summary><p>Who relit the lamp at mile forty? What does the Hearth-Ward keep out of the Archive? Why is the ledger one page longer each night?</p></details>
+</div>
+</div>
+</div>
+</section>
+</main>
+<div class="wrap"><footer><span>The Ashen Lantern · Fictional demo template, not a real game product</span><a href="#main">Back to top</a></footer></div>
+<script>
+document.querySelectorAll('[data-filter]').forEach(function(b){b.addEventListener('click',function(){
+var g=b.closest('[data-filter-group]'),v=b.dataset.filter,n=0;
+g.querySelectorAll('[data-filter]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+g.querySelectorAll('[data-category]').forEach(function(c){c.hidden=v!=='all'&&c.dataset.category!==v;if(!c.hidden)n++});
+g.querySelector('[role="status"]').textContent=n+' spell'+(n===1?'':'s')+' shown';
+})});
+</script>
+</body>
+</html>

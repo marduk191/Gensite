@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BURNT TOAST ZINE #7 — demo template</title>
+<meta name="description" content="A demo photocopied punk zine template with torn paper edges, ransom-note headlines, taped panels and a flip-through issue index. Fictional sample content.">
+<style>
+:root{--paper:#EDE8DC;--ink:#111111;--muted:#4A463E;--pink:#FF3EA5;--yellow:#FFE600;--blue:#2A4BFF}
+*{box-sizing:border-box}
+body{margin:0;background:#CFC8B6;color:var(--ink);font:18px/1.6 "Courier New",Courier,monospace;
+background-image:radial-gradient(rgba(17,17,17,.12) 1px,transparent 1.5px);background-size:6px 6px}
+a{color:var(--blue);font-weight:700}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--yellow);padding:.5rem .9rem;z-index:9}
+.skip:focus{left:8px}
+:focus-visible{outline:4px solid var(--blue);outline-offset:3px}
+.sheet{background:var(--paper);max-width:1100px;margin:1.5rem auto 4rem;padding:1.5rem clamp(1rem,4vw,3rem) 4rem;position:relative;
+clip-path:polygon(0 1%,4% 0,9% 1.2%,15% .2%,22% 1%,30% 0,38% 1.1%,47% .1%,55% 1%,64% 0,72% 1.2%,81% .2%,90% 1%,100% 0,100% 99%,94% 100%,86% 98.9%,77% 100%,68% 99%,58% 100%,49% 98.8%,39% 100%,29% 99%,19% 100%,9% 98.9%,0 100%);
+box-shadow:0 0 0 1px rgba(0,0,0,.3)}
+.sheet::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.06;background:repeating-linear-gradient(0deg,#000 0 1px,transparent 1px 3px)}
+.menu{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end;margin-bottom:1rem}
+.menu a{background:var(--ink);color:var(--paper);text-decoration:none;padding:.3rem .8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.8rem;transform:rotate(-1.5deg)}
+.menu a:nth-child(2n){transform:rotate(1.2deg);background:var(--pink);color:var(--ink)}
+.menu a:hover{background:var(--yellow);color:var(--ink)}
+.cover{border:4px solid var(--ink);padding:1.2rem;margin-bottom:2rem;position:relative;background:var(--paper)}
+.issue{position:absolute;top:-18px;right:20px;background:var(--yellow);border:3px solid var(--ink);padding:.2rem .8rem;font-weight:900;transform:rotate(4deg);letter-spacing:.1em}
+h1{margin:0;font:900 clamp(2.6rem,10vw,7.5rem)/.9 Impact,"Arial Black",sans-serif;text-transform:uppercase;letter-spacing:-.01em}
+h1 .r{display:inline-block;padding:0 .08em;margin:0 .02em .06em 0}
+h1 .a{background:var(--ink);color:var(--paper);transform:rotate(-3deg)}
+h1 .b{background:var(--yellow);transform:rotate(2deg)}
+h1 .c{background:var(--pink);transform:rotate(-1deg)}
+h1 .d{background:var(--paper);outline:4px solid var(--ink);transform:rotate(3deg)}
+h1 .e{background:var(--blue);color:var(--paper);transform:rotate(-2deg)}
+.sub{font-weight:700;margin:1.2rem 0 .3rem;font-size:1.1rem}
+.notice{display:inline-block;background:var(--ink);color:var(--yellow);padding:.2rem .7rem;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transform:rotate(-1deg)}
+.photo{height:200px;margin-top:1rem;border:3px solid var(--ink);filter:contrast(1.6) grayscale(1);background:var(--ink)}
+.photo svg{width:100%;height:100%;display:block}
+section{padding:3rem 0 1rem}
+h2{font:900 clamp(2rem,6vw,3.6rem)/1 Impact,"Arial Black",sans-serif;text-transform:uppercase;margin:0 0 1.2rem;display:inline-block;background:var(--ink);color:var(--paper);padding:.1em .3em;transform:rotate(-1.2deg)}
+.panels{display:grid;grid-template-columns:repeat(6,1fr);gap:1.6rem}
+.panel{background:#FBF8EF;border:3px solid var(--ink);padding:1.2rem 1.1rem;position:relative;box-shadow:7px 7px 0 var(--ink)}
+.panel:nth-child(1){grid-column:span 4;transform:rotate(-.8deg)}
+.panel:nth-child(2){grid-column:span 2;background:var(--yellow);transform:rotate(1.6deg)}
+.panel:nth-child(3){grid-column:span 2;background:var(--pink);transform:rotate(1deg)}
+.panel:nth-child(4){grid-column:span 4;transform:rotate(-1.2deg)}
+.panel::before{content:"";position:absolute;top:-14px;left:40%;width:90px;height:26px;background:rgba(255,230,0,.75);border:1px solid rgba(0,0,0,.2);transform:rotate(-4deg)}
+.panel h3{margin:0 0 .4rem;font:900 1.6rem/1.05 Impact,"Arial Black",sans-serif;text-transform:uppercase}
+.panel p{margin:0 0 .6rem}
+.panel .by{font-size:.8rem;text-transform:uppercase;letter-spacing:.14em}
+.contents{border:3px dashed var(--ink);padding:1rem 1.4rem;background:#FBF8EF}
+.contents ol{margin:0;padding:0;list-style:none}
+.contents li{display:flex;gap:.6rem;align-items:baseline;border-bottom:2px dotted var(--ink);padding:.5rem 0}
+.contents li:last-child{border-bottom:none}
+.contents b{font:900 1.6rem Impact,sans-serif;color:var(--pink);-webkit-text-stroke:1px var(--ink)}
+.contents span{margin-left:auto;font-weight:700}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;align-items:start}
+.flip{background:#FBF8EF;border:3px solid var(--ink);padding:1.2rem;min-height:210px;box-shadow:7px 7px 0 var(--blue)}
+.flip h3{margin:0 0 .4rem;font:900 1.5rem Impact,sans-serif;text-transform:uppercase}
+.flip p{margin:0}
+.ctl{display:flex;gap:.6rem;margin-top:1rem;align-items:center;flex-wrap:wrap}
+.ctl button{font:900 1rem Impact,sans-serif;text-transform:uppercase;letter-spacing:.06em;background:var(--ink);color:var(--paper);border:3px solid var(--ink);padding:.5rem 1.1rem;cursor:pointer;transform:rotate(-1deg)}
+.ctl button:hover{background:var(--pink);color:var(--ink)}
+.ctl output{font-weight:700}
+.rules li{margin-bottom:.5rem;padding-left:.4rem}
+.rules{background:var(--yellow);border:3px solid var(--ink);padding:1rem 1.2rem 1rem 2.4rem;margin:0;transform:rotate(.8deg)}
+details{border:3px solid var(--ink);background:#FBF8EF;padding:.7rem 1rem;margin-bottom:.9rem}
+summary{cursor:pointer;font:900 1.2rem Impact,sans-serif;text-transform:uppercase}
+details p{margin:.5rem 0 0}
+footer{margin-top:3rem;border-top:4px solid var(--ink);padding-top:1rem;font-size:.9rem}
+footer p{margin:0}
+@media (max-width:760px){
+.panels,.pg{grid-template-columns:1fr}
+.panel:nth-child(n){grid-column:auto}
+.sheet{margin:0;clip-path:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sheet">
+<nav class="menu" aria-label="Zine pages"><a href="#inside">Inside</a><a href="#read">Read it</a><a href="#diy">Make one</a><a href="#faq">FAQ</a></nav>
+<header class="cover">
+<span class="issue">ISSUE #7</span>
+<h1><span class="r a">Burnt</span> <span class="r b">Toast</span> <span class="r c">Zine</span></h1>
+<p class="sub">Cut. Paste. Photocopy. Staple. Repeat.</p>
+<span class="notice">Demo template · fictional zine</span>
+<div class="photo"><svg viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample photocopied crowd silhouette art"><rect width="600" height="200" fill="#999"/><g fill="#111"><circle cx="70" cy="110" r="22"/><rect x="40" y="130" width="60" height="70"/><circle cx="170" cy="100" r="24"/><rect x="138" y="124" width="64" height="76"/><circle cx="280" cy="112" r="21"/><rect x="250" y="132" width="60" height="68"/><circle cx="390" cy="96" r="25"/><rect x="356" y="122" width="68" height="78"/><circle cx="500" cy="108" r="22"/><rect x="468" y="130" width="64" height="70"/></g><path d="M0 30 L600 10" stroke="#111" stroke-width="6" stroke-dasharray="14 8"/></svg></div>
+</header>
+<main id="main">
+<section id="inside" aria-labelledby="in-h">
+<h2 id="in-h">Inside</h2>
+<div class="panels">
+<article class="panel"><h3>Basement shows are the only shows</h3><p>A rant about venues, door prices and who actually carries the amps up the stairs. Sample text for a demo zine.</p><span class="by">by anonymous · p.2</span></article>
+<article class="panel"><h3>Free stuff list</h3><p>Stickers, tapes, a half roll of tape. Demo list, nothing here is on offer.</p><span class="by">p.5</span></article>
+<article class="panel"><h3>Mix tape #7</h3><p>Ten songs by bands that do not exist.</p><span class="by">p.8</span></article>
+<article class="panel"><h3>How we made the cover</h3><p>Glue, scissors, a borrowed copier and a very patient friend who owned the key to the copy room.</p><span class="by">by the editors · p.11</span></article>
+</div>
+</section>
+
+<section id="read" aria-labelledby="rd-h">
+<h2 id="rd-h">Read it</h2>
+<div class="pg">
+<div class="contents"><ol>
+<li><b>02</b> Basement shows <span>rant</span></li>
+<li><b>05</b> Free stuff list <span>list</span></li>
+<li><b>08</b> Mix tape #7 <span>music</span></li>
+<li><b>11</b> Cover how-to <span>diy</span></li>
+</ol></div>
+<div>
+<div class="flip" id="flip" aria-live="polite"><h3 id="ft">Page 2</h3><p id="fp">Basement shows are the only shows. Replace this with your own pages of text.</p></div>
+<div class="ctl"><button type="button" id="prev">Prev</button><button type="button" id="next">Next</button><output id="pgn">1 / 4</output></div>
+</div>
+</div>
+</section>
+
+<section id="diy" aria-labelledby="dy-h">
+<h2 id="dy-h">Make one</h2>
+<ol class="rules">
+<li>Fold one sheet of paper into eight.</li>
+<li>Write, draw and glue before you think twice.</li>
+<li>Photocopy, staple and pass it hand to hand.</li>
+<li>Do not wait for permission.</li>
+</ol>
+</section>
+
+<section id="faq" aria-labelledby="fq-h">
+<h2 id="fq-h">FAQ</h2>
+<details><summary>Can I send in a page?</summary><p>This is a demo template with no submissions. Add your own contact details.</p></details>
+<details><summary>Is it free?</summary><p>Swap in your own price, trade or pay-what-you-want note.</p></details>
+</section>
+</main>
+<footer><p>Burnt Toast is a fictional demo zine. Art is original inline SVG and CSS.</p></footer>
+</div>
+<script>
+(function(){
+var pages=[['Page 2','Basement shows are the only shows. Replace this with your own pages of text.'],['Page 5','Free stuff list: nothing here is real. Demo content only.'],['Page 8','Mix tape #7: ten songs by bands that do not exist.'],['Page 11','Cover how-to: glue, scissors and a borrowed copier.']],i=0;
+var t=document.getElementById('ft'),p=document.getElementById('fp'),n=document.getElementById('pgn');
+function show(){t.textContent=pages[i][0];p.textContent=pages[i][1];n.textContent=(i+1)+' / '+pages.length}
+document.getElementById('prev').addEventListener('click',function(){i=(i+pages.length-1)%pages.length;show()});
+document.getElementById('next').addEventListener('click',function(){i=(i+1)%pages.length;show()});
+})();
+</script>
+</body>
+</html>

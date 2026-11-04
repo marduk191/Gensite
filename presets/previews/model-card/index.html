@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Original open model release page template. Demo content: the model, benchmark numbers and organisation are fictional.">
+<title>Larkspur-7B model card — demo page template</title>
+<style>
+:root{--bg:#F7F4EE;--ink:#1E1B18;--muted:#6A645B;--accent:#C4491C;--surface:#ECE6DA;--line:#D5CCBB;--code:#1E1B18;--codeink:#F3EBDD}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:1.5rem}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3,p,ul,ol,figure,dl,dd{margin:0}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:700;line-height:1.08;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(2.6rem,7vw,5.2rem)}
+h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:.9rem}
+h3{font-size:1.15rem}
+p{max-width:68ch}p+p{margin-top:.8rem}
+code,pre,.mono{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace}
+a{color:inherit;text-underline-offset:.2em}
+button{font:inherit;color:inherit;cursor:pointer;min-height:40px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--ink);color:var(--bg);padding:10px 14px;z-index:9}
+.skip:focus{top:10px}
+.demo{background:var(--ink);color:var(--codeink);font-size:.8rem;padding:8px 20px;text-align:center}
+.shell{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(24px,4vw,64px);max-width:1260px;margin:0 auto;padding:0 clamp(18px,4vw,48px)}
+aside{position:sticky;top:0;align-self:start;padding:28px 0;max-height:100vh;overflow:auto}
+.logo{font-family:Georgia,serif;font-weight:700;font-size:1.25rem;text-decoration:none;display:flex;gap:10px;align-items:center}
+.logo svg{width:28px;height:28px}
+aside nav ul{list-style:none;padding:0;margin:26px 0 0;border-left:2px solid var(--line)}
+aside nav a{display:block;padding:6px 14px;margin-left:-2px;border-left:2px solid transparent;text-decoration:none;color:var(--muted);font-size:.95rem}
+aside nav a:hover,aside nav a[aria-current=true]{color:var(--ink);border-left-color:var(--accent)}
+main{padding-bottom:80px;min-width:0}
+header.hero{padding:44px 0 36px;border-bottom:1px solid var(--line)}
+.crumb{font-size:.85rem;color:var(--muted);margin-bottom:18px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.tag{font-size:.78rem;padding:3px 10px;border:1px solid var(--line);border-radius:4px;background:var(--surface);font-family:ui-monospace,Consolas,monospace}
+.tag.hot{background:var(--accent);border-color:var(--accent);color:#fff}
+.lede{font-size:1.2rem;margin-top:18px}
+.stamp{display:grid;grid-template-columns:repeat(4,1fr);margin-top:30px;border:1px solid var(--ink)}
+.stamp div{padding:14px 16px;border-right:1px solid var(--ink)}
+.stamp div:last-child{border-right:0}
+.stamp dt{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.stamp dd{font-family:Georgia,serif;font-size:1.5rem;font-weight:700}
+section{padding:48px 0 4px;scroll-margin-top:1rem}
+.bench{width:100%;border-collapse:collapse;font-size:.95rem;margin-top:10px}
+.bench caption{text-align:left;font-size:.85rem;color:var(--muted);padding-bottom:10px}
+.bench th,.bench td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+.bench thead th{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:2px solid var(--ink)}
+.bench tr.us td,.bench tr.us th{background:var(--surface);font-weight:700}
+.bar{display:block;height:8px;background:var(--line);position:relative;min-width:80px}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--accent)}
+.bench td.n{font-variant-numeric:tabular-nums;font-family:ui-monospace,Consolas,monospace;width:4.5rem}
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--ink);margin-top:10px}
+.tabs button{background:none;border:0;padding:8px 18px;font-weight:600}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--bg)}
+pre{background:var(--code);color:var(--codeink);padding:20px;overflow:auto;font-size:.88rem;line-height:1.55;margin:0}
+.snip{position:relative}
+.copy{position:absolute;right:10px;top:10px;background:var(--accent);color:#fff;border:0;padding:4px 12px;font-size:.8rem}
+.live{font-size:.82rem;color:var(--muted);min-height:1.4em;margin-top:6px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.box{background:var(--surface);padding:22px;border-top:4px solid var(--ink)}
+.box.warn{border-top-color:var(--accent)}
+.box ul{padding-left:1.1rem;margin-top:10px}.box li{margin-bottom:.4rem}
+dl.meta{display:grid;grid-template-columns:max-content 1fr;gap:6px 24px;margin-top:10px}
+dl.meta dt{color:var(--muted)}
+details{border-bottom:1px solid var(--line);padding:12px 0}
+summary{font-weight:600}
+details p{margin-top:8px}
+footer{border-top:1px solid var(--ink);padding:26px clamp(18px,4vw,48px);font-size:.85rem;color:var(--muted);max-width:1260px;margin:0 auto}
+@media (max-width:860px){
+.shell{grid-template-columns:minmax(0,1fr)}
+aside{position:static;max-height:none;padding:18px 0 0}
+aside nav ul{display:flex;flex-wrap:wrap;gap:4px 14px;border:0;margin-top:12px}
+aside nav a{border:0;padding:4px 0;margin:0}
+.stamp{grid-template-columns:1fr 1fr}.stamp div:nth-child(2){border-right:0}.stamp div:nth-child(-n+2){border-bottom:1px solid var(--ink)}
+.twocol{grid-template-columns:1fr}
+.bench-wrap{overflow-x:auto}
+.bench{min-width:520px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="demo">Demo template: Larkspur-7B, “Fieldnote Labs” and every number on this page are fictional sample content.</div>
+<div class="shell">
+<aside>
+<a class="logo" href="#top"><svg viewBox="0 0 32 32" role="img" aria-label="Sample logo mark"><circle cx="16" cy="16" r="14" fill="none" stroke="#1E1B18" stroke-width="2"></circle><path d="M16 5v22M16 16l8-8M16 16l8 8M16 16l-8-8M16 16l-8 8" stroke="#C4491C" stroke-width="2" fill="none"></path></svg>Fieldnote Labs</a>
+<nav aria-label="On this page">
+<ul>
+<li><a href="#summary" aria-current="true">Summary</a></li>
+<li><a href="#benchmarks">Benchmarks</a></li>
+<li><a href="#usage">Quick start</a></li>
+<li><a href="#training">Training</a></li>
+<li><a href="#limits">Limitations</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul>
+</nav>
+</aside>
+<main id="main">
+<header class="hero" id="top">
+<p class="crumb">fieldnote-labs / <strong>larkspur-7b</strong> · release 1.2 (demo)</p>
+<h1>Larkspur‑7B</h1>
+<p class="lede">An open-weight 7 billion parameter language model for careful, citation-minded writing and tool-assisted reading. Small enough for one consumer GPU, documented enough to audit.</p>
+<div class="tags" aria-label="Model tags"><span class="tag hot">text-generation</span><span class="tag">apache-2.0 (demo)</span><span class="tag">8k context</span><span class="tag">safetensors</span><span class="tag">en · de · es</span></div>
+<dl class="stamp">
+<div><dt>Parameters</dt><dd>7.1B</dd></div>
+<div><dt>Context</dt><dd>8,192</dd></div>
+<div><dt>VRAM, 4-bit</dt><dd>~5 GB</dd></div>
+<div><dt>Released</dt><dd>Demo date</dd></div>
+</dl>
+</header>
+
+<section id="summary">
+<h2>Model summary</h2>
+<p>Larkspur-7B is a decoder-only transformer fine-tuned for summarising, rewriting and answering questions over supplied documents. It prefers to quote its source and to say when it does not know.</p>
+<p>This page is a sample layout showing how an open release can be documented on one scrolling page: facts first, then evidence, then how to run it, then what could go wrong.</p>
+<dl class="meta">
+<dt>Developed by</dt><dd>Fieldnote Labs (fictional)</dd>
+<dt>Model type</dt><dd>Decoder-only transformer, grouped-query attention</dd>
+<dt>Languages</dt><dd>English, German, Spanish</dd>
+<dt>Finetuned from</dt><dd>larkspur-7b-base (demo)</dd>
+</dl>
+</section>
+
+<section id="benchmarks">
+<h2>Benchmarks</h2>
+<p>Scores are percentages from an invented evaluation suite. They are demo numbers and do not describe any real model.</p>
+<div class="bench-wrap">
+<table class="bench">
+<caption>Table 1. Sample results, higher is better. Demo data.</caption>
+<thead><tr><th scope="col">Model</th><th scope="col">Reading QA</th><th scope="col"></th><th scope="col">Summaries</th><th scope="col"></th><th scope="col">Reasoning</th><th scope="col"></th></tr></thead>
+<tbody>
+<tr class="us"><th scope="row">Larkspur-7B</th><td class="n">78.4</td><td><span class="bar"><i style="width:78%"></i></span></td><td class="n">71.2</td><td><span class="bar"><i style="width:71%"></i></span></td><td class="n">64.9</td><td><span class="bar"><i style="width:65%"></i></span></td></tr>
+<tr><th scope="row">Larkspur-3B</th><td class="n">69.0</td><td><span class="bar"><i style="width:69%"></i></span></td><td class="n">62.7</td><td><span class="bar"><i style="width:63%"></i></span></td><td class="n">51.3</td><td><span class="bar"><i style="width:51%"></i></span></td></tr>
+<tr><th scope="row">Sample-Baseline-7B</th><td class="n">72.1</td><td><span class="bar"><i style="width:72%"></i></span></td><td class="n">66.5</td><td><span class="bar"><i style="width:67%"></i></span></td><td class="n">60.2</td><td><span class="bar"><i style="width:60%"></i></span></td></tr>
+<tr><th scope="row">Sample-Baseline-13B</th><td class="n">76.9</td><td><span class="bar"><i style="width:77%"></i></span></td><td class="n">70.8</td><td><span class="bar"><i style="width:71%"></i></span></td><td class="n">66.3</td><td><span class="bar"><i style="width:66%"></i></span></td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="usage">
+<h2>Quick start</h2>
+<div class="tabs" role="tablist" aria-label="Runtime">
+<button type="button" role="tab" id="t-py" aria-selected="true" aria-controls="p-py">Python</button>
+<button type="button" role="tab" id="t-cli" aria-selected="false" aria-controls="p-cli">Command line</button>
+</div>
+<div class="snip" role="tabpanel" id="p-py" aria-labelledby="t-py">
+<button type="button" class="copy" data-target="c-py">Copy</button>
+<pre><code id="c-py">from sampletoolkit import load, generate
+
+model = load("fieldnote-labs/larkspur-7b", dtype="4bit")
+print(generate(model, "Summarise the attached notes in three bullets.",
+               documents=["notes.txt"], max_tokens=256))</code></pre>
+</div>
+<div class="snip" role="tabpanel" id="p-cli" aria-labelledby="t-cli" hidden>
+<button type="button" class="copy" data-target="c-cli">Copy</button>
+<pre><code id="c-cli">sample-run larkspur-7b --doc notes.txt --prompt "Summarise in three bullets" --max-tokens 256</code></pre>
+</div>
+<p class="live" id="copystate" role="status"></p>
+<p>The package name above is invented for this demo; replace it with the real runtime when you publish a genuine model.</p>
+</section>
+
+<section id="training">
+<h2>Training and evaluation</h2>
+<div class="twocol">
+<div class="box"><h3>Data</h3><ul><li>2.1T tokens of licensed and public-domain text (demo figure)</li><li>Instruction mix of 410k reviewed examples</li><li>Dataset card: <a href="#faq">see FAQ</a></li></ul></div>
+<div class="box"><h3>Compute</h3><ul><li>64 accelerators for 11 days (demo)</li><li>Estimated 2.4 t CO2e, reported as a sample</li><li>Evaluated with a fixed harness, three seeds</li></ul></div>
+</div>
+</section>
+
+<section id="limits">
+<h2>Limitations and intended use</h2>
+<div class="twocol">
+<div class="box"><h3>Intended</h3><ul><li>Drafting and summarising supplied documents</li><li>Research assistants with a human reviewer</li><li>Local, offline text tools</li></ul></div>
+<div class="box warn"><h3>Not intended</h3><ul><li>Legal, medical or financial decisions without review</li><li>Unattended publication of generated claims</li><li>Languages outside the three listed</li></ul></div>
+</div>
+<p style="margin-top:16px">It can state false details with confidence, may reflect biases in its training text, and degrades past about 6k tokens of context. Always check quotes against the source.</p>
+</section>
+
+<section id="license">
+<h2>License</h2>
+<p>Weights and code are shown here under a placeholder permissive licence. In a real release, link the exact licence text and any acceptable-use policy next to the download.</p>
+</section>
+
+<section id="faq">
+<h2>FAQ</h2>
+<details><summary>Where do the numbers come from?</summary><p>They are invented for this demo template and should be replaced with your own reproducible results.</p></details>
+<details><summary>Can I fine-tune it?</summary><p>In a real card, say which adapters, formats and licences allow it.</p></details>
+<details><summary>How do I report a problem?</summary><p>Point to an issues page. This sample links nowhere on purpose.</p></details>
+</section>
+</main>
+</div>
+<footer>Demo template · Fictional model card for layout reference · Replace all sample content before publishing.</footer>
+<script>
+(function(){
+var tabs=document.querySelectorAll('[role=tab]');
+tabs.forEach(function(t){t.addEventListener('click',function(){
+tabs.forEach(function(o){var on=o===t;o.setAttribute('aria-selected',on);document.getElementById(o.getAttribute('aria-controls')).hidden=!on;});
+});});
+var st=document.getElementById('copystate');
+document.querySelectorAll('.copy').forEach(function(b){b.addEventListener('click',function(){
+var txt=document.getElementById(b.dataset.target).textContent;
+function ok(){st.textContent='Copied to clipboard.';}
+function no(){st.textContent='Select the text and copy it manually.';}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,no);}else{no();}
+});});
+var links=document.querySelectorAll('aside nav a');
+var secs=Array.prototype.map.call(links,function(a){return document.querySelector(a.getAttribute('href'));});
+if('IntersectionObserver' in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.setAttribute('aria-current',a.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'-20% 0px -70% 0px'});
+secs.forEach(function(s){if(s)io.observe(s);});
+}
+})();
+</script>
+</body>
+</html>

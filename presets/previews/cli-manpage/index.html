@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Original CLI tool page template styled as a Unix manual page, with copyable commands. Demo content for a fictional tool called pebble."><title>PEBBLE(1) — man page style template (demo)</title>
+<style>
+:root{--bg:#F3EEDD;--ink:#1D1A14;--muted:#6B6350;--acc:#B3261E;--surf:#E8E1CA;--line:#CFC6A8;--mono:"Courier New",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:1rem}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--mono)}
+h1,h2,h3,p,ul,dl,dd,pre{margin:0}ul{padding:0;list-style:none}
+a{color:var(--acc);text-underline-offset:.2em}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.skip{position:absolute;left:8px;top:-80px;background:var(--ink);color:var(--bg);padding:8px 12px;z-index:9}.skip:focus{top:8px}
+.frame{display:grid;grid-template-columns:230px minmax(0,1fr);max-width:1100px;margin:auto}
+aside{border-right:2px solid var(--ink);padding:28px 20px;position:sticky;top:0;align-self:start;height:100vh;overflow:auto}
+aside p.t{font-weight:700;font-size:1.3rem;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:14px}
+aside a{display:block;text-decoration:none;color:var(--ink);padding:5px 0;letter-spacing:.06em;font-size:.88rem}aside a:before{content:"  ";white-space:pre}aside a:hover{color:var(--acc)}aside a:hover:before{content:"> "}
+.page{padding:clamp(20px,4vw,48px)}
+.hd{display:flex;justify-content:space-between;border-bottom:1px solid var(--ink);padding-bottom:6px;font-size:.85rem;letter-spacing:.08em;gap:12px}
+.demo{margin:16px 0;padding:8px 12px;border:1px dashed var(--acc);color:var(--acc);font-size:.85rem}
+h1{font-size:clamp(2.6rem,9vw,6.4rem);line-height:.9;letter-spacing:-.06em;margin:28px 0 8px;font-weight:700}
+h1 sup{font-size:.25em;letter-spacing:0;vertical-align:top;color:var(--acc)}
+section{padding-block:22px}
+h2{font-size:1rem;letter-spacing:.14em;font-weight:700;text-transform:uppercase;margin-bottom:10px}
+.body{padding-left:clamp(0px,4vw,48px);max-width:68ch}
+.body p+p{margin-top:12px}
+.syn{background:var(--ink);color:var(--bg);padding:14px 18px;position:relative;overflow-x:auto;white-space:pre;font-size:.92rem}
+.syn u{text-decoration:none;color:#F9B8B2}
+.copy{font:inherit;font-size:.82rem;cursor:pointer;background:transparent;color:inherit;border:1px solid currentColor;padding:6px 12px;min-height:44px;margin-top:8px}
+.copy:hover{background:var(--acc);color:#fff;border-color:var(--acc)}
+.cmds li{border-top:1px solid var(--line);padding:14px 0;display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center}
+.cmds code{font-weight:700;background:var(--surf);padding:2px 6px;overflow-wrap:anywhere}
+.cmds p{grid-column:1/3;color:var(--muted);font-size:.92rem}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:10px 28px}dt{font-weight:700;color:var(--acc)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+#note{min-height:1.6em;font-size:.88rem;color:var(--muted);margin-top:8px}
+details{border-top:1px solid var(--line);padding:10px 0}summary{cursor:pointer;font-weight:700}details p{margin-top:8px;color:var(--muted)}
+footer{border-top:1px solid var(--ink);margin-top:20px;padding-top:8px;display:flex;justify-content:space-between;font-size:.85rem;gap:12px}
+.rule{height:10px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 6px);margin-top:6px}
+@media(max-width:800px){.frame{grid-template-columns:1fr}aside{position:static;height:auto;border-right:0;border-bottom:2px solid var(--ink);display:flex;flex-wrap:wrap;gap:4px 16px}aside p.t{flex-basis:100%}aside a:before{content:""}dl{grid-template-columns:1fr}.cmds li{grid-template-columns:1fr}.cmds p{grid-column:1}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="frame">
+<aside><p class="t">pebble(1)</p><nav aria-label="Sections"><a href="#name">NAME</a><a href="#synopsis">SYNOPSIS</a><a href="#description">DESCRIPTION</a><a href="#commands">COMMANDS</a><a href="#options">OPTIONS</a><a href="#examples">EXAMPLES</a><a href="#see-also">SEE ALSO</a></nav></aside>
+<main id="main" class="page">
+<div class="hd"><span>PEBBLE(1)</span><span>User Commands</span><span>PEBBLE(1)</span></div>
+<p class="demo">This is a demo page. pebble is a fictional command-line tool; every command and version here is sample text.</p>
+<h1>pebble<sup>(1)</sup></h1>
+<p>tiny task runner for tiny projects</p>
+<div class="rule" aria-hidden="true"></div>
+
+<section id="name" aria-labelledby="h-name"><h2 id="h-name">Name</h2><div class="body"><p>pebble — run named tasks from a single plain text file.</p></div></section>
+
+<section id="synopsis" aria-labelledby="h-syn"><h2 id="h-syn">Synopsis</h2><div class="body">
+<pre class="syn" id="syn"><u>pebble</u> [<u>-n</u>] [<u>-f</u> FILE] <u>run</u> TASK...</pre>
+<button type="button" class="copy" data-t="pebble run build">Copy: pebble run build</button><p id="note" role="status"></p></div></section>
+
+<section id="description" aria-labelledby="h-desc"><h2 id="h-desc">Description</h2><div class="body">
+<p><b>pebble</b> reads a file named Pebblefile, finds the tasks you ask for and runs them in order. It has no plugins and no config language beyond one line per step.</p>
+<p>Replace this text with a plain description of what your tool does and who it is for.</p></div></section>
+
+<section id="commands" aria-labelledby="h-cmd"><h2 id="h-cmd">Commands</h2><div class="body" style="max-width:none">
+<ul class="cmds">
+<li><code>pebble init</code><button type="button" class="copy" data-t="pebble init">Copy</button><p>Create a starter Pebblefile in the current directory.</p></li>
+<li><code>pebble run TASK</code><button type="button" class="copy" data-t="pebble run TASK">Copy</button><p>Run one or more tasks in the order given.</p></li>
+<li><code>pebble list</code><button type="button" class="copy" data-t="pebble list">Copy</button><p>Print the tasks found in the file.</p></li>
+</ul></div></section>
+
+<section id="options" aria-labelledby="h-opt"><h2 id="h-opt">Options</h2><div class="body" style="max-width:none">
+<dl><dt>-f, --file FILE</dt><dd>Read tasks from FILE instead of Pebblefile.</dd>
+<dt>-n, --dry-run</dt><dd>Print what would run and change nothing.</dd>
+<dt>-q, --quiet</dt><dd>Suppress task output except errors.</dd>
+<dt>--version</dt><dd>Print the version (sample: 0.9.0-demo).</dd></dl></div></section>
+
+<section id="examples" aria-labelledby="h-ex"><h2 id="h-ex">Examples</h2><div class="body">
+<pre class="syn">$ pebble init
+$ pebble -n run build test
+$ pebble run build</pre>
+<button type="button" class="copy" data-t="pebble init&#10;pebble -n run build test&#10;pebble run build">Copy all three</button>
+<details><summary>Exit status</summary><p>0 on success, 1 when a task fails, 2 for usage errors (sample values).</p></details></div></section>
+
+<section id="see-also" aria-labelledby="h-see"><h2 id="h-see">See also</h2><div class="body"><p>make(1), sh(1). Add links to your real documentation and issue tracker.</p></div></section>
+<footer><span>pebble 0.9.0-demo</span><span>November 2026</span><span>PEBBLE(1)</span></footer>
+</main></div>
+<script>
+(function(){var n=document.getElementById('note');
+document.querySelectorAll('.copy').forEach(function(b){var o=b.textContent;b.addEventListener('click',function(){var t=b.getAttribute('data-t');
+var ok=function(){n.textContent='Copied to clipboard.'},no=function(){n.textContent='Copy not available here; select the text and copy it.'};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,no)}else{no()}})})})();
+</script>
+</body></html>

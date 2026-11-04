@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Original changelog and roadmap timeline template. Demo releases for a fictional app called Fieldnote."><title>Fieldnote release ledger — changelog template (demo)</title>
+<style>
+:root{--bg:#F7F4EC;--ink:#17302F;--muted:#58706C;--acc:#C9871F;--surf:#E4EBE2;--line:#BFCBC2;--teal:#17302F;--mono:ui-monospace,SFMono-Regular,Consolas,Menlo,monospace;--serif:Georgia,"Times New Roman",serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:1rem}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3,p,ul,ol{margin:0}ul,ol{padding:0;list-style:none}
+a{color:inherit;text-underline-offset:.2em}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.skip{position:absolute;left:8px;top:-80px;background:var(--ink);color:var(--bg);padding:8px 12px;z-index:9}.skip:focus{top:8px}
+.wrap{max-width:1100px;margin:auto;padding-inline:clamp(18px,4vw,48px)}
+.demo{background:var(--acc);color:#1b1200;font-size:.85rem;padding:8px 0;font-weight:600}
+header .bar{display:flex;justify-content:space-between;align-items:center;padding-block:20px;flex-wrap:wrap;gap:14px}
+.brand{font:700 1.2rem var(--serif);text-decoration:none}
+nav ul{display:flex;gap:22px}nav a{text-decoration:none;font-weight:600}nav a:hover{text-decoration:underline}
+.hero{padding-block:clamp(32px,6vw,80px) 30px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;border-bottom:3px double var(--ink)}
+h1{font:700 clamp(2.8rem,8vw,6.5rem)/.92 var(--serif);letter-spacing:-.04em}
+h1 span{display:block;color:var(--acc);font-style:italic}
+.latest{border:2px solid var(--ink);padding:16px 20px;background:var(--surf);min-width:220px}
+.latest b{display:block;font:800 2.4rem/1 var(--mono);letter-spacing:-.04em}.latest small{color:var(--muted)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding-block:22px}
+.chip{font:700 .85rem var(--mono);background:transparent;border:2px solid var(--ink);color:var(--ink);padding:8px 14px;min-height:44px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+#count{margin-left:auto;font-size:.88rem;color:var(--muted)}
+.ledger{position:relative;padding-left:0}
+.ledger:before{content:"";position:absolute;left:150px;top:0;bottom:0;width:3px;background:var(--ink)}
+.rel{display:grid;grid-template-columns:150px 1fr;gap:0 34px;padding-bottom:36px;position:relative}
+.rel:before{content:"";position:absolute;left:144px;top:8px;width:15px;height:15px;background:var(--bg);border:3px solid var(--ink);border-radius:50%}
+.rel.major:before{background:var(--acc);width:21px;height:21px;left:141px;top:5px}
+.v{font:800 1.2rem var(--mono);padding-right:28px;text-align:right}.v small{display:block;font:500 .78rem var(--mono);color:var(--muted)}
+.rel h3{font:700 1.5rem/1.15 var(--serif);margin-bottom:10px}
+.entries li{display:grid;grid-template-columns:5.5em 1fr;gap:10px;padding:6px 0;border-top:1px solid var(--line);align-items:baseline}
+.tag{font:800 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border:1px solid currentColor;text-align:center}
+.t-new{color:#1F6B4E}.t-fix{color:#9B2D20}.t-chg{color:#7A5A12}
+[hidden]{display:none!important}
+.road{background:var(--ink);color:var(--bg);padding-block:clamp(36px,6vw,70px);margin-top:20px}
+.road h2{font:700 clamp(2rem,5vw,3.4rem)/1 var(--serif);letter-spacing:-.03em;margin-bottom:8px}.road .sub{color:#B7C7C2;max-width:55ch}
+.lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.lane{border:1px solid #4B6864;padding:20px}
+.lane h3{font:800 .8rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
+.lane li{padding:10px 0;border-top:1px dashed #4B6864}.lane li span{display:block;font-size:.85rem;color:#B7C7C2}
+.sub2{padding-block:40px}
+details{border-top:1px solid var(--line);padding:12px 0}summary{cursor:pointer;font-weight:700}details p{margin-top:8px;color:var(--muted);max-width:60ch}
+h2.s{font:700 1.8rem var(--serif);margin-bottom:12px}
+footer{padding-block:28px;font-size:.88rem;color:var(--muted);border-top:3px double var(--ink)}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.ledger:before{left:8px}.rel{grid-template-columns:1fr;padding-left:34px}.rel:before{left:0;top:6px}.rel.major:before{left:-3px;top:3px}.v{text-align:left;padding:0 0 6px}.entries li{grid-template-columns:4.8em 1fr}.lanes{grid-template-columns:1fr}.tools{align-items:flex-start}#count{margin-left:0;flex-basis:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<p class="demo"><span class="wrap" style="display:block">Demo template. Fieldnote is a fictional app; versions and dates are sample content.</span></p>
+<header><div class="wrap bar"><a class="brand" href="#top">Fieldnote · ledger</a>
+<nav aria-label="Primary"><ul><li><a href="#releases">Releases</a></li><li><a href="#roadmap">Roadmap</a></li><li><a href="#policy">Policy</a></li></ul></nav></div></header>
+<main id="main">
+<section id="top" aria-labelledby="h1"><div class="wrap hero">
+<h1 id="h1">What changed,<span>and what comes next.</span></h1>
+<div class="latest"><small>Latest sample release</small><b>3.2.0</b><small>2026-10-21 · demo</small></div></div></section>
+
+<section id="releases" aria-labelledby="h-rel"><div class="wrap">
+<div class="tools" role="group" aria-label="Filter changes"><h2 id="h-rel" class="s" style="margin:0 20px 0 0">Release ledger</h2>
+<button type="button" class="chip" data-f="all" aria-pressed="true">All</button>
+<button type="button" class="chip" data-f="new" aria-pressed="false">Added</button>
+<button type="button" class="chip" data-f="fix" aria-pressed="false">Fixed</button>
+<button type="button" class="chip" data-f="chg" aria-pressed="false">Changed</button>
+<p id="count" role="status"></p></div>
+<ol class="ledger" id="ledger">
+<li class="rel major"><div class="v">3.2.0<small>2026-10-21</small></div><div><h3>Offline sync arrives</h3><ul class="entries">
+<li data-k="new"><span class="tag t-new">Added</span><span>Notes now sync after a gap in connection.</span></li>
+<li data-k="chg"><span class="tag t-chg">Changed</span><span>The editor opens faster on large notebooks (sample claim).</span></li>
+<li data-k="fix"><span class="tag t-fix">Fixed</span><span>Tags no longer duplicate after a rename.</span></li></ul></div></li>
+<li class="rel"><div class="v">3.1.2<small>2026-09-30</small></div><div><h3>Patch for exports</h3><ul class="entries">
+<li data-k="fix"><span class="tag t-fix">Fixed</span><span>Exported files keep their original line endings.</span></li>
+<li data-k="fix"><span class="tag t-fix">Fixed</span><span>Search ignores accents consistently.</span></li></ul></div></li>
+<li class="rel major"><div class="v">3.1.0<small>2026-09-02</small></div><div><h3>Shared notebooks</h3><ul class="entries">
+<li data-k="new"><span class="tag t-new">Added</span><span>Invite others to a notebook with read or edit access.</span></li>
+<li data-k="chg"><span class="tag t-chg">Changed</span><span>Settings are grouped into four tabs.</span></li></ul></div></li>
+<li class="rel"><div class="v">3.0.0<small>2026-07-15</small></div><div><h3>New foundation</h3><ul class="entries">
+<li data-k="chg"><span class="tag t-chg">Changed</span><span>Storage format updated; a one-time migration runs on first open.</span></li>
+<li data-k="new"><span class="tag t-new">Added</span><span>Dark appearance follows the system setting.</span></li></ul></div></li>
+</ol></div></section>
+
+<section id="roadmap" class="road" aria-labelledby="h-road"><div class="wrap">
+<h2 id="h-road">Roadmap</h2><p class="sub">Plans can change. These sample lanes show intent, not promised dates.</p>
+<div class="lanes">
+<div class="lane"><h3>Now</h3><ul><li>Conflict viewer<span>In progress · sample</span></li><li>Faster first launch<span>In review · sample</span></li></ul></div>
+<div class="lane"><h3>Next</h3><ul><li>Attachments<span>Designing · sample</span></li><li>Keyboard command bar<span>Designing · sample</span></li></ul></div>
+<div class="lane"><h3>Later</h3><ul><li>Public pages<span>Exploring · sample</span></li><li>Plugin interface<span>Exploring · sample</span></li></ul></div>
+</div></div></section>
+
+<section id="policy" class="sub2" aria-labelledby="h-pol"><div class="wrap">
+<h2 id="h-pol" class="s">Versioning policy</h2>
+<details><summary>How are versions numbered?</summary><p>Sample policy: major for breaking changes, minor for features, patch for fixes. State your own rules here.</p></details>
+<details><summary>How long are old versions supported?</summary><p>Replace with your real support window. This demo makes no commitment.</p></details>
+</div></section>
+</main>
+<footer><div class="wrap">Fieldnote release ledger · demo template · fictional product and dates</div></footer>
+<script>
+(function(){var b=document.querySelectorAll('.chip'),rel=document.querySelectorAll('.rel'),c=document.getElementById('count');
+function run(f){var n=0;rel.forEach(function(r){var vis=0;r.querySelectorAll('li').forEach(function(l){var s=f==='all'||l.getAttribute('data-k')===f;l.hidden=!s;if(s){vis++;n++}});r.hidden=vis===0});c.textContent=n+(n===1?' change':' changes')+' shown across '+document.querySelectorAll('.rel:not([hidden])').length+' releases.'}
+b.forEach(function(x){x.addEventListener('click',function(){b.forEach(function(y){y.setAttribute('aria-pressed','false')});x.setAttribute('aria-pressed','true');run(x.getAttribute('data-f'))})});run('all')})();
+</script>
+</body></html>

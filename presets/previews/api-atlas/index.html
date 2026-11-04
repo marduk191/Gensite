@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Original dark API reference template with endpoint list and request/response panes. Demo content for a fictional Orchard API."><title>Orchard API atlas — reference page template (demo)</title>
+<style>
+:root{--bg:#0E1220;--ink:#E7EAF6;--muted:#8D96B8;--acc:#5EEAD4;--surf:#171C30;--line:#2A3150;--get:#5EEAD4;--post:#FFC857;--del:#FF7A90;--mono:ui-monospace,SFMono-Regular,Consolas,Menlo,monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3,p,ul,pre,table{margin:0}ul{padding:0;list-style:none}
+a{color:var(--acc)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--post);outline-offset:2px}
+.skip{position:absolute;left:8px;top:-80px;background:var(--acc);color:#000;padding:8px 12px;z-index:9}.skip:focus{top:8px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px clamp(16px,3vw,32px);border-bottom:1px solid var(--line);position:sticky;top:0;background:#0E1220ee;z-index:5;flex-wrap:wrap}
+.brand{font:800 1.1rem var(--mono);letter-spacing:-.02em}.brand span{color:var(--acc)}
+.top nav ul{display:flex;gap:18px}.top nav a{color:var(--muted);text-decoration:none}.top nav a:hover{color:var(--ink)}
+.demo{background:var(--surf);color:var(--muted);font-size:.82rem;padding:8px clamp(16px,3vw,32px);border-bottom:1px solid var(--line)}
+.intro{padding:clamp(28px,5vw,64px) clamp(16px,3vw,32px) 20px;max-width:1500px;margin:auto}
+h1{font-size:clamp(2.2rem,5.5vw,4.2rem);line-height:1;letter-spacing:-.045em}
+h1 span{color:var(--acc)}
+.intro p{color:var(--muted);max-width:60ch;margin-top:14px}
+.base{display:inline-block;margin-top:18px;font:.9rem var(--mono);background:var(--surf);border:1px solid var(--line);padding:8px 12px;border-radius:6px}
+.atlas{display:grid;grid-template-columns:280px minmax(0,1fr) minmax(0,1fr);max-width:1500px;margin:auto;border-top:1px solid var(--line)}
+.list{border-right:1px solid var(--line);padding:18px 14px;position:sticky;top:57px;align-self:start;max-height:calc(100vh - 57px);overflow:auto}
+.list h2{font:700 .75rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:6px 8px 10px}
+.list button{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:none;border:0;color:var(--ink);font:.85rem var(--mono);padding:10px;min-height:44px;border-radius:6px;cursor:pointer}
+.list button:hover{background:var(--surf)}.list button[aria-current=true]{background:var(--surf);box-shadow:inset 3px 0 var(--acc)}
+.m{font-weight:800;font-size:.7rem;min-width:3.4em}.GET{color:var(--get)}.POST{color:var(--post)}.DELETE{color:var(--del)}
+.doc{padding:clamp(20px,3vw,40px)}
+.doc h2{font:800 1.5rem var(--mono);letter-spacing:-.02em;overflow-wrap:anywhere}
+.doc .lead{color:var(--muted);margin:10px 0 24px}
+table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}td code{font-family:var(--mono);color:var(--acc)}
+.req{color:var(--post);font-size:.75rem;font-family:var(--mono)}
+.panes{padding:clamp(16px,2vw,28px);background:#0A0D19;border-left:1px solid var(--line)}
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:700 .85rem var(--mono);padding:12px 14px;min-height:44px;cursor:pointer}
+.tabs button[aria-selected=true]{color:var(--ink);border-color:var(--acc)}
+pre{background:var(--surf);border:1px solid var(--line);border-radius:8px;padding:18px;overflow-x:auto;font:.85rem/1.7 var(--mono)}
+.k{color:#9DB4FF}.s{color:#9EE6A8}.n{color:#FFC857}.c{color:var(--muted)}
+.status{display:inline-flex;gap:8px;align-items:center;font:700 .85rem var(--mono);margin:20px 0 10px}.status i{width:10px;height:10px;border-radius:50%;background:var(--get);display:block}
+.status.err i{background:var(--del)}
+.codes{margin-top:26px}.codes h3{font:700 .75rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.codes li{display:flex;gap:14px;padding:6px 0;font-size:.9rem;border-bottom:1px solid var(--line)}.codes b{font-family:var(--mono);min-width:3em}
+[hidden]{display:none!important}
+.more{padding:clamp(24px,4vw,56px) clamp(16px,3vw,32px);max-width:1500px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:32px;border-top:1px solid var(--line)}
+.more h2{font-size:1.6rem;letter-spacing:-.03em;margin-bottom:10px}.more p{color:var(--muted);max-width:55ch}
+footer{padding:24px clamp(16px,3vw,32px);color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+@media(max-width:1100px){.atlas{grid-template-columns:240px 1fr}.panes{grid-column:2;border-left:0;border-top:1px solid var(--line)}}
+@media(max-width:760px){.atlas{grid-template-columns:1fr}.list{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line)}.panes{grid-column:1}.more{grid-template-columns:1fr}.list ul{display:flex;overflow-x:auto;gap:4px}.list li{flex:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="#top" style="text-decoration:none;color:inherit">orchard<span>/api</span></a>
+<nav aria-label="Primary"><ul><li><a href="#atlas">Reference</a></li><li><a href="#auth">Auth</a></li><li><a href="#limits">Limits</a></li></ul></nav></header>
+<p class="demo">Demo template: Orchard is a fictional API. Endpoints, keys and responses are sample content, not a real service.</p>
+<main id="main">
+<section class="intro" id="top" aria-labelledby="h1">
+<h1 id="h1">The Orchard <span>API</span>, mapped.</h1>
+<p>A sample reference layout: endpoints on the left, parameters in the middle, live-looking request and response on the right. Swap in your own routes.</p>
+<span class="base">Base URL: /v1 (sample)</span>
+</section>
+
+<section class="atlas" id="atlas" aria-label="Endpoint reference">
+<div class="list"><h2>Endpoints</h2>
+<ul id="eps">
+<li><button type="button" data-i="0" aria-current="true"><span class="m GET">GET</span>/trees</button></li>
+<li><button type="button" data-i="1" aria-current="false"><span class="m POST">POST</span>/trees</button></li>
+<li><button type="button" data-i="2" aria-current="false"><span class="m GET">GET</span>/trees/{id}</button></li>
+<li><button type="button" data-i="3" aria-current="false"><span class="m DELETE">DEL</span>/trees/{id}</button></li>
+</ul></div>
+<article class="doc" aria-live="polite">
+<h2 id="t">GET /trees</h2>
+<p class="lead" id="d">List trees in your orchard, newest first.</p>
+<table><thead><tr><th>Parameter</th><th>Type</th><th>Notes</th></tr></thead><tbody id="params"></tbody></table>
+<div class="codes"><h3>Status codes</h3><ul><li><b class="n">200</b><span>Success</span></li><li><b class="n">401</b><span>Missing or invalid sample key</span></li><li><b class="n">429</b><span>Slow down (demo limit)</span></li></ul></div>
+</article>
+<div class="panes">
+<div class="tabs" role="tablist" aria-label="Language"><button type="button" role="tab" aria-selected="true" data-l="curl">curl</button><button type="button" role="tab" aria-selected="false" data-l="js">JavaScript</button></div>
+<pre id="req" tabindex="0"></pre>
+<p class="status" id="st"><i></i><span id="sc">200 OK</span></p>
+<pre id="res" tabindex="0"></pre>
+</div>
+</section>
+
+<section class="more" id="auth" aria-labelledby="h-auth">
+<div><h2 id="h-auth">Authentication</h2><p>Send a bearer key in the Authorization header. In this demo the key is the placeholder sample-key, never a real secret.</p></div>
+<div id="limits"><h2>Limits</h2><p>Sample policy: 60 requests per minute. Document your real limits and how to read them from response headers.</p></div>
+</section>
+</main>
+<footer>Orchard API atlas · demo page template · fictional service</footer>
+<script>
+(function(){
+var E=[
+{t:'GET /trees',d:'List trees in your orchard, newest first.',p:[['limit','integer','Optional. 1 to 50, default 20.'],['species','string','Optional filter.']],s:'200 OK',e:0,m:'GET',u:'/v1/trees?limit=2',b:'',r:'{\n  <span class="k">"data"</span>: [\n    { <span class="k">"id"</span>: <span class="s">"tr_01"</span>, <span class="k">"species"</span>: <span class="s">"apple"</span>, <span class="k">"age"</span>: <span class="n">4</span> },\n    { <span class="k">"id"</span>: <span class="s">"tr_02"</span>, <span class="k">"species"</span>: <span class="s">"pear"</span>, <span class="k">"age"</span>: <span class="n">7</span> }\n  ],\n  <span class="k">"next"</span>: <span class="s">"cursor_demo"</span>\n}'},
+{t:'POST /trees',d:'Plant a new tree record.',p:[['species','string','Required. Name of the species.'],['planted','date','Optional. Defaults to today.']],s:'201 Created',e:0,m:'POST',u:'/v1/trees',b:'{"species":"plum"}',r:'{\n  <span class="k">"id"</span>: <span class="s">"tr_03"</span>,\n  <span class="k">"species"</span>: <span class="s">"plum"</span>,\n  <span class="k">"age"</span>: <span class="n">0</span>\n}'},
+{t:'GET /trees/{id}',d:'Fetch a single tree by id.',p:[['id','string','Required. Path parameter.']],s:'200 OK',e:0,m:'GET',u:'/v1/trees/tr_01',b:'',r:'{\n  <span class="k">"id"</span>: <span class="s">"tr_01"</span>,\n  <span class="k">"species"</span>: <span class="s">"apple"</span>,\n  <span class="k">"age"</span>: <span class="n">4</span>\n}'},
+{t:'DELETE /trees/{id}',d:'Remove a tree record. This cannot be undone in the sample.',p:[['id','string','Required. Path parameter.']],s:'404 Not Found',e:1,m:'DELETE',u:'/v1/trees/tr_99',b:'',r:'{\n  <span class="k">"error"</span>: <span class="s">"tree_not_found"</span>,\n  <span class="k">"message"</span>: <span class="s">"No tree with that id."</span>\n}'}];
+var i=0,l='curl',$=function(x){return document.getElementById(x)};
+function rows(a){return a.map(function(r){return '<tr><td><code>'+r[0]+'</code></td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>'}).join('')}
+function draw(){var e=E[i];$('t').textContent=e.t;$('d').textContent=e.d;$('params').innerHTML=rows(e.p);
+var q;if(l==='curl'){q='<span class="c">$</span> curl -X '+e.m+' /v1'+e.u.slice(3)+' \\\n  -H <span class="s">"Authorization: Bearer sample-key"</span>'+(e.b?' \\\n  -d <span class="s">\''+e.b.replace(/"/g,'&quot;')+'\'</span>':'')}
+else{q='<span class="k">const</span> res = <span class="k">await</span> fetch(<span class="s">"'+e.u+'"</span>, {\n  method: <span class="s">"'+e.m+'"</span>,\n  headers: { Authorization: <span class="s">"Bearer sample-key"</span> }'+(e.b?',\n  body: <span class="s">\''+e.b.replace(/"/g,'&quot;')+'\'</span>':'')+'\n});'}
+$('req').innerHTML=q;$('res').innerHTML=e.r;$('sc').textContent=e.s;$('st').className='status'+(e.e?' err':'')}
+document.querySelectorAll('#eps button').forEach(function(b){b.addEventListener('click',function(){i=+b.getAttribute('data-i');document.querySelectorAll('#eps button').forEach(function(x){x.setAttribute('aria-current','false')});b.setAttribute('aria-current','true');draw()})});
+document.querySelectorAll('[role=tab]').forEach(function(b){b.addEventListener('click',function(){l=b.getAttribute('data-l');document.querySelectorAll('[role=tab]').forEach(function(x){x.setAttribute('aria-selected','false')});b.setAttribute('aria-selected','true');draw()})});
+draw()})();
+</script>
+</body></html>

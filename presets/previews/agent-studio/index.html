@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Original AI agent product page template with a static transcript and tool-call cards. Demo content only.">
+<title>Wick agent studio — demo page template</title>
+<style>
+:root{--bg:#0E1513;--ink:#E7EFEA;--muted:#94A79E;--accent:#F0B544;--surface:#17221F;--line:#2A3A35;--ok:#6FD3A0;--info:#7DB7E8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3,p,ul,figure{margin:0}
+h1,h2,h3{line-height:1.05;letter-spacing:-.025em;font-weight:700;text-wrap:balance}
+h1{font-size:clamp(2.5rem,6.2vw,5rem)}
+h2{font-size:clamp(1.7rem,3.4vw,2.6rem)}
+h3{font-size:1.05rem;letter-spacing:-.01em}
+p{max-width:62ch}
+.mono,code,pre{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace}
+a{color:inherit;text-underline-offset:.2em}
+button{font:inherit;color:inherit;cursor:pointer;min-height:40px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--accent);color:#1b1405;padding:10px 14px;z-index:9;font-weight:700}
+.skip:focus{top:10px}
+.wrap{max-width:1220px;margin:0 auto;padding:0 clamp(18px,4vw,48px)}
+.demo{border-bottom:1px dashed var(--line);font-size:.8rem;color:var(--muted);padding:8px 0;text-align:center}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;flex-wrap:wrap}
+.brand{display:flex;gap:10px;align-items:center;font-weight:800;text-decoration:none;font-size:1.2rem}
+.brand svg{width:26px;height:26px}
+header nav{display:flex;gap:22px;flex-wrap:wrap}
+header nav a{text-decoration:none;color:var(--muted)}header nav a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--accent);color:#1b1405;padding:12px 22px;font-weight:700;text-decoration:none;border-radius:6px;border:0}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,56px);align-items:center;padding:36px 0 70px}
+.hero p.lede{font-size:1.15rem;color:var(--muted);margin:20px 0 28px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.hl{color:var(--accent)}
+.console{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 30px 60px -30px #000}
+.console .bar{display:flex;gap:8px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+.console .bar i{width:10px;height:10px;border-radius:50%;background:var(--line);display:inline-block}
+.console .bar span{margin-left:auto}
+.log{padding:18px;display:grid;gap:14px}
+.msg{max-width:88%;padding:10px 14px;border-radius:10px;font-size:.95rem}
+.msg.u{justify-self:end;background:#223630;border-top-right-radius:2px}
+.msg.a{background:transparent;border:1px solid var(--line);border-top-left-radius:2px}
+.msg small{display:block;color:var(--muted);font-size:.72rem;margin-bottom:2px;text-transform:uppercase;letter-spacing:.1em}
+.call{border-left:3px solid var(--info);background:#111c19;padding:10px 14px;font-size:.82rem;border-radius:0 6px 6px 0}
+.call.done{border-left-color:var(--ok)}
+.call b{color:var(--info)}.call.done b{color:var(--ok)}
+.call pre{margin:6px 0 0;white-space:pre-wrap;color:var(--muted)}
+section{padding:64px 0;border-top:1px solid var(--line)}
+.sechead{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:30px}
+.sechead p{color:var(--muted)}
+.trace{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,50px)}
+.steps{list-style:none;padding:0;margin:0;counter-reset:s;border-left:1px solid var(--line)}
+.steps li{position:relative;padding:0 0 26px 34px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:-13px;top:0;width:26px;height:26px;border-radius:50%;background:var(--bg);border:1px solid var(--accent);color:var(--accent);display:grid;place-items:center;font-size:.8rem;font-family:ui-monospace,Consolas,monospace}
+.steps p{color:var(--muted);font-size:.95rem}
+.caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.cap{background:var(--bg);padding:24px}
+.cap svg{width:34px;height:34px;margin-bottom:14px;stroke:var(--accent);fill:none;stroke-width:1.6}
+.cap p{color:var(--muted);font-size:.93rem;margin-top:6px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tabs button{background:transparent;border:1px solid var(--line);border-radius:30px;padding:6px 16px}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tool{background:var(--surface);border:1px solid var(--line);padding:16px 18px;border-radius:8px;display:grid;gap:4px}
+.tool code{color:var(--accent);font-size:.9rem}
+.tool span{color:var(--muted);font-size:.9rem}
+.tool em{font-style:normal;font-size:.72rem;border:1px solid var(--line);padding:1px 8px;border-radius:20px;justify-self:start;color:var(--muted)}
+[hidden]{display:none!important}
+.safe{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.safe div{background:var(--surface);padding:24px;border-radius:8px}
+.safe ul{padding-left:1.1rem;color:var(--muted);margin-top:8px}
+details{border-bottom:1px solid var(--line);padding:14px 0}
+summary{font-weight:600}
+details p{color:var(--muted);margin-top:8px}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.85rem}
+@media (max-width:860px){
+.hero,.trace,.safe{grid-template-columns:minmax(0,1fr)}
+.caps,.tools{grid-template-columns:minmax(0,1fr)}
+.msg{max-width:96%}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="demo">Demo template. “Wick”, its transcript, tools and every figure are fictional sample content, and no live agent is connected.</div>
+<div class="wrap">
+<header class="top">
+<a class="brand" href="#top"><svg viewBox="0 0 32 32" role="img" aria-label="Sample logo"><path d="M16 3c4 6 7 9 7 14a7 7 0 0 1-14 0c0-5 3-8 7-14z" fill="#F0B544"></path><path d="M16 14v13" stroke="#0E1513" stroke-width="2"></path></svg>Wick Studio</a>
+<nav aria-label="Primary"><a href="#trace">Transcript</a><a href="#capabilities">Capabilities</a><a href="#toolbox">Toolbox</a><a href="#guardrails">Guardrails</a><a href="#faq">FAQ</a></nav>
+</header>
+</div>
+<main id="main">
+<div class="wrap" id="top">
+<div class="hero">
+<div>
+<h1>An agent that <span class="hl">shows its work.</span></h1>
+<p class="lede">Wick plans, calls your tools and reports back with every step visible, so you can read the trace instead of trusting the summary.</p>
+<div class="cta"><a class="btn" href="#trace">Read a sample run</a><a class="btn ghost" href="#toolbox">Browse the toolbox</a></div>
+</div>
+<figure class="console" aria-label="Sample agent transcript">
+<div class="bar"><i></i><i></i><i></i><span>run #0042 · demo transcript</span></div>
+<div class="log">
+<div class="msg u"><small>You</small>Find which of our three release notes mention the cache change and draft a summary.</div>
+<div class="call done"><b>search_docs</b> → 3 matches<pre>query: "cache invalidation"
+scope: release-notes/</pre></div>
+<div class="call done"><b>read_file</b> → 2 files read<pre>release-notes/v2.3.md
+release-notes/v2.5.md</pre></div>
+<div class="msg a"><small>Wick</small>Two of three notes mention it: v2.3 introduced the cache and v2.5 changed expiry. I'll draft a summary for your review.</div>
+</div>
+</figure>
+</div>
+</div>
+
+<section id="trace" aria-labelledby="h-trace"><div class="wrap">
+<div class="sechead"><h2 id="h-trace">One run, step by step</h2><p>Sample trace, invented for the demo.</p></div>
+<div class="trace">
+<ol class="steps">
+<li><h3>Plan</h3><p>Splits the request into search, read and write, and lists the tools it intends to use before it starts.</p></li>
+<li><h3>Search</h3><p>Calls <code>search_docs</code> with a narrow scope instead of loading everything.</p></li>
+<li><h3>Read</h3><p>Opens only the two matching files. Each read is logged with its path.</p></li>
+<li><h3>Draft</h3><p>Writes a summary that cites the files. It cannot save anything without approval.</p></li>
+<li><h3>Hand back</h3><p>Reports what it did, what it skipped and what it is unsure of.</p></li>
+</ol>
+<div class="console" role="group" aria-label="Sample final output">
+<div class="bar"><i></i><i></i><i></i><span>draft_summary.md</span></div>
+<div class="log">
+<div class="call"><b>write_draft</b> · awaiting approval<pre>title: Cache change across releases
+sources: v2.3.md, v2.5.md
+status: pending review</pre></div>
+<div class="msg a"><small>Wick</small>Draft saved as pending. Approve to publish, or edit first. I did not read v2.4 because it never matched the search.</div>
+<div class="msg u"><small>You</small>Approved. Keep it as a draft for now.</div>
+</div>
+</div>
+</div>
+</div></section>
+
+<section id="capabilities" aria-labelledby="h-cap"><div class="wrap">
+<div class="sechead"><h2 id="h-cap">What it can do</h2><p>Six sample capabilities.</p></div>
+<div class="caps">
+<div class="cap"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="14" cy="14" r="8"></circle><path d="M20 20l8 8"></path></svg><h3>Search</h3><p>Finds the right file before it reads anything.</p></div>
+<div class="cap"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 4h14l5 5v19H7z"></path><path d="M21 4v5h5M11 15h10M11 20h10"></path></svg><h3>Read</h3><p>Opens documents and records which lines it used.</p></div>
+<div class="cap"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27l4-1L26 9l-3-3L6 23z"></path><path d="M21 8l3 3"></path></svg><h3>Draft</h3><p>Writes proposals as drafts, never as final edits.</p></div>
+<div class="cap"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="6" width="24" height="20" rx="2"></rect><path d="M9 14l4 3-4 3M16 21h7"></path></svg><h3>Run</h3><p>Executes allow-listed commands in a sandbox.</p></div>
+<div class="cap"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25V7M5 25h22"></path><path d="M9 20l5-6 4 3 7-9"></path></svg><h3>Analyse</h3><p>Turns a table into a short, checkable chart.</p></div>
+<div class="cap"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4l11 5v8c0 6-5 10-11 11C10 27 5 23 5 17V9z"></path><path d="M11 16l4 4 6-8"></path></svg><h3>Ask first</h3><p>Pauses for approval before any irreversible step.</p></div>
+</div>
+</div></section>
+
+<section id="toolbox" aria-labelledby="h-tool"><div class="wrap">
+<div class="sechead"><h2 id="h-tool">Toolbox</h2><p id="toolcount" role="status">Showing 6 of 6 sample tools.</p></div>
+<div class="tabs" role="group" aria-label="Filter tools">
+<button type="button" data-f="all" aria-pressed="true">All</button>
+<button type="button" data-f="read" aria-pressed="false">Read-only</button>
+<button type="button" data-f="write" aria-pressed="false">Needs approval</button>
+</div>
+<div class="tools">
+<div class="tool" data-k="read"><code>search_docs(query, scope)</code><span>Full-text search over a folder.</span><em>read-only</em></div>
+<div class="tool" data-k="read"><code>read_file(path)</code><span>Returns the file with line numbers.</span><em>read-only</em></div>
+<div class="tool" data-k="read"><code>table_stats(file)</code><span>Counts, ranges and missing values.</span><em>read-only</em></div>
+<div class="tool" data-k="write"><code>write_draft(title, body)</code><span>Stores a draft in a review queue.</span><em>approval required</em></div>
+<div class="tool" data-k="write"><code>run_command(cmd)</code><span>Runs an allow-listed command in a sandbox.</span><em>approval required</em></div>
+<div class="tool" data-k="write"><code>send_note(to, body)</code><span>Posts a message to a team channel.</span><em>approval required</em></div>
+</div>
+</div></section>
+
+<section id="guardrails" aria-labelledby="h-g"><div class="wrap">
+<div class="sechead"><h2 id="h-g">Guardrails by default</h2></div>
+<div class="safe">
+<div><h3>It will</h3><ul><li>Show each tool call and its result</li><li>Stop and ask before writing or running</li><li>Say what it did not check</li></ul></div>
+<div><h3>It will not</h3><ul><li>Act outside the folders you grant</li><li>Hide failed steps from the log</li><li>Claim certainty it does not have</li></ul></div>
+</div>
+</div></section>
+
+<section id="faq" aria-labelledby="h-f"><div class="wrap">
+<div class="sechead"><h2 id="h-f">FAQ</h2></div>
+<details><summary>Is this a real product?</summary><p>No. It is a demo template with fictional text; swap in your own product facts.</p></details>
+<details><summary>Can the transcript be live?</summary><p>This page is static. A real site could embed recorded runs as plain text for honesty and speed.</p></details>
+<details><summary>Which models does it use?</summary><p>None here. Name the real model and version where you publish.</p></details>
+</div></section>
+</main>
+<footer><div class="wrap">Demo template · Fictional agent, transcript and tools · Replace before publishing.</div></footer>
+<script>
+(function(){
+var b=document.querySelectorAll('.tabs button'),t=document.querySelectorAll('.tool'),c=document.getElementById('toolcount');
+b.forEach(function(x){x.addEventListener('click',function(){
+var f=x.dataset.f,n=0;
+b.forEach(function(o){o.setAttribute('aria-pressed',o===x);});
+t.forEach(function(e){var s=f==='all'||e.dataset.k===f;e.hidden=!s;if(s)n++;});
+c.textContent='Showing '+n+' of '+t.length+' sample tools.';
+});});
+})();
+</script>
+</body>
+</html>

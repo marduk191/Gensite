@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Demoscene-style NFO and intro crew page template: block-character logo, release list, greets, raster bars. Fictional crew, demo content.">
+<title>VOXEL//RIOT — demoscene NFO crew page template (demo)</title>
+<style>
+:root{--bg:#09000F;--ink:#ECE6F7;--muted:#B5A9CF;--acc:#FF2E88;--surf:#17062A;--line:#4B2A78;--cy:#3DF2FF;--yl:#FFE14D;--mono:"Cascadia Mono","Lucida Console","Courier New",monospace;--bars:linear-gradient(90deg,#FF2E88,#FF8A2E,#FFE14D,#5CFF7A,#3DF2FF,#7A5CFF,#FF2E88)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--mono)}
+h1,h2,h3,p,ul,ol,pre,dl,dd,table{margin:0}ul,ol{padding:0;list-style:none}
+a{color:var(--cy)}a:hover{background:var(--cy);color:#000}
+a:focus-visible,button:focus-visible{outline:3px solid var(--yl);outline-offset:3px}
+.skip{position:absolute;left:8px;top:-80px;background:var(--yl);color:#000;padding:8px 12px;z-index:9}.skip:focus{top:8px}
+.raster{height:34px;background:repeating-linear-gradient(0deg,#0000 0 2px,#0006 2px 4px),var(--bars)}
+.raster.thin{height:10px}
+.nfo{width:min(94ch,100%);margin:0 auto;padding:clamp(14px,3vw,34px)}
+.frame{border:3px double var(--acc);background:var(--surf);padding:clamp(14px,3vw,30px)}
+.logo{color:var(--acc);font-size:clamp(7px,2.1vw,17px);line-height:1;white-space:pre;overflow:hidden;margin:0 0 14px;text-shadow:3px 3px 0 #4B0A2A}
+h1{font-size:clamp(1.5rem,4.6vw,2.4rem);color:var(--yl);letter-spacing:.14em;line-height:1.1;text-transform:uppercase}
+.sub{color:var(--muted);margin-top:6px}
+.demo{border:1px dashed var(--yl);padding:8px 12px;margin:16px 0;color:var(--ink);font-size:.88rem}
+nav ul{display:flex;flex-wrap:wrap;gap:6px 6px;margin:16px 0 4px}
+nav a{display:inline-block;padding:8px 14px;border:1px solid var(--line);min-height:44px;text-decoration:none;color:var(--ink);line-height:1.8}
+nav a:hover{background:var(--acc);color:#000}
+section{margin-top:30px}
+h2{font-size:1rem;color:var(--cy);letter-spacing:.2em;text-transform:uppercase;display:flex;gap:1ch;align-items:center;margin-bottom:14px}
+h2:before{content:"░▒▓█"}h2:after{content:"█▓▒░"}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.filters button{font:inherit;background:none;color:var(--ink);border:1px solid var(--line);padding:6px 12px;min-height:40px;cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--yl);color:#000;border-color:var(--yl)}
+#rc{color:var(--muted);font-size:.85rem;margin-bottom:6px}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:7px 10px 7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--yl);font-weight:400;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+td:first-child{color:var(--acc)}
+.t{display:inline-block;border:1px solid currentColor;padding:0 6px;font-size:.78rem}
+.t.demo-t{color:#FF9EC8}.t.intro{color:var(--cy)}.t.music{color:#9CFF9C}.t.art{color:var(--yl)}
+.info{display:grid;grid-template-columns:max-content 1fr;gap:4px 2ch}
+.info dt{color:var(--muted)}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+.greets{color:var(--ink);text-align:justify;word-spacing:.2ch}
+.greets b{color:var(--acc);font-weight:400}
+.box{border:1px solid var(--line);padding:12px;background:var(--bg)}
+.mem{display:flex;flex-wrap:wrap;gap:8px 18px}.mem li:before{content:"■ ";color:var(--acc)}
+footer{padding:20px 0 40px;text-align:center;color:var(--muted);font-size:.85rem}
+@media (max-width:700px){.cols{grid-template-columns:1fr}.info{grid-template-columns:1fr}.info dd{margin-bottom:6px}th:nth-child(4),td:nth-child(4){display:none}body{font-size:14px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="raster" aria-hidden="true"></div>
+<div class="nfo">
+<div class="frame">
+<header>
+<pre class="logo" aria-hidden="true">██╗   ██╗ ██████╗ ██╗  ██╗███████╗██╗
+██║   ██║██╔═══██╗╚██╗██╔╝██╔════╝██║
+██║   ██║██║   ██║ ╚███╔╝ █████╗  ██║
+╚██╗ ██╔╝██║   ██║ ██╔██╗ ██╔══╝  ██║
+ ╚████╔╝ ╚██████╔╝██╔╝ ██╗███████╗███████╗
+  ╚═══╝   ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝</pre>
+<h1>VOXEL // RIOT</h1>
+<p class="sub">an imaginary demoscene crew &middot; intros &middot; music disks &middot; text art</p>
+<p class="demo">This is a demo template. The crew, releases and greetings are invented sample content; swap them for your own collective.</p>
+<nav aria-label="Primary"><ul><li><a href="#releases">releases</a></li><li><a href="#info">info</a></li><li><a href="#greets">greets</a></li><li><a href="#members">members</a></li></ul></nav>
+</header>
+<div class="raster thin" aria-hidden="true" style="margin-top:14px"></div>
+<main id="main">
+<section id="releases" aria-labelledby="h-rel">
+<h2 id="h-rel">Releases</h2>
+<div class="filters" role="group" aria-label="Filter releases by type">
+<button type="button" data-f="all" aria-pressed="true">all</button>
+<button type="button" data-f="demo" aria-pressed="false">demo</button>
+<button type="button" data-f="intro" aria-pressed="false">intro</button>
+<button type="button" data-f="music" aria-pressed="false">music disk</button>
+<button type="button" data-f="art" aria-pressed="false">art pack</button>
+</div>
+<p id="rc" aria-live="polite">6 of 6 releases.</p>
+<table>
+<thead><tr><th scope="col">Title</th><th scope="col">Type</th><th scope="col">Date</th><th scope="col">Size</th></tr></thead>
+<tbody id="rl">
+<tr data-f="demo"><td>Glass Tunnel</td><td><span class="t demo-t">demo</span></td><td>1996-11</td><td>1.2 MB</td></tr>
+<tr data-f="intro"><td>Sixty-Four Stars</td><td><span class="t intro">intro</span></td><td>1996-08</td><td>64 KB</td></tr>
+<tr data-f="music"><td>Night Shift Tracker Disk</td><td><span class="t music">music disk</span></td><td>1996-05</td><td>3.4 MB</td></tr>
+<tr data-f="art"><td>Block Party ANSI Pack</td><td><span class="t art">art pack</span></td><td>1996-02</td><td>420 KB</td></tr>
+<tr data-f="intro"><td>Plasma Tea</td><td><span class="t intro">intro</span></td><td>1995-12</td><td>40 KB</td></tr>
+<tr data-f="demo"><td>Copper Rain</td><td><span class="t demo-t">demo</span></td><td>1995-09</td><td>880 KB</td></tr>
+</tbody></table>
+<p class="sub" style="margin-top:8px">All titles, dates and sizes are demo values.</p>
+</section>
+<div class="raster thin" aria-hidden="true" style="margin-top:26px"></div>
+<section id="info" aria-labelledby="h-info">
+<h2 id="h-info">Crew info</h2>
+<div class="cols">
+<dl class="info">
+<dt>group</dt><dd>VOXEL // RIOT (fictional)</dd>
+<dt>founded</dt><dd>1995 (demo)</dd>
+<dt>base</dt><dd>a basement with good speakers</dd>
+<dt>tools</dt><dd>tracker, paint program, patience</dd>
+<dt>motto</dt><dd>Ship the small thing.</dd>
+</dl>
+<div class="box">
+<p>We make short programs that draw things and play music. Everything here is original work; credit the authors if you mirror it. This page is a static sample and has no downloads.</p>
+</div>
+</div>
+</section>
+<section id="greets" aria-labelledby="h-greets">
+<h2 id="h-greets">Greetings</h2>
+<p class="greets">Big hellos fly out to <b>PIXELFOX</b> <b>amber.cell</b> <b>DOT MATRIX CLUB</b> <b>seven-bit</b> <b>Lunar Mouse</b> <b>CRT Society</b> <b>quarter.note</b> <b>FLOPPY GARDEN</b> and everyone who has ever stared at a scrolling text and smiled. (All groups are invented for this demo.)</p>
+</section>
+<section id="members" aria-labelledby="h-members">
+<h2 id="h-members">Members</h2>
+<ul class="mem"><li>Dr. Raster (code)</li><li>tin.can (music)</li><li>Mosaic (graphics)</li><li>x_tal (swap, bugs)</li></ul>
+<p class="sub" style="margin-top:10px">Handles are fictional.</p>
+</section>
+</main>
+<footer>VOXEL // RIOT is a demo page template. Nothing here is real. ░▒▓█ end of file █▓▒░</footer>
+</div>
+</div>
+<div class="raster" aria-hidden="true"></div>
+<script>
+(function(){
+var b=document.querySelectorAll('.filters button'),r=document.querySelectorAll('#rl tr'),c=document.getElementById('rc');
+b.forEach(function(x){x.addEventListener('click',function(){
+var f=x.getAttribute('data-f'),n=0;
+b.forEach(function(y){y.setAttribute('aria-pressed',y===x?'true':'false')});
+r.forEach(function(t){var s=f==='all'||t.getAttribute('data-f')===f;t.hidden=!s;if(s)n++});
+c.textContent=n+' of '+r.length+' releases.';
+})});
+})();
+</script>
+</body></html>

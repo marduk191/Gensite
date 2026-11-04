@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verdigris Glasshouse — demo template</title>
+<meta name="description" content="A demo botanical garden and plant shop template with hanging specimen tags, a light-needs filter and care notes. Fictional sample content.">
+<style>
+:root{--bg:#F6F7F0;--ink:#12301F;--muted:#4F6B58;--green:#0F3D2E;--orchid:#D9487A;--leaf:#E7EFDF;--brass:#B8893A}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Avenir Next","Century Gothic","Segoe UI",system-ui,sans-serif}
+a{color:var(--orchid)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--green);color:#fff;padding:.5rem .9rem;z-index:9}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--orchid);outline-offset:3px}
+.bar{background:var(--green);color:#EAF3E4}
+.bar .in{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem clamp(1rem,4vw,2.5rem);flex-wrap:wrap}
+.logo{font:700 1.2rem Georgia,serif;letter-spacing:.04em}
+.logo i{color:var(--brass)}
+.bar nav{display:flex;gap:1.4rem;flex-wrap:wrap}
+.bar a{color:#EAF3E4;text-decoration:none;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase}
+.bar a:hover{color:var(--brass)}
+.hero{background:var(--green);color:#EAF3E4;position:relative;overflow:hidden}
+.hero .in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:end;padding:3rem clamp(1rem,4vw,2.5rem) 0}
+.pill{display:inline-block;border:1px solid var(--brass);color:var(--brass);padding:.25rem .8rem;border-radius:99px;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;margin:0 0 1rem}
+h1{font:400 clamp(2.8rem,7vw,5.8rem)/.98 Georgia,"Palatino Linotype",serif;margin:0 0 1rem;letter-spacing:-.015em}
+h1 em{color:#F2A6C0;font-style:italic}
+.hero p.lede{color:#CFE0CC;max-width:30rem;font-size:1.1rem;margin:0 0 2.5rem}
+.arch{display:block;width:100%;max-width:440px;height:auto;margin:0 auto}
+.btn{display:inline-block;background:var(--orchid);color:#fff;text-decoration:none;padding:.8rem 1.4rem;border-radius:99px;font-weight:700;letter-spacing:.04em}
+.btn:hover{background:#F2A6C0;color:var(--green)}
+.hero .cta{padding-bottom:3rem}
+main{max-width:1200px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+section{padding:4.5rem 0 1rem}
+h2{font:400 clamp(2rem,4vw,3.1rem)/1.05 Georgia,serif;margin:0 0 .5rem}
+h2 small{display:block;font:700 .75rem "Segoe UI",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--orchid);margin-bottom:.6rem}
+.sub{color:var(--muted);max-width:38rem;margin:0 0 1.6rem}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 .8rem}
+.chips button{background:var(--leaf);color:var(--green);border:2px solid var(--green);border-radius:99px;padding:.4rem 1rem;font:700 .85rem "Segoe UI",sans-serif;cursor:pointer}
+.chips button[aria-pressed=true]{background:var(--green);color:#fff}
+.count{color:var(--muted);font-size:.9rem;margin:0 0 2rem}
+.tags{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2.8rem 1.4rem;padding-top:1.5rem}
+.tag{position:relative;background:#FFFEF6;border:2px solid var(--green);border-radius:6px 6px 14px 14px;padding:2.4rem 1rem 1rem;box-shadow:0 8px 0 var(--leaf);transform-origin:50% -24px;transition:transform .3s}
+.tag[hidden]{display:none}
+.tag:hover{transform:rotate(-1.5deg)}
+.tag::before{content:"";position:absolute;top:10px;left:50%;width:16px;height:16px;margin-left:-8px;border:3px solid var(--brass);border-radius:50%;background:var(--bg)}
+.tag::after{content:"";position:absolute;top:-24px;left:50%;width:2px;height:36px;background:var(--brass);transform:rotate(8deg);transform-origin:bottom}
+.tag svg{width:100%;height:auto;display:block;background:var(--leaf);border-radius:4px;margin-bottom:.6rem}
+.acc{font:700 .68rem ui-monospace,Consolas,monospace;letter-spacing:.14em;color:var(--orchid)}
+.tag h3{margin:.1rem 0;font:700 1.15rem/1.2 Georgia,serif}
+.bot{font-style:italic;color:var(--muted);margin:0 0 .4rem;font-size:.92rem}
+.facts{margin:0;padding:.5rem 0 0;border-top:1px dashed var(--muted);font-size:.82rem;display:grid;grid-template-columns:auto 1fr;gap:.1rem .6rem}
+.facts dt{color:var(--muted)}
+.facts dd{margin:0;font-weight:700}
+.price{margin:.5rem 0 0;font:700 1rem Georgia,serif}
+.price small{font:.7rem "Segoe UI",sans-serif;color:var(--muted);font-weight:400}
+.house{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--green)}
+.bay{padding:1.5rem;border-right:2px solid var(--green);background:linear-gradient(180deg,#fff 0,var(--leaf) 100%)}
+.bay:last-child{border-right:none}
+.bay h3{font:700 1.3rem Georgia,serif;margin:0 0 .3rem}
+.bay .t{font:700 .72rem ui-monospace,Consolas,monospace;color:var(--orchid);letter-spacing:.14em;text-transform:uppercase}
+.bay p{margin:.3rem 0 0;color:var(--muted)}
+details{border-bottom:2px solid var(--green);padding:.9rem 0}
+details:first-of-type{border-top:2px solid var(--green)}
+summary{cursor:pointer;font:700 1.2rem Georgia,serif}
+details p{margin:.6rem 0 0;color:var(--muted);max-width:42rem}
+footer{background:var(--green);color:#CFE0CC;margin-top:5rem;padding:2rem clamp(1rem,4vw,2.5rem);text-align:center;font-size:.9rem}
+footer p{margin:0}
+@media (max-width:980px){.tags{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+.hero .in{grid-template-columns:1fr}
+.tags{grid-template-columns:1fr}
+.house{grid-template-columns:1fr}
+.bay{border-right:none;border-bottom:2px solid var(--green)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar"><div class="in">
+<div class="logo">Verdigris <i>Glasshouse</i></div>
+<nav aria-label="Primary"><a href="#specimens">Specimens</a><a href="#bays">Bays</a><a href="#care">Care</a></nav>
+</div></header>
+<div class="hero"><div class="in">
+<div>
+<p class="pill">Demo template · fictional garden</p>
+<h1>Tend what <em>grows</em> slowly</h1>
+<p class="lede">A small botanical garden and plant shop. Plants, prices and opening details here are demo samples to replace with your own collection.</p>
+<div class="cta"><a class="btn" href="#specimens">Browse the specimens</a></div>
+</div>
+<svg class="arch" viewBox="0 0 400 420" role="img" aria-label="Sample illustration of an arched glasshouse window with potted plants">
+<path d="M30 420 V190 C30 80 110 20 200 20 S370 80 370 190 V420z" fill="#174D3B" stroke="#B8893A" stroke-width="4"/>
+<g stroke="#B8893A" stroke-width="2.5" fill="none"><path d="M200 20 V420"/><path d="M30 190 H370"/><path d="M30 300 H370"/><path d="M115 40 V420"/><path d="M285 40 V420"/></g>
+<g fill="#6E9E63"><path d="M70 420 C60 360 80 330 100 310 C110 350 100 390 100 420z"/><path d="M130 420 C130 380 150 350 175 340 C175 380 165 400 160 420z"/><path d="M230 420 C240 370 270 340 310 330 C300 380 280 405 270 420z"/><path d="M330 420 C320 380 335 350 350 330 C360 365 355 395 350 420z"/></g>
+<g fill="#D9487A"><circle cx="100" cy="305" r="12"/><circle cx="310" cy="326" r="12"/></g>
+<rect x="30" y="410" width="340" height="10" fill="#B8893A"/>
+</svg>
+</div></div>
+<main id="main">
+<section id="specimens" aria-labelledby="sp-h">
+<h2 id="sp-h"><small>The collection</small>Specimen tags</h2>
+<p class="sub">Each plant hangs with its own label: accession number, botanical name and light needs. Filter by how much sun you can offer. Sample inventory only.</p>
+<div class="chips" role="group" aria-label="Filter by light">
+<button type="button" data-l="all" aria-pressed="true">All light</button>
+<button type="button" data-l="sun" aria-pressed="false">Full sun</button>
+<button type="button" data-l="part" aria-pressed="false">Part shade</button>
+<button type="button" data-l="shade" aria-pressed="false">Deep shade</button>
+</div>
+<p class="count" id="count" role="status" aria-live="polite">Showing 4 of 4 specimens</p>
+<div class="tags">
+<article class="tag" data-l="shade"><svg viewBox="0 0 200 130" role="img" aria-label="Sample drawing of a fern frond"><path d="M100 125 C98 80 104 40 100 8" stroke="#0F3D2E" stroke-width="3" fill="none"/><g fill="#4F8A52"><path d="M100 30 l-34 -8 l30 16z"/><path d="M100 30 l34 -8 l-30 16z"/><path d="M100 60 l-44 -6 l40 20z"/><path d="M100 60 l44 -6 l-40 20z"/><path d="M100 90 l-46 -2 l42 18z"/><path d="M100 90 l46 -2 l-42 18z"/></g></svg>
+<span class="acc">ACC. 0147 · DEMO</span><h3>Lantern Fern</h3><p class="bot">Pteris lucerna</p>
+<dl class="facts"><dt>Light</dt><dd>Deep shade</dd><dt>Water</dt><dd>Keep moist</dd></dl><p class="price">£18 <small>sample price</small></p></article>
+<article class="tag" data-l="sun"><svg viewBox="0 0 200 130" role="img" aria-label="Sample drawing of a spiky agave"><g fill="#6E9E63" stroke="#0F3D2E" stroke-width="2"><path d="M100 120 L84 40 L100 110z"/><path d="M100 120 L116 40 L100 110z"/><path d="M100 120 L52 62 L96 112z"/><path d="M100 120 L148 62 L104 112z"/><path d="M100 120 L30 96 L94 116z"/><path d="M100 120 L170 96 L106 116z"/></g></svg>
+<span class="acc">ACC. 0212 · DEMO</span><h3>Blue Rosette</h3><p class="bot">Agave caerulea</p>
+<dl class="facts"><dt>Light</dt><dd>Full sun</dd><dt>Water</dt><dd>Sparingly</dd></dl><p class="price">£32 <small>sample price</small></p></article>
+<article class="tag" data-l="part"><svg viewBox="0 0 200 130" role="img" aria-label="Sample drawing of an orchid spray"><path d="M30 120 C60 90 100 70 150 20" stroke="#0F3D2E" stroke-width="3" fill="none"/><g fill="#D9487A"><circle cx="150" cy="26" r="14"/><circle cx="120" cy="50" r="13"/><circle cx="92" cy="72" r="12"/></g><g fill="#FFF"><circle cx="150" cy="26" r="5"/><circle cx="120" cy="50" r="4.5"/><circle cx="92" cy="72" r="4"/></g></svg>
+<span class="acc">ACC. 0309 · DEMO</span><h3>Rose Moth Orchid</h3><p class="bot">Phalaenopsis rosea</p>
+<dl class="facts"><dt>Light</dt><dd>Part shade</dd><dt>Water</dt><dd>Weekly</dd></dl><p class="price">£26 <small>sample price</small></p></article>
+<article class="tag" data-l="part"><svg viewBox="0 0 200 130" role="img" aria-label="Sample drawing of a monstera-style split leaf"><path d="M100 124 V80" stroke="#0F3D2E" stroke-width="4"/><path d="M100 80 C40 80 30 30 60 12 C80 30 90 20 100 8 C110 20 120 30 140 12 C170 30 160 80 100 80z" fill="#4F8A52" stroke="#0F3D2E" stroke-width="2"/><g stroke="#E7EFDF" stroke-width="3"><path d="M100 80 L60 40"/><path d="M100 80 L140 40"/><path d="M100 80 L100 30"/></g></svg>
+<span class="acc">ACC. 0388 · DEMO</span><h3>Cutleaf Climber</h3><p class="bot">Monstera fissura</p>
+<dl class="facts"><dt>Light</dt><dd>Part shade</dd><dt>Water</dt><dd>Fortnightly</dd></dl><p class="price">£40 <small>sample price</small></p></article>
+</div>
+</section>
+
+<section id="bays" aria-labelledby="bay-h">
+<h2 id="bay-h"><small>Walk through</small>Three bays</h2>
+<div class="house">
+<div class="bay"><span class="t">Bay I · 24°C</span><h3>Tropical</h3><p>Orchids, climbers and steam. Humid and hushed.</p></div>
+<div class="bay"><span class="t">Bay II · 16°C</span><h3>Temperate</h3><p>Ferns and woodland understorey under old glass.</p></div>
+<div class="bay"><span class="t">Bay III · 10°C</span><h3>Arid</h3><p>Rosettes, spines and gravel; dry and bright.</p></div>
+</div>
+<p class="sub" style="margin-top:1rem">Temperatures are demo values.</p>
+</section>
+
+<section id="care" aria-labelledby="care-h">
+<h2 id="care-h"><small>Keep it alive</small>Care notes</h2>
+<details><summary>How often should I water?</summary><p>Water when the top two knuckles of soil are dry, then drain fully. This is a demo answer; adjust per plant.</p></details>
+<details><summary>Can the shop ship plants?</summary><p>This demo page has no real shop. Add your own ordering or pickup information.</p></details>
+<details><summary>Are visits bookable?</summary><p>Replace this note with your opening hours and booking details.</p></details>
+</section>
+</main>
+<footer><p>Verdigris Glasshouse is a fictional demo template. Plant art is original inline SVG.</p></footer>
+<script>
+(function(){
+var btns=document.querySelectorAll('.chips button'),tags=document.querySelectorAll('.tag'),count=document.getElementById('count');
+btns.forEach(function(b){b.addEventListener('click',function(){
+var l=b.getAttribute('data-l'),n=0;
+btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+tags.forEach(function(t){var s=l==='all'||t.getAttribute('data-l')===l;t.hidden=!s;if(s)n++});
+count.textContent='Showing '+n+' of '+tags.length+' specimens';
+})});
+})();
+</script>
+</body>
+</html>

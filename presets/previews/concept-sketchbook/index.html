@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Concept Sketchbook: a demo concept-art sketchbook page template with paper texture and margin notes. Fictional sample content.">
+<title>Concept Sketchbook — demo concept art template</title>
+<style>
+:root{--bg:#E6DECB;--ink:#2B2926;--muted:#6F675A;--accent:#C2452D;--surface:#F7F2E5;--blue:#2F6DB5;--hand:"Segoe Print","Bradley Hand","Chalkboard SE","Comic Sans MS",cursive;--serif:Georgia,"Iowan Old Style","Palatino Linotype",serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:18px/1.65 var(--serif);background:var(--bg) radial-gradient(900px 600px at 20% 10%,rgba(255,255,255,.35),transparent 70%);padding:clamp(12px,3vw,40px)}
+h1,h2,h3,p,figure,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+.skip{position:absolute;left:12px;top:-80px;background:var(--ink);color:var(--surface);padding:10px 14px;z-index:50}
+.skip:focus{top:12px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.book{max-width:1120px;margin:auto;background:var(--surface);position:relative;padding:clamp(24px,5vw,60px) clamp(20px,5vw,64px) 30px clamp(56px,8vw,110px);box-shadow:0 1px 0 #fff inset,0 30px 50px -20px rgba(43,41,38,.45),8px 8px 0 -2px #d9cfb7,14px 14px 0 -4px #cdc2a6;background-image:repeating-linear-gradient(transparent 0 33px,rgba(47,109,181,.1) 33px 34px)}
+.book::before{content:"";position:absolute;left:0;top:0;bottom:0;width:clamp(36px,5.5vw,70px);background:radial-gradient(circle at 60% 50%,var(--bg) 0 7px,#3a3631 7.5px 9px,transparent 9.5px) 0 0/100% 38px repeat-y;border-right:2px solid rgba(43,41,38,.2);background-color:rgba(43,41,38,.05)}
+.book::after{content:"";position:absolute;left:clamp(46px,7vw,98px);top:0;bottom:0;width:2px;background:rgba(194,69,45,.45)}
+.hand{font-family:var(--hand)}
+.nav{display:flex;flex-wrap:wrap;gap:6px 22px;font:.82rem/1 var(--hand);padding-bottom:16px;border-bottom:1.5px solid var(--ink)}
+.nav a{text-decoration:none;padding:12px 2px;display:inline-block}
+.nav a:hover{text-decoration:underline wavy var(--accent)}
+.demo{font:.82rem/1.4 var(--hand);color:var(--muted);margin:10px 0 0}
+.title{padding-block:44px 30px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
+.label{display:inline-block;background:#F0DE9B;padding:5px 14px;font:.85rem var(--hand);transform:rotate(-2deg);box-shadow:0 2px 0 rgba(0,0,0,.15);margin-bottom:14px}
+h1{font:400 clamp(2.8rem,8vw,6.2rem)/.92 var(--serif);font-style:italic;letter-spacing:-.03em}
+h1 u{text-decoration:none;background:linear-gradient(transparent 70%,rgba(194,69,45,.45) 70%)}
+.lede{max-width:44ch;color:var(--muted);margin-top:18px}
+.stamp{border:3px solid var(--accent);color:var(--accent);padding:10px 16px;font:700 .9rem/1.2 var(--hand);transform:rotate(6deg);text-align:center;border-radius:6px}
+.page{padding-block:44px 20px;position:relative}
+.pg{font:.8rem var(--hand);color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+h2{font:400 clamp(1.8rem,4vw,2.8rem)/1.05 var(--serif);font-style:italic;margin:4px 0 18px}
+.spread{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(190px,.7fr);gap:clamp(20px,4vw,48px);align-items:start}
+.sheet{position:relative;background:#fffdf6;padding:14px;border:1px solid rgba(43,41,38,.2);box-shadow:3px 4px 0 rgba(43,41,38,.12)}
+.tape{position:absolute;width:90px;height:26px;background:rgba(240,222,155,.75);top:-12px;left:30px;transform:rotate(-5deg)}
+.tape.r{left:auto;right:30px;transform:rotate(4deg)}
+.ink{fill:none;stroke:#2B2926;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.hatch{fill:none;stroke:#2B2926;stroke-width:.9;opacity:.65}
+.wash{fill:#2B2926;opacity:.14}
+.cons{fill:none;stroke:var(--blue);stroke-width:1.1;stroke-dasharray:5 4;opacity:0;transition:opacity .3s}
+.show .cons{opacity:.9}
+.tog{margin-top:12px;font:700 .85rem var(--hand);background:transparent;border:1.5px solid var(--ink);padding:10px 16px;cursor:pointer;min-height:44px;color:var(--ink);border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
+.tog[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:#fff}
+.notes{font:.95rem/1.5 var(--hand);color:var(--ink)}
+.note{margin-bottom:26px;position:relative;padding-left:20px}
+.note::before{content:"↖";position:absolute;left:0;top:0;color:var(--accent);font-size:1.3rem}
+.note b{color:var(--accent)}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.thumbs figure{background:#fffdf6;border:1px solid rgba(43,41,38,.25);padding:8px}
+.thumbs figcaption{font:.78rem var(--hand);color:var(--muted);padding-top:6px}
+.turn{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;align-items:end}
+.chips{display:flex;gap:0;margin-top:16px;border:1.5px solid var(--ink)}
+.chips span{flex:1;height:46px;font:.65rem var(--hand);padding:4px;color:#fff;display:flex;align-items:flex-end}
+details{border-top:1.5px solid var(--ink);padding:10px 0}
+summary{cursor:pointer;font:700 1rem var(--hand);min-height:44px;display:list-item}
+details p{color:var(--muted);margin-top:4px}
+footer{max-width:1120px;margin:20px auto 0;font:.82rem var(--hand);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-inline:6px}
+@media(max-width:780px){.title,.spread{grid-template-columns:1fr}.stamp{justify-self:start}.thumbs{grid-template-columns:repeat(2,1fr)}.book{padding-left:56px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="book">
+<header>
+<nav class="nav" aria-label="Contents"><a href="#cover">Cover</a><a href="#p1">p.01 Place</a><a href="#p2">p.02 Thumbnails</a><a href="#p3">p.03 Character</a><a href="#notes">Notes</a></nav>
+<p class="demo">demo template · sample sketches by a fictional artist, drawn as SVG by this page.</p>
+</header>
+<main id="main">
+<section id="cover" class="title" aria-labelledby="h1">
+<div><span class="label">Sketchbook vol. 3 — demo</span><h1 id="h1">Maps, <u>machines</u> &amp; small gods</h1><p class="lede">A working concept-art sketchbook: loose thumbnails, construction lines left in, and notes in the margins explaining why each choice was made.</p></div>
+<div class="stamp">WORK<br>IN PROGRESS<br>2026</div>
+</section>
+
+<section id="p1" class="page" aria-labelledby="p1h">
+<span class="pg">Page 01 · environment</span><h2 id="p1h">The lantern tower</h2>
+<div class="spread">
+<div><div class="sheet" id="towersheet"><span class="tape"></span><span class="tape r"></span>
+<svg viewBox="0 0 600 420" role="img" aria-label="Sample pencil sketch: a tall tower with a glowing lantern on a hill, with optional blue construction lines">
+<path class="wash" d="M0 330C100 290 180 300 260 330L330 330C420 290 520 300 600 330V420H0Z"/>
+<path class="ink" d="M0 332C90 292 170 300 262 340M600 330C520 296 430 296 338 342"/>
+<path class="ink" d="M262 340L276 140M338 342L324 140M276 140L324 140M270 190L330 190M266 250L334 250M264 300L336 300"/>
+<path class="ink" d="M268 140Q300 110 332 140M280 130L280 110L320 110L320 130"/>
+<circle class="ink" cx="300" cy="94" r="22"/><path class="ink" d="M286 94h28M300 80v28"/>
+<path class="hatch" d="M276 160l22 14M276 180l22 14M276 210l22 14M276 240l22 14M278 280l22 14M270 320l30 14M300 160l-6 3"/>
+<path class="ink" d="M180 332c8-30 18-38 30-44M205 336c4-24 12-34 20-40M410 336c-4-28-14-36-26-42M440 332c-8-24-14-32-22-36"/>
+<path class="ink" d="M120 120a14 14 0 1 1 0 .1M60 70l10-6M90 50l4-8"/>
+<path class="hatch" d="M20 380h140M60 392h140M380 384h180M420 396h140"/>
+<g class="cons"><path d="M0 332H600M300 20V420"/><circle cx="300" cy="94" r="46"/><path d="M0 120L276 140M600 100L324 140M0 400L262 340M600 410L338 342"/><path d="M276 140L262 340M324 140L338 342" stroke-dasharray="2 5"/></g>
+</svg></div>
+<button type="button" class="tog" id="consbtn" aria-pressed="false">Show construction lines</button></div>
+<div class="notes"><p class="note"><b>Silhouette first.</b> A tall straight shape reads from far away; the lantern is the only warm note.</p><p class="note"><b>Horizon low</b> so the tower feels taller than it is. Sample note.</p><p class="note">Try: trees at half scale to push the distance. <b>(not done)</b></p></div>
+</div>
+</section>
+
+<section id="p2" class="page" aria-labelledby="p2h">
+<span class="pg">Page 02 · thumbnails</span><h2 id="p2h">Six quick value thumbs</h2>
+<div class="spread">
+<div class="thumbs" id="thumbs"></div>
+<div class="notes"><p class="note"><b>Three values only</b> — light, mid, dark. Decide the read before any colour. Demo guidance.</p><p class="note">Circle the best two and push those to a full page.</p></div>
+</div>
+</section>
+
+<section id="p3" class="page" aria-labelledby="p3h">
+<span class="pg">Page 03 · character</span><h2 id="p3h">The lamp keeper, turnaround</h2>
+<div class="spread">
+<div><div class="sheet"><span class="tape"></span>
+<div class="turn" id="turn"></div>
+<div class="chips" aria-label="Sample palette"><span style="background:#2B2926">ink</span><span style="background:#6F675A">stone</span><span style="background:#C2452D">lamp</span><span style="background:#E3A64B;color:#2B2926">glow</span><span style="background:#F7F2E5;color:#2B2926">paper</span></div></div></div>
+<div class="notes"><p class="note"><b>Front, side, back</b> share one baseline and one head height. Sample character, not a real design.</p><p class="note">Red is reserved for the lamp so the eye finds it first.</p></div>
+</div>
+</section>
+
+<section id="notes" class="page" aria-labelledby="nh">
+<span class="pg">Back pages</span><h2 id="nh">Sketchbook FAQ</h2>
+<details><summary>What do you draw with?</summary><p>Sample answer: soft pencil, a grey marker and a tablet. Replace with your real tools.</p></details>
+<details><summary>Do you take commissions?</summary><p>Demo status. Replace with your real availability and contact link.</p></details>
+</section>
+</main>
+</div>
+<footer><span>Concept Sketchbook · demo page template</span><a href="#main">Back to page one</a></footer>
+<script>
+(function(){
+var b=document.getElementById('consbtn'),s=document.getElementById('towersheet');
+b.addEventListener('click',function(){var on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',String(on));s.classList.toggle('show',on);b.textContent=on?'Hide construction lines':'Show construction lines'});
+var T=[['M0 60L40 20L70 50L100 10L120 60Z','tall peaks'],['M0 60V36H40V16H70V44H120V60Z','stepped keep'],['M0 60C20 10 50 10 60 40C70 10 100 10 120 60Z','twin domes'],['M0 60L60 8L120 60Z','single spire'],['M0 60V30L30 30L30 12L50 12L50 30L120 36V60Z','low wall'],['M0 60Q30 20 60 40T120 30V60Z','rolling ridge']];
+var tw=document.getElementById('thumbs');
+T.forEach(function(t,i){var f=document.createElement('figure'),g=['#2B2926','#6F675A','#a49b88'];f.innerHTML='<svg viewBox="0 0 120 80" role="img" aria-label="Sample value thumbnail: '+t[1]+'"><rect width="120" height="80" fill="#e8dfca"/><path d="M0 70Q40 58 120 66V80H0Z" fill="'+g[1]+'"/><path d="'+t[0]+'" fill="'+g[i%2?0:0]+'" transform="translate(0 6)"/><circle cx="'+(24+i*14)+'" cy="14" r="7" fill="#F7F2E5"/></svg><figcaption>'+(i+1)+'. '+t[1]+'</figcaption>';tw.appendChild(f)});
+var tn=document.getElementById('turn');
+['front','side','back'].forEach(function(v){var d=document.createElement('div');var side=v==='side',lamp=v!=='back'?'<circle cx="'+(side?58:64)+'" cy="104" r="7" fill="#E3A64B" stroke="#2B2926"/><path d="M'+(side?58:64)+' 90v7" class="ink"/>':'';
+d.innerHTML='<svg viewBox="0 0 100 200" role="img" aria-label="Sample figure turnaround: '+v+' view"><path class="wash" d="M30 190h40v6H30z"/><circle class="ink" cx="50" cy="28" r="14"/><path class="ink" d="M36 24Q50 6 64 24"/><path class="ink" d="M36 44L28 120L40 190M64 44L72 120L60 190M36 44H64M40 120H60"/>'+(side?'<path class="ink" d="M50 44V120"/>':'<path class="ink" d="M50 44V190"/>')+'<path class="hatch" d="M32 80l8-4M32 96l8-4M32 112l8-4"/>'+lamp+'<text x="50" y="199" font-size="8" text-anchor="middle" fill="#6F675A" style="font-family:var(--hand)">'+v+'</text></svg>';tn.appendChild(d)});
+})();
+</script>
+</body>
+</html>

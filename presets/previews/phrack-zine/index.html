@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Plain-text underground e-zine page template. Demo issue with fictional authors and articles.">
+<title>NULLBYTE ezine — plain-text zine page template (demo)</title>
+<style>
+:root{--bg:#0E0E10;--ink:#DAD7CC;--muted:#A19E92;--acc:#FF6A5C;--surf:#1A1A1F;--line:#3A3A42;--mono:"Courier New",Courier,"Liberation Mono",monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--mono)}
+h1,h2,h3,p,ul,ol,pre,dl,dd{margin:0}ul,ol{padding:0;list-style:none}
+a{color:var(--acc);text-underline-offset:.18em}a:hover{background:var(--acc);color:#000}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #FFF;outline-offset:3px}
+.skip{position:absolute;left:8px;top:-80px;background:#FFF;color:#000;padding:8px 12px;z-index:9}.skip:focus{top:8px}
+.sheet{width:min(88ch,100%);margin:0 auto;padding:clamp(14px,3vw,36px)}
+.bar{display:flex;flex-wrap:wrap;gap:4px 18px;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px;color:var(--muted);font-size:.85rem}
+.mast{margin:26px 0 8px;color:var(--acc);font-size:clamp(9px,2.6vw,20px);line-height:1.12;white-space:pre;overflow:hidden}
+h1{font-size:clamp(1.5rem,5vw,2.6rem);letter-spacing:.04em;line-height:1.1;margin:10px 0}
+h1 span{color:var(--acc)}
+.lede{max-width:64ch;color:var(--muted)}
+.demo{border:1px dashed var(--line);padding:8px 12px;margin:16px 0;font-size:.85rem;color:var(--muted)}
+nav ul{display:flex;flex-wrap:wrap;gap:4px 14px;margin:18px 0}
+section{padding-block:26px;border-top:1px solid var(--line)}
+h2{font-size:1.05rem;color:var(--acc);margin-bottom:14px;font-weight:700;letter-spacing:.05em}
+h2:before{content:"==[ "}h2:after{content:" ]=="}
+.toc li{display:grid;grid-template-columns:3.2ch 1fr auto;gap:0 1ch;align-items:baseline;padding:3px 0}
+.toc li i{font-style:normal;color:var(--muted)}
+.toc li b{font-weight:400;border-bottom:1px dotted var(--muted);padding-bottom:1px}
+.toc small{color:var(--muted);font-size:.82rem}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.filters button{font:inherit;background:none;color:var(--ink);border:1px solid var(--line);padding:6px 12px;min-height:40px;cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.txt{background:var(--surf);border:1px solid var(--line);padding:16px;margin:12px 0;overflow-x:auto;white-space:pre-wrap;word-break:break-word}
+details{border:1px solid var(--line);margin:10px 0;background:var(--surf)}
+summary{cursor:pointer;padding:10px 14px;min-height:44px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"[+] ";color:var(--acc)}details[open] summary:before{content:"[-] "}
+details .txt{margin:0;border:0;border-top:1px dashed var(--line)}
+.sig{color:var(--acc)}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 2ch}dt{color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:.85rem}
+#count{color:var(--muted);margin-bottom:8px}
+@media (max-width:640px){.cols{grid-template-columns:1fr}.toc li{grid-template-columns:3.2ch 1fr}.toc small{grid-column:2}body{font-size:14px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sheet">
+<header>
+<div class="bar"><span>NULLBYTE // volume 3, issue 7</span><span>released: 1996-xx-xx (demo date)</span><span>plain text, 80 columns</span></div>
+<pre class="mast" aria-hidden="true"> _  _ _   _ _    _    _____   _______ ___
+| \| | | | | |  | |  | _ ) \ / /_   _| __|
+| .` | |_| | |__| |__| _ \ V /  | | | _|
+|_|\_|\___/|____|____|___/ |_|   |_| |___|
+= an underground zine for people who read the manual =</pre>
+<h1>NULL<span>BYTE</span> ezine</h1>
+<p class="lede">A page template for zines, newsletters and long-form writing: an issue index with dotted leaders, articles as plain-text blocks you can open one at a time, and a letters column. Fully fictional.</p>
+<p class="demo">This is a demo template. Authors, handles and articles are invented sample content; replace them with yours.</p>
+<nav aria-label="Issue sections"><ul><li><a href="#index">[index]</a></li><li><a href="#philes">[philes]</a></li><li><a href="#letters">[letters]</a></li><li><a href="#staff">[staff]</a></li></ul></nav>
+</header>
+<main id="main">
+<section id="index" aria-labelledby="h-index">
+<h2 id="h-index">TABLE OF CONTENTS</h2>
+<ol class="toc">
+<li><i>01</i><b>Introduction: why we still write in plain text</b><small>by ghost_in_cron</small></li>
+<li><i>02</i><b>Soldering your first serial cable</b><small>by tin_wren</small></li>
+<li><i>03</i><b>A field guide to dial tones (history)</b><small>by modemoth</small></li>
+<li><i>04</i><b>Writing a text-mode menu in 60 lines</b><small>by pica_pica</small></li>
+<li><i>05</i><b>Loopback: a short story</b><small>by static_sparrow</small></li>
+<li><i>06</i><b>Letters, corrections, and a crossword</b><small>by the staff</small></li>
+</ol>
+</section>
+<section id="philes" aria-labelledby="h-philes">
+<h2 id="h-philes">THE PHILES</h2>
+<p id="count" aria-live="polite">Showing 5 of 5 philes.</p>
+<div class="filters" role="group" aria-label="Filter philes">
+<button type="button" data-f="all" aria-pressed="true">all</button>
+<button type="button" data-f="how" aria-pressed="false">how-to</button>
+<button type="button" data-f="hist" aria-pressed="false">history</button>
+<button type="button" data-f="fic" aria-pressed="false">fiction</button>
+</div>
+<details class="phile" data-t="how" open><summary>phile 01 — Introduction: why we still write in plain text</summary>
+<pre class="txt">                       ----[ Introduction ]----
+
+A text file opens everywhere. It survives every format war, every
+redesign and every forgotten login. That is the whole pitch.
+
+This issue is made of small, readable things: a cable, a menu, a
+story, a history. Nothing here needs a special viewer. If you can
+read this line you can read the rest.
+
+Send us your own philes. Keep them under 80 columns.
+
+                                            -- ghost_in_cron
+                                  <span class="sig">[demo author, fictional]</span></pre></details>
+<details class="phile" data-t="how"><summary>phile 02 — Soldering your first serial cable</summary>
+<pre class="txt">Parts list (all hobby-shop stuff, all harmless):
+  1 x 9-pin connector      1 x 25-pin connector
+  1 x length of 3-core wire   flux, solder, patience
+
+Step 1. Tin the pins before you try to join anything.
+Step 2. Heat the pad, not the wire. Count to three.
+Step 3. Label the ends. You will forget which is which.
+
+If it smells like burning plastic you held it too long.
+Open a window. Try again tomorrow.   -- tin_wren (demo)</pre></details>
+<details class="phile" data-t="hist"><summary>phile 03 — A field guide to dial tones (history)</summary>
+<pre class="txt">Before the screech of a handshake there was a hum: the dial tone,
+two steady notes laid over each other so a switch could say
+"go ahead". Later came the chirps, the carrier, the pause, the
+long wait while two machines argued about speed.
+
+We collect the sounds because they were the doorbell of an era.
+Record yours, label the date, and send it in.
+                                             -- modemoth (demo)</pre></details>
+<details class="phile" data-t="how"><summary>phile 04 — Writing a text-mode menu in 60 lines</summary>
+<pre class="txt">A menu is a loop: draw, read one key, act, draw again.
+
+  while true
+      clear screen, print the choices
+      key = read one character
+      if key is "q" then stop
+      otherwise run the matching action
+
+The rest is taste. Box characters, colours, a hint line at the
+bottom. Keep every action reachable by a single key.
+                                             -- pica_pica (demo)</pre></details>
+<details class="phile" data-t="fic"><summary>phile 05 — Loopback: a short story</summary>
+<pre class="txt">At 3 a.m. the terminal said hello back before she typed it.
+She checked the cable. She checked the clock. She typed "who is
+this" and the answer came in her own handwriting, slowed down a
+little, as if someone were learning her.
+
+By morning the phone was ringing in a house with no phone.
+
+                                    -- static_sparrow (fiction, demo)</pre></details>
+</section>
+<section id="letters" aria-labelledby="h-letters">
+<h2 id="h-letters">LETTERS</h2>
+<div class="cols">
+<pre class="txt">> Last issue said the crossword
+> had 14 across. It has 13.
+
+You are right. 14 is a typo. We
+owe you one clue.            -ed.</pre>
+<pre class="txt">> Can I mirror the zine?
+
+Yes. Keep the file whole, keep
+the credits, tell us where it
+lives so we can link you. -ed.</pre>
+</div>
+</section>
+<section id="staff" aria-labelledby="h-staff">
+<h2 id="h-staff">STAFF &amp; SUBMISSIONS</h2>
+<dl><dt>editor</dt><dd>ghost_in_cron (fictional)</dd><dt>layout</dt><dd>pica_pica (fictional)</dd><dt>proofing</dt><dd>tin_wren (fictional)</dd><dt>contact</dt><dd><a href="#index">editors at this-page (demo link)</a></dd></dl>
+</section>
+</main>
+<footer>NULLBYTE is a demo page template. No real people, groups or issues are depicted. Keep it under 80 columns.</footer>
+</div>
+<script>
+(function(){
+var btns=document.querySelectorAll('.filters button'),items=document.querySelectorAll('.phile'),c=document.getElementById('count');
+btns.forEach(function(b){b.addEventListener('click',function(){
+var f=b.getAttribute('data-f'),n=0;
+btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+items.forEach(function(d){var show=f==='all'||d.getAttribute('data-t')===f;d.hidden=!show;if(show)n++});
+c.textContent='Showing '+n+' of '+items.length+' philes.';
+})});
+})();
+</script>
+</body></html>

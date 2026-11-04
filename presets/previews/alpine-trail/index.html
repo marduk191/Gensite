@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cairnwater Ridge Trail Log — demo template</title>
+<meta name="description" content="A demo hiking trail log template with an interactive elevation profile, stage table and trip notes. All numbers are sample demo values.">
+<style>
+:root{--bg:#101A2B;--panel:#1B2A44;--ink:#EEF2F7;--muted:#9FB0C8;--blaze:#FF6A2B;--line:#2E4468;--snow:#DDE8F5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Segoe UI",system-ui,-apple-system,sans-serif}
+a{color:var(--blaze)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--blaze);color:#101A2B;padding:.5rem .9rem;z-index:9;font-weight:700}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--blaze);outline-offset:3px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem clamp(1rem,4vw,3rem);border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(16,26,43,.94);z-index:5}
+.brand{font:800 1rem "Arial Narrow",Impact,sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.brand b{color:var(--blaze)}
+.top nav{display:flex;gap:1.4rem;flex-wrap:wrap}
+.top nav a{color:var(--muted);text-decoration:none;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
+.top nav a:hover{color:var(--ink)}
+.hero{position:relative;overflow:hidden;padding:clamp(2.5rem,7vw,5.5rem) clamp(1rem,4vw,3rem) 0;background:linear-gradient(180deg,#1B2A44 0%,#101A2B 100%)}
+.topo{position:absolute;inset:0;opacity:.35;pointer-events:none}
+.hero .in{position:relative;max-width:1180px;margin:0 auto}
+.tag{display:inline-block;border:1px solid var(--blaze);color:var(--blaze);font:700 .75rem "Arial Narrow",sans-serif;letter-spacing:.2em;text-transform:uppercase;padding:.3rem .7rem;margin:0 0 1rem}
+h1{font:900 clamp(3rem,10vw,8rem)/.88 "Arial Narrow","Franklin Gothic Medium",Impact,sans-serif;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 1rem}
+h1 em{font-style:normal;color:var(--blaze)}
+.hero p.lede{max-width:40rem;color:var(--snow);font-size:1.15rem;margin:0 0 2rem}
+.profile{position:relative;background:rgba(16,26,43,.7);border:1px solid var(--line);border-bottom:none;padding:1rem 1rem 0;max-width:calc(1180px - 2*clamp(1rem,4vw,3rem));margin:0 auto}
+.profile svg{display:block;width:100%;height:auto}
+.readout{display:flex;flex-wrap:wrap;gap:.5rem 2rem;align-items:center;padding:.7rem .2rem;font:.9rem ui-monospace,Consolas,monospace;color:var(--snow)}
+.readout b{color:var(--blaze)}
+.scrub{width:100%;accent-color:var(--blaze);height:34px}
+main{max-width:1180px;margin:0 auto;padding:0 clamp(1rem,4vw,3rem)}
+section{padding:4rem 0 1rem}
+h2{font:900 clamp(1.8rem,4vw,3rem)/1 "Arial Narrow",Impact,sans-serif;text-transform:uppercase;margin:0 0 1.5rem;letter-spacing:.01em}
+h2 small{display:block;font:700 .75rem "Segoe UI",sans-serif;letter-spacing:.22em;color:var(--blaze);margin-bottom:.5rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);margin-top:-1px}
+.stat{padding:1.1rem 1.2rem;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat span{display:block;font:900 clamp(1.8rem,4vw,2.8rem)/1 "Arial Narrow",Impact,sans-serif}
+.stat small{color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-size:.72rem}
+.note{color:var(--muted);font-size:.9rem;margin:.8rem 0 0}
+.stages{width:100%;border-collapse:collapse}
+.stages th,.stages td{text-align:left;padding:.8rem .6rem;border-bottom:1px solid var(--line)}
+.stages th{font:700 .72rem "Segoe UI",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.stages td:first-child{font:900 1.3rem "Arial Narrow",sans-serif;color:var(--blaze)}
+.tw{overflow-x:auto}
+.diff{display:inline-block;padding:.1rem .6rem;border-radius:2px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.d1{background:#2F7D5B}.d2{background:#B58A15;color:#101A2B}.d3{background:var(--blaze);color:#101A2B}
+.log{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.entry{background:var(--panel);border-top:4px solid var(--blaze);padding:1.3rem}
+.entry h3{margin:.3rem 0;font:900 1.4rem/1.1 "Arial Narrow",sans-serif;text-transform:uppercase}
+.entry p{margin:0 0 .6rem;color:var(--snow)}
+.entry .d{font:.78rem ui-monospace,Consolas,monospace;color:var(--muted)}
+.pack{columns:2;column-gap:2rem;padding:0;margin:0;list-style:none}
+.pack li{break-inside:avoid;padding:.6rem 0 .6rem 2rem;border-bottom:1px dashed var(--line);position:relative}
+.pack li::before{content:"";position:absolute;left:0;top:.85rem;width:14px;height:14px;border:2px solid var(--blaze);transform:rotate(45deg)}
+footer{border-top:1px solid var(--line);margin-top:4rem;padding:2rem clamp(1rem,4vw,3rem);color:var(--muted);font-size:.9rem;text-align:center}
+@media (max-width:820px){
+.top{position:static;flex-direction:column;align-items:flex-start}
+.stats{grid-template-columns:repeat(2,1fr)}
+.stat:nth-child(2){border-right:none}
+.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+.log{grid-template-columns:1fr}
+.pack{columns:1}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+<div class="brand">Cairnwater <b>Ridge</b></div>
+<nav aria-label="Primary"><a href="#route">Route</a><a href="#stages">Stages</a><a href="#log">Trip log</a><a href="#pack">Pack</a></nav>
+</header>
+<div class="hero">
+<svg class="topo" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#4A6A9A" stroke-width="1.2"><path d="M-20 420 C200 330 360 400 560 300 S940 340 1220 220"/><path d="M-20 380 C200 290 360 360 560 262 S940 300 1220 180"/><path d="M-20 340 C200 250 360 320 560 224 S940 260 1220 140"/><path d="M-20 300 C200 210 360 280 560 186 S940 220 1220 100"/><path d="M-20 260 C200 170 360 240 560 148 S940 180 1220 60"/><path d="M-20 220 C200 130 360 200 560 110 S940 140 1220 20"/></g></svg>
+<div class="in">
+<p class="tag">Demo template · sample numbers only</p>
+<h1>Cairnwater<br><em>Ridge</em> Traverse</h1>
+<p class="lede">A three-day ridge walk, logged stage by stage. The route, heights and times are invented demo values; slide along the profile to see how a real log could read.</p>
+</div>
+<div class="profile" id="route">
+<svg viewBox="0 0 1000 260" role="img" aria-label="Sample elevation profile of a ridge route rising to a summit then descending">
+<defs><linearGradient id="fillg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6A2B" stop-opacity=".55"/><stop offset="1" stop-color="#FF6A2B" stop-opacity="0"/></linearGradient></defs>
+<g stroke="#2E4468" stroke-width="1"><line x1="0" y1="60" x2="1000" y2="60"/><line x1="0" y1="120" x2="1000" y2="120"/><line x1="0" y1="180" x2="1000" y2="180"/></g>
+<path id="area" d="M0 220 L100 190 L220 205 L340 130 L450 150 L560 70 L640 40 L740 95 L850 135 L930 160 L1000 190 L1000 260 L0 260z" fill="url(#fillg)"/>
+<path id="prof" d="M0 220 L100 190 L220 205 L340 130 L450 150 L560 70 L640 40 L740 95 L850 135 L930 160 L1000 190" fill="none" stroke="#FF6A2B" stroke-width="4" stroke-linejoin="round"/>
+<line id="cursor" x1="0" y1="0" x2="0" y2="260" stroke="#EEF2F7" stroke-width="2" stroke-dasharray="4 4"/>
+<circle id="dot" cx="0" cy="220" r="9" fill="#EEF2F7" stroke="#FF6A2B" stroke-width="4"/>
+</svg>
+<div class="readout" aria-live="polite"><span>Km <b id="rkm">0.0</b></span><span>Height <b id="rh">1,180 m</b></span><span id="rname">Trailhead · Millrace Car Park (sample)</span></div>
+<input class="scrub" id="scrub" type="range" min="0" max="1000" value="0" step="10" aria-label="Move along the sample elevation profile">
+</div>
+</div>
+<main id="main">
+<section aria-labelledby="stat-h" style="padding-top:0">
+<h2 id="stat-h" class="sr" style="position:absolute;left:-999px">Route statistics, demo values</h2>
+<div class="stats">
+<div class="stat"><span>38.4 km</span><small>Distance · demo</small></div>
+<div class="stat"><span>2,310 m</span><small>Ascent · demo</small></div>
+<div class="stat"><span>2,114 m</span><small>High point · demo</small></div>
+<div class="stat"><span>3 days</span><small>Duration · demo</small></div>
+</div>
+<p class="note">Every figure on this page is a demo placeholder, not a measured route.</p>
+</section>
+
+<section id="stages" aria-labelledby="stg-h">
+<h2 id="stg-h"><small>Day by day</small>Stages</h2>
+<div class="tw"><table class="stages">
+<thead><tr><th scope="col">Day</th><th scope="col">From → to</th><th scope="col">Distance</th><th scope="col">Climb</th><th scope="col">Grade</th></tr></thead>
+<tbody>
+<tr><td>01</td><td>Millrace Car Park → Cairnwater Bothy</td><td>11.2 km</td><td>+820 m</td><td><span class="diff d1">Steady</span></td></tr>
+<tr><td>02</td><td>Bothy → Skylark Col → Grey Tooth summit</td><td>14.6 km</td><td>+1,090 m</td><td><span class="diff d3">Hard</span></td></tr>
+<tr><td>03</td><td>Summit → Larch Gate → Millrace</td><td>12.6 km</td><td>+400 m</td><td><span class="diff d2">Moderate</span></td></tr>
+</tbody></table></div>
+</section>
+
+<section id="log" aria-labelledby="log-h">
+<h2 id="log-h"><small>Field notes</small>Trip log</h2>
+<div class="log">
+<article class="entry"><span class="d">DAY 1 · SAMPLE DATE</span><h3>Mist in the larches</h3><p>Soft cloud until the second stile, then a clean sky. Water was plentiful at the ford.</p><p class="d">Conditions: dry path</p></article>
+<article class="entry"><span class="d">DAY 2 · SAMPLE DATE</span><h3>The Grey Tooth</h3><p>Scrambling above the col with hard wind. Summit cairn reached before noon and left to the weather.</p><p class="d">Conditions: windy, cold</p></article>
+<article class="entry"><span class="d">DAY 3 · SAMPLE DATE</span><h3>Long way down</h3><p>Knees complained all the way to Larch Gate; tea tasted fine at the bottom.</p><p class="d">Conditions: warm, clear</p></article>
+</div>
+</section>
+
+<section id="pack" aria-labelledby="pk-h">
+<h2 id="pk-h"><small>Before you go</small>Pack list</h2>
+<ul class="pack">
+<li>Map, compass and a printed route card</li>
+<li>Waterproof shell and warm mid-layer</li>
+<li>Two litres of water per person</li>
+<li>Head torch with spare batteries</li>
+<li>First-aid kit and emergency blanket</li>
+<li>Trekking poles for the descent</li>
+</ul>
+<p class="note">Sample checklist for a demo page. Check current local conditions and advice for any real route.</p>
+</section>
+</main>
+<footer><p>Cairnwater Ridge is a fictional demo template. Terrain art is original inline SVG.</p></footer>
+<script>
+(function(){
+var pts=[[0,220,0,1180,'Trailhead · Millrace Car Park (sample)'],[100,190,3.8,1300,'Larch Gate (sample)'],[220,205,8.4,1240,'Cairnwater Bothy (sample)'],[340,130,13,1640,'Skylark Col (sample)'],[450,150,17,1560,'Stony shoulder (sample)'],[560,70,22,1890,'Upper ridge (sample)'],[640,40,25.6,2114,'Grey Tooth summit (sample)'],[740,95,29,1830,'North spur (sample)'],[850,135,33,1620,'Fern Hollow (sample)'],[930,160,36,1480,'Last stile (sample)'],[1000,190,38.4,1350,'Millrace Car Park (sample)']];
+var s=document.getElementById('scrub'),c=document.getElementById('cursor'),d=document.getElementById('dot');
+function upd(){
+var x=+s.value,i=0;while(i<pts.length-2&&pts[i+1][0]<x)i++;
+var a=pts[i],b=pts[i+1],t=(x-a[0])/(b[0]-a[0]);if(t<0)t=0;if(t>1)t=1;
+var y=a[1]+(b[1]-a[1])*t,km=a[2]+(b[2]-a[2])*t,h=Math.round(a[3]+(b[3]-a[3])*t);
+c.setAttribute('x1',x);c.setAttribute('x2',x);d.setAttribute('cx',x);d.setAttribute('cy',y);
+document.getElementById('rkm').textContent=km.toFixed(1);
+document.getElementById('rh').textContent=h.toLocaleString('en-US')+' m';
+document.getElementById('rname').textContent=(t<.5?a:b)[4];
+}
+s.addEventListener('input',upd);upd();
+})();
+</script>
+</body>
+</html>

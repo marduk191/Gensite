@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Original dataset documentation page template: data card, sample rows, schema and statistics. All data is fictional demo content.">
+<title>Tidewrack Corpus data card — demo page template</title>
+<style>
+:root{--bg:#EAF0EE;--ink:#11262B;--muted:#4F666B;--accent:#0F7B7B;--surface:#FFFFFF;--line:#BFCFCB;--sand:#E8C873;--coral:#D9634A}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3,p,ul,dl,dd,figure{margin:0}
+h1,h2,h3{font-family:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;font-weight:700;line-height:1.08;letter-spacing:-.015em;text-wrap:balance}
+h1{font-size:clamp(2.3rem,5.6vw,4.4rem)}
+h2{font-size:clamp(1.5rem,2.8vw,2rem);margin-bottom:10px}
+h3{font-size:1.1rem}
+p{max-width:66ch}p+p{margin-top:.7rem}
+code,.mono{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:.88em}
+a{color:inherit;text-underline-offset:.2em}
+button{font:inherit;color:inherit;cursor:pointer;min-height:40px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--ink);color:#fff;padding:10px 14px;z-index:20}
+.skip:focus{top:10px}
+.wrap{max-width:1260px;margin:0 auto;padding:0 clamp(16px,4vw,44px)}
+.demo{background:var(--sand);font-size:.8rem;padding:7px 0;text-align:center;color:#2b2100}
+.bar{position:sticky;top:0;z-index:10;background:var(--ink);color:#fff}
+.bar .wrap{display:flex;gap:18px;align-items:center;justify-content:space-between;min-height:54px;flex-wrap:wrap;padding-block:6px}
+.bar a{text-decoration:none}
+.bar .name{font-weight:700;font-family:Georgia,serif;display:flex;gap:10px;align-items:center}
+.bar .name svg{width:24px;height:24px}
+.bar nav{display:flex;gap:18px;flex-wrap:wrap;font-size:.92rem}
+.bar nav a:hover{text-decoration:underline}
+.masthead{padding:46px 0 34px;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:clamp(24px,4vw,56px);align-items:center}
+.masthead p.lede{font-size:1.15rem;margin-top:16px;color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.chip{font-size:.78rem;padding:3px 10px;background:var(--surface);border:1px solid var(--line);border-radius:20px}
+.mosaic{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;aspect-ratio:3/2}
+.mosaic i{display:block;background:var(--accent)}
+.mosaic i:nth-child(3n){background:var(--sand)}.mosaic i:nth-child(5n){background:var(--coral)}.mosaic i:nth-child(7n){background:var(--ink)}.mosaic i:nth-child(4n+1){opacity:.55}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:clamp(22px,4vw,54px);padding-bottom:70px;align-items:start}
+.rail{background:var(--surface);border:1px solid var(--line);padding:22px;position:sticky;top:76px}
+.rail h2{font-size:1.1rem;margin-bottom:12px}
+.rail dl{display:grid;gap:12px}
+.rail dt{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.rail dd{font-weight:600}
+.content{min-width:0}
+.content>section{padding:34px 0 10px;border-top:1px solid var(--line);scroll-margin-top:70px}
+.content>section:first-child{border-top:0;padding-top:0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0 22px}
+.stat{background:var(--surface);border:1px solid var(--line);padding:16px}
+.stat b{display:block;font:700 2rem/1 Georgia,serif}
+.stat span{font-size:.8rem;color:var(--muted)}
+.panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.panel{background:var(--surface);border:1px solid var(--line);padding:18px}
+.panel svg{width:100%;height:auto;margin-top:8px}
+.split{display:flex;height:22px;margin:12px 0 6px;border:1px solid var(--ink)}
+.split span{display:block}
+.legend{display:flex;gap:14px;font-size:.8rem;flex-wrap:wrap;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:5px}
+.tabs{display:flex;gap:0;margin:14px 0 0}
+.tabs button{border:1px solid var(--ink);background:var(--surface);padding:6px 18px;margin-right:-1px}
+.tabs button[aria-pressed=true]{background:var(--ink);color:#fff}
+.tw{overflow-x:auto;background:var(--surface);border:1px solid var(--ink)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:620px}
+caption{text-align:left;padding:10px 14px;font-size:.8rem;color:var(--muted)}
+th,td{padding:9px 14px;text-align:left;border-top:1px solid var(--line);vertical-align:top}
+thead th{background:var(--bg);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td.t{font-family:ui-monospace,Consolas,monospace;font-size:.84rem;color:var(--accent)}
+td.q{max-width:42ch}
+[hidden]{display:none!important}
+.mark{color:var(--coral);font-weight:700}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+ul.plain{padding-left:1.1rem}ul.plain li{margin-bottom:.4rem}
+details{border-top:1px solid var(--line);padding:12px 0}
+summary{font-weight:600}
+details p{margin-top:8px;color:var(--muted)}
+footer{background:var(--ink);color:#c5d6d2;padding:28px 0;font-size:.85rem}
+@media (max-width:900px){
+.masthead,.layout,.cols,.panels{grid-template-columns:minmax(0,1fr)}
+.rail{position:static}
+.stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.bar{position:static}
+html{scroll-padding-top:10px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="demo">Demo template: “Tidewrack Corpus”, its rows, schema and statistics are fictional sample content.</div>
+<header class="bar"><div class="wrap">
+<a class="name" href="#top"><svg viewBox="0 0 24 24" role="img" aria-label="Sample logo"><path d="M2 14c3-5 6-5 9 0s6 5 9 0" fill="none" stroke="#E8C873" stroke-width="2.4"></path><path d="M2 7c3-5 6-5 9 0s6 5 9 0" fill="none" stroke="#0F7B7B" stroke-width="2.4"></path></svg>Open Dataset Atlas</a>
+<nav aria-label="Primary"><a href="#overview">Overview</a><a href="#samples">Samples</a><a href="#schema">Schema</a><a href="#stats">Statistics</a><a href="#ethics">Collection &amp; ethics</a></nav>
+</div></header>
+<main id="main">
+<div class="wrap" id="top">
+<div class="masthead">
+<div>
+<h1>Tidewrack Corpus</h1>
+<p class="lede">A sample data card for a 240,000-entry collection of short coastal field notes with species, place and weather tags. Read what is inside before you train on it.</p>
+<div class="chips"><span class="chip">text · tabular</span><span class="chip">en</span><span class="chip">CC-BY-4.0 (demo)</span><span class="chip">v1.1</span><span class="chip">240k rows (demo)</span></div>
+</div>
+<figure aria-label="Decorative mosaic of sample records">
+<div class="mosaic" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<figcaption class="mono" style="margin-top:8px;color:var(--muted)">36 sample records as tiles, demo art</figcaption>
+</figure>
+</div>
+
+<div class="layout">
+<aside class="rail" aria-label="Dataset facts">
+<h2>Facts</h2>
+<dl>
+<dt>Curated by</dt><dd>Tidewrack Group (fictional)</dd>
+<dt>Size</dt><dd>240,118 rows · 61 MB</dd>
+<dt>Languages</dt><dd>English</dd>
+<dt>Format</dt><dd>Parquet, CSV</dd>
+<dt>Time span</dt><dd>2014–2023 (demo)</dd>
+<dt>Citation</dt><dd class="mono">tidewrack-2024-demo</dd>
+</dl>
+</aside>
+
+<div class="content">
+<section id="overview" aria-labelledby="h-over">
+<h2 id="h-over">Overview</h2>
+<p>Each row is one short note written by a volunteer surveyor on a shoreline walk, with structured tags added by a second reviewer. The collection is intended for classification, retrieval and summarisation experiments on small, noisy text.</p>
+<div class="stats">
+<div class="stat"><b>240k</b><span>rows, demo</span></div>
+<div class="stat"><b>14</b><span>columns</span></div>
+<div class="stat"><b>3.1%</b><span>missing weather tag</span></div>
+<div class="stat"><b>612</b><span>distinct species tags</span></div>
+</div>
+</section>
+
+<section id="samples" aria-labelledby="h-samp">
+<h2 id="h-samp">Sample rows</h2>
+<p>Invented records, shown as they might appear in a viewer.</p>
+<div class="tabs" role="group" aria-label="Split">
+<button type="button" data-s="train" aria-pressed="true">train</button><button type="button" data-s="val" aria-pressed="false">validation</button><button type="button" data-s="test" aria-pressed="false">test</button>
+</div>
+<div class="tw">
+<table>
+<caption id="cap" role="status">train split · 3 of 192,094 rows (demo)</caption>
+<thead><tr><th scope="col">id</th><th scope="col">note</th><th scope="col">species</th><th scope="col">weather</th></tr></thead>
+<tbody>
+<tr data-s="train"><td class="t">tr-000142</td><td class="q">Kelp wrack thick along the tide line, gulls working the south end.</td><td>kelp, gull</td><td>overcast</td></tr>
+<tr data-s="train"><td class="t">tr-000143</td><td class="q">Small crab molts under the pier posts; shells everywhere.</td><td>shore crab</td><td>clear</td></tr>
+<tr data-s="train"><td class="t">tr-000144</td><td class="q">Fog until ten. Sandpipers in a tight group at the creek mouth.</td><td>sandpiper</td><td><span class="mark">null</span></td></tr>
+<tr data-s="val" hidden><td class="t">va-000031</td><td class="q">Low tide pools full of anemones, one stranded jelly.</td><td>anemone, jellyfish</td><td>clear</td></tr>
+<tr data-s="val" hidden><td class="t">va-000032</td><td class="q">Strong wind, no birds on the flats this morning.</td><td>none</td><td>windy</td></tr>
+<tr data-s="val" hidden><td class="t">va-000033</td><td class="q">Egg cases of skate in the wrack line, three counted.</td><td>skate</td><td>drizzle</td></tr>
+<tr data-s="test" hidden><td class="t">te-000007</td><td class="q">Mussel beds exposed on the breakwater, some drilled shells.</td><td>mussel, whelk</td><td>overcast</td></tr>
+<tr data-s="test" hidden><td class="t">te-000008</td><td class="q">Seals hauled out on the far bar, about a dozen.</td><td>seal</td><td>clear</td></tr>
+<tr data-s="test" hidden><td class="t">te-000009</td><td class="q">Sea lettuce bloom after the warm week.</td><td>sea lettuce</td><td>sunny</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="schema" aria-labelledby="h-sch">
+<h2 id="h-sch">Schema</h2>
+<div class="tw">
+<table>
+<caption>Selected columns of 14 (demo)</caption>
+<thead><tr><th scope="col">Column</th><th scope="col">Type</th><th scope="col">Description</th><th scope="col">Nulls</th></tr></thead>
+<tbody>
+<tr><td class="t">id</td><td class="mono">string</td><td>Split prefix and running number.</td><td>0%</td></tr>
+<tr><td class="t">note</td><td class="mono">string</td><td>Free-text surveyor note, 8 to 60 words.</td><td>0%</td></tr>
+<tr><td class="t">species</td><td class="mono">list&lt;string&gt;</td><td>Normalised species or group tags.</td><td>1.2%</td></tr>
+<tr><td class="t">weather</td><td class="mono">category</td><td>One of nine weather classes.</td><td>3.1%</td></tr>
+<tr><td class="t">site_id</td><td class="mono">int32</td><td>Anonymised shoreline segment.</td><td>0%</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="stats" aria-labelledby="h-st">
+<h2 id="h-st">Statistics</h2>
+<div class="panels">
+<div class="panel"><h3>Note length (words)</h3>
+<svg viewBox="0 0 300 120" role="img" aria-label="Sample histogram of note length, peaking near 20 words"><g fill="#0F7B7B"><rect x="10" y="90" width="22" height="20"></rect><rect x="36" y="60" width="22" height="50"></rect><rect x="62" y="22" width="22" height="88"></rect><rect x="88" y="10" width="22" height="100"></rect><rect x="114" y="30" width="22" height="80"></rect><rect x="140" y="52" width="22" height="58"></rect><rect x="166" y="72" width="22" height="38"></rect><rect x="192" y="86" width="22" height="24"></rect><rect x="218" y="96" width="22" height="14"></rect><rect x="244" y="102" width="22" height="8"></rect></g><path d="M6 110h280" stroke="#11262B"></path></svg>
+<p class="mono" style="color:var(--muted)">median 21 · p95 48 (demo)</p></div>
+<div class="panel"><h3>Split sizes</h3>
+<div class="split" role="img" aria-label="Train 80 percent, validation 10 percent, test 10 percent"><span style="width:80%;background:#0F7B7B"></span><span style="width:10%;background:#E8C873"></span><span style="width:10%;background:#D9634A"></span></div>
+<div class="legend"><span><i style="background:#0F7B7B"></i>train 80%</span><span><i style="background:#E8C873"></i>validation 10%</span><span><i style="background:#D9634A"></i>test 10%</span></div>
+<p style="margin-top:14px;color:var(--muted)">Splits are by shoreline site, not by row, to limit leakage between neighbouring notes.</p></div>
+</div>
+</section>
+
+<section id="ethics" aria-labelledby="h-eth">
+<h2 id="h-eth">Collection and ethics</h2>
+<div class="cols">
+<div><h3>How it was made</h3><ul class="plain"><li>Volunteers wrote notes with consent for open release</li><li>Names and precise coordinates were removed</li><li>Two reviewers checked tags; disagreements were dropped</li></ul></div>
+<div><h3>Known gaps</h3><ul class="plain"><li>Sites cluster near towns with active volunteers</li><li>Winter months are under-sampled</li><li>Not suitable for population estimates</li></ul></div>
+</div>
+<details style="margin-top:20px"><summary>Is this dataset real?</summary><p>No. It is a demo layout with invented figures. Replace every field with your own documentation.</p></details>
+<details><summary>How should I cite it?</summary><p>Give a real citation block and version here.</p></details>
+</section>
+</div>
+</div>
+</div>
+</main>
+<footer><div class="wrap">Demo template · Fictional dataset card · Replace sample content before publishing.</div></footer>
+<script>
+(function(){
+var b=document.querySelectorAll('.tabs button'),r=document.querySelectorAll('tbody tr[data-s]'),c=document.getElementById('cap');
+var total={train:'192,094',val:'24,012',test:'24,012'};
+b.forEach(function(x){x.addEventListener('click',function(){
+var s=x.dataset.s;
+b.forEach(function(o){o.setAttribute('aria-pressed',o===x);});
+r.forEach(function(e){e.hidden=e.dataset.s!==s;});
+c.textContent=(s==='val'?'validation':s)+' split · 3 of '+total[s]+' rows (demo)';
+});});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Original realm atlas page template: an interactive world map with a lore index. Fictional demo content and original artwork.">
+<title>Atlas of Veyra — demo page template</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#e8dcbc;--ink:#22302d;--muted:#51604f;--accent:#9a3b27;--sea:#2f5d62;--line:#bfae82;--focus:#0b3d91}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Georgia,"Times New Roman",serif}
+h1,h2,h3,p,figure,ul,dl,dd{margin:0}
+h1,h2,h3{font-family:"Palatino Linotype",Palatino,Georgia,serif;line-height:1.1}
+a{color:var(--accent);text-underline-offset:.2em}
+button{font:inherit;color:inherit;cursor:pointer;min-height:44px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+svg a:focus-visible,svg [tabindex]:focus-visible{outline:3px solid var(--focus)}
+.skip{position:absolute;left:12px;top:-80px;background:#fff;color:#000;padding:10px 14px;z-index:9}
+.skip:focus{top:10px}
+[hidden]{display:none!important}
+.visually{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.mast{background:var(--sea);color:#f3e8c9;border-bottom:6px double #d6b96c}
+.mast .in{max-width:1300px;margin:auto;padding:18px clamp(14px,3vw,40px);display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.mast a{color:#f3e8c9}
+.brand{font-family:Palatino,Georgia,serif;font-size:1.3rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}
+.mast nav{display:flex;gap:22px;flex-wrap:wrap}
+.demo{background:#d9c995;font-size:.82rem;text-align:center;padding:6px 12px;border-bottom:1px solid var(--line)}
+.page{max-width:1300px;margin:auto;padding:0 clamp(14px,3vw,40px)}
+.intro{padding:46px 0 26px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:end}
+.eyebrow{font-variant:small-caps;letter-spacing:.2em;color:var(--muted);margin-bottom:10px}
+h1{font-size:clamp(2.6rem,6vw,5rem);letter-spacing:-.02em}
+h1 em{color:var(--accent);font-style:italic}
+.intro p{max-width:52ch}
+h2{font-size:clamp(1.7rem,3.2vw,2.4rem)}
+.atlas{display:grid;grid-template-columns:230px 1fr 320px;gap:24px;align-items:start;padding-bottom:20px}
+.index{position:sticky;top:12px;border:1px solid var(--line);background:#f1e8cc;padding:16px}
+.index h2{font-size:1.15rem;font-variant:small-caps;letter-spacing:.12em;margin-bottom:10px}
+.index ul{list-style:none;padding:0;margin:0}
+.index button{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px dotted var(--line);padding:8px 6px;display:flex;gap:10px;align-items:center}
+.index button:hover{background:#e3d6ae}
+.index button[aria-pressed=true]{background:var(--sea);color:#fff4d6}
+.num{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1.5px solid currentColor;font-size:.78rem;flex:none}
+.mapbox{border:3px double var(--sea);background:#f4ecd2;padding:10px;box-shadow:0 8px 24px #3b2f1344}
+.map{width:100%;height:auto;display:block}
+.map .region{cursor:pointer;transition:fill .2s}
+.map .region:hover{fill-opacity:.9}
+.map .region[aria-pressed=true]{stroke:#9a3b27;stroke-width:5;stroke-dasharray:none}
+.map text{font-family:Palatino,Georgia,serif;pointer-events:none}
+.legend{font-size:.82rem;color:var(--muted);margin-top:8px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.lore{border:1px solid var(--line);background:#f8f1da;padding:20px;position:sticky;top:12px}
+.lore .tag{font-variant:small-caps;letter-spacing:.14em;color:var(--accent);font-size:.9rem}
+.lore h2{margin:4px 0 10px;font-size:1.9rem}
+.lore dl{margin-top:14px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.92rem;border-top:1px solid var(--line);padding-top:12px}
+.lore dt{color:var(--muted);font-variant:small-caps;letter-spacing:.1em}
+.lore dd{margin:0}
+section.block{margin-top:70px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:22px}
+.card{background:#f4ecd2;border:1px solid var(--line);padding:20px;border-top:5px solid var(--sea)}
+.card h3{font-size:1.3rem;margin-bottom:8px}
+.card .meta{font-size:.82rem;color:var(--muted);font-variant:small-caps;letter-spacing:.12em;margin-bottom:6px}
+.timeline{list-style:none;padding:0;margin:24px 0 0;border-left:3px solid var(--sea)}
+.timeline li{padding:0 0 22px 24px;position:relative}
+.timeline li::before{content:"";position:absolute;left:-10px;top:6px;width:17px;height:17px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.timeline b{font-family:Palatino,Georgia,serif}
+details{border-top:1px solid var(--line);padding:12px 0;max-width:80ch}
+summary{font-weight:700;cursor:pointer;min-height:44px;padding:6px 0}
+footer{margin-top:80px;border-top:6px double #d6b96c;background:var(--sea);color:#f3e8c9;padding:26px 0;font-size:.9rem}
+footer .page{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:#f3e8c9}
+@media(max-width:1060px){.atlas{grid-template-columns:1fr}.index,.lore{position:static}.index ul{display:grid;grid-template-columns:repeat(2,1fr);column-gap:12px}.intro{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
+@media(max-width:560px){body{font-size:16px}.index ul{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast"><div class="in"><a class="brand" href="./index.html">Atlas of Veyra</a>
+<nav aria-label="Main navigation"><a href="#map">Map</a><a href="#peoples">Peoples</a><a href="#ages">Ages</a></nav></div></header>
+<p class="demo">Demo template · The realm of Veyra, its regions and histories are fictional sample content; the map is original demo artwork.</p>
+<main id="main" class="page">
+<section class="intro" aria-labelledby="h1">
+<div><p class="eyebrow">A world wiki &amp; atlas</p><h1 id="h1">The known lands of <em>Veyra</em></h1></div>
+<p>Choose a region on the map or from the index to read its lore. This demo shows how a world-builder can pair one illustrated map with a searchable-feeling region index. Swap in your own geography and story.</p>
+</section>
+
+<section id="map" aria-labelledby="h-map">
+<h2 id="h-map" class="visually">Interactive map</h2>
+<div class="atlas">
+<nav class="index" aria-label="Region index"><h2>Region index</h2>
+<ul>
+<li><button type="button" data-r="north" aria-pressed="true"><span class="num">1</span>Frostmere</button></li>
+<li><button type="button" data-r="west" aria-pressed="false"><span class="num">2</span>Thornwold</button></li>
+<li><button type="button" data-r="mid" aria-pressed="false"><span class="num">3</span>The Gilded Reach</button></li>
+<li><button type="button" data-r="east" aria-pressed="false"><span class="num">4</span>Sunken Marches</button></li>
+<li><button type="button" data-r="south" aria-pressed="false"><span class="num">5</span>Ember Coast</button></li>
+</ul></nav>
+<figure class="mapbox">
+<svg class="map" viewBox="0 0 800 560" role="group" aria-label="Original demo map of the fictional realm of Veyra with five selectable regions">
+<defs><pattern id="waves" width="24" height="12" patternUnits="userSpaceOnUse"><path d="M0 6q6-5 12 0t12 0" fill="none" stroke="#2f5d62" stroke-opacity=".25"/></pattern></defs>
+<rect width="800" height="560" fill="#cfe0d8"/><rect width="800" height="560" fill="url(#waves)"/>
+<rect x="8" y="8" width="784" height="544" fill="none" stroke="#22302d" stroke-width="3"/>
+<path class="region" data-r="north" d="M200 70L330 40 470 62 560 110 520 170 420 190 300 170 210 140Z" fill="#dfe6e8" stroke="#22302d" stroke-width="2.5" stroke-dasharray="7 4" tabindex="-1"/>
+<path class="region" data-r="west" d="M110 190L210 150 300 180 330 280 280 360 180 350 110 280Z" fill="#a9c28d" stroke="#22302d" stroke-width="2.5" stroke-dasharray="7 4"/>
+<path class="region" data-r="mid" d="M300 180L420 200 520 180 560 270 520 340 420 370 330 340 330 280Z" fill="#e6c96b" stroke="#22302d" stroke-width="2.5" stroke-dasharray="7 4"/>
+<path class="region" data-r="east" d="M520 180L600 150 690 200 700 300 640 360 570 330 560 270Z" fill="#8fb5a8" stroke="#22302d" stroke-width="2.5" stroke-dasharray="7 4"/>
+<path class="region" data-r="south" d="M180 350L280 365 330 345 420 372 520 345 570 335 600 410 520 480 380 500 250 480 190 420Z" fill="#d98d63" stroke="#22302d" stroke-width="2.5" stroke-dasharray="7 4"/>
+<g fill="#22302d" opacity=".7"><path d="M138 220l10-18 10 18zM160 232l8-14 8 14zM240 195l10-18 10 18zM226 215l8-14 8 14z"/><path d="M360 85l14-24 14 24zM400 100l10-18 10 18z" fill="#fff" stroke="#22302d"/></g>
+<g font-size="22" fill="#22302d" text-anchor="middle" font-style="italic"><text x="380" y="125">Frostmere</text><text x="215" y="285">Thornwold</text><text x="435" y="285">Gilded Reach</text><text x="632" y="265" font-size="16">Sunken Marches</text><text x="390" y="440">Ember Coast</text></g>
+<g font-size="15" fill="#2f5d62" text-anchor="middle" font-style="italic" letter-spacing="6"><text x="90" y="470">THE PALE SEA</text><text x="700" y="480">THE LONG DEEP</text></g>
+<g transform="translate(700 90)"><circle r="42" fill="#f4ecd2" stroke="#22302d" stroke-width="2"/><path d="M0-38L8 0 0 38-8 0zM-38 0L0-8 38 0 0 8z" fill="#9a3b27" stroke="#22302d"/><text y="-46" text-anchor="middle" font-size="16" font-weight="700">N</text></g>
+<path d="M60 520h180" stroke="#22302d" stroke-width="3"/><path d="M60 514v12M150 514v12M240 514v12" stroke="#22302d" stroke-width="2"/><text x="60" y="508" font-size="13" fill="#22302d">0</text><text x="200" y="508" font-size="13" fill="#22302d">100 leagues</text>
+<g fill="#9a3b27"><circle cx="420" cy="240" r="6"/><circle cx="230" cy="260" r="6"/><circle cx="380" cy="150" r="6"/><circle cx="640" cy="300" r="6"/><circle cx="410" cy="420" r="6"/></g>
+</svg>
+<figcaption class="legend"><span>Original demo map · Not a real place</span><span>Select a region on the map or index</span></figcaption>
+</figure>
+<aside class="lore" aria-live="polite" aria-label="Region lore">
+<p class="tag" id="l-tag">Region 1 · Cold highland</p>
+<h2 id="l-name">Frostmere</h2>
+<p id="l-text">A lake-studded plateau where the sun barely clears the peaks in winter. Its bell-towers ring the hours across frozen water.</p>
+<dl><dt>Capital</dt><dd id="l-cap">Hollowbell</dd><dt>Ruler</dt><dd id="l-rule">The Lantern Synod</dd><dt>Known for</dt><dd id="l-for">Ice-glass, bells</dd><dt>Population</dt><dd id="l-pop">Sample figure · demo</dd></dl>
+</aside>
+</div>
+</section>
+
+<section id="peoples" class="block" aria-labelledby="h-peoples">
+<h2 id="h-peoples">Peoples and factions</h2>
+<div class="cards">
+<article class="card"><p class="meta">Folk · Thornwold</p><h3>The Rooted</h3><p>Forest-wardens who treat every road as a promise made to the trees. They speak slowly and remember everything.</p></article>
+<article class="card"><p class="meta">Guild · Gilded Reach</p><h3>Cartographers’ Table</h3><p>A trading house that sells maps and, quietly, the corrections to those maps. Neutral in all wars but one.</p></article>
+<article class="card"><p class="meta">Order · Ember Coast</p><h3>Salt-Pyres</h3><p>Coastal ascetics who burn driftwood to guide ships home, and read the smoke for omens.</p></article>
+</div>
+</section>
+
+<section id="ages" class="block" aria-labelledby="h-ages">
+<h2 id="h-ages">Ages of Veyra</h2>
+<ol class="timeline">
+<li><b>Age of Glass</b> · Sample year 0–400. The first towns grow around lakes that never thaw.</li>
+<li><b>Age of Gilt</b> · 401–900. Trade roads join the coasts; the Cartographers’ Table is founded.</li>
+<li><b>The Drowning</b> · 901. The eastern lowlands slip beneath the tide and become the Sunken Marches.</li>
+<li><b>Age of Embers</b> · 902 to the present. The beacons are lit and the long watch begins.</li>
+</ol>
+<details><summary>How to adapt this page</summary><p>Replace the SVG with your own map, keep region names in the index, and write one lore entry per region. Dates, names and populations here are invented demo values.</p></details>
+</section>
+</main>
+<footer><div class="page"><span>Atlas of Veyra · Fictional template demo</span><a href="#main">Back to top</a></div></footer>
+<script>
+var R={
+north:["Region 1 · Cold highland","Frostmere","A lake-studded plateau where the sun barely clears the peaks in winter. Its bell-towers ring the hours across frozen water.","Hollowbell","The Lantern Synod","Ice-glass, bells"],
+west:["Region 2 · Old forest","Thornwold","Dense oak and thorn country whose canopy swallows the sky. Roads here shift between seasons, or so the Rooted insist.","Mossgate","The Rooted Moot","Timber, honey, oaths"],
+mid:["Region 3 · Trade heartland","The Gilded Reach","Rolling farmland and walled market towns around the river Aurel. Everyone is a little in debt to someone.","Aurelmouth","The Cartographers’ Table","Maps, grain, coin"],
+east:["Region 4 · Drowned lowland","Sunken Marches","Reed-choked flats where spires rise from black water. Boatmen guide travellers for a price and a story.","Lowlight","Boatmen’s Compact","Reeds, relics, ferries"],
+south:["Region 5 · Volcanic shore","Ember Coast","Black-sand beaches below smoking hills. Beacon-fires burn all night to warn ships off the reefs.","Pyre Harbor","The Salt-Pyres","Glass sand, beacons"]};
+function show(k){var d=R[k];if(!d)return;
+['l-tag','l-name','l-text','l-cap','l-rule','l-for'].forEach(function(id,i){document.getElementById(id).textContent=d[i]});
+document.querySelectorAll('[data-r]').forEach(function(e){e.setAttribute('aria-pressed',String(e.dataset.r===k))});}
+document.querySelectorAll('button[data-r]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.r)})});
+document.querySelectorAll('path[data-r]').forEach(function(p){p.setAttribute('tabindex','0');p.setAttribute('role','button');p.setAttribute('aria-label','Show region '+R[p.dataset.r][1]);
+p.addEventListener('click',function(){show(p.dataset.r)});
+p.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();show(p.dataset.r)}})});
+</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Neon Canvas: a demo dark illustrator portfolio page template with glowing line art. Fictional sample content.">
+<title>Neon Canvas — demo illustrator portfolio template</title>
+<style>
+:root{--bg:#0A0912;--ink:#EDEAF7;--muted:#A19CBB;--neon:#FF3EA5;--cyan:#38E8FF;--surface:#16132A;--line:#2B2748;--display:"Bahnschrift","Arial Narrow","Franklin Gothic Condensed",Impact,sans-serif;--rail:84px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,"Segoe UI",sans-serif;padding-left:var(--rail);background-image:radial-gradient(900px 500px at 85% -5%,#3a1348 0,transparent 70%),radial-gradient(700px 500px at 0 100%,#0c2c3c 0,transparent 70%);background-attachment:fixed}
+h1,h2,h3,p,figure,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+svg{display:block;max-width:100%;height:auto}
+.skip{position:absolute;left:12px;top:-80px;background:var(--neon);color:#16001a;padding:10px 16px;font-weight:700;z-index:60}
+.skip:focus{top:12px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--cyan);outline-offset:4px}
+.rail{position:fixed;inset:0 auto 0 0;width:var(--rail);border-right:1px solid var(--line);background:rgba(10,9,18,.88);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:26px 0;z-index:40}
+.mark{writing-mode:vertical-rl;transform:rotate(180deg);font:700 1.05rem/1 var(--display);letter-spacing:.32em;text-transform:uppercase;text-decoration:none;color:var(--neon);text-shadow:0 0 12px var(--neon)}
+.rail nav ul{display:flex;flex-direction:column;gap:22px;align-items:center}
+.rail nav a{display:block;width:14px;height:14px;border-radius:50%;border:2px solid var(--muted);font-size:0;transition:.2s}
+.rail nav a:hover,.rail nav a:focus-visible{border-color:var(--neon);background:var(--neon);box-shadow:0 0 14px var(--neon)}
+.rail small{writing-mode:vertical-rl;color:var(--muted);letter-spacing:.2em;font-size:.68rem;text-transform:uppercase}
+.wrap{max-width:1200px;margin:auto;padding-inline:clamp(22px,5vw,64px)}
+.demo{border-bottom:1px solid var(--line);color:var(--muted);font-size:.8rem;padding:10px clamp(22px,5vw,64px)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(20px,4vw,64px);align-items:center;min-height:min(86vh,780px);padding-block:56px}
+.kicker{font:600 .82rem/1 var(--display);letter-spacing:.34em;text-transform:uppercase;color:var(--cyan);margin-bottom:22px;display:block}
+h1{font:800 clamp(3.6rem,10.5vw,9.2rem)/.82 var(--display);text-transform:uppercase;letter-spacing:-.01em}
+h1 span{display:block}
+h1 .tube{color:transparent;-webkit-text-stroke:2px var(--neon);text-shadow:0 0 6px var(--neon),0 0 24px rgba(255,62,165,.7),0 0 60px rgba(255,62,165,.45)}
+.lede{max-width:46ch;color:var(--muted);margin-top:30px;font-size:1.12rem}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.btn{display:inline-block;text-decoration:none;padding:13px 26px;border:2px solid var(--neon);color:var(--ink);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.85rem;background:transparent;box-shadow:0 0 18px rgba(255,62,165,.35),inset 0 0 14px rgba(255,62,165,.22);min-height:44px}
+.btn:hover{background:var(--neon);color:#16001a}
+.btn.alt{border-color:var(--cyan);box-shadow:0 0 18px rgba(56,232,255,.28),inset 0 0 14px rgba(56,232,255,.18)}
+.btn.alt:hover{background:var(--cyan)}
+.sign{border:1px solid var(--line);background:linear-gradient(160deg,#120f26,#0b0a16);padding:14px;border-radius:4px;position:relative;margin-bottom:30px}
+.sign::after{content:"sample art";position:absolute;right:14px;bottom:-26px;font-size:.72rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+h2{font:800 clamp(2.2rem,5.4vw,4.2rem)/.92 var(--display);text-transform:uppercase}
+.sec-head p{color:var(--muted);max-width:38ch}
+.wall{display:flex;gap:14px;height:clamp(420px,62vh,600px)}
+.piece{flex:1 1 0;min-width:0;position:relative;overflow:hidden;border:1px solid var(--line);background:var(--surface);transition:flex-grow .45s ease,border-color .3s,box-shadow .3s}
+.piece:hover,.piece:focus-within,.piece.on{flex-grow:3.2;border-color:var(--neon);box-shadow:0 0 30px rgba(255,62,165,.35)}
+.piece svg{width:100%;height:100%}
+.piece button{all:unset;position:absolute;inset:0;cursor:pointer;z-index:2}
+.piece button:focus-visible{outline:3px solid var(--cyan);outline-offset:-6px}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:60px 20px 18px;background:linear-gradient(transparent,rgba(10,9,18,.94) 70%);pointer-events:none;z-index:1}
+.cap h3{font:700 1.4rem/1.1 var(--display);text-transform:uppercase;letter-spacing:.04em}
+.cap p{color:var(--muted);font-size:.9rem;max-height:0;overflow:hidden;opacity:0;transition:.35s}
+.piece:hover .cap p,.piece:focus-within .cap p,.piece.on .cap p{max-height:6em;opacity:1;margin-top:6px}
+.spot{padding-block:90px 20px}
+.series li{display:grid;grid-template-columns:70px 1fr auto;gap:18px;align-items:center;padding:24px 0;border-top:1px solid var(--line);transition:.25s}
+.series li:last-child{border-bottom:1px solid var(--line)}
+.series li:hover{padding-left:14px;background:linear-gradient(90deg,rgba(255,62,165,.12),transparent 60%)}
+.num{font:800 2.4rem/1 var(--display);color:transparent;-webkit-text-stroke:1.5px var(--cyan)}
+.series h3{font:700 1.5rem/1.1 var(--display);text-transform:uppercase;letter-spacing:.03em}
+.series p{color:var(--muted);font-size:.95rem}
+.series b{font-weight:600;color:var(--cyan);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);padding-block:90px 20px}
+.about p+p{margin-top:1rem}
+.about p{color:var(--muted)}
+details{border-top:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;font-weight:700;letter-spacing:.04em;min-height:44px;display:list-item;color:var(--ink)}
+details p{margin-top:8px}
+.contact{margin-top:90px;padding:clamp(28px,6vw,70px);border:2px solid var(--neon);box-shadow:0 0 40px rgba(255,62,165,.3),inset 0 0 40px rgba(255,62,165,.14);text-align:center}
+.contact h2{margin-bottom:16px}
+.contact p{color:var(--muted);margin:0 auto 26px;max-width:46ch}
+footer{margin-top:70px;padding-block:28px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:900px){body{padding-left:0;padding-top:58px}.rail{inset:0 0 auto 0;width:auto;height:58px;flex-direction:row;padding:0 18px;border-right:0;border-bottom:1px solid var(--line)}.mark{writing-mode:horizontal-tb;transform:none;font-size:.95rem}.rail nav ul{flex-direction:row;gap:18px}.rail small{display:none}.hero{grid-template-columns:1fr;min-height:0}.wall{flex-direction:column;height:auto}.piece{flex:none;height:300px}.piece:hover,.piece:focus-within,.piece.on{height:360px}.cap p{max-height:6em;opacity:1;margin-top:6px}.about{grid-template-columns:1fr}.series li{grid-template-columns:50px 1fr}.series b{grid-column:2}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail" aria-label="Site rail">
+<a class="mark" href="#top">Neon Canvas</a>
+<nav aria-label="Primary"><ul>
+<li><a href="#top" aria-label="Intro">Intro</a></li>
+<li><a href="#wall" aria-label="Wall">Wall</a></li>
+<li><a href="#series" aria-label="Series">Series</a></li>
+<li><a href="#about" aria-label="About">About</a></li>
+<li><a href="#contact" aria-label="Contact">Contact</a></li>
+</ul></nav>
+<small>demo 2026</small>
+</aside>
+<div class="demo" role="note">This is a demo template: Velvet Nox is a fictional illustrator and all artwork here is sample SVG.</div>
+<main id="main">
+<section id="top" class="hero wrap" aria-labelledby="h1">
+<div>
+<span class="kicker">Illustration · light studies · after dark</span>
+<h1 id="h1"><span>Paint</span><span class="tube">with</span><span>light.</span></h1>
+<p class="lede">Velvet Nox draws night cities, rain-lit rooms and quiet machines. Every piece starts black and is built up one glowing line at a time.</p>
+<div class="cta"><a class="btn" href="#wall">Enter the wall</a><a class="btn alt" href="#contact">Commission a piece</a></div>
+</div>
+<div class="sign">
+<svg viewBox="0 0 520 560" role="img" aria-label="Sample artwork: a neon outline of a cat before a crescent moon above a skyline">
+<defs><filter id="g1" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect width="520" height="560" fill="#0b0a16"/>
+<g filter="url(#g1)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="5">
+<path d="M330 70a110 110 0 1 0 90 190a90 90 0 1 1-90-190z" stroke="#38E8FF"/>
+<path d="M60 420V330h56V290h50v60h34V250h60v110h40V310h56v110h50" stroke="#FF3EA5"/>
+<path d="M40 420H480" stroke="#FF3EA5"/>
+<path d="M170 400c-10-30 0-62 30-72l-8-34 28 20h40l28-20-8 34c30 10 40 42 30 72" stroke="#38E8FF"/>
+<path d="M200 400h110" stroke="#38E8FF"/>
+<circle cx="228" cy="342" r="4" stroke="#FFE9F5"/><circle cx="282" cy="342" r="4" stroke="#FFE9F5"/>
+</g>
+<g stroke="#FF3EA5" stroke-width="1.5" opacity=".45"><path d="M80 456h360M110 480h300M150 504h220"/></g>
+<g fill="#FFE9F5"><circle cx="86" cy="96" r="2"/><circle cx="170" cy="60" r="1.6"/><circle cx="260" cy="130" r="1.8"/><circle cx="470" cy="330" r="1.6"/></g>
+</svg>
+</div>
+</section>
+
+<section id="wall" class="spot wrap" aria-labelledby="wall-h">
+<div class="sec-head"><h2 id="wall-h">The wall</h2><p>Hover, tap or focus a panel to bring it up to full brightness. These three are demo pieces.</p></div>
+<div class="wall" id="wallbox">
+<article class="piece on"><button type="button" aria-label="Brighten panel: Rain Alley"></button>
+<svg viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample artwork: neon rain falling over a narrow alley with a lit doorway">
+<defs><filter id="g2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect width="400" height="600" fill="#100c22"/>
+<g filter="url(#g2)" fill="none" stroke-width="4" stroke-linecap="round"><path d="M40 600V120l90 40v440M360 600V90l-90 50v460" stroke="#38E8FF"/><rect x="160" y="320" width="80" height="170" stroke="#FF3EA5"/><path d="M170 360h60M170 400h60" stroke="#FF3EA5" opacity=".6"/><path d="M60 40l18 70M120 20l18 70M200 10l18 70M260 30l18 70M320 0l18 70M90 190l18 70M300 210l18 70" stroke="#a9b6ff" opacity=".7"/></g>
+<path d="M0 560h400" stroke="#FF3EA5" stroke-width="2" opacity=".5"/>
+</svg>
+<div class="cap"><h3>Rain Alley</h3><p>Demo piece. Cyan walls, a single magenta doorway, digital pencil on black.</p></div></article>
+<article class="piece"><button type="button" aria-label="Brighten panel: Tunnel Hum"></button>
+<svg viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample artwork: concentric neon arches receding into a tunnel">
+<defs><filter id="g3" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect width="400" height="600" fill="#0d1224"/>
+<g filter="url(#g3)" fill="none" stroke-width="4"><path d="M30 600V300a170 170 0 0 1 340 0v300" stroke="#FF3EA5"/><path d="M80 600V310a120 120 0 0 1 240 0v290" stroke="#c850e8"/><path d="M130 600V320a70 70 0 0 1 140 0v280" stroke="#7a7bff"/><path d="M175 600V330a25 25 0 0 1 50 0v270" stroke="#38E8FF"/></g>
+</svg>
+<div class="cap"><h3>Tunnel Hum</h3><p>Demo piece. Four arches stepping from magenta into cyan.</p></div></article>
+<article class="piece"><button type="button" aria-label="Brighten panel: Koi Circuit"></button>
+<svg viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample artwork: a glowing koi fish line drawing curling inside a circle">
+<defs><filter id="g4" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect width="400" height="600" fill="#0e0b1c"/>
+<g filter="url(#g4)" fill="none" stroke-width="4" stroke-linecap="round"><circle cx="200" cy="300" r="150" stroke="#38E8FF"/><path d="M110 330c40-90 150-110 190-40s-10 120-80 100-70-80-20-100c40-14 70 20 50 50" stroke="#FF3EA5"/><path d="M300 290c30-14 56-8 70 8-16 4-30 14-34 30" stroke="#FF3EA5"/><circle cx="140" cy="330" r="5" stroke="#FFE9F5"/></g>
+</svg>
+<div class="cap"><h3>Koi Circuit</h3><p>Demo piece. One continuous magenta stroke inside a cyan ring.</p></div></article>
+</div>
+</section>
+
+<section id="series" class="spot wrap" aria-labelledby="series-h">
+<div class="sec-head"><h2 id="series-h">Series</h2><p>Sample bodies of work, each a numbered run of pieces.</p></div>
+<ol class="series">
+<li><span class="num">01</span><div><h3>Night Shift</h3><p>Lit windows and empty streets after the last train. Demo series.</p></div><b>12 pieces</b></li>
+<li><span class="num">02</span><div><h3>Soft Machines</h3><p>Robots at rest, drawn in one tube of light. Demo series.</p></div><b>8 pieces</b></li>
+<li><span class="num">03</span><div><h3>Static Garden</h3><p>Plants as signage, signage as plants. Demo series.</p></div><b>16 pieces</b></li>
+</ol>
+</section>
+
+<section id="about" class="about wrap" aria-labelledby="about-h">
+<div><h2 id="about-h">Drawn in the dark</h2></div>
+<div>
+<p>Velvet Nox is a made-up artist used to show this page. The template keeps the room dark, lets one hot accent do the work and gives each image room to glow.</p>
+<p>Swap the sample text for your own practice, and replace the SVG with your real illustrations.</p>
+<details><summary>Tools in the sample studio</summary><p>Pressure-sensitive tablet, a black canvas layer, and a bloom pass added only at the end. Entirely fictional.</p></details>
+<details><summary>Availability</summary><p>Demo status only. Replace with your real booking details.</p></details>
+</div>
+</section>
+
+<section id="contact" class="wrap" aria-labelledby="contact-h">
+<div class="contact"><h2 id="contact-h">Switch the sign on</h2><p>Tell the studio about your cover, poster or wall. This demo has no working inbox.</p><a class="btn" href="#top">Back to the glow</a></div>
+</section>
+</main>
+<footer class="wrap"><span>Neon Canvas · demo page template</span><a href="#main">Top</a></footer>
+<script>
+(function(){var ps=[].slice.call(document.querySelectorAll('.piece'));ps.forEach(function(p){p.querySelector('button').addEventListener('click',function(){ps.forEach(function(q){q.classList.toggle('on',q===p)})})})})();
+</script>
+</body>
+</html>

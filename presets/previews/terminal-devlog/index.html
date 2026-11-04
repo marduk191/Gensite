@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Original terminal-style developer log template. Demo posts by a fictional author."><title>~/devlog — terminal blog page template (demo)</title>
+<style>
+:root{--bg:#0B120E;--ink:#C8F2C2;--muted:#7DA67A;--acc:#FFB547;--surf:#13201A;--line:#25402F;--mono:"Cascadia Mono","SF Mono",Consolas,Menlo,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:#050806;color:var(--ink);font:16px/1.65 var(--mono);padding:clamp(0px,3vw,36px)}
+h1,h2,h3,p,ul,ol,pre,figure{margin:0}ul,ol{padding:0;list-style:none}
+a{color:var(--acc);text-underline-offset:.2em}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.skip{position:absolute;left:8px;top:-80px;background:var(--acc);color:#000;padding:8px 12px;z-index:9}.skip:focus{top:8px}
+.screen{max-width:1000px;margin:auto;background:var(--bg);border:1px solid var(--line);border-radius:8px;box-shadow:0 0 0 1px #000,0 0 60px #1d6b3a33;position:relative;overflow:hidden}
+.screen:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#0000 0 2px,#00000030 2px 3px)}
+.chrome{display:flex;gap:8px;align-items:center;padding:10px 16px;background:var(--surf);border-bottom:1px solid var(--line);font-size:.8rem;color:var(--muted)}
+.chrome i{width:11px;height:11px;border-radius:50%;background:var(--line);display:block}.chrome span{margin-left:10px}
+.demo{padding:8px 20px;border-bottom:1px dashed var(--line);color:var(--muted);font-size:.82rem}
+.pad{padding:clamp(18px,4vw,40px)}
+.ps{color:var(--acc)}.ps b{color:var(--ink);font-weight:400}
+h1{font-size:clamp(1.9rem,6vw,3.4rem);line-height:1.05;margin:18px 0 6px;color:var(--ink);text-shadow:0 0 12px #5ef08a66;letter-spacing:-.03em}
+h1:after{content:"▌";color:var(--acc);margin-left:6px}
+.motd{color:var(--muted);max-width:56ch}
+nav ul{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0}
+nav button{font:inherit;background:var(--surf);color:var(--ink);border:1px solid var(--line);padding:9px 14px;min-height:44px;cursor:pointer;border-radius:4px}
+nav button:hover{border-color:var(--acc)}nav button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+nav button:before{content:"$ ";color:var(--acc)}nav button[aria-pressed=true]:before{color:var(--bg)}
+section{padding-block:26px;border-top:1px dashed var(--line)}
+h2{font-size:1.1rem;font-weight:400;color:var(--acc);margin-bottom:16px}h2:before{content:"## "}
+.out{color:var(--muted);font-size:.88rem;min-height:1.6em;margin-bottom:12px}
+.posts li{display:grid;grid-template-columns:7.5em 1fr auto;gap:6px 18px;padding:14px 0;border-bottom:1px solid var(--line)}
+.posts time{color:var(--muted)}.posts h3{font-size:1rem;font-weight:700}.posts h3 a{color:var(--ink)}
+.posts p{grid-column:2/4;color:var(--muted);max-width:60ch;font-size:.92rem}
+.tag{font-size:.78rem;border:1px solid var(--line);padding:0 8px;border-radius:99px;color:var(--acc);height:1.7em}
+pre.code{background:#050806;border:1px solid var(--line);padding:16px;overflow-x:auto;font-size:.88rem;color:#9BE7A0;border-left:4px solid var(--acc)}
+.cm{color:var(--muted)}
+.tree{color:var(--muted);white-space:pre-wrap}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.bar{height:14px;background:var(--surf);border:1px solid var(--line);margin:4px 0 14px}.bar i{display:block;height:100%;background:var(--ink)}
+details{border-bottom:1px solid var(--line);padding:10px 0}summary{cursor:pointer;color:var(--ink)}details p{color:var(--muted);margin-top:8px}
+footer{padding:20px 40px;border-top:1px dashed var(--line);color:var(--muted);font-size:.85rem}
+[hidden]{display:none!important}
+@media(max-width:700px){.posts li{grid-template-columns:1fr}.posts p{grid-column:1}.cols{grid-template-columns:1fr}body{padding:0}.screen{border-radius:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="screen">
+<div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span>guest@devlog: ~</span></div>
+<p class="demo">demo: this is a sample template. The author, posts and numbers are fictional.</p>
+<header class="pad">
+<p class="ps">guest@devlog:~$ <b>cat welcome.txt</b></p>
+<h1>devlog/nine-lives</h1>
+<p class="motd">Notes from a fictional hobby compiler. Short entries, honest bugs, and the occasional diff. Replace with your own voice.</p>
+<nav aria-label="Commands"><ul>
+<li><button type="button" data-f="all" aria-pressed="true">ls posts</button></li>
+<li><button type="button" data-f="bug" aria-pressed="false">grep bug</button></li>
+<li><button type="button" data-f="tool" aria-pressed="false">grep tooling</button></li>
+<li><button type="button" data-f="note" aria-pressed="false">grep notes</button></li>
+<li><button type="button" data-go="#about" aria-pressed="false">cd about</button></li></ul></nav>
+</header>
+<main id="main" class="pad" style="padding-top:0">
+<section id="posts" aria-labelledby="h-posts">
+<h2 id="h-posts">posts</h2>
+<p class="out" id="out" role="status">4 entries listed.</p>
+<ul class="posts" id="list">
+<li data-t="bug"><time datetime="2026-10-28">2026-10-28</time><h3><a href="#entry">The off-by-one that ate Tuesday</a></h3><span class="tag">bug</span><p>A loop bound, a lexer and a very long afternoon. Sample summary text.</p></li>
+<li data-t="tool"><time datetime="2026-10-14">2026-10-14</time><h3><a href="#entry">Switching to a tiny build script</a></h3><span class="tag">tooling</span><p>Why a forty-line shell script replaced the task runner. Sample summary text.</p></li>
+<li data-t="note"><time datetime="2026-09-30">2026-09-30</time><h3><a href="#entry">Notes on reading old parsers</a></h3><span class="tag">notes</span><p>Three habits that make unfamiliar code approachable. Sample summary text.</p></li>
+<li data-t="bug"><time datetime="2026-09-12">2026-09-12</time><h3><a href="#entry">Why the tests passed twice</a></h3><span class="tag">bug</span><p>A cache that remembered too much. Sample summary text.</p></li>
+</ul></section>
+
+<section id="entry" aria-labelledby="h-entry">
+<h2 id="h-entry">latest entry</h2>
+<p class="ps">guest@devlog:~$ <b>less 2026-10-28.md</b></p>
+<p style="margin:14px 0;max-width:62ch">The loop ran one step too far, so the last token was read from memory that was not ours. The fix was one character. Finding it took the whole day. This paragraph is placeholder demo text.</p>
+<pre class="code"><span class="cm"># sample diff</span>
+- for (i = 0; i &lt;= len; i++)
++ for (i = 0; i &lt; len; i++)</pre>
+</section>
+
+<section id="about" aria-labelledby="h-about">
+<h2 id="h-about">about</h2>
+<div class="cols"><div>
+<p class="ps">guest@devlog:~$ <b>tree ~/projects</b></p>
+<p class="tree">.
+├── nine-lives/   compiler, in progress
+├── tinyfmt/      formatter, paused
+└── notes/        everything else</p></div>
+<div><p class="ps">guest@devlog:~$ <b>uptime --skills</b></p>
+<p>parsing (demo value)</p><div class="bar"><i style="width:80%"></i></div>
+<p>shell (demo value)</p><div class="bar"><i style="width:65%"></i></div>
+<p>docs (demo value)</p><div class="bar"><i style="width:45%"></i></div></div></div>
+</section>
+
+<section id="help" aria-labelledby="h-help">
+<h2 id="h-help">help</h2>
+<details><summary>How do I follow along?</summary><p>Add a feed link or mailing list here. This demo does not provide one.</p></details>
+<details><summary>Can I reuse the snippets?</summary><p>State your own licence in this answer.</p></details>
+</section>
+</main>
+<footer>guest@devlog:~$ exit · demo template · fictional author</footer>
+</div>
+<script>
+(function(){var b=document.querySelectorAll('nav button'),li=document.querySelectorAll('#list li'),out=document.getElementById('out');
+b.forEach(function(x){x.addEventListener('click',function(){var g=x.getAttribute('data-go');if(g){location.hash=g;document.querySelector(g+' h2').scrollIntoView();return}
+b.forEach(function(y){y.setAttribute('aria-pressed','false')});x.setAttribute('aria-pressed','true');var f=x.getAttribute('data-f'),n=0;
+li.forEach(function(l){var s=f==='all'||l.getAttribute('data-t')===f;l.hidden=!s;if(s)n++});out.textContent=n+(n===1?' entry':' entries')+' listed.'})})})();
+</script>
+</body></html>

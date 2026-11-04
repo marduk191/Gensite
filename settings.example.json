@@ -1,0 +1,12 @@
+{
+  "settings": {
+    "comfy_url": "http://127.0.0.1:8188",
+    "workflow": "workflows/qwen_image_21_turbo_t2i_api.json",
+    "hermes_command": "",
+    "hermes_model": "",
+    "hermes_provider": "",
+    "hermes_home": "",
+    "llm_endpoint": "",
+    "llm_model": ""
+  }
+}

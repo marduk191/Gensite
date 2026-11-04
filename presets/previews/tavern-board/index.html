@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Original tabletop RPG quest board page template with pinned job notes and session logs. Fictional demo content.">
+<title>The Gilded Boar Quest Board — demo page template</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#2a1b11;--ink:#f4e7cb;--muted:#cdb88f;--accent:#e6a63a;--surface:#4a3220;--paper:#f1e2bd;--pt:#2c1c10;--focus:#7fe3ff}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+body{margin:0;color:var(--ink);font:17px/1.6 "Trebuchet MS",Verdana,sans-serif;background:repeating-linear-gradient(90deg,#0000 0 118px,#0003 118px 120px),repeating-linear-gradient(0deg,#ffffff06 0 3px,#0000 3px 9px),var(--bg)}
+h1,h2,h3,p,figure,ul,ol,blockquote{margin:0}
+h1,h2,h3{font-family:Georgia,"Palatino Linotype",serif;line-height:1.08}
+a{color:var(--accent);text-underline-offset:.2em}
+button{font:inherit;color:inherit;cursor:pointer;min-height:44px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-80px;background:#fff;color:#000;padding:10px 14px;z-index:9}
+.skip:focus{top:10px}
+[hidden]{display:none!important}
+.wrap{max-width:1200px;margin:auto;padding:0 clamp(14px,4vw,40px)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 0;flex-wrap:wrap}
+.brand{font-family:Georgia,serif;font-weight:700;font-size:1.35rem;color:var(--accent);text-decoration:none}
+.top nav{display:flex;gap:22px;flex-wrap:wrap}.top nav a{color:var(--ink)}
+.demo{font-size:.82rem;color:var(--muted);padding-bottom:14px}
+.hero{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;padding:30px 0 20px}
+.hero .sign{background:#5c3b22;border:4px solid #1c110a;border-radius:6px;padding:8px 26px 22px;box-shadow:0 6px 0 #1c110a;position:relative;transform:rotate(-1.5deg)}
+h1{font-size:clamp(2.4rem,6vw,4.6rem);color:var(--paper);letter-spacing:-.01em;text-shadow:0 3px 0 #1c110a}
+.hero p.sub{margin-top:14px;max-width:46ch;color:var(--muted)}
+.boar{width:min(240px,40vw)}
+.board{background:#6b4528 repeating-linear-gradient(90deg,#0000 0 60px,#0002 60px 62px);border:14px solid #3a2414;border-radius:8px;box-shadow:inset 0 0 40px #000a,0 14px 30px #0009;padding:clamp(16px,3vw,34px)}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
+.chip{background:#2a1b11;border:2px solid #1c110a;color:var(--ink);border-radius:20px;padding:6px 18px}
+.chip[aria-pressed=true]{background:var(--accent);color:#2a1b11;font-weight:700}
+.status{margin-left:auto;font-size:.9rem;color:#f4e7cb}
+.notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:34px 26px;padding:10px 0}
+.note{background:var(--paper);color:var(--pt);padding:26px 20px 18px;position:relative;box-shadow:3px 6px 10px #0008;transform:rotate(var(--r,0deg))}
+.note:nth-child(3n+1){--r:-1.8deg}.note:nth-child(3n+2){--r:1.2deg;background:#e8d5a4}.note:nth-child(3n){--r:-.6deg;background:#f4e9d0}
+.note::before{content:"";position:absolute;top:-8px;left:50%;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff8e7a,#a3281a);box-shadow:0 3px 3px #0006}
+.note h3{font-size:1.3rem;margin-bottom:4px}
+.note .meta{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#6a4a2a;margin-bottom:10px}
+.reward{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:14px;border-top:2px dashed #8a6a3c;padding-top:10px;font-weight:700}
+.claim{background:#7a1f12;color:#fff4dc;border:0;border-radius:3px;padding:4px 14px;min-height:44px}
+.claim[aria-pressed=true]{background:#2f5b2a}
+.claim:focus-visible{outline-color:#00587a}
+.diff{font-weight:700}
+.sec{margin-top:70px}
+h2{font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--paper)}
+.sec>p.lead{color:var(--muted);max-width:56ch;margin-top:8px}
+.two{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;margin-top:26px;align-items:start}
+.log{background:var(--surface);border:2px solid #1c110a;border-radius:6px;padding:8px 22px}
+.log details{border-bottom:1px solid #ffffff22;padding:12px 0}
+.log details:last-child{border:0}
+.log summary{font-weight:700;cursor:pointer;min-height:44px;padding:6px 0;font-family:Georgia,serif;font-size:1.15rem}
+.log p{color:var(--muted);padding:2px 0 6px}
+.party{list-style:none;padding:0;display:grid;gap:12px}
+.party li{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:center;background:var(--surface);border:2px solid #1c110a;border-radius:6px;padding:10px 14px}
+.party svg{width:54px;height:54px}
+.party b{display:block;color:var(--paper);font-family:Georgia,serif}
+.party span{font-size:.88rem;color:var(--muted)}
+footer{margin-top:80px;padding:26px 0 40px;border-top:2px solid #ffffff22;color:var(--muted);font-size:.9rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:760px){body{font-size:16px}.hero{grid-template-columns:1fr}.boar{display:none}.two{grid-template-columns:1fr}.board{border-width:8px}.status{margin-left:0;width:100%}.note{transform:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header class="top"><a class="brand" href="./index.html">The Gilded Boar</a>
+<nav aria-label="Main navigation"><a href="#board">Quest board</a><a href="#sessions">Session notes</a><a href="#party">The party</a></nav></header>
+<p class="demo">Demo template · Fictional tavern, quests and characters for a sample tabletop campaign. All art is original sample SVG.</p>
+<section class="hero" aria-labelledby="h1">
+<div class="sign"><h1 id="h1">Jobs wanted.<br>Heroes welcome.</h1></div>
+<svg class="boar" viewBox="0 0 240 200" role="img" aria-label="Original demo artwork: a gilded boar tavern sign">
+<path d="M120 0v30" stroke="#1c110a" stroke-width="6"/><rect x="14" y="30" width="212" height="160" rx="18" fill="#5c3b22" stroke="#1c110a" stroke-width="6"/>
+<path d="M50 130c0-40 30-60 70-60 36 0 62 18 70 44l-10 6 8 12-24 4c-4 12-14 16-26 16H84c-20 0-34-8-34-22z" fill="#e6a63a" stroke="#1c110a" stroke-width="5"/>
+<path d="M174 108l22-14M176 120l24 2" stroke="#fff4dc" stroke-width="6" stroke-linecap="round"/><circle cx="160" cy="98" r="5" fill="#1c110a"/><path d="M78 74l-10-18 22 8" fill="#e6a63a" stroke="#1c110a" stroke-width="5"/>
+</svg>
+</section>
+<p class="sub" style="color:#cdb88f;max-width:60ch;margin-bottom:24px">Pin up a job, claim a note, and keep the table’s notes in one warm, readable place. Claiming a note here is a demo toggle only; nothing is saved or sent.</p>
+</div>
+<main id="main" class="wrap">
+<section id="board" aria-labelledby="h-board" data-filter-group>
+<h2 id="h-board" class="vh" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Quest board</h2>
+<div class="board">
+<div class="bar" role="group" aria-label="Filter quests by danger">
+<button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+<button type="button" class="chip" data-filter="easy" aria-pressed="false">Safe</button>
+<button type="button" class="chip" data-filter="mid" aria-pressed="false">Risky</button>
+<button type="button" class="chip" data-filter="hard" aria-pressed="false">Deadly</button>
+<p class="status" role="status" aria-live="polite">6 notes pinned</p>
+</div>
+<div class="notes">
+<article class="note" data-category="easy"><p class="meta">Safe · Posted by the cook</p><h3>Missing Pie Thief</h3><p>Someone — or something — has stolen four pies from the windowsill. Crumbs lead toward the cellar.</p><div class="reward"><span>Reward: 12 silver (demo)</span><button type="button" class="claim" aria-pressed="false">Claim</button></div></article>
+<article class="note" data-category="mid"><p class="meta">Risky · Posted by a drover</p><h3>Escort to Marrow Bridge</h3><p>Three wagons, one broken axle, and rumours of toll-takers who don’t take coin.</p><div class="reward"><span>Reward: 40 gold (demo)</span><button type="button" class="claim" aria-pressed="false">Claim</button></div></article>
+<article class="note" data-category="hard"><p class="meta">Deadly · Unsigned</p><h3>The Lamp Under the Mill</h3><p>A light burns beneath the old mill every midnight. Do not go alone. Do not go unarmed.</p><div class="reward"><span>Reward: a favour (demo)</span><button type="button" class="claim" aria-pressed="false">Claim</button></div></article>
+<article class="note" data-category="easy"><p class="meta">Safe · Posted by the bard</p><h3>Find a Rhyme for “Orrel”</h3><p>A ballad in progress. Prize for the best line, and a free ale for the worst.</p><div class="reward"><span>Reward: one ale (demo)</span><button type="button" class="claim" aria-pressed="false">Claim</button></div></article>
+<article class="note" data-category="mid"><p class="meta">Risky · Posted by the watch</p><h3>Wolves in the Orchard</h3><p>Seven nights of tracks under the apple trees. The wolves are too tidy to be wolves.</p><div class="reward"><span>Reward: 25 gold (demo)</span><button type="button" class="claim" aria-pressed="false">Claim</button></div></article>
+<article class="note" data-category="hard"><p class="meta">Deadly · Sealed with wax</p><h3>The Tithe of Teeth</h3><p>A baron’s debt, owed to something in the hills. The collectors arrive at the full moon.</p><div class="reward"><span>Reward: 200 gold (demo)</span><button type="button" class="claim" aria-pressed="false">Claim</button></div></article>
+</div>
+</div>
+</section>
+
+<section id="sessions" class="sec" aria-labelledby="h-sessions">
+<h2 id="h-sessions">Session notes</h2>
+<p class="lead">A running recap so absent players can catch up. Open an entry to read it.</p>
+<div class="two">
+<div class="log">
+<details open><summary>Session 12 · The Cellar Door</summary><p>The party followed the crumbs down. The thief was a very polite badger in a stolen apron; it offered a trade for the last pie.</p></details>
+<details><summary>Session 11 · Rain on the Toll Road</summary><p>Marrow Bridge was closed. Instead of a fight, the group negotiated and left a debt written on a playing card.</p></details>
+<details><summary>Session 10 · A Quiet Night</summary><p>No quests were taken. Everyone told a story at the fire, and two secrets were revealed to the wrong people.</p></details>
+</div>
+<ul class="party" id="party" aria-label="Party roster">
+<li><svg viewBox="0 0 54 54" role="img" aria-label="Helm token"><circle cx="27" cy="27" r="25" fill="#a9b1b8" stroke="#1c110a" stroke-width="3"/><path d="M12 30a15 15 0 0130 0v8H12zM27 18v20" fill="none" stroke="#1c110a" stroke-width="3"/></svg><div><b>Brannoch Ironwick</b><span>Dwarf shieldbearer · Level 4 (demo)</span></div></li>
+<li><svg viewBox="0 0 54 54" role="img" aria-label="Star token"><circle cx="27" cy="27" r="25" fill="#7aa0d4" stroke="#1c110a" stroke-width="3"/><path d="M27 8l5 14h15l-12 9 5 15-13-9-13 9 5-15-12-9h15z" fill="#f4e7cb" stroke="#1c110a" stroke-width="2"/></svg><div><b>Sella Quill</b><span>Human star-reader · Level 4 (demo)</span></div></li>
+<li><svg viewBox="0 0 54 54" role="img" aria-label="Leaf token"><circle cx="27" cy="27" r="25" fill="#8ab26a" stroke="#1c110a" stroke-width="3"/><path d="M14 40C16 20 28 12 42 12 40 28 32 38 14 40zM14 40l16-16" fill="none" stroke="#1c110a" stroke-width="3"/></svg><div><b>Pip Thistledown</b><span>Halfling forager · Level 3 (demo)</span></div></li>
+</ul>
+</div>
+</section>
+</main>
+<div class="wrap"><footer><span>The Gilded Boar · Fictional template demo, not a real game product</span><a href="#main">Back to top</a></footer></div>
+<script>
+document.querySelectorAll('[data-filter]').forEach(function(b){b.addEventListener('click',function(){
+var g=b.closest('[data-filter-group]'),v=b.dataset.filter,n=0;
+g.querySelectorAll('[data-filter]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+g.querySelectorAll('[data-category]').forEach(function(c){c.hidden=v!=='all'&&c.dataset.category!==v;if(!c.hidden)n++});
+g.querySelector('[role="status"]').textContent=n+' note'+(n===1?'':'s')+' pinned';
+})});
+document.querySelectorAll('.claim').forEach(function(b){b.addEventListener('click',function(){
+var on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',String(on));b.textContent=on?'Claimed (demo)':'Claim';
+})});
+</script>
+</body>
+</html>

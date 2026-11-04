@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Original Synth Radio page template for a synthwave band or late-night radio show. Fictional demo content."><title>Synth Radio — original page template</title>
+<style>
+:root{--bg:#12062B;--ink:#F6EAFF;--muted:#BCA6DE;--accent:#FF3E9A;--surface:#241049;--cyan:#3FF3FF;--orange:#FF9A3C;--deep:#0A0318}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Segoe UI","Helvetica Neue",system-ui,sans-serif}
+h1,h2,h3{font-family:"Eurostile","Bank Gothic","Segoe UI",system-ui,sans-serif;font-weight:800;margin:0;line-height:1.05;text-transform:uppercase}
+h1{font-size:clamp(2.8rem,10vw,7.4rem);letter-spacing:.04em;font-style:italic;background:linear-gradient(180deg,#fff 20%,#FFB1DC 45%,#FF3E9A 60%,#FF9A3C 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 14px rgba(255,62,154,.7))}
+h2{font-size:clamp(1.6rem,3.6vw,2.6rem);letter-spacing:.08em;color:var(--cyan);text-shadow:0 0 12px rgba(63,243,255,.6)}
+h3{font-size:1.1rem;letter-spacing:.06em}
+p{margin:0 0 1rem}ul,ol{margin:0;padding:0;list-style:none}
+a{color:var(--cyan)}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:4px solid var(--orange);outline-offset:4px}
+.skip{position:absolute;left:10px;top:-80px;background:var(--accent);color:#000;padding:10px 14px;z-index:20}.skip:focus{top:8px}
+.wrap{max-width:1140px;margin:auto;padding:0 22px}
+.demo{background:var(--deep);color:var(--muted);text-align:center;font-size:.8rem;padding:7px 12px;letter-spacing:.06em;border-bottom:1px solid var(--accent)}
+header.top{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding:18px 0}
+.brand{font:800 1.3rem "Eurostile","Segoe UI",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.brand b{color:var(--accent)}
+nav ul{display:flex;gap:6px;flex-wrap:wrap}
+nav a{display:inline-block;color:var(--ink);text-decoration:none;text-transform:uppercase;letter-spacing:.14em;font-size:.82rem;padding:8px 14px;border:1px solid transparent}
+nav a:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 14px rgba(63,243,255,.4)}
+.hero{position:relative;overflow:hidden;text-align:center;padding:30px 0 0;background:linear-gradient(180deg,#12062B 0%,#2B0A57 55%,#7A1D79 82%,#FF3E9A 100%);margin-top:-1px}
+.hero .wrap{position:relative;z-index:2;padding-bottom:30px}
+.sun{position:relative;width:min(70vw,420px);aspect-ratio:1;margin:30px auto -150px;border-radius:50%;background:linear-gradient(180deg,#FFE066 0%,#FF9A3C 45%,#FF3E9A 100%);-webkit-mask:repeating-linear-gradient(180deg,#000 0 58%,transparent 58% 62%,#000 62% 70%,transparent 70% 76%,#000 76% 82%,transparent 82% 88%,#000 88% 92%,transparent 92% 96%,#000 96% 100%);mask:linear-gradient(#000,#000)}
+.sun{-webkit-mask:none;mask:none}
+.sun i{position:absolute;left:0;right:0;background:#2B0A57}
+.sun i:nth-child(1){bottom:34%;height:3%}.sun i:nth-child(2){bottom:26%;height:4%}.sun i:nth-child(3){bottom:18%;height:5%}.sun i:nth-child(4){bottom:10%;height:6%}.sun i:nth-child(5){bottom:2%;height:7%}
+.floor{position:relative;height:260px;margin-top:0;background:#12062B;perspective:300px;overflow:hidden;border-top:3px solid var(--cyan);box-shadow:0 -4px 24px rgba(63,243,255,.7)}
+.floor::before{content:"";position:absolute;left:-50%;right:-50%;top:0;bottom:-100%;background-image:linear-gradient(var(--accent) 2px,transparent 2px),linear-gradient(90deg,var(--accent) 2px,transparent 2px);background-size:60px 60px;transform:rotateX(62deg);transform-origin:top;opacity:.85}
+.floor::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,6,43,0) 0%,#12062B 100%)}
+.hero p.lede{font-size:1.25rem;max-width:44ch;margin:12px auto 20px;position:relative;z-index:2;text-shadow:0 2px 8px #000}
+.btn{display:inline-block;color:#12062B;background:var(--cyan);font:800 .95rem "Eurostile","Segoe UI",sans-serif;text-transform:uppercase;letter-spacing:.16em;padding:13px 28px;text-decoration:none;border:0;border-radius:2px;box-shadow:0 0 18px rgba(63,243,255,.7);cursor:pointer;min-height:44px}
+.btn.alt{background:transparent;color:var(--accent);border:2px solid var(--accent);box-shadow:0 0 14px rgba(255,62,154,.6)}
+section{padding:60px 0;border-bottom:1px solid rgba(188,166,222,.25)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:18px;flex-wrap:wrap;margin-bottom:26px}
+.head p{color:var(--muted);margin:0}
+.tuner{background:var(--deep);border:2px solid var(--muted);border-radius:16px;padding:26px;box-shadow:inset 0 0 40px rgba(255,62,154,.18),0 0 0 6px var(--surface)}
+.dial{position:relative;height:64px;margin-bottom:6px;border-bottom:3px solid var(--muted)}
+.dial span{position:absolute;bottom:0;width:2px;background:var(--muted);height:16px}
+.dial span.m{height:30px;background:var(--cyan)}
+.dial em{position:absolute;bottom:34px;transform:translateX(-50%);font-style:normal;font-size:.78rem;color:var(--cyan)}
+.needle{position:absolute;bottom:-3px;width:4px;height:60px;background:var(--accent);box-shadow:0 0 12px var(--accent);transform:translateX(-50%)}
+.tuner input[type=range]{width:100%;height:44px;accent-color:var(--accent);background:transparent;cursor:pointer;margin:6px 0 14px}
+.read{display:grid;grid-template-columns:auto 1fr;gap:10px 26px;align-items:center}
+.freq{font:800 clamp(2.6rem,7vw,4.4rem) "Eurostile","Segoe UI",sans-serif;color:var(--orange);text-shadow:0 0 18px rgba(255,154,60,.7);line-height:1;text-align:center;min-width:6ch}
+.freq small{display:block;font-size:.9rem;color:var(--muted);letter-spacing:.2em;text-shadow:none}
+.now h3{color:var(--accent);font-size:1.6rem}
+.now p{margin:4px 0 0;color:var(--muted)}
+.bars{display:flex;gap:4px;align-items:flex-end;height:36px;margin-top:10px}
+.bars i{width:10px;background:linear-gradient(0deg,var(--cyan),var(--accent));display:block}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+.tracks{counter-reset:t}
+.tracks li{counter-increment:t;display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:baseline;padding:12px 0;border-bottom:1px dashed rgba(188,166,222,.35)}
+.tracks li::before{content:counter(t,decimal-leading-zero);color:var(--accent);font-weight:800}
+.tracks b{font-weight:600}.tracks span{color:var(--muted);font-variant-numeric:tabular-nums}
+.sched{width:100%;border-collapse:collapse}
+.sched th,.sched td{padding:12px 10px;text-align:left;border-bottom:1px solid rgba(188,166,222,.3)}
+.sched th{color:var(--cyan);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem}
+.cover{background:var(--surface);border:2px solid var(--accent);border-radius:4px;padding:10px;box-shadow:0 0 28px rgba(255,62,154,.4)}
+.cover svg{display:block;width:100%;height:auto}
+details{background:var(--surface);border:1px solid var(--muted);border-radius:8px;margin-bottom:12px}
+summary{padding:14px 18px;font-weight:700;cursor:pointer;letter-spacing:.04em}
+details p{padding:0 18px;margin:0 0 14px;color:var(--muted)}
+footer{padding:34px 0 50px;color:var(--muted);font-size:.9rem;text-align:center}
+@media(max-width:820px){.grid{grid-template-columns:1fr}.read{grid-template-columns:1fr}.floor{height:200px}.sun{margin-bottom:-110px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="demo">Demo template · band, station, frequencies and episodes are fictional; no audio is included.</div>
+<header class="top wrap"><a class="brand" href="#main">Night<b>/</b>Drive FM</a>
+<nav aria-label="Primary"><ul><li><a href="#tune">Tune in</a></li><li><a href="#music">Music</a></li><li><a href="#schedule">Schedule</a></li><li><a href="#faq">Info</a></li></ul></nav></header>
+<main id="main">
+<section class="hero" aria-labelledby="t" style="padding-bottom:0;border:0">
+<div class="wrap"><p style="letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin:0">Late-night synth radio · sample</p>
+<h1 id="t">Neon Meridian</h1>
+<div class="sun" role="img" aria-label="Sample art: a striped sunset sun"><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="floor" aria-hidden="true"></div>
+</section>
+<section style="padding-top:34px;text-align:center" aria-labelledby="int">
+<div class="wrap"><h2 id="int" style="margin-bottom:14px">Drive until the dial runs out</h2>
+<p class="lede" style="max-width:52ch;margin:0 auto 22px;font-size:1.15rem">A made-up synthwave duo and its weekly night-drive radio show. Use this layout for bands, DJs or podcasts.</p>
+<a class="btn" href="#tune">Tune the dial</a> <a class="btn alt" href="#music">Latest tracks</a></div>
+</section>
+
+<section id="tune" aria-labelledby="th"><div class="wrap">
+<div class="head"><h2 id="th">The dial</h2><p>Slide to a frequency to find the sample episode. No sound plays.</p></div>
+<div class="tuner">
+<div class="dial" id="dial" aria-hidden="true"></div>
+<label for="fq" style="display:block;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">Frequency (FM, demo)</label>
+<input id="fq" type="range" min="880" max="1080" step="1" value="926" aria-describedby="now">
+<div class="read"><div class="freq" id="fv" aria-hidden="true">92.6<small>MHz</small></div>
+<div class="now" id="now" aria-live="polite"><h3 id="nt">Episode 12 · Pink Horizon</h3><p id="nd">A slow hour of sunset arpeggios. Sample listing.</p><div class="bars" aria-hidden="true" id="bars"></div></div></div>
+</div></div></section>
+
+<section id="music" aria-labelledby="mh"><div class="wrap grid">
+<div><div class="head"><h2 id="mh">Debut EP · Chrome Hours</h2></div>
+<ol class="tracks"><li><b>Pink Horizon</b><span>4:12</span></li><li><b>Glass Highway</b><span>3:48</span></li><li><b>Tape Hiss Heart</b><span>5:03</span></li><li><b>Last Gas Before Dawn</b><span>4:40</span></li><li><b>Neon Meridian</b><span>6:21</span></li></ol>
+<p style="margin-top:14px;color:var(--muted)">Track times are demo values. Link a real player, Bandcamp page or stream here.</p></div>
+<div class="cover"><svg viewBox="0 0 300 300" role="img" aria-label="Sample album art: a sunset over a grid and a palm silhouette"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B0A57"/><stop offset="1" stop-color="#FF3E9A"/></linearGradient><linearGradient id="su" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE066"/><stop offset="1" stop-color="#FF3E9A"/></linearGradient></defs><rect width="300" height="300" fill="url(#sk)"/><circle cx="150" cy="150" r="80" fill="url(#su)"/><g fill="#2B0A57"><rect x="60" y="150" width="180" height="4"/><rect x="60" y="164" width="180" height="6"/><rect x="60" y="180" width="180" height="8"/></g><rect y="200" width="300" height="100" fill="#12062B"/><g stroke="#FF3E9A" stroke-width="2"><path d="M0 220h300M0 244h300M0 276h300M150 200L20 300M150 200L80 300M150 200V300M150 200L220 300M150 200L280 300"/></g><path d="M40 200q4-60 10-80M50 120q-26 2-34 18M50 120q20-14 36-6M50 120q-6-22 6-34M50 120q18-8 34-30" fill="none" stroke="#0A0318" stroke-width="5" stroke-linecap="round"/></svg></div>
+</div></section>
+
+<section id="schedule" aria-labelledby="sh"><div class="wrap">
+<div class="head"><h2 id="sh">Weekly schedule</h2><p>Sample timetable, all times fictional.</p></div>
+<table class="sched"><thead><tr><th scope="col">Day</th><th scope="col">Time</th><th scope="col">Show</th></tr></thead><tbody>
+<tr><td>Thu</td><td>22:00</td><td>Night Drive · live set (demo)</td></tr>
+<tr><td>Fri</td><td>23:30</td><td>Arcade Hour · retro mixes</td></tr>
+<tr><td>Sat</td><td>01:00</td><td>After Midnight · listener requests</td></tr></tbody></table></div></section>
+
+<section id="faq" aria-labelledby="fh"><div class="wrap"><div class="head"><h2 id="fh">Info</h2></div>
+<details><summary>Is this a real station?</summary><p>No. It is a demo template with invented shows and tracks.</p></details>
+<details><summary>Will it play music?</summary><p>No audio is included. Replace the sample list with links to your own music.</p></details>
+</div></section>
+</main>
+<footer>Synth Radio demo template · original sample art · CSS sunset and grid.</footer>
+<script>
+(function(){
+var E=[[880,"Episode 1 · Cold Open","Static, sirens and a single bassline. Sample listing."],[900,"Episode 6 · Rain on Chrome","Wet-street ambience and slow drums. Sample listing."],[926,"Episode 12 · Pink Horizon","A slow hour of sunset arpeggios. Sample listing."],[950,"Episode 18 · Tape Hiss Heart","Lo-fi cassette sketches. Sample listing."],[980,"Episode 24 · Glass Highway","Fast, bright and driving. Sample listing."],[1020,"Episode 30 · Last Gas","Quiet closing tracks. Sample listing."],[1060,"Episode 36 · Dawn Patrol","Sunrise synth pads. Sample listing."]];
+var dial=document.getElementById("dial"),r=document.getElementById("fq"),needle=document.createElement("div"),h="";
+for(var f=880;f<=1080;f+=5){var p=(f-880)/200*100,m=f%20===0;h+='<span class="'+(m?"m":"")+'" style="left:'+p+'%"></span>';if(m)h+='<em style="left:'+p+'%">'+(f/10)+'</em>'}
+dial.innerHTML=h;needle.className="needle";dial.appendChild(needle);
+var bars=document.getElementById("bars"),bh="";for(var i=0;i<18;i++)bh+='<i style="height:'+(8+((i*37)%28))+'px"></i>';bars.innerHTML=bh;
+function upd(){var v=+r.value,best=E[0],d=1e9;E.forEach(function(e){var x=Math.abs(e[0]-v);if(x<d){d=x;best=e}});
+needle.style.left=((v-880)/200*100)+"%";
+document.getElementById("fv").firstChild.nodeValue=(v/10).toFixed(1);
+var near=d<=10;
+document.getElementById("nt").textContent=near?best[1]:"Static…";
+document.getElementById("nd").textContent=near?best[2]:"Nothing here in this demo. Keep turning the dial.";
+bars.style.opacity=near?1:.25}
+r.addEventListener("input",upd);upd();
+})();
+</script></body></html>

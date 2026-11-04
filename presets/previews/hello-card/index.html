@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Hello Card: a one-screen personal link card page template. Fictional demo content and original artwork.">
+<title>Hello card — original page template (demo)</title>
+<style>
+:root{--bg:#F3EDE2;--ink:#1D1B2E;--muted:#5B566B;--accent:#E8543A;--surface:#FFFDF8;--line:#1D1B2E;--focus:#2B4BDB}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100svh;font:17px/1.55 ui-rounded,"Segoe UI",system-ui,sans-serif;color:var(--ink);background:var(--bg);background-image:radial-gradient(var(--line) .6px,transparent .7px);background-size:22px 22px;background-position:0 0}
+body::before{content:"";position:fixed;inset:0;background:linear-gradient(var(--bg) 0 0);opacity:.86;z-index:-1}
+h1,h2,h3,p,ul,figure{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;min-height:44px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-80px;background:var(--ink);color:var(--bg);padding:10px 14px;z-index:9}
+.skip:focus{top:12px}
+.demo{position:fixed;left:0;right:0;bottom:0;margin:0;padding:6px 14px;font-size:.74rem;text-align:center;background:var(--ink);color:var(--bg);z-index:5}
+main{min-height:100svh;display:grid;place-items:center;padding:28px 18px 54px}
+.deck{display:grid;grid-template-columns:minmax(280px,360px) minmax(280px,420px);gap:clamp(24px,5vw,72px);align-items:center;max-width:960px;width:100%}
+.pass{position:relative;background:var(--surface);border:2.5px solid var(--line);border-radius:26px;padding:56px 28px 26px;box-shadow:9px 9px 0 var(--line);transform:rotate(-2.2deg);transition:transform .25s}
+.pass:hover{transform:rotate(0)}
+.slot{position:absolute;left:50%;top:16px;width:74px;height:16px;margin-left:-37px;border:2.5px solid var(--line);border-radius:10px;background:var(--bg)}
+.avatar{width:132px;height:132px;margin:0 auto 18px;border:2.5px solid var(--line);border-radius:50%;background:var(--accent);overflow:hidden}
+h1{font-size:clamp(2.2rem,4.4vw,3rem);line-height:1;letter-spacing:-.04em;text-align:center}
+.role{margin:10px auto 0;text-align:center;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.tags li{font-size:.8rem;padding:3px 12px;border:1.5px solid var(--line);border-radius:30px;background:var(--bg)}
+.barcode{display:flex;justify-content:space-between;align-items:end;margin-top:22px;padding-top:14px;border-top:2px dashed var(--line);font:.72rem/1.2 ui-monospace,Consolas,monospace;color:var(--muted)}
+.bars{height:26px;width:112px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px,var(--ink) 5px 6px,transparent 6px 10px)}
+.stack{display:grid;gap:30px}
+.stack h2{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.links li+li{margin-top:12px}
+.links a{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:14px;min-height:60px;padding:8px 18px 8px 10px;border:2.5px solid var(--line);border-radius:16px;background:var(--surface);text-decoration:none;box-shadow:4px 4px 0 var(--line);transition:transform .15s,box-shadow .15s}
+.links a:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--line);background:#FFE9C7}
+.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--ink);color:var(--bg);font-weight:800}
+.links span.t{font-weight:700;display:block;line-height:1.2}
+.links small{display:block;color:var(--muted);font-size:.8rem}
+.go{font-weight:800}
+.note{border:2.5px dashed var(--line);border-radius:16px;padding:16px 18px;background:rgba(255,253,248,.7)}
+.note button{margin-top:12px;border:2px solid var(--line);background:var(--ink);color:var(--bg);border-radius:30px;padding:8px 20px;font-weight:700}
+.note button[aria-pressed=true]{background:var(--accent);color:var(--ink)}
+.hello{margin-top:10px;font-weight:700;min-height:1.6em}
+@media (max-width:760px){.deck{grid-template-columns:1fr;max-width:420px}.pass{transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.pass{transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#links">Skip to links</a>
+<p class="demo">Demo template: every name, link and number here is fictional sample content.</p>
+<main id="top">
+<div class="deck">
+<section class="pass" id="card" aria-labelledby="name">
+<span class="slot" aria-hidden="true"></span>
+<figure class="avatar" aria-label="Sample avatar art, demo">
+<svg viewBox="0 0 132 132" role="img" aria-label="Sample abstract face drawing"><circle cx="66" cy="54" r="24" fill="#FFE2B8" stroke="#1D1B2E" stroke-width="3"/><path d="M42 50c4-26 44-26 48 0-12-9-36-9-48 0z" fill="#1D1B2E"/><circle cx="57" cy="57" r="2.6" fill="#1D1B2E"/><circle cx="75" cy="57" r="2.6" fill="#1D1B2E"/><path d="M58 68q8 6 16 0" fill="none" stroke="#1D1B2E" stroke-width="3" stroke-linecap="round"/><path d="M14 140c4-34 28-44 52-44s48 10 52 44z" fill="#1D1B2E"/></svg>
+</figure>
+<h1 id="name">Juno Marlowe</h1>
+<p class="role">Illustrator &amp; tinkerer, sample person in Lisbon-ish</p>
+<ul class="tags" aria-label="Interests"><li>doodles</li><li>zines</li><li>tiny tools</li></ul>
+<div class="barcode"><span>CARD NO. 0001<br>DEMO ONLY</span><span class="bars" aria-hidden="true"></span></div>
+</section>
+<div class="stack">
+<section id="links" aria-labelledby="lh">
+<h2 id="lh">Find me here</h2>
+<ul class="links">
+<li><a href="#card"><span class="ico" aria-hidden="true">P</span><span><span class="t">Portfolio</span><small>Sample link, replace with yours</small></span><span class="go" aria-hidden="true">→</span></a></li>
+<li><a href="#now"><span class="ico" aria-hidden="true">N</span><span><span class="t">Newsletter</span><small>Monthly sketch notes (demo)</small></span><span class="go" aria-hidden="true">→</span></a></li>
+<li><a href="#contact"><span class="ico" aria-hidden="true">@</span><span><span class="t">Say hello</span><small>hello@example.invalid</small></span><span class="go" aria-hidden="true">→</span></a></li>
+</ul>
+</section>
+<section id="now" class="note" aria-labelledby="nh">
+<h2 id="nh">Right now</h2>
+<p>Drawing a small field guide to street cats. Learning to bind books. Replying slowly.</p>
+<button type="button" id="wave" aria-pressed="false">Wave hello</button>
+<p class="hello" id="hello" role="status"></p>
+</section>
+<section id="contact" aria-labelledby="ch">
+<h2 id="ch">Contact</h2>
+<p>This is a demo card. Swap the text, links and avatar for your own. No messages are sent from this page.</p>
+</section>
+</div>
+</div>
+</main>
+<script>
+(function(){
+var b=document.getElementById('wave'),o=document.getElementById('hello');
+b.addEventListener('click',function(){
+var on=b.getAttribute('aria-pressed')!=='true';
+b.setAttribute('aria-pressed',String(on));
+o.textContent=on?'Hi! (Demo greeting. Nothing was sent.)':'';
+});
+})();
+</script>
+</body>
+</html>

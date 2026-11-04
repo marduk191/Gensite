@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Green-phosphor CRT crew page template: bezel, scanlines, prompt layout, file listing and roster. Demo content, fictional crew.">
+<title>P4 Lab — green phosphor crew page template (demo)</title>
+<style>
+:root{--bg:#020A04;--ink:#4DFF7C;--muted:#2FBF5C;--acc:#C8FFD6;--surf:#06180B;--line:#14502A;--case:#CFC8B4;--case2:#A9A28C;--mono:"Lucida Console","Courier New",Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:#2A2822;color:var(--ink);font:16px/1.55 var(--mono);padding:clamp(0px,2.5vw,32px)}
+h1,h2,h3,p,ul,pre,dl,dd,table{margin:0}ul{padding:0;list-style:none}
+a{color:var(--acc);text-underline-offset:.2em}
+a:focus-visible,button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.skip{position:absolute;left:8px;top:-80px;background:var(--acc);color:#000;padding:8px 12px;z-index:9}.skip:focus{top:8px}
+.case{max-width:1080px;margin:0 auto;background:linear-gradient(#D8D1BD,var(--case2));border-radius:22px;padding:clamp(10px,2.4vw,26px) clamp(10px,2.4vw,26px) 14px;box-shadow:0 14px 40px #000a,inset 0 2px 0 #fff8}
+.tube{position:relative;background:var(--bg);border-radius:clamp(14px,4vw,44px)/clamp(14px,3.5vw,36px);border:10px solid #151510;box-shadow:inset 0 0 90px #0a5a2a99,inset 0 0 12px #000;padding:clamp(14px,3vw,34px);overflow:hidden;text-shadow:0 0 6px #1cff6a66}
+.tube:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#0000 0 2px,#0006 2px 3px),radial-gradient(ellipse at center,#0000 55%,#000b 100%)}
+.badge{display:flex;justify-content:space-between;align-items:center;color:#5C5642;font:700 .78rem var(--mono);letter-spacing:.2em;padding:10px 6px 0;text-transform:uppercase}
+.badge i{display:inline-block;width:10px;height:10px;border-radius:50%;background:#2c9a4c;margin-left:8px;box-shadow:0 0 6px #2c9a4c}
+.boot{color:var(--muted);font-size:.85rem;white-space:pre-wrap}
+h1{font-size:clamp(2.2rem,8vw,4.6rem);line-height:1;color:var(--acc);letter-spacing:-.04em;margin:16px 0 4px;text-shadow:0 0 14px #4dff7ccc}
+.cur{display:inline-block;width:.5em;height:.9em;background:var(--ink);vertical-align:-.1em;margin-left:.1em}
+.demo{border:1px solid var(--line);padding:6px 10px;margin:12px 0;color:var(--muted);font-size:.85rem}
+.ps{color:var(--acc)}.ps:before{content:"crew@p4lab:~$ ";color:var(--muted)}
+nav{margin:18px 0 6px;display:flex;flex-wrap:wrap;gap:6px}
+nav a{color:var(--ink);border:1px solid var(--line);padding:8px 12px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+nav a:hover{background:var(--ink);color:var(--bg);text-shadow:none}
+section{padding-top:24px;margin-top:24px;border-top:1px dashed var(--line)}
+h2{font-size:1rem;color:var(--acc);font-weight:400;margin-bottom:12px}
+h2:before{content:"$ ";color:var(--muted)}
+.two{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:22px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.filters button{font:inherit;background:none;color:var(--ink);border:1px solid var(--line);padding:6px 12px;min-height:40px;cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--ink);color:var(--bg);text-shadow:none}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:5px 10px 5px 0;vertical-align:top}
+th{color:var(--muted);font-weight:400;border-bottom:1px solid var(--line)}
+td.perm{color:var(--muted)}
+.rank{color:var(--acc)}
+#fc{color:var(--muted);font-size:.85rem;margin-bottom:6px}
+.motd{white-space:pre-wrap;color:var(--acc);border-left:3px solid var(--ink);padding-left:14px}
+.sig{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.sig div{border:1px solid var(--line);padding:10px;background:var(--surf)}
+.sig b{color:var(--acc);display:block}
+footer{margin-top:28px;color:var(--muted);font-size:.85rem}
+@media (max-width:760px){.two,.sig{grid-template-columns:1fr}body{font-size:15px}.tube{border-width:6px}.badge{font-size:.65rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="case">
+<div class="tube">
+<header>
+<pre class="boot" aria-hidden="true">P4-BIOS v1.07 (demo)   640K OK   EXT 3072K OK
+Mounting /crew ... done   Loading roster ... done</pre>
+<h1>P4<span class="cur" aria-hidden="true"></span> Lab</h1>
+<p class="ps">cat welcome.txt</p>
+<p>A fictional crew of tinkerers who build tiny programs, stage-light the old monitors and archive text files. This template is a green-phosphor home for a collective, a lab, or a project crew.</p>
+<p class="demo">This is a demo template. The crew, files and numbers are fictional sample content.</p>
+<nav aria-label="Primary"><a href="#files">ls /files</a><a href="#roster">who</a><a href="#log">tail log</a><a href="#join">join</a></nav>
+</header>
+<main id="main">
+<section id="files" aria-labelledby="h-files">
+<h2 id="h-files">ls -l /files</h2>
+<div class="filters" role="group" aria-label="Filter file types">
+<button type="button" data-f="all" aria-pressed="true">*</button>
+<button type="button" data-f="doc" aria-pressed="false">*.txt</button>
+<button type="button" data-f="tool" aria-pressed="false">*.exe (demo)</button>
+<button type="button" data-f="art" aria-pressed="false">*.ans</button>
+</div>
+<p id="fc" aria-live="polite">6 of 6 entries.</p>
+<table>
+<thead><tr><th scope="col">perms</th><th scope="col">size</th><th scope="col">date</th><th scope="col">name</th></tr></thead>
+<tbody id="fl">
+<tr data-f="doc"><td class="perm">-rw-r--r--</td><td>4.2K</td><td>Oct 12</td><td>README.TXT</td></tr>
+<tr data-f="doc"><td class="perm">-rw-r--r--</td><td>11K</td><td>Oct 03</td><td>CREW_RULES.TXT</td></tr>
+<tr data-f="tool"><td class="perm">-rwxr-xr-x</td><td>23K</td><td>Sep 28</td><td>BEEPER.EXE</td></tr>
+<tr data-f="tool"><td class="perm">-rwxr-xr-x</td><td>9K</td><td>Sep 11</td><td>SPINNER.EXE</td></tr>
+<tr data-f="art"><td class="perm">-rw-r--r--</td><td>18K</td><td>Aug 30</td><td>CRTGLOW.ANS</td></tr>
+<tr data-f="art"><td class="perm">-rw-r--r--</td><td>7K</td><td>Aug 02</td><td>LOGO_P4.ANS</td></tr>
+</tbody></table>
+</section>
+<section id="roster" aria-labelledby="h-roster">
+<h2 id="h-roster">who --crew</h2>
+<div class="two">
+<table>
+<thead><tr><th scope="col">handle</th><th scope="col">role</th><th scope="col">tty</th></tr></thead>
+<tbody>
+<tr><td class="rank">ember_0</td><td>founder, fonts</td><td>tty1</td></tr>
+<tr><td class="rank">k_lumen</td><td>cabling, power</td><td>tty2</td></tr>
+<tr><td class="rank">vox.null</td><td>tracker music</td><td>tty3</td></tr>
+<tr><td class="rank">sleet</td><td>text art</td><td>tty4</td></tr>
+<tr><td class="rank">offbyone</td><td>proofreading</td><td>tty5</td></tr>
+</tbody></table>
+<pre class="motd">MESSAGE OF THE DAY
+The monitor is warm.
+The coffee is cold.
+Everybody ships something small.</pre>
+</div>
+</section>
+<section id="log" aria-labelledby="h-log">
+<h2 id="h-log">tail -n 3 projects.log</h2>
+<div class="sig">
+<div><b>BEEPER</b>A tiny sound-test tool for old speakers. Demo entry.</div>
+<div><b>GLOWFONT</b>A bitmap font built on a 8x16 grid. Demo entry.</div>
+<div><b>ARCHIVE-1</b>Scans and notes on forty-three user manuals. Demo entry.</div>
+</div>
+</section>
+<section id="join" aria-labelledby="h-join">
+<h2 id="h-join">man join</h2>
+<p>New people are welcome. Introduce yourself, bring something you made, and read <a href="#files">CREW_RULES.TXT</a> first. Demo contact: write to the crew mailbox listed in your real site.</p>
+</section>
+</main>
+<footer>P4 Lab is a demo page template. No real crew, system or contact is depicted.</footer>
+</div>
+<div class="badge"><span>PHOSPHOR&middot;4</span><span>POWER<i></i></span></div>
+</div>
+<script>
+(function(){
+var b=document.querySelectorAll('.filters button'),r=document.querySelectorAll('#fl tr'),c=document.getElementById('fc');
+b.forEach(function(x){x.addEventListener('click',function(){
+var f=x.getAttribute('data-f'),n=0;
+b.forEach(function(y){y.setAttribute('aria-pressed',y===x?'true':'false')});
+r.forEach(function(t){var s=f==='all'||t.getAttribute('data-f')===f;t.hidden=!s;if(s)n++});
+c.textContent=n+' of '+r.length+' entries.';
+})});
+})();
+</script>
+</body></html>

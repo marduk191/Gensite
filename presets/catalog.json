@@ -1,0 +1,2639 @@
+[
+  {
+    "id": "tide-portfolio",
+    "name": "Tide portfolio",
+    "summary": "Image-first portfolio with an asymmetric work grid, generous whitespace and object-focused storytelling.",
+    "best_for": [
+      "design portfolios",
+      "independent makers",
+      "visual case studies"
+    ],
+    "palette": {
+      "background": "#F5FAF9",
+      "text": "#143E3E",
+      "muted": "#466765",
+      "accent": "#507F79",
+      "surface": "#E2EDE7"
+    },
+    "typography": {
+      "display": "system-ui, sans-serif; medium, tightly tracked, 60–108px fluid",
+      "body": "system-ui, sans-serif; 17px, line-height 1.65"
+    },
+    "layout": [
+      "Split hero: large left-aligned statement and right original object image in a soft arch.",
+      "Two-column work grid with staggered second entry; third work spans the width with image and text beside one another.",
+      "Category filters above work, native design-note disclosures and a two-column studio approach section."
+    ],
+    "motion": "No automatic animation. Native disclosures and user-triggered filtering only; smooth anchor scrolling disabled for prefers-reduced-motion.",
+    "imagery_prompt": "Generate an original studio still life of a ribbed sea-green ceramic desk vessel on a pale eucalyptus seamless background, soft side light, tactile matte finish, no logo or text. Hero placement right of headline, 4:5 crop, subject centered with 15% breathing room. Generate two distinct supporting assets: terracotta desk accessory still life (8:5), and stylized coastal walking landscape (8:5) for work entries. Save local WebP files with descriptive alt text; never embed lettering in images.",
+    "generation_rules": [
+      "Adapt sections to the user’s real content and explicit style requests; do not copy the fictional studio, researcher or sample essays into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; do not require Jekyll, a CDN, package installation or a backend.",
+      "Implement only honest static interactions. Preserve native details/summary for disclosures; client-side filters must announce the visible result count. No pretend purchases, inquiry submissions or newsletter success states.",
+      "Preserve this layout’s structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "sources": [
+      {
+        "title": "portfolYOU live project collection",
+        "url": "https://yousinix.github.io/portfolYOU/projects/",
+        "observed": "A project collection combines image-led and text-led entries, short descriptions and topic tags. Individual projects can have their own explanatory showcase instead of only external links."
+      },
+      {
+        "title": "Minimal Mistakes live theme homepage",
+        "url": "https://mmistakes.github.io/minimal-mistakes/",
+        "observed": "Wide introductory masthead with a clear next action, followed by three explanatory feature blocks. A short top navigation and strong section hierarchy make the entry point easy to scan."
+      }
+    ],
+    "preview": "presets/previews/tide-portfolio/index.html",
+    "template_source": "presets/previews/tide-portfolio/index.html"
+  },
+  {
+    "id": "common-studio",
+    "name": "Common Thread studio",
+    "summary": "Typography-led studio page: monumental serif statement, editorial service disclosures and a concise brief panel.",
+    "best_for": [
+      "writing studios",
+      "consultants",
+      "small service businesses"
+    ],
+    "palette": {
+      "background": "#EFEBFF",
+      "text": "#30224D",
+      "muted": "#655479",
+      "accent": "#65518C",
+      "surface": "#E1DAF3"
+    },
+    "typography": {
+      "display": "Georgia, serif; regular, 64–148px fluid, tight line-height",
+      "body": "system-ui, sans-serif; 17px; service summaries in Georgia"
+    },
+    "layout": [
+      "Full-width left-aligned three-line serif statement; no obligatory hero image.",
+      "Two-column introduction followed by narrow section labels beside wide service accordions.",
+      "Inverted dark-violet brief panel, three process columns and a native expandable sample brief."
+    ],
+    "motion": "No automatic animation. Native disclosures and user-triggered filtering only; smooth anchor scrolling disabled for prefers-reduced-motion.",
+    "imagery_prompt": "No hero image by default: this is a typography-led layout. If the user explicitly requests imagery, generate one original close-up of folded lavender paper with two overlapping circular cutouts, diffuse daylight, no writing, logo or signature; 3:2 crop. Place as a supporting process image below services, never behind the headline. Retain selectable live HTML text.",
+    "generation_rules": [
+      "Adapt sections to the user’s real content and explicit style requests; do not copy the fictional studio, researcher or sample essays into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; do not require Jekyll, a CDN, package installation or a backend.",
+      "Implement only honest static interactions. Preserve native details/summary for disclosures; client-side filters must announce the visible result count. No pretend purchases, inquiry submissions or newsletter success states.",
+      "Preserve this layout’s structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "sources": [
+      {
+        "title": "Minimal Mistakes live theme homepage",
+        "url": "https://mmistakes.github.io/minimal-mistakes/",
+        "observed": "Wide introductory masthead with a clear next action, followed by three explanatory feature blocks. A short top navigation and strong section hierarchy make the entry point easy to scan."
+      }
+    ],
+    "preview": "presets/previews/common-studio/index.html",
+    "template_source": "presets/previews/common-studio/index.html"
+  },
+  {
+    "id": "afterlight-gallery",
+    "name": "Afterlight gallery",
+    "summary": "Dark exhibition with panoramic original art, calm captions and a filterable collection of distinct studies.",
+    "best_for": [
+      "artists",
+      "digital exhibitions",
+      "image collections"
+    ],
+    "palette": {
+      "background": "#181B32",
+      "text": "#F0EFFF",
+      "muted": "#B6B9D7",
+      "accent": "#B49BCF",
+      "surface": "#303049"
+    },
+    "typography": {
+      "display": "Georgia, serif; regular, 64–112px fluid",
+      "body": "system-ui, sans-serif; 17px with restrained caption text"
+    },
+    "layout": [
+      "Wide title and short curatorial text on one row above a panoramic lead artwork.",
+      "Three exhibition pieces with subtly staggered image heights and individual artwork notes; filter by discipline.",
+      "Quiet two-column colophon; preserve clear artwork attribution without invented sales or exhibition claims."
+    ],
+    "motion": "No automatic animation. Native disclosures and user-triggered filtering only; smooth anchor scrolling disabled for prefers-reduced-motion.",
+    "imagery_prompt": "Generate three original abstract digital artworks, not imitations of named artists: (1) violet matte sphere intersected by two thin luminous elliptical rings in an indigo void, panoramic 16:7 hero crop, (2) folded translucent lilac geometric planes over a muted plum ground, 4:3 collection crop, (3) invented dusk terrain with dusty-rose moon and angular violet hills, 4:3 crop. No typography, watermark, logo or frame. Place as real local images in hero and collection, not CSS backgrounds under text; reserve intrinsic dimensions and write honest alt descriptions.",
+    "generation_rules": [
+      "Adapt sections to the user’s real content and explicit style requests; do not copy the fictional studio, researcher or sample essays into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; do not require Jekyll, a CDN, package installation or a backend.",
+      "Implement only honest static interactions. Preserve native details/summary for disclosures; client-side filters must announce the visible result count. No pretend purchases, inquiry submissions or newsletter success states.",
+      "Preserve this layout’s structural hierarchy rather than applying only its colors to a generic landing-page card grid.",
+      "Use wide lead imagery and three distinct collection pieces, with readable visible artwork captions; replace demo vectors with actual ComfyUI assets only when requested/generated."
+    ],
+    "sources": [
+      {
+        "title": "portfolYOU live project collection",
+        "url": "https://yousinix.github.io/portfolYOU/projects/",
+        "observed": "A project collection combines image-led and text-led entries, short descriptions and topic tags. Individual projects can have their own explanatory showcase instead of only external links."
+      },
+      {
+        "title": "Chirpy live writing index",
+        "url": "https://chirpy.cotes.page/",
+        "observed": "Persistent identity/navigation rail, a central list of post excerpts and a secondary rail for recent updates and tags organize writing by context rather than one long undifferentiated feed."
+      }
+    ],
+    "preview": "presets/previews/afterlight-gallery/index.html",
+    "template_source": "presets/previews/afterlight-gallery/index.html"
+  },
+  {
+    "id": "wayfinder-docs",
+    "name": "Wayfinder docs",
+    "summary": "Structured handbook with topic navigation, working local section search and readable technical explanations.",
+    "best_for": [
+      "project documentation",
+      "handbooks",
+      "open-source guides"
+    ],
+    "palette": {
+      "background": "#FFFFFF",
+      "text": "#25364C",
+      "muted": "#58667C",
+      "accent": "#345F9C",
+      "surface": "#EDF3FA"
+    },
+    "typography": {
+      "display": "system-ui, sans-serif; bold, 42–64px fluid",
+      "body": "system-ui, sans-serif; 16px; Consolas monospace for code"
+    },
+    "layout": [
+      "Sticky left topic navigation; top search field in the content area.",
+      "Readable central article with real sections, code examples, notices and native troubleshooting disclosures.",
+      "Small on-page anchor rail on wide screens; collapse the rail and wrap topic navigation on mobile."
+    ],
+    "motion": "No automatic animation. Native disclosures and user-triggered filtering only; smooth anchor scrolling disabled for prefers-reduced-motion.",
+    "imagery_prompt": "Do not generate decorative hero art for documentation. If the actual user needs a conceptual illustration, create an original simple isometric arrangement of blank blue file folders and connected document sheets on white, no text or interface labels, 3:2 crop; use below the introduction with alt text. Technical diagrams must be accurate HTML/SVG from supplied facts rather than pretending generated image text is a reliable diagram.",
+    "generation_rules": [
+      "Adapt sections to the user’s real content and explicit style requests; do not copy the fictional studio, researcher or sample essays into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; do not require Jekyll, a CDN, package installation or a backend.",
+      "Implement only honest static interactions. Preserve native details/summary for disclosures; client-side filters must announce the visible result count. No pretend purchases, inquiry submissions or newsletter success states.",
+      "Preserve this layout’s structural hierarchy rather than applying only its colors to a generic landing-page card grid.",
+      "Search must filter actual local content, show a clear zero-result state, and allow navigation links to reset the filter. Never suggest this searches a remote knowledge base."
+    ],
+    "sources": [
+      {
+        "title": "Just the Docs live handbook",
+        "url": "https://just-the-docs.github.io/just-the-docs/",
+        "observed": "Left navigation for documentation topics, a search control above the main article, restrained blue-purple links, readable prose and code-oriented content provide an efficient reference layout. The inspected page footer says it is powered by Netlify; the project supports GitHub Pages, but this particular live URL should not be asserted to be Pages-hosted."
+      },
+      {
+        "title": "Chirpy live writing index",
+        "url": "https://chirpy.cotes.page/",
+        "observed": "Persistent identity/navigation rail, a central list of post excerpts and a secondary rail for recent updates and tags organize writing by context rather than one long undifferentiated feed."
+      }
+    ],
+    "preview": "presets/previews/wayfinder-docs/index.html",
+    "template_source": "presets/previews/wayfinder-docs/index.html"
+  },
+  {
+    "id": "longway-journal",
+    "name": "The Long Way journal",
+    "summary": "Serif reading experience with centered masthead, split feature essay and a dated notebook beside an editorial rail.",
+    "best_for": [
+      "personal journals",
+      "independent publications",
+      "essay collections"
+    ],
+    "palette": {
+      "background": "#FBF8F1",
+      "text": "#493031",
+      "muted": "#75615A",
+      "accent": "#7B9972",
+      "surface": "#E9E8D9"
+    },
+    "typography": {
+      "display": "Georgia, serif; regular, 64–120px masthead",
+      "body": "Georgia, serif; 17px, 1.65 line-height; system-ui for dates and navigation"
+    },
+    "layout": [
+      "Centered publication masthead above split lead essay and arched botanical image.",
+      "Narrow dated story list with full in-page sample reading disclosures; editorial note rail beside it.",
+      "About-the-journal section; no fake newsletter form or fabricated subscriber count."
+    ],
+    "motion": "No automatic animation. Native disclosures and user-triggered filtering only; smooth anchor scrolling disabled for prefers-reduced-motion.",
+    "imagery_prompt": "Generate an original botanical editorial illustration of an invented leafy branch in soft sage and olive on warm ivory paper, flat shapes, subtly visible paper texture, no lettering, no signature, no named-artist imitation. Feature image on right of lead essay, 4:5 crop with branch extending upward and generous clear margins. Optional supporting image: a quiet woodland path under diffuse daylight, 3:2, placed between full essay sections rather than behind body text.",
+    "generation_rules": [
+      "Adapt sections to the user’s real content and explicit style requests; do not copy the fictional studio, researcher or sample essays into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; do not require Jekyll, a CDN, package installation or a backend.",
+      "Implement only honest static interactions. Preserve native details/summary for disclosures; client-side filters must announce the visible result count. No pretend purchases, inquiry submissions or newsletter success states.",
+      "Preserve this layout’s structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "sources": [
+      {
+        "title": "Beautiful Jekyll live publication homepage",
+        "url": "https://beautifuljekyll.com/",
+        "observed": "A centered oversized publication title and subtitle introduce a narrow reading column; post titles, bylines, dates and excerpts create a clear editorial hierarchy with serif body text."
+      },
+      {
+        "title": "Chirpy live writing index",
+        "url": "https://chirpy.cotes.page/",
+        "observed": "Persistent identity/navigation rail, a central list of post excerpts and a secondary rail for recent updates and tags organize writing by context rather than one long undifferentiated feed."
+      }
+    ],
+    "preview": "presets/previews/longway-journal/index.html",
+    "template_source": "presets/previews/longway-journal/index.html"
+  },
+  {
+    "id": "commons-research",
+    "name": "Commons research",
+    "summary": "Research-focused profile with identity rail, concise agenda, structured concept summaries and expandable abstracts.",
+    "best_for": [
+      "academic profiles",
+      "research labs",
+      "project showcases"
+    ],
+    "palette": {
+      "background": "#F9FBF7",
+      "text": "#253F35",
+      "muted": "#50685C",
+      "accent": "#5C8672",
+      "surface": "#EAF1E5"
+    },
+    "typography": {
+      "display": "Georgia, serif; regular, 46–77px intro; system-ui section headings",
+      "body": "system-ui, sans-serif; 17px with compact metadata"
+    },
+    "layout": [
+      "Sticky profile rail beside a wide research statement; profile becomes an inline block on mobile.",
+      "Selected work rows use a narrow metadata column and wide title/summary/abstract column.",
+      "Two teaching idea columns and compact dated update list; distinguish concepts from actual papers."
+    ],
+    "motion": "No automatic animation. Native disclosures and user-triggered filtering only; smooth anchor scrolling disabled for prefers-reduced-motion.",
+    "imagery_prompt": "Never invent a photorealistic headshot for a real researcher. Prefer a supplied authorized portrait; otherwise generate an original abstract green river-and-contour emblem on pale sage, no text or implied institutional seal, 1:1 profile crop. If requested, generate conceptual project imagery of an invented shaded footpath or riverbank, 3:2, and label it illustration rather than research evidence. Place only beside the profile or project summary, not behind abstracts.",
+    "generation_rules": [
+      "Adapt sections to the user’s real content and explicit style requests; do not copy the fictional studio, researcher or sample essays into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; do not require Jekyll, a CDN, package installation or a backend.",
+      "Implement only honest static interactions. Preserve native details/summary for disclosures; client-side filters must announce the visible result count. No pretend purchases, inquiry submissions or newsletter success states.",
+      "Preserve this layout’s structural hierarchy rather than applying only its colors to a generic landing-page card grid.",
+      "Use only user-supplied affiliations, publications, DOI links, dates and findings. Label proposals as concepts and never invent citations or data."
+    ],
+    "sources": [
+      {
+        "title": "al-folio live academic homepage",
+        "url": "https://alshedivat.github.io/al-folio/",
+        "observed": "Compact top navigation, biography with adjacent profile image, short dated news rows and a structured selected-publications area keep identity and evidence close together."
+      }
+    ],
+    "preview": "presets/previews/commons-research/index.html",
+    "template_source": "presets/previews/commons-research/index.html"
+  },
+  {
+    "id": "repo-showcase",
+    "name": "Repo showcase",
+    "summary": "Open-source project landing with a tabbed install snippet, an asymmetric bento feature grid and a hexagon contributor strip.",
+    "best_for": [
+      "open-source libraries",
+      "developer tools",
+      "project READMEs promoted to a site"
+    ],
+    "palette": {
+      "background": "#FBF8F1",
+      "text": "#1B2236",
+      "muted": "#5A627A",
+      "accent": "#E4572E",
+      "surface": "#EFE9DB"
+    },
+    "typography": {
+      "display": "system-ui sans, 900 weight, tight tracking, 45-90px fluid; mono for badges and commands",
+      "body": "system-ui, 17px, line-height 1.6"
+    },
+    "layout": [
+      "Split hero: oversized headline with one orange word on the left, original hexagon-lattice artwork on the right.",
+      "Dark install card offset by a hard orange shadow with package-manager tabs and a copy button.",
+      "Six-cell bento feature grid with one tall dark cell, then an overlapping hexagon contributor strip and FAQ disclosures."
+    ],
+    "motion": "No automatic animation. Tabs, copy button and hover lift on contributors are user-triggered; transitions removed under prefers-reduced-motion.",
+    "imagery_prompt": "Generate an original abstract isometric illustration of interlocking hexagonal nodes joined by thin lines, cream background with navy and vermilion accents, flat vector look with soft paper grain, no text, logos or UI. Place right of the hero headline, 1:1 crop with 10% margin. Optional second image: a quiet wide 16:9 pattern of the same nodes for a banner. Save local WebP with alt text; never embed lettering.",
+    "generation_rules": [
+      "Adapt sections to the user's real project, release history or API; do not copy the fictional names, endpoints or versions into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; do not require Jekyll, a CDN, package installation or a backend.",
+      "Implement only honest static interactions. Copy buttons must report failure when the clipboard is unavailable; filters announce the visible result count. No fake live data, stats or stars; label sample numbers as sample.",
+      "Preserve this layout's structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "sources": [
+      {
+        "title": "GitHub Pages landing page",
+        "url": "https://pages.github.com/",
+        "observed": "Read the live page: a centered hero, numbered steps for user versus project sites, pre-formatted command blocks and a footer. Informs the install-first, step-driven reading order; no layout or text copied."
+      },
+      {
+        "title": "mdBook project documentation",
+        "url": "https://rust-lang.github.io/mdBook/",
+        "observed": "Fetched the live HTML (about 25 KB): a project book with a sidebar table of contents, install and CLI instructions in code blocks, theme switcher. Informs mono command styling and a clear install path."
+      },
+      {
+        "title": "Axel Springer open-source landing repo (search result)",
+        "url": "https://github.com/axelspringer/axelspringer.github.io",
+        "observed": "Only the search-result description was read (a landing page listing an organization's open-source projects); the site itself was not fetched."
+      }
+    ],
+    "preview": "presets/previews/repo-showcase/index.html",
+    "template_source": "presets/previews/repo-showcase/index.html"
+  },
+  {
+    "id": "terminal-devlog",
+    "name": "Terminal devlog",
+    "summary": "CRT-style developer blog where navigation buttons read as shell commands that filter the post list.",
+    "best_for": [
+      "developer blogs",
+      "build logs and changelogs of hobby projects",
+      "hacker-style personal sites"
+    ],
+    "palette": {
+      "background": "#0B120E",
+      "text": "#C8F2C2",
+      "muted": "#7DA67A",
+      "accent": "#FFB547",
+      "surface": "#13201A"
+    },
+    "typography": {
+      "display": "Monospace stack (Cascadia Mono, SF Mono, Consolas) throughout; headline 30-54px with soft phosphor glow and a block cursor",
+      "body": "Monospace 16px, line-height 1.65"
+    },
+    "layout": [
+      "Single centered terminal window with title bar, faint scanline overlay and a prompt-line masthead.",
+      "Command-style nav (ls posts, grep bug, cd about) that filters the dated post index or jumps to a section.",
+      "Post list as a table-like grid of date, title and tag; latest entry rendered like a pager with a diff block; tree and bar-chart about section."
+    ],
+    "motion": "No automatic animation; scanlines are static. Filter buttons update results instantly with a status line; reduced-motion removes transitions.",
+    "imagery_prompt": "Generate an original dark-green phosphor monitor still life: a chunky desk terminal glowing softly in a dim room, subtle bloom, no readable text or logos on the screen. Use as an optional wide 16:9 header image behind the masthead at low opacity. Second asset: abstract 3:2 pixel-noise texture in green on black. Save as local WebP with alt text; never embed lettering.",
+    "generation_rules": [
+      "Adapt sections to the user's real project, release history or API; do not copy the fictional names, endpoints or versions into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; do not require Jekyll, a CDN, package installation or a backend.",
+      "Implement only honest static interactions. Copy buttons must report failure when the clipboard is unavailable; filters announce the visible result count. No fake live data, stats or stars; label sample numbers as sample.",
+      "Preserve this layout's structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "sources": [
+      {
+        "title": "Tom Preston-Werner personal blog",
+        "url": "https://mojombo.github.io/",
+        "observed": "Fetched the live page: minimal text-first blog with a 'home' link and a long reverse-chronological list of dated post titles, each prefixed by the date. Informs the date-plus-title index."
+      },
+      {
+        "title": "Zach Holman personal site",
+        "url": "https://holman.github.io/",
+        "observed": "Fetched the live page: a short bio block with Currently/Previously labels followed by a year-grouped list of dated essays. Informs typographic list-first structure; the terminal styling is this template's own."
+      },
+      {
+        "title": "man7.org Linux manual page (ls)",
+        "url": "https://man7.org/linux/man-pages/man1/ls.1.html",
+        "observed": "Fetched: monospace preformatted layout with a section jump bar (NAME | SYNOPSIS | DESCRIPTION). Informs command-ish monospace reading."
+      }
+    ],
+    "preview": "presets/previews/terminal-devlog/index.html",
+    "template_source": "presets/previews/terminal-devlog/index.html"
+  },
+  {
+    "id": "api-atlas",
+    "name": "API atlas",
+    "summary": "Dark three-pane API reference: endpoint list, parameter docs, and tabbed request and response panes.",
+    "best_for": [
+      "REST API documentation",
+      "SDK and developer portals",
+      "internal service references"
+    ],
+    "palette": {
+      "background": "#0E1220",
+      "text": "#E7EAF6",
+      "muted": "#8D96B8",
+      "accent": "#5EEAD4",
+      "surface": "#171C30"
+    },
+    "typography": {
+      "display": "System sans for headings (800, tight) with monospace for routes, parameters and code; H1 up to 67px",
+      "body": "system-ui, 16px, line-height 1.6"
+    },
+    "layout": [
+      "Sticky top bar, large title and base-URL chip, then a three-column atlas: endpoint list, documentation, request/response panes.",
+      "Endpoints carry colored method labels (GET, POST, DELETE); selecting one swaps docs, parameters table and example payloads.",
+      "Language tabs (curl, JavaScript) over syntax-colored code, with a status-code pill and a status table; collapses to stacked panes under 1100px."
+    ],
+    "motion": "No automatic animation. Selecting endpoints and tabs updates content instantly; smooth scrolling disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Generate an original abstract dark-mode technical illustration: a network of glowing teal and amber nodes and fine lines on deep navy, subtle grid, no text or logos. Optional 3:1 banner above the reference intro, and a 1:1 variant for an empty state. Save local WebP with descriptive alt text; never embed lettering.",
+    "generation_rules": [
+      "Adapt sections to the user's real project, release history or API; do not copy the fictional names, endpoints or versions into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; do not require Jekyll, a CDN, package installation or a backend.",
+      "Implement only honest static interactions. Copy buttons must report failure when the clipboard is unavailable; filters announce the visible result count. No fake live data, stats or stars; label sample numbers as sample.",
+      "Preserve this layout's structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "sources": [
+      {
+        "title": "GitHub CLI manual",
+        "url": "https://cli.github.com/manual/gh_repo_clone",
+        "observed": "Fetched the live page: left navigation tree of commands, a main column with usage code block, option definition lists and examples. Informs endpoint-list-beside-docs structure."
+      },
+      {
+        "title": "Swagger Petstore demo (swagger.io)",
+        "url": "https://petstore.swagger.io/",
+        "observed": "Fetched HTML was a 1.2 KB shell that renders Swagger UI by script, so the rendered layout was not inspected; only general knowledge that it is a tag-grouped list of operations."
+      },
+      {
+        "title": "Redoc interactive demo",
+        "url": "https://redocly.github.io/redoc/",
+        "observed": "Fetched only a 623-byte JS shell titled 'ReDoc Interactive Demo'; the three-panel layout was not verified from the fetched markup."
+      }
+    ],
+    "preview": "presets/previews/api-atlas/index.html",
+    "template_source": "presets/previews/api-atlas/index.html"
+  },
+  {
+    "id": "cli-manpage",
+    "name": "CLI man page",
+    "summary": "Command-line tool page typeset as a Unix manual page with a section index and copy buttons on each command.",
+    "best_for": [
+      "command-line tools",
+      "developer utilities",
+      "technical reference pages"
+    ],
+    "palette": {
+      "background": "#F3EEDD",
+      "text": "#1D1A14",
+      "muted": "#6B6350",
+      "accent": "#B3261E",
+      "surface": "#E8E1CA"
+    },
+    "typography": {
+      "display": "Courier-style monospace throughout; giant lowercase tool name 42-100px with a superscript section number",
+      "body": "Monospace 17px, line-height 1.65"
+    },
+    "layout": [
+      "Sticky left index of manual sections (NAME, SYNOPSIS, DESCRIPTION...) beside a single column page.",
+      "Running header and footer like a printed man page; synopsis in an inverted block with copy button.",
+      "Command list with a copy button per row, option definition list, examples block and exit-status disclosure."
+    ],
+    "motion": "No automatic animation. Copy buttons give a status message; honest fallback when clipboard is unavailable; reduced-motion removes transitions.",
+    "imagery_prompt": "Generate an original monochrome line-art engraving of a smooth river pebble on aged cream paper, fine crosshatching, no text or logos. Place as an optional 1:1 emblem beside the title, small, with generous margin. Save local WebP with alt text; never embed lettering.",
+    "generation_rules": [
+      "Adapt sections to the user's real project, release history or API; do not copy the fictional names, endpoints or versions into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; do not require Jekyll, a CDN, package installation or a backend.",
+      "Implement only honest static interactions. Copy buttons must report failure when the clipboard is unavailable; filters announce the visible result count. No fake live data, stats or stars; label sample numbers as sample.",
+      "Preserve this layout's structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "sources": [
+      {
+        "title": "man7.org ls(1) manual page",
+        "url": "https://man7.org/linux/man-pages/man1/ls.1.html",
+        "observed": "Fetched and read: section jump list, NAME/SYNOPSIS/DESCRIPTION headings, preformatted monospace body with option lists. Informs section order and monospace rhythm."
+      },
+      {
+        "title": "GitHub CLI manual, repo clone",
+        "url": "https://cli.github.com/manual/gh_repo_clone",
+        "observed": "Fetched: command usage line in a code block, flags as definition entries, examples with sample commands. Informs the commands plus options plus examples sequence."
+      },
+      {
+        "title": "tldr pages",
+        "url": "https://tldr.sh",
+        "observed": "Fetched (7 KB, text not closely read): short command-oriented page; only loosely informs brief example-first copyable commands."
+      }
+    ],
+    "preview": "presets/previews/cli-manpage/index.html",
+    "template_source": "presets/previews/cli-manpage/index.html"
+  },
+  {
+    "id": "release-ledger",
+    "name": "Release ledger",
+    "summary": "Changelog and roadmap in one page: a vertical timeline spine of versions with filterable change tags, then a dark Now/Next/Later roadmap.",
+    "best_for": [
+      "product changelogs",
+      "app release notes",
+      "public roadmaps"
+    ],
+    "palette": {
+      "background": "#F7F4EC",
+      "text": "#17302F",
+      "muted": "#58706C",
+      "accent": "#C9871F",
+      "surface": "#E4EBE2"
+    },
+    "typography": {
+      "display": "Georgia serif display (700, tight) 45-104px with italic accent line; monospace for versions and tags",
+      "body": "system-ui, 17px, line-height 1.6"
+    },
+    "layout": [
+      "Masthead with large serif headline and a boxed latest-version stamp, closed by a double rule.",
+      "Timeline spine with version/date at left and release cards at right; major releases get a larger amber node.",
+      "Filter chips (Added, Fixed, Changed) with live count, then a full-width dark roadmap in three lanes and policy disclosures."
+    ],
+    "motion": "No automatic animation. Filtering is instant with a status count; reduced-motion removes smooth scrolling and transitions.",
+    "imagery_prompt": "Generate an original editorial illustration of a long paper ledger scroll unrolling over a desk with small brass markers, muted teal and amber, soft light, no text or numbers. Optional 3:2 image beside the masthead stamp. Second asset: 1:1 brass milestone marker object on a plain background. Save local WebP with alt text; never embed lettering.",
+    "generation_rules": [
+      "Adapt sections to the user's real project, release history or API; do not copy the fictional names, endpoints or versions into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; do not require Jekyll, a CDN, package installation or a backend.",
+      "Implement only honest static interactions. Copy buttons must report failure when the clipboard is unavailable; filters announce the visible result count. No fake live data, stats or stars; label sample numbers as sample.",
+      "Preserve this layout's structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "sources": [
+      {
+        "title": "Keep a Changelog",
+        "url": "https://keepachangelog.com/en/1.1.0/",
+        "observed": "Fetched: article page explaining a Changelog format with version headings, dates and grouped Added/Changed/Fixed lists. Informs the grouping vocabulary used for the filter tags."
+      },
+      {
+        "title": "Material for MkDocs changelog",
+        "url": "https://squidfunk.github.io/mkdocs-material/changelog/",
+        "observed": "Fetched a 367 KB page: docs site with left nav, article with version headings and long bullet lists per release, plus a table of contents. Informs release ordering; the timeline spine is original."
+      },
+      {
+        "title": "rustup book",
+        "url": "https://rust-lang.github.io/rustup/",
+        "observed": "Fetched: mdBook documentation with chapter sidebar and theme switcher; used only as context for documentation-style sites."
+      }
+    ],
+    "preview": "presets/previews/release-ledger/index.html",
+    "template_source": "presets/previews/release-ledger/index.html"
+  },
+  {
+    "id": "neon-canvas",
+    "name": "Neon canvas",
+    "summary": "Dark illustrator portfolio with a fixed vertical rail, tube-light display type and an expanding glow-panel wall.",
+    "best_for": [
+      "digital illustrators",
+      "concept and cyberpunk artists",
+      "dark-mode art portfolios"
+    ],
+    "palette": {
+      "background": "#0A0912",
+      "text": "#EDEAF7",
+      "muted": "#A19CBB",
+      "accent": "#FF3EA5",
+      "surface": "#16132A"
+    },
+    "typography": {
+      "display": "Bahnschrift / Arial Narrow / Impact, uppercase, 800 weight, 58-147px fluid, outlined neon-tube treatment on one word",
+      "body": "system-ui, 17px, line-height 1.65"
+    },
+    "layout": [
+      "Fixed left rail (vertical wordmark, dot navigation) that becomes a top bar on mobile.",
+      "Split hero: stacked giant headline with one outlined glowing word beside a framed neon artwork.",
+      "Wall of three tall panels in a flex row where the hovered, focused or selected panel expands and its caption brightens; stacks on mobile.",
+      "Numbered series list with outlined numerals and a sweeping glow on hover, followed by a split about section and a glowing-border contact block."
+    ],
+    "motion": "No automatic animation. Panel expansion and glow sweeps run only on hover, focus or click and are disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Generate original dark illustrations in glowing neon-line style: rain-lit alley with one lit doorway, concentric glowing arches in a tunnel, a koi fish curled inside a ring. Near-black indigo background (#0A0912), magenta (#FF3EA5) and cyan (#38E8FF) light only, soft bloom, clean vector-like lines. Hero image 4:5 portrait beside the headline; three wall panels each 2:3 portrait with subject centred and 10% margin so object-fit crop is safe. No text, lettering, signage words or logos in images. Save as local WebP with descriptive alt text.",
+    "generation_rules": [
+      "Adapt the fictional artist, series and pieces to the user's real work; do not keep the Velvet Nox sample names.",
+      "Keep one hot accent on a near-black background; use a second light colour only inside artwork and small highlights.",
+      "One h1, skip link, visible focus on every control, and each wall panel keyboard-operable via a real button.",
+      "Use local files and relative links only; ship index.html and .nojekyll; no CDN, form backend or fake inquiry success state.",
+      "Respect prefers-reduced-motion and keep glow effects to CSS shadows rather than continuous animation.",
+      "Preserve the rail plus expanding wall structure instead of a generic hero with three cards."
+    ],
+    "sources": [
+      {
+        "title": "Neon Portfolio (salahuddingfx.github.io/Neon-Portfolio)",
+        "url": "https://salahuddingfx.github.io/Neon-Portfolio/",
+        "observed": "Fetched live: a single long page with a loading screen, Orbitron display font, magenta #ff00ff / cyan #00f0ff / violet #7c3aed palette, many sections (About, Services, Skills, Journey, Portfolio, Reviews, Contact) in a flat top nav and a filterable portfolio grid. Heavy on effects; sections are numerous and generic."
+      },
+      {
+        "title": "Portfolio-DarkNeon (tanishabisht.github.io/Portfolio-DarkNeon)",
+        "url": "https://tanishabisht.github.io/Portfolio-DarkNeon/",
+        "observed": "Fetched live: the served HTML is only a client-rendered shell titled 'JOHN DOE' that says JavaScript is required, so layout was not directly visible; its repository readme describes a dark theme with neon highlights and glass-morphism for digital artists."
+      },
+      {
+        "title": "Pilar Narvaez motion portfolio (pilarnarvaez.github.io)",
+        "url": "https://pilarnarvaez.github.io/",
+        "observed": "Fetched live: a plain top navigation (About, Contact, Showreel) and a long list of project names, dense grids of thumbnails and videos with Helvetica Neue and a red accent; informed the contrast between this template's restrained wall and a dense thumbnail dump."
+      }
+    ],
+    "preview": "presets/previews/neon-canvas/index.html",
+    "template_source": "presets/previews/neon-canvas/index.html"
+  },
+  {
+    "id": "generative-lab",
+    "name": "Generative lab",
+    "summary": "Masonry gallery for generative and AI art where every piece carries its prompt, seed and settings like a lab-notebook caption.",
+    "best_for": [
+      "generative and creative-coding artists",
+      "AI image makers",
+      "prompt and workflow showcases"
+    ],
+    "palette": {
+      "background": "#F3F1EA",
+      "text": "#1A1A1F",
+      "muted": "#6A6774",
+      "accent": "#FF5A1F",
+      "surface": "#FFFFFF"
+    },
+    "typography": {
+      "display": "Segoe UI Variable / system-ui, 800 weight, tight -0.04em tracking, 45-112px fluid with a highlighter underline on one word",
+      "body": "system-ui 17px; ui-monospace for captions, prompts, seeds and table data"
+    },
+    "layout": [
+      "Graph-paper background with a monospace top bar of slash-style routes and a terminal-like run log beside the hero headline.",
+      "Filter chips (technique) above a CSS-columns masonry; each card has the image, a prompt split into highlighted parts, seed/steps/cfg chips and a reseed button, with a hard offset shadow.",
+      "Prompt-anatomy panel with colour-coded token chips, a horizontally scrollable run-settings table, and native disclosure notes."
+    ],
+    "motion": "No automatic animation. Reseeding and filtering respond only to clicks; smooth scrolling is disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Generate original abstract generative-art images with a graphic, flat-colour look: layered wavy flow-field lines, rings of orbiting circles, stacked dune strata with a sun disc, quarter-circle tile mosaics. Palette limited to orange #FF5A1F, ink blue #1F2A68, teal #19A7A0, yellow #F2C230, cream #F3F1EA. Mix 1:1 squares with a few 4:5 portrait and 16:10 landscape images for the masonry columns. Grain-free vector-like finish, no text, no watermarks, no logos, no faces. Save local WebP with descriptive alt text; keep the real prompt and seed in the caption, never inside the image.",
+    "generation_rules": [
+      "Replace sample prompts, seeds, models and step counts with the user's real data or remove those fields; never invent benchmark numbers.",
+      "State clearly in captions when an image was machine-generated and with which tool, if the user provides that.",
+      "Keep the masonry caption structure (prompt, seed chips, title) and the technique filters; announce the visible count via role=status.",
+      "One h1, skip link, visible keyboard focus, buttons with type=button, and tables that scroll horizontally on narrow screens.",
+      "Use local files and relative links only; ship index.html and .nojekyll; no CDN, no backend or fake run-queue.",
+      "Respect prefers-reduced-motion and avoid autoplaying canvases; if live sketches are linked, link them rather than embedding."
+    ],
+    "sources": [
+      {
+        "title": "Generative Gallery (ethank64.github.io/generative-gallery)",
+        "url": "https://ethank64.github.io/generative-gallery/",
+        "observed": "Fetched live: header with name, nav 'Works / About / GitHub', a hero titled 'Generative gallery', a featured live p5.js piece (Aeolian Drift, flow field, 2024), then a works list with technique filter chips (All, Flow fields, Growth), tags and an 'Open' link per piece; seeded and reproducible framing."
+      },
+      {
+        "title": "P5js Sketch Gallery (ben-tiki.github.io/p5js-sketch-gallery)",
+        "url": "https://ben-tiki.github.io/p5js-sketch-gallery/",
+        "observed": "Fetched live: a very small static page (about 4.5 KB) with just a 'P5js SKETCH GALLERY' heading and script-driven content, which shows how minimal sketch galleries often are and how little caption context they give."
+      },
+      {
+        "title": "p5.js-sketches (github.com/yurigo/p5.js-sketches, repository README via search)",
+        "url": "https://github.com/yurigo/p5.js-sketches",
+        "observed": "Read via search result excerpt only (page not fetched directly): README lists sketches by short title with a one-line description each and mentions deterministic seeds through URL parameters, the idea behind this template's seed chips."
+      }
+    ],
+    "preview": "presets/previews/generative-lab/index.html",
+    "template_source": "presets/previews/generative-lab/index.html"
+  },
+  {
+    "id": "pixel-atelier",
+    "name": "Pixel atelier",
+    "summary": "Pixel-art showcase on a cream checker ground with chunky outlined panels, a sprite sheet with grid toggle, and one-click palette swapping.",
+    "best_for": [
+      "pixel artists and sprite makers",
+      "game-asset portfolios",
+      "avatar and icon commission pages"
+    ],
+    "palette": {
+      "background": "#F2E8D5",
+      "text": "#2A1E3A",
+      "muted": "#6B5B7B",
+      "accent": "#E4452B",
+      "surface": "#FFF8E6"
+    },
+    "typography": {
+      "display": "Courier New / monospace, 900 weight, uppercase, 42-102px fluid with stepped hard text-shadows",
+      "body": "Courier New / ui-monospace, 17px, line-height 1.6"
+    },
+    "layout": [
+      "Outlined top bar and chunky 4px-bordered panels with hard offset shadows on a cream checkerboard ground.",
+      "Hero with 'Level 01' tag, stepped-shadow headline and a large framed sprite at integer scale.",
+      "Sprite sheet: four-up grid of dashed cells; a palette lab of swatch buttons repaints every sprite through CSS variables and a button toggles a pixel-grid overlay.",
+      "Zebra-striped daily log with date, title and hashtag chip; three commission size tiers; boxed FAQ disclosures."
+    ],
+    "motion": "No automatic animation. Palette swap and grid toggle respond to clicks only; button press nudge is removed under prefers-reduced-motion.",
+    "imagery_prompt": "Generate original pixel-art sprites on transparent or flat cream backgrounds: a spotted mushroom, a friendly lamp ghost, a blue potion bottle, a cut gem, small tileset pieces. 12 to 32 px native resolution, limited to 5 to 8 flat colours with a dark plum outline, no anti-aliasing or gradients, exported at integer upscales (x8 or x16) with nearest-neighbour. Hero sprite 1:1 beside the headline; sheet sprites 1:1 each. No text, logos, watermarks or characters from existing games. Save as local PNG (lossless) with descriptive alt text.",
+    "generation_rules": [
+      "Keep integer pixel scaling and image-rendering: pixelated for every raster sprite; never blur or fractionally scale.",
+      "Adapt the fictional artist, sprites, log entries and commission tiers to the user's real content; mark sample prices as placeholders until supplied.",
+      "Preserve the sprite sheet with palette swap and grid toggle, but only claim recolors the user's art really supports.",
+      "One h1, skip link, visible focus on every control, all buttons type=button, state shown via aria-pressed.",
+      "Use local files and relative links only; ship index.html and .nojekyll; no CDN pixel fonts, no backend checkout.",
+      "Respect prefers-reduced-motion; no animated sprite loops that cannot be paused."
+    ],
+    "sources": [
+      {
+        "title": "ktmeaton/pixelart (ktmeaton.github.io/pixelart)",
+        "url": "https://ktmeaton.github.io/pixelart/",
+        "observed": "Fetched live: a Jekyll-style pixel-art portfolio with a table of contents (Pixilart Daily Challenge, Studies, Sprites, Avatars, Fonts, Logos, Notes), about 53 images and 7 tables listing daily challenge entries as date, name and hashtag rows (e.g. 'Colosseum 2021-02-13 #ruins') beside small sprites."
+      },
+      {
+        "title": "Pixel Portfolio (jacoblett.github.io/pixel-portfolio)",
+        "url": "https://jacoblett.github.io/pixel-portfolio/",
+        "observed": "Fetched live: despite the name, a Bootstrap developer résumé page with headings Work History, Projects, Skills, Certifications and Courses, Blog; only one image. Useful as a contrast: it shows the name 'pixel' does not guarantee pixel-art presentation."
+      },
+      {
+        "title": "Mehul Town playable pixel portfolio (mgupta646.github.io)",
+        "url": "https://github.com/mgupta646/mgupta646.github.io",
+        "observed": "Read via search result excerpt of the repository README only (not rendered): describes a GBA-style pixel town portfolio with arrow-key movement, a TOUR button and Quick View filters, which this template deliberately does not copy and instead keeps to a static sprite sheet."
+      }
+    ],
+    "preview": "presets/previews/pixel-atelier/index.html",
+    "template_source": "presets/previews/pixel-atelier/index.html"
+  },
+  {
+    "id": "concept-sketchbook",
+    "name": "Concept sketchbook",
+    "summary": "Concept-art sketchbook on ruled, spiral-bound paper with taped plates, hand-lettered margin notes and a toggle that reveals blue construction lines.",
+    "best_for": [
+      "concept and environment artists",
+      "character designers",
+      "process-forward sketchbook portfolios"
+    ],
+    "palette": {
+      "background": "#E6DECB",
+      "text": "#2B2926",
+      "muted": "#6F675A",
+      "accent": "#C2452D",
+      "surface": "#F7F2E5"
+    },
+    "typography": {
+      "display": "Georgia / Iowan Old Style italic, 400 weight, 45-100px fluid with a red-pencil underline on one phrase",
+      "body": "Georgia serif 18px; Segoe Print / Bradley Hand handwriting stack for margin notes, labels and captions"
+    },
+    "layout": [
+      "A single paper page with ruled lines, a red margin rule and a spiral-binding strip on the left, stacked on a stepped page-edge shadow.",
+      "Cover with a yellow masking-tape label, italic headline and a tilted 'work in progress' stamp.",
+      "Each numbered page is a two-column spread: a taped plate on the left and handwritten margin notes with arrows on the right; notes drop below the plate on mobile.",
+      "Plate 01 offers a construction-line toggle, plate 02 is a six-up value thumbnail grid, plate 03 is a three-view character turnaround with a palette strip."
+    ],
+    "motion": "No automatic animation. Construction lines fade in only when the toggle is pressed; transitions and smooth scrolling are disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Generate original concept-art sketchbook plates scanned on warm cream paper: a pencil and grey-marker study of a tall lantern tower on a hill with low horizon (3:2 landscape), six small greyscale value thumbnails of silhouettes (1:1 or 3:2 each), and a three-view character turnaround of a hooded lamp keeper on one baseline (3:2). Loose graphite line, light hatching, one red-orange accent for the lamp, optional faint blue construction lines. Paper texture visible but low contrast. No handwriting, text, signatures, logos or existing characters in the images. Save local WebP with descriptive alt text.",
+    "generation_rules": [
+      "Keep margin notes as real page text beside or under each plate, not baked into images, so they stay readable and translatable.",
+      "Replace the fictional tower, thumbnails and lamp keeper with the user's real artwork and process notes; do not invent client work.",
+      "Preserve the paper-page frame, taped plates and notes column rather than a generic card grid; keep contrast of text on paper at least 4.5:1.",
+      "One h1, skip link, visible keyboard focus, buttons with type=button and aria-pressed for the construction toggle.",
+      "Use local files and relative links only; ship index.html and .nojekyll; no CDN fonts or external texture images.",
+      "Respect prefers-reduced-motion; do not add page-turn animations or autoplay."
+    ],
+    "sources": [
+      {
+        "title": "Paula Panijan Art Portfolio (filipal.github.io)",
+        "url": "https://filipal.github.io/",
+        "observed": "Fetched live: a small student art portfolio with a top navigation of Home, Character Art, Environment Art, Concept Art, Game Designs and SketchBook, a skills line (Maya, Unity, ZBrush, Substance Painter, Photoshop) and an About Me paragraph; the sketchbook is just one more nav item, with only two images on the home page."
+      },
+      {
+        "title": "Meng To sketchbook site (mengto.github.io/sketchbook)",
+        "url": "https://mengto.github.io/sketchbook/",
+        "observed": "Fetched live: a single HTML file with a paper background (#ece7dc), ink #2b2721, an earth accent #9a6a3e, Instrument Serif and Newsreader serif fonts, hairline rules and a painted wash behind the page; its README describes page-turn spreads and a magnifier. Informed the paper-and-serif mood; this template avoids page-turn physics and external font files."
+      },
+      {
+        "title": "MengTo/sketchbook README (raw.githubusercontent.com)",
+        "url": "https://github.com/MengTo/sketchbook",
+        "observed": "Read the README text: nine watercolour spreads with an index that jumps to any plate, drag-to-turn pages and a draggable magnifier, built as one static HTML file. Used to understand sketchbook-as-interface; plates and layout here are original."
+      }
+    ],
+    "preview": "presets/previews/concept-sketchbook/index.html",
+    "template_source": "presets/previews/concept-sketchbook/index.html"
+  },
+  {
+    "id": "motion-reel",
+    "name": "Motion reel",
+    "summary": "3D and motion artist reel page: a letterboxed 2.39:1 viewer with film-edge perforations, a duration-proportional chapter timeline, burned-in timecode and shot credits.",
+    "best_for": [
+      "3D and motion designers",
+      "VFX and lookdev artists",
+      "showreel and credits pages"
+    ],
+    "palette": {
+      "background": "#EDEAE3",
+      "text": "#0F0F10",
+      "muted": "#5C5A55",
+      "accent": "#E5391F",
+      "surface": "#DDD9CF"
+    },
+    "typography": {
+      "display": "Helvetica Neue / Segoe UI / Arial, 900 weight, uppercase, -0.06em tracking, 64-240px fluid, accent-coloured second word",
+      "body": "Helvetica Neue / system sans 17px; ui-monospace for timecodes, credits, labels and navigation"
+    },
+    "layout": [
+      "Recording-dot masthead with monospace timecode navigation, then an oversized stacked two-word title beside a short mono metadata block.",
+      "Full-width letterboxed 2.39:1 viewer on black with film-perforation edges and burned-in timecode; below it a tablist timeline whose segments are sized by shot duration with a ruler of tick marks.",
+      "Credits panel: shot number and description on the left, a monospace role/name definition list on the right, both updated by the selected chapter.",
+      "Wire / clay / final three-pass breakdown row, disclosure FAQ and a full-bleed accent call-to-action band."
+    ],
+    "motion": "No autoplay and no looping video. Chapter selection swaps the still on click or arrow keys; scroll smoothing is disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Generate original 3D-render style stills at 2.39:1 landscape, one per chapter: stacked faceted blocks in coral and cream on a sunset gradient, glossy teal and amber spheres on a dark green studio floor, overlapping gradient ribbons over deep indigo, a round red podium lit by two soft beams on a grey wall. Clean studio lighting, soft shadows, shallow depth. Plus a square wire / clay / final trio of the same simple cube object (1:1 each). Keep the main subject in the central 60% for responsive cropping. No text, logos, watermarks, timecodes or recognisable products in images. Save local WebP with descriptive alt text.",
+    "generation_rules": [
+      "Use the user's real shots, runtimes and credits; mark every placeholder timecode, name and software as sample until replaced.",
+      "Do not autoplay video or loop animation; if a real video is linked, use a poster image and a native control or an external link.",
+      "Keep the letterboxed viewer, duration-proportional timeline and per-shot credits instead of a generic thumbnail grid; chapters must remain operable by keyboard with the tablist arrow-key pattern.",
+      "One h1, skip link, visible focus, buttons with type=button and aria-selected state on tabs.",
+      "Use local files and relative links only; ship index.html and .nojekyll; no embedded third-party players or CDNs.",
+      "Respect prefers-reduced-motion and keep burned-in overlays decorative (aria-hidden)."
+    ],
+    "sources": [
+      {
+        "title": "Pilar Narvaez motion portfolio (pilarnarvaez.github.io)",
+        "url": "https://pilarnarvaez.github.io/",
+        "observed": "Fetched live: a motion-design showreel site with 'About, Contact, Showreel' navigation followed by a long plain list of campaign and project names, about 33 images and 46 video elements, Helvetica Neue and a red (#e74c3c) accent. Shows the common failure of a dense undifferentiated thumbnail wall that this template replaces with one viewer and a timeline."
+      },
+      {
+        "title": "SKM portfolio (yesitsskm.github.io/portfolio)",
+        "url": "https://yesitsskm.github.io/portfolio/",
+        "observed": "Fetched live: a 3D / VR environment-artist site with a loading screen, nav Home, About, Showreel, Expertise, Works, Say Hello plus a VR link, orange #f9861a accent, about 13 images, one video and four iframes, five sections including an embedded showreel."
+      },
+      {
+        "title": "Personal portfolio showreel (annt154)",
+        "url": "https://github.com/annt154/personal-portfolio-showreel",
+        "observed": "Read via search result excerpt only (repository page not opened): described as a personal portfolio and showreel covering motion design, production, graphic art, UI/UX and sound; used only to confirm the category pairing of reel plus credits."
+      }
+    ],
+    "preview": "presets/previews/motion-reel/index.html",
+    "template_source": "presets/previews/motion-reel/index.html"
+  },
+  {
+    "id": "hello-card",
+    "name": "Hello card",
+    "summary": "A one-screen personal link card: a tilted lanyard-style ID pass beside stacked link tiles, built to be read in a single glance.",
+    "best_for": [
+      "link-in-bio pages",
+      "freelancer or student intro pages",
+      "event or project contact cards"
+    ],
+    "palette": {
+      "background": "#F3EDE2",
+      "text": "#1D1B2E",
+      "muted": "#5B566B",
+      "accent": "#E8543A",
+      "surface": "#FFFDF8"
+    },
+    "typography": {
+      "display": "ui-rounded / system sans, 800 weight, tight tracking, 2.2-3rem",
+      "body": "ui-rounded / Segoe UI, 17px, line-height 1.55"
+    },
+    "layout": [
+      "Single 100svh stage: a rotated ID-pass card (punched lanyard slot, avatar, name, tag pills, barcode stub) on the left, link stack on the right.",
+      "Link tiles are hard-offset-shadow rows with an initial badge, title, one-line description and arrow; they press down on hover.",
+      "A dashed 'right now' note with a pressed-state greeting button and a short contact paragraph; below 760px the pass sits above the stack, untilted."
+    ],
+    "motion": "Hover straightens the card and presses link tiles; a single toggle button reveals a greeting. No autoplay; transitions removed under prefers-reduced-motion.",
+    "imagery_prompt": "Generate one original square portrait-style illustration of the owner (flat, bold ink outline, warm coral background disc, friendly neutral expression) for a circular avatar slot of about 130px, centered with 10% margin; no text, logos or watermarks in any image. Optionally a subtle 1:1 dot-grid paper texture for the page background. Save as local WebP with descriptive alt text.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and explicit style requests; do not copy the fictional sample people, places or entries into an unrelated site.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and descriptive alt text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, Jekyll, package install or backend.",
+      "Implement only honest static interactions; never fake form submissions, messages or success states, and label sample numbers as demo.",
+      "Keep the whole identity, links and contact inside roughly one viewport at 1440x900; do not add more than five link tiles.",
+      "Preserve the pass-card plus link-stack structure and the hard offset shadows rather than producing a generic centered column."
+    ],
+    "sources": [
+      {
+        "title": "rayramy04 linkcard live page",
+        "url": "https://rayramy04.github.io/linkcard/",
+        "observed": "Fetched with curl (HTTP 200, ~1.8 KB). A JS-rendered shell with an empty profile header, links section and about article plus a share button; Simple.css and an Iconify CDN. I only saw the shell source, not the rendered result, so I used it as evidence of the single-column link-page pattern."
+      },
+      {
+        "title": "exjaynine personal artistic page",
+        "url": "https://exjaynine.github.io/",
+        "observed": "Fetched with curl (HTTP 200, ~850 bytes). One tiny page: a title, a single paragraph of licence and welcome text, one image and a couple of links, with no navigation chrome. Shows how little a personal home page needs; my card adds a clear identity block and link tiles."
+      }
+    ],
+    "preview": "presets/previews/hello-card/index.html",
+    "template_source": "presets/previews/hello-card/index.html"
+  },
+  {
+    "id": "resume-scroll",
+    "name": "Resume scroll",
+    "summary": "A CV one-pager with a sticky index rail on the left and a scrolling column with a timeline spine, skill dots and education cards.",
+    "best_for": [
+      "developer or designer résumés",
+      "job-seeker personal sites",
+      "consultant profiles"
+    ],
+    "palette": {
+      "background": "#FBFAF6",
+      "text": "#14213D",
+      "muted": "#4F5B73",
+      "accent": "#F2B705",
+      "surface": "#EDEFF5"
+    },
+    "typography": {
+      "display": "Georgia / Times serif, 700, 2.6rem name with highlighter underline; small-caps-style sans labels",
+      "body": "Georgia serif 17px/1.6 for prose, system sans for metadata and skills"
+    },
+    "layout": [
+      "Two-column page: fixed-height left rail with name, title, numbered section index with scroll-spy highlighting, and contact + print button; right column scrolls.",
+      "Experience sits on a vertical timeline spine with ring markers (current role filled with the accent) and dated entries.",
+      "Skills as two-column rows with five-dot levels, education as left-bordered cards; at 820px the rail becomes a top header and the index a two-column list. Print stylesheet hides chrome."
+    ],
+    "motion": "Scroll-spy updates the rail's current section as you read; smooth anchor scrolling and all transitions are disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Generate one optional original head-and-shoulders portrait illustration (flat ink style, navy and mustard accents, plain light background, 1:1, about 160px) for the rail; no text, logos or watermarks in any image. Resume pages otherwise need no photography; if a work sample is requested, make a 16:10 abstract interface illustration in the same navy and mustard palette.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and explicit style requests; do not copy the fictional sample people, places or entries into an unrelated site.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and descriptive alt text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, Jekyll, package install or backend.",
+      "Implement only honest static interactions; never fake form submissions, messages or success states, and label sample numbers as demo.",
+      "Keep skill ratings clearly labelled as self-assessed or sample; do not invent employers, degrees or metrics for a real person.",
+      "Preserve the sticky rail plus timeline-spine structure and the print-friendly styles."
+    ],
+    "sources": [
+      {
+        "title": "Alireza Torabian personal page (GitHub Pages)",
+        "url": "https://1997alireza.github.io/",
+        "observed": "Fetched with curl (HTTP 200, ~30 KB). A Bootstrap-based CV site: fixed top navbar with Download CV and links to About, Experience, Education, Publications, Projects, Skills, Awards; nine full-width sections, a single h1 name, Saira Extra Condensed and Muli webfonts, green accent. I used the section inventory, not its look."
+      },
+      {
+        "title": "Online CV Jekyll theme demo (sharu725)",
+        "url": "https://sharu725.github.io/online-cv/",
+        "observed": "Fetched with curl (HTTP 200, ~21 KB). A one-page résumé with a Print PDF button, a left info block (role, contact, education, languages, interests) and a right career/profile column; eight sections, one h1. Confirmed that a print action and a sidebar/main split are standard for résumé sites."
+      }
+    ],
+    "preview": "presets/previews/resume-scroll/index.html",
+    "template_source": "presets/previews/resume-scroll/index.html"
+  },
+  {
+    "id": "digital-garden",
+    "name": "Digital garden",
+    "summary": "A linked-note garden: a growth-stage index sidebar and horizontally stacked note panes with dotted wikilinks and backlinks.",
+    "best_for": [
+      "personal knowledge bases",
+      "research or learning notes",
+      "slow-publishing writers"
+    ],
+    "palette": {
+      "background": "#EEF1E3",
+      "text": "#23301F",
+      "muted": "#58654F",
+      "accent": "#5C7F2E",
+      "surface": "#DFE6CB"
+    },
+    "typography": {
+      "display": "Georgia / Iowan Old Style italic for the site name, 1.7-2.5rem",
+      "body": "Georgia serif 17px/1.65; system sans uppercase micro-labels for stage and backlinks"
+    },
+    "layout": [
+      "Left sticky index with growth-stage filter (all, seedling, budding, evergreen), a glyph per note and a live count.",
+      "Main area is a horizontal stack of overlapping note panes with a stage-coloured left edge; wikilinks open the target pane beside the current one, and each pane has a Close control.",
+      "Every pane ends with a 'Linked from' backlinks list; below the stack, two short explanatory panels. Under 860px the sidebar sits above and panes scroll sideways."
+    ],
+    "motion": "Following a wikilink opens and scrolls to the target pane and briefly highlights it; scroll behaviour and transitions are disabled under prefers-reduced-motion. Without JavaScript, all panes stay visible.",
+    "imagery_prompt": "Generate original botanical line illustrations in olive and moss on a pale cream background: a seedling, a budding sprig and a small evergreen, each 1:1 at about 120px, used as stage glyphs or note headers; optionally one 3:1 banner of layered leaf shapes for the page top. no text, logos or watermarks in any image.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and explicit style requests; do not copy the fictional sample people, places or entries into an unrelated site.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and descriptive alt text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, Jekyll, package install or backend.",
+      "Implement only honest static interactions; never fake form submissions, messages or success states, and label sample numbers as demo.",
+      "Every wikilink must target a note that exists on the page or in the site; render backlinks from real links, not invented ones.",
+      "Keep the stage vocabulary (seedling, budding, evergreen) and always display a stage for each note.",
+      "Preserve the sidebar-plus-stacked-panes structure rather than a single blog column."
+    ],
+    "sources": [
+      {
+        "title": "Digital Garden design reference (chrislemke)",
+        "url": "https://chrislemke.github.io/website_designs/designs/Digital_Garden.html",
+        "observed": "Fetched with curl (HTTP 200, ~175 KB) and read in the search extract. Describes the genre: wiki-like dense linking, growth stages (seedling, budding, evergreen), dotted underlines for wikilinks, a 640-720px reading measure, backlinks at the bottom, optional stacked panes and graph view."
+      },
+      {
+        "title": "Second Brain by BorjaIP (Quartz site)",
+        "url": "https://borjaip.github.io/pkm/",
+        "observed": "Fetched with curl (HTTP 200, ~40 KB). A live Quartz garden: Explorer file tree, search, 'Most recent' list with dates, an article with reading time, and graph and popover scripts. Informed the index + reading-column + backlinks structure; I did not read every page."
+      },
+      {
+        "title": "DigiGarden (Quartz, parthganeriwala)",
+        "url": "https://parthganeriwala.github.io/DigiGarden/",
+        "observed": "Fetched with curl (HTTP 200, ~2.5 MB). A tiny live Quartz garden: title 'Welcome to my brain dump', Search, Explorer, a graph view and an empty backlinks panel reading 'No backlinks found'. Confirmed backlinks and graph are standard panels."
+      }
+    ],
+    "preview": "presets/previews/digital-garden/index.html",
+    "template_source": "presets/previews/digital-garden/index.html"
+  },
+  {
+    "id": "photo-diary",
+    "name": "Photo diary",
+    "summary": "A photographer's dated diary: oversized italic cover, a film-sprocket contact sheet and full-bleed frames each followed by a date-stamped entry.",
+    "best_for": [
+      "photographers",
+      "travel or street-photo journals",
+      "visual diaries"
+    ],
+    "palette": {
+      "background": "#ECE6DA",
+      "text": "#15130F",
+      "muted": "#5E574B",
+      "accent": "#C8321E",
+      "surface": "#D9D1C0"
+    },
+    "typography": {
+      "display": "Georgia italic, weight 400, 3.4-11rem cover with -0.05em tracking; large roman date numerals",
+      "body": "Georgia 18px/1.6; monospace for EXIF-style captions and navigation"
+    },
+    "layout": [
+      "Oversized italic cover headline with one accent word, then a dark sprocket-edged contact sheet of four linked thumbnails.",
+      "Each entry is a full-bleed frame (up to 86vh) followed by a two-column diary row: big day numeral + month at left, title, paragraph and settings line at right.",
+      "A 'Dim the room' toggle switches the page to a dark darkroom palette; two closing notes and a plain footer. Mobile stacks entries and shrinks the contact sheet to two columns."
+    ],
+    "motion": "No autoplay. Anchor scrolling is smooth by default and colour transitions occur on the darkroom toggle; both are disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Generate four distinct original photographs, 16:9 at 2400x1350, each full-bleed: misty ridge at dawn, window light across a stairwell wall, rainy night street with warm lit windows, two small boats on still water. Natural film grain, restrained palette matching warm paper, black and one red accent; no people's faces, no text, logos or watermarks in any image. Also supply 3:2 crops for the contact sheet. Save as local WebP with descriptive alt text.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and explicit style requests; do not copy the fictional sample people, places or entries into an unrelated site.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and descriptive alt text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, Jekyll, package install or backend.",
+      "Implement only honest static interactions; never fake form submissions, messages or success states, and label sample numbers as demo.",
+      "Use real or generated photographs at full width; never stretch low-resolution images, and keep captions as real text outside the picture.",
+      "Keep a dated entry beside every frame and label EXIF-like values as sample unless they come from the user.",
+      "Preserve the contact sheet plus full-bleed frame rhythm rather than a uniform thumbnail gallery."
+    ],
+    "sources": [
+      {
+        "title": "Photography Portfolio by Aatmaj Salunke (GitHub Pages)",
+        "url": "https://aatmaj28.github.io/PhotographyWebsite/",
+        "observed": "Fetched with curl (HTTP 200, ~8 KB). A single-page photographer site: header nav (Home, Gallery, About, Contact), a hero 'Capturing Moments, Creating Art', a 'Collection / Selected Works' gallery section, an About block with a portrait, three sections and one h1. Provided the gallery-then-about order; mine uses diary entries instead of a grid."
+      },
+      {
+        "title": "Nate Wiger personal blog (GitHub Pages)",
+        "url": "https://nateware.github.io/",
+        "observed": "Fetched with curl (HTTP 200, ~11 KB). A dated-post personal blog: short nav (About Me, Posts), a profile image, dated entries each with title emoji and excerpt. Used as evidence of the reverse-chronological dated-entry diary rhythm, which I paired with full-bleed imagery."
+      }
+    ],
+    "preview": "presets/previews/photo-diary/index.html",
+    "template_source": "presets/previews/photo-diary/index.html"
+  },
+  {
+    "id": "field-guide",
+    "name": "Field guide",
+    "summary": "Naturalist field guide with numbered specimen plates, Latin binomials, habitat filters and a sighting index, set on aged paper with ink and oxblood.",
+    "best_for": [
+      "local wildlife and plant guides",
+      "nature journals and surveys",
+      "school or club species lists"
+    ],
+    "palette": {
+      "background": "#EFE6CF",
+      "text": "#2B2118",
+      "muted": "#6B5A44",
+      "accent": "#8A2D1E",
+      "surface": "#E2D5B5"
+    },
+    "typography": {
+      "display": "Iowan Old Style/Palatino/Georgia serif, bold italic, 42-86px fluid, tight tracking",
+      "body": "Palatino/Georgia serif 18px, line-height 1.65; monospace small caps for plate numbers and metadata"
+    },
+    "layout": [
+      "Sticky left column of index-tab links down the page edge on desktop that becomes a wrapping tab row on mobile.",
+      "Two-column grid of framed plates with oxblood plate numbers, drawing frame, common name, Latin binomial and a dotted metadata strip; second column offset down.",
+      "Habitat filter buttons with result count, then a quick key beside disclosures, a sighting table and a method note."
+    ],
+    "motion": "No automatic animation. User-triggered habitat filtering and anchor scrolling only; smooth scroll disabled for prefers-reduced-motion.",
+    "imagery_prompt": "Generate original hand-inked natural-history plates on warm cream paper: a heather sprig, a dragonfly, a hawthorn branch with berries, a ground beetle, a water lily and a small wren, each a single centered specimen with fine hatching and a muted sepia, moss and oxblood watercolour wash. 4:3 crop, 15% margin, plain paper background, no text, no labels, no logos, no signatures. Save as local WebP with descriptive alt text; replace the inline SVG plates.",
+    "generation_rules": [
+      "Adapt every section to the user's real content and explicit style requests; never reuse the fictional names, species, numbers or dates from this demo.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus, and alt text or aria-labels on art. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links only; ship index.html and .nojekyll with no CDN, remote fonts, backend or package install.",
+      "Keep interactions honest and static; announce filter result counts and never fake purchases, submissions or live data. Label any sample numbers as demo.",
+      "Preserve the page's structural signature (numbered framed plates with binomials and the index-tab column) rather than recolouring a generic hero-and-cards landing page."
+    ],
+    "sources": [
+      {
+        "title": "The Field Guide to Wild Users (PostHog)",
+        "url": "https://posthog.com/field-guide",
+        "observed": "Fetched the page and read the text: a mock naturalist field guide listing ten named species with Latin-style names, a 'Plate XI' caption and a select-a-specimen interaction. Used only as proof that plates, binomials and a specimen picker read as a field guide; no text or layout copied. Not a github.io site."
+      },
+      {
+        "title": "Field Notes Journal (davewalker5.github.io / fieldnotesjournal.uk)",
+        "url": "https://fieldnotesjournal.uk/",
+        "observed": "Fetched the GitHub Pages site and read it: system-ui text, top navigation of Start Here, Wildlife, Travel, Music, Photography, Microscopy, Reference, Blog and About, and a long-form intro about noticing birds and fossils. Informed the sectioned, index-driven reading structure."
+      }
+    ],
+    "preview": "presets/previews/field-guide/index.html",
+    "template_source": "presets/previews/field-guide/index.html"
+  },
+  {
+    "id": "alpine-trail",
+    "name": "Alpine trail log",
+    "summary": "Hiking and trail log centred on a scrubbable elevation profile, stat strip, stage table and dated trip notes in night-slate with a blaze-orange accent.",
+    "best_for": [
+      "hiking and trekking logs",
+      "trail runners and route notes",
+      "outdoor club trip reports"
+    ],
+    "palette": {
+      "background": "#101A2B",
+      "text": "#EEF2F7",
+      "muted": "#9FB0C8",
+      "accent": "#FF6A2B",
+      "surface": "#1B2A44"
+    },
+    "typography": {
+      "display": "Arial Narrow/Franklin Gothic/Impact condensed sans, 900 weight, uppercase, up to 128px fluid",
+      "body": "Segoe UI/system-ui 17px, line-height 1.6; monospace readout for distances and heights"
+    },
+    "layout": [
+      "Full-width hero with faint topographic contour lines, oversized condensed title and a range-input elevation profile directly under it showing km, height and waypoint name.",
+      "Four-cell stat strip with demo distance, ascent, high point and duration.",
+      "Stage table with difficulty badges, a three-column trip-log card row with orange top rules, and a diamond-bullet pack list."
+    ],
+    "motion": "No automatic animation. The profile cursor moves only when the user drags the slider; smooth scrolling disabled for prefers-reduced-motion.",
+    "imagery_prompt": "Generate original dusk mountain-ridge photography in cool blue-slate tones with a single warm orange light on one summit: wide ridge line (16:9, hero backdrop, dark upper third for headline), a hiker silhouette on a col (4:5), and a stone cairn in mist (4:3). Real-feeling alpine light, no text, no signs, no logos, no recognisable people. Save as local WebP with alt text; sample elevation SVG stays as live data.",
+    "generation_rules": [
+      "Adapt every section to the user's real content and explicit style requests; never reuse the fictional names, species, numbers or dates from this demo.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus, and alt text or aria-labels on art. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links only; ship index.html and .nojekyll with no CDN, remote fonts, backend or package install.",
+      "Keep interactions honest and static; announce filter result counts and never fake purchases, submissions or live data. Label any sample numbers as demo.",
+      "Preserve the page's structural signature (the scrubbable elevation profile under the hero) rather than recolouring a generic hero-and-cards landing page."
+    ],
+    "sources": [
+      {
+        "title": "Hiking Mount Washington (bmhatfield.github.io)",
+        "url": "https://bmhatfield.github.io/white-mountains/washington.html",
+        "observed": "Fetched the GitHub Pages trip guide and read it: a table of contents, a warnings section, and a per-route table of round-trip distance, elevation gain and book time (e.g. Tuckerman Ravine 8.4 mi, 4,300 ft, 6:20). Showed that route stats lead trail pages; no data reused."
+      },
+      {
+        "title": "Travels (gunjandhanuka.github.io)",
+        "url": "https://gunjandhanuka.github.io/travels/",
+        "observed": "Fetched the GitHub Pages page and read it: a 'Trail notes' intro and a note on what a good hike note holds (route, distance, elevation, season, conditions, water). Informed the stats-plus-conditions log structure; its entries were still 'coming soon'."
+      }
+    ],
+    "preview": "presets/previews/alpine-trail/index.html",
+    "template_source": "presets/previews/alpine-trail/index.html"
+  },
+  {
+    "id": "tidepool-journal",
+    "name": "Tidepool journal",
+    "summary": "Marine shore journal built on a vertical intertidal zone diagram with a tide-height slider, plus dated entries and a tide table in layered deep blues with a coral accent.",
+    "best_for": [
+      "marine and coastal naturalists",
+      "beach field notes and rockpool surveys",
+      "ocean education projects"
+    ],
+    "palette": {
+      "background": "#04243A",
+      "text": "#E6F6F7",
+      "muted": "#8FC4D1",
+      "accent": "#FF7F6B",
+      "surface": "#0B4A66"
+    },
+    "typography": {
+      "display": "Georgia italic bold serif, 48-112px fluid, tight leading",
+      "body": "Trebuchet MS/Gill Sans 17px, line-height 1.65; uppercase tracked labels"
+    },
+    "layout": [
+      "Sky-to-deep vertical gradient page with italic hero, a wave divider, then a stacked four-zone shore diagram (splash, high pools, mid shore, low pools) beside a vertical tide slider.",
+      "Moving waterline overlay fades exposed zones and reports how many zones are under water.",
+      "Asymmetric journal grid with one tall featured entry, a tide table and tidepool etiquette disclosures."
+    ],
+    "motion": "No automatic animation. The waterline and zone fading respond only to the user's slider; transitions are removed for prefers-reduced-motion.",
+    "imagery_prompt": "Generate original underwater and shoreline photographs in layered teal, cobalt and deep navy with small coral-orange accents: a rock pool with an orange sea star and anemones (4:3), a mussel-covered ledge at low tide (16:9), and weed-draped rock with a shore crab (3:2). Natural light, no text, no logos, no people. Save as local WebP with alt text; the zone diagram stays as live HTML/SVG.",
+    "generation_rules": [
+      "Adapt every section to the user's real content and explicit style requests; never reuse the fictional names, species, numbers or dates from this demo.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus, and alt text or aria-labels on art. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links only; ship index.html and .nojekyll with no CDN, remote fonts, backend or package install.",
+      "Keep interactions honest and static; announce filter result counts and never fake purchases, submissions or live data. Label any sample numbers as demo.",
+      "Preserve the page's structural signature (the tide-slider zone diagram) rather than recolouring a generic hero-and-cards landing page."
+    ],
+    "sources": [
+      {
+        "title": "Field Notes Journal (davewalker5.github.io)",
+        "url": "https://fieldnotesjournal.uk/",
+        "observed": "Fetched the GitHub Pages site and read it: a personal natural-history journal with Wildlife, Microscopy, Reference and Blog sections, written as long-term dated observation. Informed the dated-entry journal voice."
+      },
+      {
+        "title": "CTD Grapher (jimothy-dev.github.io)",
+        "url": "https://jimothy-dev.github.io/CTD_Grapher_Web/",
+        "observed": "Fetched the page source: a small GitHub Pages app that draws ocean CTD depth profiles in the browser, using a single accent #1f6f8b blue and a depth-profile framing. Informed the idea of reading the sea as a vertical depth column; no code reused."
+      }
+    ],
+    "preview": "presets/previews/tidepool-journal/index.html",
+    "template_source": "presets/previews/tidepool-journal/index.html"
+  },
+  {
+    "id": "greenhouse-botanical",
+    "name": "Greenhouse botanical",
+    "summary": "Botanical garden and plant shop page with hanging specimen tags, light-needs filter, glasshouse arch art and three climate bays in deep emerald, brass and orchid pink.",
+    "best_for": [
+      "botanical gardens and conservatories",
+      "plant shops and nurseries",
+      "plant collection catalogues"
+    ],
+    "palette": {
+      "background": "#F6F7F0",
+      "text": "#12301F",
+      "muted": "#4F6B58",
+      "accent": "#D9487A",
+      "surface": "#E7EFDF"
+    },
+    "typography": {
+      "display": "Georgia/Palatino serif regular, 45-93px fluid; italic orchid emphasis",
+      "body": "Avenir Next/Century Gothic/Segoe UI 17px, line-height 1.65; monospace accession numbers"
+    },
+    "layout": [
+      "Emerald hero with brass-ruled glasshouse arch illustration beside the headline and a pill call-to-action.",
+      "Four-column grid of hanging specimen tags with brass eyelet and string, accession number, botanical name, light/water facts and a sample price.",
+      "Light filter buttons with result count, a three-bay climate strip with ruled panes, and care-note disclosures."
+    ],
+    "motion": "No automatic animation. Tags tilt slightly on hover and filters hide or show tags; transitions and smooth scrolling are removed for prefers-reduced-motion.",
+    "imagery_prompt": "Generate original botanical photography on pale seamless backgrounds: single potted specimens (fern, agave, moth orchid, split-leaf climber) in plain clay pots, soft window light, 4:5 crop with 15% margin, and one wide interior of an iron-and-glass conservatory with misted air (16:9). Green, brass and orchid-pink palette. No labels, text, logos or people. Save as local WebP with alt text; tag text stays live HTML.",
+    "generation_rules": [
+      "Adapt every section to the user's real content and explicit style requests; never reuse the fictional names, species, numbers or dates from this demo.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus, and alt text or aria-labels on art. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links only; ship index.html and .nojekyll with no CDN, remote fonts, backend or package install.",
+      "Keep interactions honest and static; announce filter result counts and never fake purchases, submissions or live data. Label any sample numbers as demo.",
+      "Preserve the page's structural signature (hanging specimen tags and the glasshouse arch) rather than recolouring a generic hero-and-cards landing page."
+    ],
+    "sources": [
+      {
+        "title": "Meise Botanic Garden Herbarium Sheets (dissco.github.io)",
+        "url": "https://dissco.github.io/HerbariumSheets/MeiseBGHerbariumSheets.html",
+        "observed": "Fetched the GitHub Pages guide and read it: a docs-style left navigation tree and Overview, Workflow and Citation headings describing digitised herbarium sheets with permanent specimen URIs. Showed how collections lean on per-specimen records and labels."
+      },
+      {
+        "title": "The Ghini Software Suite (ghini.github.io)",
+        "url": "https://ghini.github.io/",
+        "observed": "Fetched the GitHub Pages site and read it: About, FAQ, Features and Reviews navigation plus a dated post list for botanic-collection software. Informed the accession/collection vocabulary; its visual layout was not used."
+      }
+    ],
+    "preview": "presets/previews/greenhouse-botanical/index.html",
+    "template_source": "presets/previews/greenhouse-botanical/index.html"
+  },
+  {
+    "id": "grimoire",
+    "name": "Grimoire",
+    "summary": "Open-book spellbook and campaign codex on parchment, with a ribbon bookmark, illuminated drop cap, tabbed spell index and disclosure lore entries.",
+    "best_for": [
+      "tabletop campaign codex",
+      "fantasy author or worldbuilding notebook",
+      "spell or ability compendium"
+    ],
+    "palette": {
+      "background": "#2B1A12",
+      "text": "#3A2314",
+      "muted": "#6B4F33",
+      "accent": "#8C2F1B",
+      "surface": "#EFE0BA"
+    },
+    "typography": {
+      "display": "Palatino / Georgia serif; bold, small-caps eyebrows, 40-64px fluid titles with oxblood colour and drop cap",
+      "body": "Georgia serif, 18px, line-height 1.65"
+    },
+    "layout": [
+      "Dark leather backdrop with a two-leaf open book spread: title and intro on the left leaf, original lantern-and-runes frontispiece on the right, with ribbon bookmark and gold double border.",
+      "Tabbed spell index (school filter) inside a parchment panel; ornamented spell cards with inset border and sigil.",
+      "Two-column campaign codex of native disclosures on the dark leather background, collapsing to one column on mobile."
+    ],
+    "motion": "No automatic animation. Filter tabs and native details only; smooth scrolling disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Generate an original ink-and-watercolour frontispiece: a brass lantern surrounded by a ring of invented runes on aged parchment, warm amber glow, 1:1 crop, placed on the right leaf of the book spread. Add 3-6 small spot illustrations (1:1) of spell sigils: shield, flame, footprint, eye. No lettering, logos or real-game symbols in any image.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and style requests; never copy the fictional sample names, places or lore into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alt text; reflow to one column on narrow screens with no horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no Jekyll, CDN, package install or backend.",
+      "Implement only honest static interactions (filters announce result counts; claim or switch controls must not pretend to save or send). Keep native details/summary for disclosures.",
+      "Preserve this layout's structural hierarchy and signature element rather than applying only its colours to a generic card grid.",
+      "Keep decorative art as SVG/CSS or locally generated images; no autoplay motion, and honour prefers-reduced-motion."
+    ],
+    "sources": [
+      {
+        "title": "Grimoire — D&D spell list site on GitHub Pages (ephe.github.io/grimoire)",
+        "url": "https://ephe.github.io/grimoire/",
+        "observed": "Fetched. A very plain Jekyll page: a class row (Bard to Wizard), search-by-name, spell-tier and school filters, then spells in long lists grouped by level with back-to-top links; serif Calluna/Georgia body, light grey/white theme. Showed the primary task (index by tier/school) but no atmosphere."
+      },
+      {
+        "title": "Interactive Fantasy Map with Integrated Wiki (GitHub README)",
+        "url": "https://github.com/fenrir22/interactive-fantasy-map-wiki",
+        "observed": "Fetched README (not a Pages site). Describes a lore wiki paired with a map, marker editor and screenshots; confirmed the codex-plus-index pairing fantasy users expect, which informed the lore entries."
+      }
+    ],
+    "preview": "presets/previews/grimoire/index.html",
+    "template_source": "presets/previews/grimoire/index.html"
+  },
+  {
+    "id": "realm-atlas",
+    "name": "Realm atlas",
+    "summary": "World map and lore wiki: a clickable illustrated map, sticky region index and a lore panel that updates, followed by factions and an ages timeline.",
+    "best_for": [
+      "fantasy worldbuilding wiki",
+      "game setting atlas",
+      "novel or campaign region guide"
+    ],
+    "palette": {
+      "background": "#E8DCBC",
+      "text": "#22302D",
+      "muted": "#51604F",
+      "accent": "#9A3B27",
+      "surface": "#F4ECD2"
+    },
+    "typography": {
+      "display": "Palatino / Georgia serif; italic emphasis, small-caps labels, 42-80px fluid title",
+      "body": "Georgia serif, 17px, line-height 1.6"
+    },
+    "layout": [
+      "Teal masthead with double gold rule, then a split intro statement.",
+      "Three-column atlas: sticky numbered region index, framed vellum map with compass rose and scale bar, and a sticky lore panel with a definition list.",
+      "Factions card row and a vertical ages timeline with disclosure notes; the atlas stacks to one column below ~1060px."
+    ],
+    "motion": "No automatic animation. Selecting a region (button, map shape or keyboard) swaps lore text; map fill transition is removed under prefers-reduced-motion.",
+    "imagery_prompt": "Generate an original hand-inked fantasy map on warm vellum with teal sea and wave hatching, five distinct regions (frozen highland, forest, farmland, marsh, volcanic coast), mountain glyphs, compass rose, 7:5 landscape, placed centre in the atlas frame. Add a banner-style 3:1 band illustration of ink coastline. No readable lettering, logos or real-world map data in images.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and style requests; never copy the fictional sample names, places or lore into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alt text; reflow to one column on narrow screens with no horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no Jekyll, CDN, package install or backend.",
+      "Implement only honest static interactions (filters announce result counts; claim or switch controls must not pretend to save or send). Keep native details/summary for disclosures.",
+      "Preserve this layout's structural hierarchy and signature element rather than applying only its colours to a generic card grid.",
+      "Keep decorative art as SVG/CSS or locally generated images; no autoplay motion, and honour prefers-reduced-motion."
+    ],
+    "sources": [
+      {
+        "title": "Interactive Fantasy Map with Integrated Wiki (GitHub README)",
+        "url": "https://github.com/fenrir22/interactive-fantasy-map-wiki",
+        "observed": "Fetched README for a project pairing a zoomable map (Leaflet CRS.Simple, compass, place search) with wiki pages and a marker editor; confirmed map-plus-article as the core pattern."
+      },
+      {
+        "title": "Grimoire spell list on GitHub Pages (ephe.github.io/grimoire)",
+        "url": "https://ephe.github.io/grimoire/",
+        "observed": "Fetched. Long grouped index with filters by tier and school and back-to-top links; reinforced the value of an always-available index list next to content, which became the sticky region index."
+      }
+    ],
+    "preview": "presets/previews/realm-atlas/index.html",
+    "template_source": "presets/previews/realm-atlas/index.html"
+  },
+  {
+    "id": "tavern-board",
+    "name": "Tavern board",
+    "summary": "Tabletop quest board: pinned paper job notes on dark timber, danger filters, claim toggles, session recaps and a party roster.",
+    "best_for": [
+      "tabletop RPG campaign pages",
+      "quest and session-notes logs",
+      "community game-night or guild boards"
+    ],
+    "palette": {
+      "background": "#2A1B11",
+      "text": "#F4E7CB",
+      "muted": "#CDB88F",
+      "accent": "#E6A63A",
+      "surface": "#4A3220"
+    },
+    "typography": {
+      "display": "Georgia / Palatino serif headlines, 38-74px with dark drop shadow",
+      "body": "Trebuchet MS / Verdana sans, 17px, line-height 1.6"
+    },
+    "layout": [
+      "Tilted wooden tavern sign headline beside a gilded boar signboard illustration.",
+      "Framed cork-and-timber board of pinned paper notes at slight angles, filtered by Safe/Risky/Deadly with a live count.",
+      "Session notes as native disclosure log beside a party roster of token cards."
+    ],
+    "motion": "No automatic animation. Filters and claim toggles are user-triggered only; note tilt is static and removed on mobile.",
+    "imagery_prompt": "Generate an original illustrated gilded-boar tavern sign hanging from an iron bracket, painterly warm lamplight, 6:5 crop, beside the hero headline. Generate 3 round character portrait tokens (1:1): dwarf shieldbearer, human star-reader, halfling forager. No text, signage lettering or logos in images.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and style requests; never copy the fictional sample names, places or lore into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alt text; reflow to one column on narrow screens with no horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no Jekyll, CDN, package install or backend.",
+      "Implement only honest static interactions (filters announce result counts; claim or switch controls must not pretend to save or send). Keep native details/summary for disclosures.",
+      "Preserve this layout's structural hierarchy and signature element rather than applying only its colours to a generic card grid.",
+      "Keep decorative art as SVG/CSS or locally generated images; no autoplay motion, and honour prefers-reduced-motion."
+    ],
+    "sources": [
+      {
+        "title": "RpgNotes — tabletop RPG note-taking PWA (GitHub README)",
+        "url": "https://github.com/qkmaxware/RpgNotes",
+        "observed": "Fetched README: describes a Blazor PWA for tabletop RPG notes. Confirmed that campaigns centre on notes grouped by session and entity; informed the session log and roster."
+      },
+      {
+        "title": "Grimoire spell list on GitHub Pages (ephe.github.io/grimoire)",
+        "url": "https://ephe.github.io/grimoire/",
+        "observed": "Fetched. Filtering by category with simple grouped lists; I reused the idea of fast category filters but replaced the list with tactile pinned notes."
+      }
+    ],
+    "preview": "presets/previews/tavern-board/index.html",
+    "template_source": "presets/previews/tavern-board/index.html"
+  },
+  {
+    "id": "orbital-console",
+    "name": "Orbital console",
+    "summary": "Mission-control dashboard: bracketed HUD panels with orbit diagram, switchable telemetry channels, subsystem status, event log table and crew.",
+    "best_for": [
+      "space or aerospace project pages",
+      "status and monitoring dashboards",
+      "sci-fi game or ARG operations hub"
+    ],
+    "palette": {
+      "background": "#060C13",
+      "text": "#D8E9F3",
+      "muted": "#8FA7B9",
+      "accent": "#4FD8C8",
+      "surface": "#0E1A26"
+    },
+    "typography": {
+      "display": "Segoe UI / system sans uppercase with wide tracking, 32-60px light/bold mix",
+      "body": "Cascadia Mono / Consolas monospace, 15.5px, line-height 1.55"
+    },
+    "layout": [
+      "Top command bar and hero with a mission clock panel.",
+      "12-column dashboard grid: orbit track (7), telemetry with tabs and bars (5), subsystem rows (5), event log table (7), all with bracketed corners.",
+      "Crew cards and a disclosure; collapses to a single column under 1000px."
+    ],
+    "motion": "No automatic animation or live clock. Telemetry tabs swap static sample values on click; no transitions under prefers-reduced-motion.",
+    "imagery_prompt": "Generate an original rendering of a fictional modular space station above a blue-black planet limb, cool teal rim light, 16:9, for a panel background. Add 4 square (1:1) portrait headshots in a flight-suit style of invented crew. No text, mission patches, agency logos or real spacecraft markings.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and style requests; never copy the fictional sample names, places or lore into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alt text; reflow to one column on narrow screens with no horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no Jekyll, CDN, package install or backend.",
+      "Implement only honest static interactions (filters announce result counts; claim or switch controls must not pretend to save or send). Keep native details/summary for disclosures.",
+      "Preserve this layout's structural hierarchy and signature element rather than applying only its colours to a generic card grid.",
+      "Keep decorative art as SVG/CSS or locally generated images; no autoplay motion, and honour prefers-reduced-motion."
+    ],
+    "sources": [
+      {
+        "title": "About Open MCT (nasa.github.io/openmct)",
+        "url": "https://nasa.github.io/openmct/about-open-mct/",
+        "observed": "Fetched. Describes a mission-control framework for visualising telemetry on desktop and mobile; top navigation (Home, About, Getting Started, Documentation, Plugins) over plain article text. Informed the telemetry and data-first vocabulary, not the layout."
+      },
+      {
+        "title": "US Space Mission Control (GitHub README)",
+        "url": "https://github.com/dawsoncodes/us-space-mission-control",
+        "observed": "Search-result listing only (title and description read: a spaceflight dashboard with live countdowns, weather, maps, filters and calendar). The repository page itself was not fetched."
+      }
+    ],
+    "preview": "presets/previews/orbital-console/index.html",
+    "template_source": "presets/previews/orbital-console/index.html"
+  },
+  {
+    "id": "neon-megacity",
+    "name": "Neon megacity",
+    "summary": "Cyberpunk city feed: chamfered magenta/cyan panels, glitch-offset headline, district cards with danger meters, news feed and market table.",
+    "best_for": [
+      "cyberpunk game or fiction setting",
+      "sci-fi worldbuilding hub",
+      "dark synthwave-adjacent portfolios"
+    ],
+    "palette": {
+      "background": "#0A0614",
+      "text": "#F1EAFF",
+      "muted": "#A99BD0",
+      "accent": "#FF2BD6",
+      "surface": "#170D2E"
+    },
+    "typography": {
+      "display": "Impact / Arial Narrow Bold uppercase with magenta/cyan offset shadow, 48-112px fluid",
+      "body": "Segoe UI / system sans, 16px, line-height 1.55"
+    },
+    "layout": [
+      "Ticker strip and angular nav tabs, then a split hero: giant glitch title plus a neon skyline illustration.",
+      "Four chamfered district panels with filters (Corporate/Street) and segmented danger meters.",
+      "Two-column sector feed (timestamped list) and market table with disclosure; one column on mobile."
+    ],
+    "motion": "No flicker, rain or scrolling ticker. Only user-triggered district filtering; reduced-motion removes transitions.",
+    "imagery_prompt": "Generate an original rainy neon megacity at night, towering stacked districts, magenta and cyan signage with no readable letters, wet streets reflecting light, 3:2 landscape for the hero. Add four 4:3 district vignettes: mirror corporate tower, noodle street canyon, spiral arcology, flooded lower market. No text, logos or real brands.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and style requests; never copy the fictional sample names, places or lore into an unrelated site.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alt text; reflow to one column on narrow screens with no horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no Jekyll, CDN, package install or backend.",
+      "Implement only honest static interactions (filters announce result counts; claim or switch controls must not pretend to save or send). Keep native details/summary for disclosures.",
+      "Preserve this layout's structural hierarchy and signature element rather than applying only its colours to a generic card grid.",
+      "Keep decorative art as SVG/CSS or locally generated images; no autoplay motion, and honour prefers-reduced-motion."
+    ],
+    "sources": [
+      {
+        "title": "404 Neon City (GitHub README)",
+        "url": "https://github.com/Starvixhub/404-Neon-City",
+        "observed": "Fetched README: a CSS/JS cyberpunk scene with layered skyline, neon signs, rain, fog and a cursor effect. Confirmed the core vocabulary (skyline, pink/blue/purple neon); I deliberately omitted its animation."
+      },
+      {
+        "title": "Neon City Portfolio (GitHub README)",
+        "url": "https://github.com/rayancheca/neon-city-portfolio",
+        "observed": "Fetched README: a 3D neon city portfolio where buildings stand for Projects, About, Skills, Contact, Resume and Blog, with a terminal. Informed the districts-as-sections metaphor; no 3D used here."
+      }
+    ],
+    "preview": "presets/previews/neon-megacity/index.html",
+    "template_source": "presets/previews/neon-megacity/index.html"
+  },
+  {
+    "id": "xenolog",
+    "name": "Xenolog",
+    "summary": "Retro-futurist alien archive with a sticky catalogue sidebar, specimen plates, a dossier viewer and a toy glyph desk.",
+    "best_for": [
+      "worldbuilding archives",
+      "sci-fi author or tabletop campaign sites",
+      "speculative-biology or alien-species catalogues"
+    ],
+    "palette": {
+      "background": "#EFE6D0",
+      "text": "#1E2B2F",
+      "muted": "#55645F",
+      "accent": "#C2410C",
+      "surface": "#DCE5D6"
+    },
+    "typography": {
+      "display": "Century Gothic / Avant Garde / Trebuchet MS stack, 800 weight, uppercase, +0.06em tracking, 2.6-6rem fluid",
+      "body": "Trebuchet MS / Verdana / system-ui, 17px, line-height 1.6"
+    },
+    "layout": [
+      "Fixed-width teal catalogue sidebar (sticky on desktop, collapses to a top bar on mobile) with numbered section links and an orbital diagram.",
+      "Hero with a giant space-age starburst, then a filterable specimen card grid whose cards have plate illustrations and catalogue numbers.",
+      "Selecting a card fills a two-column dossier (arched plate left, definition list and field note right); dark glyph desk section and a method list with disclosures."
+    ],
+    "motion": "No automatic animation. Chip filtering, card-to-dossier selection and the glyph input are user-triggered; smooth scroll disabled for prefers-reduced-motion.",
+    "imagery_prompt": "Generate original mid-century retro-futurist specimen plates of invented alien creatures and machines: flat gouache-style shapes, thick ink outlines, limited teal, burnt orange, mustard and cream palette on aged-paper background, centered subject with 10% margin. One 4:3 plate per catalogue entry (6 entries), one 1:1 hero starburst/planet illustration, and one 3:4 tall dossier plate. Never include lettering, logos or real species.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and explicit style requests; never copy the fictional names, numbers or sample text into an unrelated site.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and descriptive alt text; reflow to one column on narrow screens with no horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, external fonts, backend or build step.",
+      "Implement only honest static interactions; label any sample number as demo and never fake purchases, uploads, submissions or playback.",
+      "Keep the sticky sidebar catalogue plus filterable cards-to-dossier structure; each entry needs a catalogue number, category and field note, not just a title."
+    ],
+    "sources": [
+      {
+        "title": "Googie design reference (chrislemke.github.io)",
+        "url": "https://chrislemke.github.io/website_designs/examples/Googie.html",
+        "observed": "Fetched with curl (58 KB). Fixed nav, giant hero with boomerang/starburst motifs, alternating light and dark sections, display face Audiowide with Jost body, coral/turquoise/gold palette. Used as a retro-futurist visual vocabulary, not copied."
+      },
+      {
+        "title": "Atomic Age design reference (chrislemke.github.io)",
+        "url": "https://chrislemke.github.io/website_designs/examples/Atomic_Age.html",
+        "observed": "Fetched with curl (76 KB). Sectioned reference page (overview, visuals, colors, type, layout) with Orbitron/Audiowide display, turquoise, pink and gold colors and a space-age optimism tone. Informed the numbered catalogue-section idea."
+      },
+      {
+        "title": "Games on GitHub list (gamearians.github.io)",
+        "url": "https://gamearians.github.io/games/",
+        "observed": "Fetched with curl (131 KB). Long categorised index with a table of contents, h1/h2 category headings and one-line descriptive entries; informed the dense, catalogue-style entry listing for the archive."
+      }
+    ],
+    "preview": "presets/previews/xenolog/index.html",
+    "template_source": "presets/previews/xenolog/index.html"
+  },
+  {
+    "id": "pop-comic",
+    "name": "Pop Comic",
+    "summary": "Loud halftone comic page: a five-panel story spread with speech bubbles, a panel-by-panel reader, character cards and a tabbed shelf.",
+    "best_for": [
+      "comic and webcomic creators",
+      "playful brands, events and launches",
+      "illustrators and zine-style portfolios"
+    ],
+    "palette": {
+      "background": "#FFE14D",
+      "text": "#111111",
+      "muted": "#3B3B3B",
+      "accent": "#E3262E",
+      "surface": "#FFFFFF"
+    },
+    "typography": {
+      "display": "Impact / Arial Black, uppercase, 900 weight, white fill with 3px black stroke and offset shadow, 3.2-8.5rem fluid",
+      "body": "Comic Sans MS / Chalkboard SE / Trebuchet MS, 17px, line-height 1.55"
+    },
+    "layout": [
+      "Yellow Ben-Day dotted page; tilted logo stamp and boxed nav pills with hard shadows.",
+      "Cover split: huge outlined title on a blue halftone panel beside a pink starburst POW panel.",
+      "Asymmetric 6-column comic page grid (one tall panel, one wide, two small, one full-width) with speech bubbles, caption boxes and a Prev/Next reader that highlights the current panel; cast cards, tabbed shelf, bordered FAQ."
+    ],
+    "motion": "No automatic animation. Prev/Next buttons move a highlight ring through panels; tab buttons swap lists; only a 3px press-down on buttons. Smooth scroll disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Generate original pop-art comic illustrations: flat saturated colour (red, blue, yellow, pink, cyan), thick 4-6px black outlines, Ben-Day halftone dots, dynamic action lines. Make a 1:1 cover hero of an original costumed character mid-action, a 16:9 establishing wide panel, a 3:4 tall panel, three 4:3 character portraits and two small 1:1 effect panels. Original characters only, no lettering, speech bubble text, logos or trademarked heroes in the images.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and explicit style requests; never copy the fictional names, numbers or sample text into an unrelated site.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and descriptive alt text; reflow to one column on narrow screens with no horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, external fonts, backend or build step.",
+      "Implement only honest static interactions; label any sample number as demo and never fake purchases, uploads, submissions or playback.",
+      "Keep thick black borders, hard offset shadows, halftone dots and the asymmetric panel grid; speech-bubble text stays real HTML text, not baked into images.",
+      "Keep text on solid white, yellow or blue-with-white-text panels so contrast stays above 4.5:1."
+    ],
+    "sources": [
+      {
+        "title": "Pop Art design reference (chrislemke.github.io)",
+        "url": "https://chrislemke.github.io/website_designs/examples/Pop_Art.html",
+        "observed": "Fetched with curl (65 KB). Bangers/Bungee display fonts, red #ff0033, yellow, blue palette, nav + full hero 'POP ART!', sections for traits and CSS techniques; text explains Ben-Day dots via radial-gradient, 3-6px outlines, comic-panel offset shadows and speech bubbles."
+      },
+      {
+        "title": "Comic Portfolio template (girishlade111.github.io)",
+        "url": "https://girishlade111.github.io/Comic-Portfolio-temtemplate/",
+        "observed": "Fetched with curl (66 KB). Single-file comic-styled personal portfolio with nav, h1 hero 'BUILD! DEPLOY!', sections for origin, powers/skills, missions/projects and connect; yellow, cyan, purple, red palette. Informed section naming only; layout and text are original."
+      }
+    ],
+    "preview": "presets/previews/pop-comic/index.html",
+    "template_source": "presets/previews/pop-comic/index.html"
+  },
+  {
+    "id": "sticker-bomb",
+    "name": "Sticker Bomb",
+    "summary": "Memphis-style maximalist sticker collage: a scattered die-cut sticker hero, filterable tilted sticker-sheet cards and blobby how-it-works steps.",
+    "best_for": [
+      "sticker, print and merch studios",
+      "kids, creator and youth brands",
+      "playful illustrators and pop-up events"
+    ],
+    "palette": {
+      "background": "#FFF1D6",
+      "text": "#2A1650",
+      "muted": "#5A4780",
+      "accent": "#FF3D8B",
+      "surface": "#FFFFFF"
+    },
+    "typography": {
+      "display": "Arial Rounded MT Bold / Segoe UI Black / Arial Black, 900 weight, tight -0.02em tracking, 3-8rem fluid",
+      "body": "Trebuchet MS / Segoe UI, 17px, line-height 1.55"
+    },
+    "layout": [
+      "Cream diagonal-stripe page; hero is a free collage board with a huge headline and five absolutely positioned tilted stickers wearing a white die-cut outline.",
+      "A shuffle button re-rotates the stickers; a tilted black ticker band of PEEL / STICK / REPEAT divides the page.",
+      "Filterable sticker-sheet cards with alternating blob corners, rotation and round price badges; three arch-topped step cards; rounded FAQ disclosures."
+    ],
+    "motion": "No automatic animation. Shuffle button changes sticker rotation with a short transition; filters are user-triggered; transitions removed under prefers-reduced-motion.",
+    "imagery_prompt": "Generate original Memphis-style sticker illustrations on transparent-looking flat backgrounds: smiling suns, squiggles, triangles, lightning bolts, clouds and blobs in hot pink, teal, yellow, violet and orange with a thick white die-cut border and soft drop shadow. Produce one 1:1 hero sticker, four 1:1 supporting stickers and six 16:9 sticker-sheet previews. No lettering, logos or real characters in the images.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and explicit style requests; never copy the fictional names, numbers or sample text into an unrelated site.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and descriptive alt text; reflow to one column on narrow screens with no horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, external fonts, backend or build step.",
+      "Implement only honest static interactions; label any sample number as demo and never fake purchases, uploads, submissions or playback.",
+      "Keep the collage hero with tilted die-cut stickers and the alternating tilted cards; keep the shuffle control optional but never imply a working shop or cart.",
+      "Put text on white, cream or deep-violet surfaces; reserve neon pink and orange for shapes and badges, not body text."
+    ],
+    "sources": [
+      {
+        "title": "Memphis Design reference (chrislemke.github.io)",
+        "url": "https://chrislemke.github.io/website_designs/examples/Memphis_Design.html",
+        "observed": "Fetched with curl (81 KB). Memphis page with Poppins/Fredoka type, hot pink #f725a0, yellow, teal, purple palette, nav, hero and sections for traits, palette, patterns and an interactive 'Play' playground; informed the geometric-shape vocabulary."
+      },
+      {
+        "title": "Dopamine Design reference (chrislemke.github.io)",
+        "url": "https://chrislemke.github.io/website_designs/examples/Dopamine_Design.html",
+        "observed": "Fetched with curl (88 KB). Maximalist joy-driven reference using Quicksand/Fredoka/Baloo 2, saturated pink #ff2d87, violet, blue, yellow and orange, with nav, hero, traits and techniques sections; informed rounded, saturated surfaces."
+      },
+      {
+        "title": "Pop Art design reference (chrislemke.github.io)",
+        "url": "https://chrislemke.github.io/website_designs/examples/Pop_Art.html",
+        "observed": "Fetched with curl (65 KB). Explains thick black outlines, flat fills and offset-shadow card depth that I adapted into white-outlined die-cut stickers and hard-shadow sheet cards."
+      }
+    ],
+    "preview": "presets/previews/sticker-bomb/index.html",
+    "template_source": "presets/previews/sticker-bomb/index.html"
+  },
+  {
+    "id": "retro-arcade",
+    "name": "Retro Arcade",
+    "summary": "8-bit game-jam and indie studio page: arcade cabinet hero, selectable cartridge list with a detail screen, level-map jam schedule and hi-score table.",
+    "best_for": [
+      "game jams and indie game studios",
+      "pixel-art game portfolios",
+      "retro-themed event or hackathon pages"
+    ],
+    "palette": {
+      "background": "#0B0B2B",
+      "text": "#F6F1DC",
+      "muted": "#A9ABD8",
+      "accent": "#FFD400",
+      "surface": "#17174D"
+    },
+    "typography": {
+      "display": "Lucida Console / Courier New monospace, 900 weight, uppercase, +0.08em tracking, hard pink and black text shadows",
+      "body": "Courier New / Consolas, 17px, line-height 1.6"
+    },
+    "layout": [
+      "Navy grid-paper page with a HUD bar (brand, nav, 1UP score) and an 'insert coin' kicker.",
+      "Hero pairs the headline with a framed arcade cabinet containing a pixel-art CRT scene, marquee and joystick details.",
+      "Six clipped-corner cartridge buttons drive a detail screen; a four-world level map for the schedule; a bordered hi-score table; pixel-bordered help disclosures."
+    ],
+    "motion": "No animation. Cartridge selection and buttons respond to click; button press shifts 3px; scanline overlay is static; transitions disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Generate original 16-colour pixel-art game screenshots with crisp square pixels, no anti-aliasing and no dithering noise: a space shooter, a neon maze, a side-scroller, a pseudo-3D racer, a tile puzzle and a castle defence, each 16:10 for cartridge cards, plus one 4:3 hero CRT scene. Palette of deep navy, hot pink, cyan, yellow and green. No text, HUD lettering, logos or existing game characters in the images.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and explicit style requests; never copy the fictional names, numbers or sample text into an unrelated site.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and descriptive alt text; reflow to one column on narrow screens with no horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, external fonts, backend or build step.",
+      "Implement only honest static interactions; label any sample number as demo and never fake purchases, uploads, submissions or playback.",
+      "Keep pixel rendering crisp: SVG shape-rendering crispEdges or image-rendering pixelated; never smooth-scale pixel art.",
+      "Keep the cartridge selector as real buttons with aria-pressed, and the hi-score table as a real table with header cells."
+    ],
+    "sources": [
+      {
+        "title": "Retro Arcade 3-in-1 (haytako.github.io)",
+        "url": "https://haytako.github.io/retro-arcade/",
+        "observed": "Fetched with curl (74 KB). Single HTML page with Press Start 2P pixel font, navy #0a0a1a background, orange/green/cyan accents, 'INSERT COIN TO PLAY' title and a select-game screen with Checkers, Battleship and Pong cards, plus CRT scanline effects."
+      },
+      {
+        "title": "8-Bit design reference (chrislemke.github.io)",
+        "url": "https://chrislemke.github.io/website_designs/examples/8-Bit.html",
+        "observed": "Fetched with curl (42 KB). Pixel-font reference with a SCORE / hearts / LVL / TIME HUD strip, '[ Press Start ]' button and NES-style palette (#B13425, #6B8CFF, #FAC000, #00A800); informed the HUD bar and level numbering."
+      },
+      {
+        "title": "Games on GitHub list (gamearians.github.io)",
+        "url": "https://gamearians.github.io/games/",
+        "observed": "Fetched with curl (131 KB). Large categorised list of game-jam and arcade projects with 'Play it now!' links and a table of contents; informed grouping games by genre."
+      }
+    ],
+    "preview": "presets/previews/retro-arcade/index.html",
+    "template_source": "presets/previews/retro-arcade/index.html"
+  },
+  {
+    "id": "zine-punk",
+    "name": "Punk zine",
+    "summary": "Photocopy-punk zine with torn paper edges, ransom-note headline blocks, taped and tilted panels, a flip-through issue reader and hard offset shadows in black, hot pink, yellow and blue.",
+    "best_for": [
+      "zines and DIY publications",
+      "punk bands and local scenes",
+      "independent print collectives"
+    ],
+    "palette": {
+      "background": "#EDE8DC",
+      "text": "#111111",
+      "muted": "#4A463E",
+      "accent": "#FF3EA5",
+      "surface": "#FFE600"
+    },
+    "typography": {
+      "display": "Impact/Arial Black uppercase, up to 120px fluid, in tilted filled blocks",
+      "body": "Courier New monospace 18px, line-height 1.6"
+    },
+    "layout": [
+      "Torn-edge paper sheet on a speckled grey desk, with tilted tab links and a bordered cover carrying an issue sticker.",
+      "Ransom-note title built from rotated coloured word blocks over a high-contrast photocopied image strip.",
+      "Six-column panel collage with taped panels at different spans and tilts, a contents list, a prev/next page reader, make-one rules and boxed FAQ."
+    ],
+    "motion": "No automatic animation. Prev/next buttons change page text on click only; all transitions are removed for prefers-reduced-motion.",
+    "imagery_prompt": "Generate original black-and-white photocopied images: a gig crowd silhouette (3:1 strip), hands cutting paper with scissors (4:3), and a stapled folded zine on a desk (4:3). High contrast, crushed blacks, toner speckle, grain, slight misregistration; optional single pink or yellow spot colour. No text, lettering, band names, logos or recognisable faces. Save as local WebP with alt text.",
+    "generation_rules": [
+      "Adapt every section to the user's real content and explicit style requests; never reuse the fictional names, species, numbers or dates from this demo.",
+      "Use semantic HTML with one h1, skip link, visible keyboard focus, and alt text or aria-labels on art. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links only; ship index.html and .nojekyll with no CDN, remote fonts, backend or package install.",
+      "Keep interactions honest and static; announce filter result counts and never fake purchases, submissions or live data. Label any sample numbers as demo.",
+      "Preserve the page's structural signature (torn edge, ransom-note headline and taped panel collage) rather than recolouring a generic hero-and-cards landing page."
+    ],
+    "sources": [
+      {
+        "title": "DIY PUNK -- A Design Manifesto (chrislemke.github.io)",
+        "url": "https://chrislemke.github.io/website_designs/examples/DIY_Punk.html",
+        "observed": "Fetched the GitHub Pages page and read it: a 'cut & paste since 1977' manifesto with a ticker line 'NO FUTURE • DO IT YOURSELF', Staatliches/Bungee/Permanent Marker type, and a Xerox palette (#0a0a0a, #f5f0e8, #c8c3b8). Informed the paper tone and tilt-and-tape idea; no text or code copied."
+      },
+      {
+        "title": "Zine Documentation (zineland.github.io)",
+        "url": "https://zineland.github.io/",
+        "observed": "Fetched the GitHub Pages docs of a magazine-builder tool and read it: a cream #faf8f3 page, left sidebar of dated entries and an article list. Used as a contrast showing a clean zine site, which this template deliberately breaks with tape, tilt and torn edges."
+      }
+    ],
+    "preview": "presets/previews/zine-punk/index.html",
+    "template_source": "presets/previews/zine-punk/index.html"
+  },
+  {
+    "id": "synth-radio",
+    "name": "Synth Radio",
+    "summary": "Synthwave band and late-night radio show page: striped CSS sunset over a perspective grid, an interactive FM dial that tunes sample episodes, tracklist and schedule.",
+    "best_for": [
+      "synthwave and electronic bands",
+      "radio shows, DJs and podcasts",
+      "music release or night-event pages"
+    ],
+    "palette": {
+      "background": "#12062B",
+      "text": "#F6EAFF",
+      "muted": "#BCA6DE",
+      "accent": "#FF3E9A",
+      "surface": "#241049"
+    },
+    "typography": {
+      "display": "Eurostile / Bank Gothic / Segoe UI, 800 weight, uppercase italic hero with pink-orange gradient fill and glow, 2.8-7.4rem fluid",
+      "body": "Segoe UI / Helvetica Neue / system-ui, 17px, line-height 1.65"
+    },
+    "layout": [
+      "Centered hero: gradient-filled italic title above a striped CSS sunset, sinking into a perspective neon-grid floor.",
+      "A tuner panel with a tick-mark frequency dial, range slider, big orange readout and the matching episode, or 'Static' between stations.",
+      "Two-column music section (numbered tracklist beside square cover art), schedule table and info disclosures."
+    ],
+    "motion": "No automatic animation and no audio. The dial updates only when the user moves the slider; sunset and grid are static CSS; smooth scroll disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Generate an original synthwave album cover: a 1:1 striped gradient sunset (yellow to hot pink) over a magenta perspective grid with a palm silhouette, plus a 21:9 hero panorama of a night highway towards a glowing sun, and three 16:9 episode artworks (rainy chrome street, arcade neon, dawn pads). Deep violet, magenta, cyan and orange palette. No text, logos, band names or real artists in the images.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and explicit style requests; never copy the fictional names, numbers or sample text into an unrelated site.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and descriptive alt text; reflow to one column on narrow screens with no horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, external fonts, backend or build step.",
+      "Implement only honest static interactions; label any sample number as demo and never fake purchases, uploads, submissions or playback.",
+      "Keep the sunset-and-grid hero and the interactive dial; include no autoplaying audio, and do not claim streams or live shows unless real links are supplied.",
+      "Keep glow effects on headings and borders only; body copy stays pale on deep violet for contrast."
+    ],
+    "sources": [
+      {
+        "title": "Synthwave design reference (chrislemke.github.io)",
+        "url": "https://chrislemke.github.io/website_designs/examples/Synthwave.html",
+        "observed": "Fetched with curl (62 KB). Neon page with Audiowide/Orbitron/Outfit type, pink #ff2e97, purple, cyan and orange palette, fixed nav, 'Synthwave' hero and trait, palette and rules sections; informed the sunset/neon vocabulary."
+      },
+      {
+        "title": "SYNTHGEN 2000 (tirdadc.github.io)",
+        "url": "https://tirdadc.github.io/synthwave/",
+        "observed": "Fetched with curl (2.3 KB HTML). Minimal one-screen synthwave toy: logo, one band-name output, Generate and Stop Music buttons and a credits line; its HTML autoplays a music loop, which this template deliberately avoids."
+      },
+      {
+        "title": "Retro Arcade 3-in-1 (haytako.github.io)",
+        "url": "https://haytako.github.io/retro-arcade/",
+        "observed": "Fetched with curl (74 KB). CRT/scanline treatment and neon-on-navy accent usage informed glow restraint; the select-screen pattern informed the single-control tune interaction."
+      }
+    ],
+    "preview": "presets/previews/synth-radio/index.html",
+    "template_source": "presets/previews/synth-radio/index.html"
+  },
+  {
+    "id": "brutalist-index",
+    "name": "Brutalist index",
+    "summary": "A raw typographic index: giant numbered rows, heavy borders, default system faces, one orange accent and a button that outlines the page's own structure.",
+    "best_for": [
+      "zine, press or label indexes",
+      "essay or project archives",
+      "artist and studio directories"
+    ],
+    "palette": {
+      "background": "#D8D8D2",
+      "text": "#000000",
+      "muted": "#3B3B38",
+      "accent": "#FF3B00",
+      "surface": "#FFFFFF"
+    },
+    "typography": {
+      "display": "Arial/Helvetica black, 900, uppercase, -0.05 to -0.07em tracking, up to 19rem for the title",
+      "body": "Courier New monospace 18px/1.35"
+    },
+    "layout": [
+      "Full-width heavy-bordered bands: demo strip, bordered nav, a viewport-wide uppercase title that fills the width.",
+      "Index of ten rows in a number / title / description / year grid; hover inverts to black with an orange number; sort buttons (number, A-Z, Z-A) reorder the list in place.",
+      "Two-column entry blocks with a target highlight, a three-column colophon, and a Show structure toggle that outlines every landmark; rows collapse to two columns below 760px."
+    ],
+    "motion": "None by default. Sorting and the structure outline are instant, user-triggered changes; transitions and smooth scroll are disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Mostly none: the template is typographic. If an image is requested, generate a high-contrast black and white concrete wall or architectural detail photograph, 4:3, coarse grain, one flat orange (#FF3B00) panel for emphasis; no text, logos or watermarks in any image. Place it inside a hard-bordered box, never as full-bleed decoration.",
+    "generation_rules": [
+      "Adapt sections to the user's real content and explicit style requests; do not copy the fictional sample people, places or entries into an unrelated site.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and descriptive alt text. Reflow to one column on narrow screens without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, Jekyll, package install or backend.",
+      "Implement only honest static interactions; never fake form submissions, messages or success states, and label sample numbers as demo.",
+      "Keep type heavy, borders 3px or 6px, no shadows, gradients or rounded corners; colour limited to grey, black, white and one orange.",
+      "Every row in the index must link to a real entry; do not point links at missing anchors.",
+      "Preserve the huge numbered index rows as the primary reading task; do not turn them into cards."
+    ],
+    "sources": [
+      {
+        "title": "Brutalist.Website (brutalist.website)",
+        "url": "https://brutalist.website/",
+        "observed": "Fetched with curl (HTTP 200) plus its CSS bundle. A Next.js site with an h1 and a numbered list (Layout, Typography, Interaction, Colours, About) via CSS counters, display list font-size calc(8vw + 1rem), uppercase headings, link hover inverts to black on grey #f0f0f0, a fixed footer toolbar with a font select and size slider. Hosting not verified as GitHub Pages; used for structure only."
+      },
+      {
+        "title": "Brutalist Web Design reference (chrislemke)",
+        "url": "https://chrislemke.github.io/website_designs/designs/Brutalist_Web_Design.html",
+        "observed": "Fetched with curl (HTTP 200, ~98 KB) on GitHub Pages. States the genre: raw, exposed HTML structure, default fonts, unstyled links, visible document flow, honest function over ornament; contrasts pure brutalism with colourful neubrutalism. Informed my structure-outline toggle and plain type."
+      }
+    ],
+    "preview": "presets/previews/brutalist-index/index.html",
+    "template_source": "presets/previews/brutalist-index/index.html"
+  },
+  {
+    "id": "phrack-zine",
+    "name": "Plain-text zine",
+    "summary": "Underground e-zine in 80-column monospace: text-art masthead, dotted-leader issue index, articles as openable plain-text blocks and a letters column.",
+    "best_for": [
+      "zines and newsletters",
+      "long-form writing and essays",
+      "hobbyist and maker collectives"
+    ],
+    "palette": {
+      "background": "#0E0E10",
+      "text": "#DAD7CC",
+      "muted": "#A19E92",
+      "accent": "#FF6A5C",
+      "surface": "#1A1A1F"
+    },
+    "typography": {
+      "display": "Courier New / Liberation Mono, bold, tracked, 1.5-2.6rem; masthead in box-drawing text art",
+      "body": "Courier New, monospace; 15px, line-height 1.55, max 88ch"
+    },
+    "layout": [
+      "Single narrow column capped at 88 characters like a printed text file, with a boxed ASCII masthead and issue metadata bar.",
+      "Table of contents as an ordered list with phile numbers, dotted-underline titles and right-aligned author names.",
+      "Articles as native details blocks containing pre-wrapped plain text; filter buttons narrow them by category and announce the count.",
+      "Letters column and staff list in two small pre blocks and a definition list."
+    ],
+    "motion": "No automatic animation, no blinking or marquee. User-triggered filtering or tabs only; smooth scrolling and transitions are disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Optional only: a grainy black-and-white photocopy still life of a bench with a soldering iron, cables and a serial adapter, high contrast, 4:3, used small beside the masthead. Never put text, logos or screenshots in images.",
+    "generation_rules": [
+      "Adapt every section to the user's real content; never reuse the fictional handles, crews or sample articles from this template.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and readable contrast on every text/background pair; reflow to one column at 390px without horizontal page overflow.",
+      "Use local files and relative links only; ship index.html and .nojekyll with no CDN, external font or backend. Text-art stays decorative (aria-hidden) with the real title in the h1.",
+      "Keep interactions honest and static: filters announce the visible count, no fake forms, downloads, logins or counters presented as real. Label sample numbers as demo.",
+      "Keep articles as real text, never as images of text."
+    ],
+    "sources": [
+      {
+        "title": "Phrack archive: issue 1, phile 1 (plain text)",
+        "url": "https://archives.phrack.org/issues/1/1.txt",
+        "observed": "Read the raw text file: a YAML-style title/author header, a centered hand-drawn ASCII masthead with a phone line, an issue/volume line, then an 80-column paragraph body with a bracketed contents list and an all-caps sign-off."
+      },
+      {
+        "title": "Phrack Magazine home page",
+        "url": "https://phrack.org/",
+        "observed": "Fetched the live HTML: Courier New 14px on a dark body, an ASCII-art intro rendered in white-space:pre blocks with per-line colour classes, and a button-led entry to the magazine rather than a conventional hero."
+      },
+      {
+        "title": "16colors ANSI/ASCII art archive",
+        "url": "https://16colo.rs/",
+        "observed": "Fetched the live HTML: block-character branding in the header, a short top navigation (browse, packs, e-mags, artists, groups, search) and year filters 1990 onward, showing how text-art archives organise by year and group."
+      }
+    ],
+    "preview": "presets/previews/phrack-zine/index.html",
+    "template_source": "presets/previews/phrack-zine/index.html"
+  },
+  {
+    "id": "bbs-door",
+    "name": "BBS main menu",
+    "summary": "Dial-up bulletin board main menu in EGA blue and cyan: hotkey list that switches message boards, door games, file library and caller list.",
+    "best_for": [
+      "community boards and clubs",
+      "game or hobby hubs",
+      "retro-themed event pages"
+    ],
+    "palette": {
+      "background": "#00007A",
+      "text": "#E8E8E8",
+      "muted": "#B8C4FF",
+      "accent": "#FFFF55",
+      "surface": "#0A0A9A"
+    },
+    "typography": {
+      "display": "Lucida Console / Courier New, uppercase, 1.6-2.8rem, tracked; half-block text-art logo",
+      "body": "Lucida Console / Courier New, 16px, line-height 1.5"
+    },
+    "layout": [
+      "Fixed-width screen with a double-line cyan border, grey status bars top and bottom like a terminal door.",
+      "Two-panel grid: left hotkey main menu (letter in yellow brackets), right a single area panel swapped by key press or button.",
+      "Area panels: message-board table, door-game cards, file listing, who-is-online table and sysop notes.",
+      "Command-prompt block explains the hotkeys; bulletins list follows."
+    ],
+    "motion": "No automatic animation. Panels swap instantly on key press or click; nothing blinks. Transitions disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Optional only: a 16-colour dithered pixel-art harbour at night in EGA palette (blue, cyan, magenta, yellow), 16:5 banner, crisp pixel edges, no text, logos or lettering.",
+    "generation_rules": [
+      "Adapt every section to the user's real content; never reuse the fictional handles, crews or sample articles from this template.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and readable contrast on every text/background pair; reflow to one column at 390px without horizontal page overflow.",
+      "Use local files and relative links only; ship index.html and .nojekyll with no CDN, external font or backend. Text-art stays decorative (aria-hidden) with the real title in the h1.",
+      "Keep interactions honest and static: filters announce the visible count, no fake forms, downloads, logins or counters presented as real. Label sample numbers as demo.",
+      "Every hotkey action must also work with a visible button for non-keyboard users."
+    ],
+    "sources": [
+      {
+        "title": "16colors ANSI/ASCII art archive",
+        "url": "https://16colo.rs/",
+        "observed": "Fetched the live HTML: header of block characters, a compact browse/packs/e-mags/artists/groups nav, per-year filters 1990-2008 and filename/artist/filetype search fields, which informed the box and block vocabulary."
+      },
+      {
+        "title": "Telnet BBS Guide",
+        "url": "https://www.telnetbbsguide.com/",
+        "observed": "Fetched the live page (109 KB HTML, mostly script and chart code): a directory of still-running telnet BBSes with software popularity charts, confirming boards are still listed by node, software and category."
+      },
+      {
+        "title": "ooCities archive: /area51 directory",
+        "url": "https://www.oocities.org/area51/",
+        "observed": "Fetched an Apache-style 'Index of /area51' page with parent-directory link, numeric folder rows and a museum notice, used for the file-library listing pattern."
+      }
+    ],
+    "preview": "presets/previews/bbs-door/index.html",
+    "template_source": "presets/previews/bbs-door/index.html"
+  },
+  {
+    "id": "geocities-cyber",
+    "name": "Cyber home page",
+    "summary": "Mid-90s personal home page of a fictional cyberpunk netizen: tiled starfield background, ridge borders, bevelled grey buttons, visitor counter, webring and construction banner.",
+    "best_for": [
+      "personal homepages",
+      "fan and hobby sites",
+      "nostalgic portfolios"
+    ],
+    "palette": {
+      "background": "#000033",
+      "text": "#FFFFFF",
+      "muted": "#C9D3FF",
+      "accent": "#00FF66",
+      "surface": "#101070"
+    },
+    "typography": {
+      "display": "Comic Sans MS / Trebuchet MS bold, 1.7-3rem, green with hard offset shadow",
+      "body": "Times New Roman serif, 18px, line-height 1.5"
+    },
+    "layout": [
+      "Centered 820px page in a ridge border over a tiled dot-pattern background, topped with a hazard-stripe under-construction banner.",
+      "Two columns: left sidebar of bevelled grey buttons, demo visitor counter and best-viewed note; right column of content sections.",
+      "Projects table with category buttons, cool-links list with a webring box (previous/random/next), and a static guestbook of demo entries.",
+      "Rainbow-striped horizontal rules and a copyright footer."
+    ],
+    "motion": "No automatic animation, no blinking or marquee. User-triggered filtering or tabs only; smooth scrolling and transitions are disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Optional only: small 88x31-style and pixel-art GIF-look badges drawn as flat 16-colour illustrations (floppy disk, globe, circuit moth), 1:1 and 88:31, crisp edges, no text, logos or real brand marks.",
+    "generation_rules": [
+      "Adapt every section to the user's real content; never reuse the fictional handles, crews or sample articles from this template.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and readable contrast on every text/background pair; reflow to one column at 390px without horizontal page overflow.",
+      "Use local files and relative links only; ship index.html and .nojekyll with no CDN, external font or backend. Text-art stays decorative (aria-hidden) with the real title in the h1.",
+      "Keep interactions honest and static: filters announce the visible count, no fake forms, downloads, logins or counters presented as real. Label sample numbers as demo.",
+      "Static only: the counter and guestbook are visibly demo and nothing is stored or submitted."
+    ],
+    "sources": [
+      {
+        "title": "The Geocities Gallery (restorativland)",
+        "url": "https://geocities.restorativland.org/",
+        "observed": "Fetched the live page: a restored gallery of archived Geocities sites sorted by neighbourhood (Area51 science fiction, Athens, BourbonStreet and so on), each with a theme blurb and an added date from 1995-1997."
+      },
+      {
+        "title": "ooCities archive: /area51 directory",
+        "url": "https://www.oocities.org/area51/",
+        "observed": "Fetched the live directory listing of preserved Area51 user folders with a museum notice that pages were saved from Geocities in Oct-2009, showing the neighbourhood-folder structure."
+      },
+      {
+        "title": "wiby.me small-web search",
+        "url": "https://wiby.me/",
+        "observed": "Fetched the live page (1.5 KB): a deliberately minimal hand-written page with a centred search box and tiny text links, illustrating the plain, table-era small-web look."
+      }
+    ],
+    "preview": "presets/previews/geocities-cyber/index.html",
+    "template_source": "presets/previews/geocities-cyber/index.html"
+  },
+  {
+    "id": "phosphor-lab",
+    "name": "Phosphor crew page",
+    "summary": "Green-phosphor CRT crew page in a beige monitor case: scanlines, vignette, command-style headings, ls-style file listing, roster and message of the day.",
+    "best_for": [
+      "hacker-crew or collective pages",
+      "dev tool and lab sites",
+      "retro-computing projects"
+    ],
+    "palette": {
+      "background": "#020A04",
+      "text": "#4DFF7C",
+      "muted": "#2FBF5C",
+      "accent": "#C8FFD6",
+      "surface": "#06180B"
+    },
+    "typography": {
+      "display": "Lucida Console / Consolas, 2.2-4.6rem tight, pale green with soft glow",
+      "body": "Lucida Console / Consolas, 16px, line-height 1.55"
+    },
+    "layout": [
+      "Rounded beige monitor casing with a power LED and model badge around a curved dark tube with scanline and vignette overlay.",
+      "Boot-log header, big handle with a block cursor, and primary navigation as command-style buttons.",
+      "File listing as an ls -l table with permissions, size and date plus extension filters; roster as a who-style table beside a message of the day.",
+      "Short log of projects in three bordered cards and a join section."
+    ],
+    "motion": "No automatic animation, no blinking or marquee. User-triggered filtering or tabs only; smooth scrolling and transitions are disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Optional only: a macro photo-style render of a green phosphor CRT screen showing soft scanlines and a blurred glowing text grid, 16:9, no readable text, logos or brand marks.",
+    "generation_rules": [
+      "Adapt every section to the user's real content; never reuse the fictional handles, crews or sample articles from this template.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and readable contrast on every text/background pair; reflow to one column at 390px without horizontal page overflow.",
+      "Use local files and relative links only; ship index.html and .nojekyll with no CDN, external font or backend. Text-art stays decorative (aria-hidden) with the real title in the h1.",
+      "Keep interactions honest and static: filters announce the visible count, no fake forms, downloads, logins or counters presented as real. Label sample numbers as demo.",
+      "The monitor casing and effects are decoration only: never lower text contrast below 4.5:1 or place essential content in the bezel."
+    ],
+    "sources": [
+      {
+        "title": "cool-retro-term repository",
+        "url": "https://github.com/Swordfish90/cool-retro-term",
+        "observed": "Fetched the live repository page (244 KB): a terminal emulator project whose README describes screen curvature, scanlines, glow and flicker presets, which informed the bezel, scanline overlay and vignette."
+      },
+      {
+        "title": "Phrack Magazine home page",
+        "url": "https://phrack.org/",
+        "observed": "Fetched the live HTML: Courier New 14px monospace on dark, ASCII art in pre-formatted blocks with colour classes, entry via a button, showing monospace-only hierarchy."
+      },
+      {
+        "title": "rfdslabs/demoscene README",
+        "url": "https://github.com/rfdslabs/demoscene",
+        "observed": "Read the repository search excerpt: amber CRT intro and typed terminal session examples with sine scrollers, supporting the idea of a boot log plus typed-command presentation."
+      }
+    ],
+    "preview": "presets/previews/phosphor-lab/index.html",
+    "template_source": "presets/previews/phosphor-lab/index.html"
+  },
+  {
+    "id": "scene-nfo",
+    "name": "Demoscene NFO page",
+    "summary": "Demoscene-style crew sheet: block-character logo in a double frame, rainbow raster bars, filterable release list, key/value crew info, greetings and members.",
+    "best_for": [
+      "demo and music-disk groups",
+      "game-jam and tracker collectives",
+      "indie release pages"
+    ],
+    "palette": {
+      "background": "#09000F",
+      "text": "#ECE6F7",
+      "muted": "#B5A9CF",
+      "accent": "#FF2E88",
+      "surface": "#17062A"
+    },
+    "typography": {
+      "display": "Cascadia Mono / Lucida Console, uppercase tracked, 1.5-2.4rem; block-character logo",
+      "body": "Cascadia Mono / Courier New, 15px, line-height 1.55"
+    },
+    "layout": [
+      "Full-width rainbow raster bars top and bottom with a centered NFO sheet in a double pink border, topped by a block-character logo.",
+      "Release list as a table with colour-coded type badges, filter buttons and a visible result count.",
+      "Crew info as a key/value definition list beside a boxed statement; greetings as justified paragraph with highlighted handles; members as a compact bullet row."
+    ],
+    "motion": "No automatic animation, no blinking or marquee. User-triggered filtering or tabs only; smooth scrolling and transitions are disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Optional only: an abstract synthetic copper-bar and plasma-style rasterised gradient render in magenta, orange, yellow, green and cyan stripes on near-black, 3:1 banner, no text, logos or brand marks.",
+    "generation_rules": [
+      "Adapt every section to the user's real content; never reuse the fictional handles, crews or sample articles from this template.",
+      "Use semantic HTML with one h1, a skip link, visible keyboard focus and readable contrast on every text/background pair; reflow to one column at 390px without horizontal page overflow.",
+      "Use local files and relative links only; ship index.html and .nojekyll with no CDN, external font or backend. Text-art stays decorative (aria-hidden) with the real title in the h1.",
+      "Keep interactions honest and static: filters announce the visible count, no fake forms, downloads, logins or counters presented as real. Label sample numbers as demo.",
+      "Releases are creative works (intros, music disks, art packs); never list cracked software or tools to evade protection."
+    ],
+    "sources": [
+      {
+        "title": "rfdslabs/demoscene: old-school intros",
+        "url": "https://github.com/rfdslabs/demoscene",
+        "observed": "Read the repository search excerpt: rainbow ASCII logos with sine scrollers, copper bars, plasma, starfields and a cracktro creator, and a 'release it' step that points to Demozoo and Pouet."
+      },
+      {
+        "title": "NFO Studio repository",
+        "url": "https://github.com/nitestryker/nfo_studio",
+        "observed": "Read the repository search excerpt: lists NFO building blocks (banners, info tables, boxes, dividers, greets, release name, group fields) and CP437 box-drawing characters, used for the sheet structure."
+      },
+      {
+        "title": "Demozoo scener page listing",
+        "url": "https://demozoo.org/sceners/513/",
+        "observed": "Read the search excerpt of a listing of productions with graphics credits and dates, showing release lists as title, group and month rows."
+      }
+    ],
+    "preview": "presets/previews/scene-nfo/index.html",
+    "template_source": "presets/previews/scene-nfo/index.html"
+  },
+  {
+    "id": "model-card",
+    "name": "Model card",
+    "summary": "Open model release page with sticky contents rail, metadata stamp, benchmark table with inline bars, tabbed usage snippet and limitations.",
+    "best_for": [
+      "open model releases",
+      "research project documentation",
+      "small-model or fine-tune announcements"
+    ],
+    "palette": {
+      "background": "#F7F4EE",
+      "text": "#1E1B18",
+      "muted": "#6A645B",
+      "accent": "#C4491C",
+      "surface": "#ECE6DA"
+    },
+    "typography": {
+      "display": "Georgia, serif; bold, tight tracking, 42-84px fluid",
+      "body": "system-ui, sans-serif 16px/1.6; monospace for code and tags"
+    },
+    "layout": [
+      "Two-column shell: sticky 'On this page' rail left, long-form documentation column right; rail becomes a wrapped link row on mobile.",
+      "Hero with breadcrumb, serif model name, monospace tag chips and a four-cell boxed stat stamp.",
+      "Benchmark table with inline bar cells, tabbed copyable usage snippet, twin Intended / Not intended boxes and FAQ disclosures."
+    ],
+    "motion": "No automatic animation. Tabs, copy button and scroll-spy highlight are user-triggered; smooth scrolling is disabled under prefers-reduced-motion.",
+    "imagery_prompt": "Generate one restrained editorial illustration of an abstract flowering larkspur stem built from fine ruled lines on warm paper, burnt-orange accent, flat ink style, 3:2, placed as an optional header image to the right of the model name. Optional second 1:1 botanical diagram for the logo slot. No text, numbers, charts or logos in images.",
+    "sources": [
+      {
+        "title": "Hugging Face Hub: Model Cards documentation",
+        "url": "https://huggingface.co/docs/hub/model-cards",
+        "observed": "Fetched live: a long-form docs page whose headings (What are Model Cards, Model card metadata, Evaluation Results, CO2 Emissions, Linking a Paper, Model Card text) show the standard card sections; side navigation plus on-page contents."
+      },
+      {
+        "title": "LiveCodeBench project page",
+        "url": "https://livecodebench.github.io/",
+        "observed": "Fetched live: a single-page research release with title, one-sentence summary, then Introduction, Contamination, Model Comparisons, Submitting Custom Models and BibTeX sections; one nav, no tables."
+      },
+      {
+        "title": "Swallow LLM Leaderboard about page",
+        "url": "https://swallow-llm.github.io/leaderboard/about.en.html",
+        "observed": "Fetched live: documentation sections About, Change log, Evaluation tasks, Evaluation tools, Evaluated models and Acknowledgements, with one data table and a licence statement."
+      }
+    ],
+    "generation_rules": [
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column at 390px without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, package install, backend or external fonts.",
+      "Implement only honest static interactions (filters, sort, copy, tabs) and announce result counts. Never show fake live data, fake accounts, or invented metrics as real; label sample numbers as demo or replace with the user's real figures.",
+      "Preserve this layout's structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "preview": "presets/previews/model-card/index.html",
+    "template_source": "presets/previews/model-card/index.html"
+  },
+  {
+    "id": "agent-studio",
+    "name": "Agent studio",
+    "summary": "Dark AI-agent product page built around a static chat transcript, tool-call cards, a numbered run trace and a filterable toolbox.",
+    "best_for": [
+      "AI agent or assistant products",
+      "tool-use demos and research prototypes",
+      "developer-facing automation tools"
+    ],
+    "palette": {
+      "background": "#0E1513",
+      "text": "#E7EFEA",
+      "muted": "#94A79E",
+      "accent": "#F0B544",
+      "surface": "#17221F"
+    },
+    "typography": {
+      "display": "system-ui sans-serif; 700 weight, tight tracking, 40-80px fluid",
+      "body": "system-ui 16px/1.6; monospace for tool calls and run labels"
+    },
+    "layout": [
+      "Split hero: bold headline and calls to action left, framed console window with user message, tool-call cards and agent reply right.",
+      "Numbered vertical trace of the run beside a second console showing the approval step.",
+      "Six-cell capability grid with line icons, filterable toolbox cards (read-only vs needs approval), guardrail pair and FAQ."
+    ],
+    "motion": "No autoplay or typing animation; transcript is static text. Toolbox filter is user-triggered and announces counts; scrolling is not animated under prefers-reduced-motion.",
+    "imagery_prompt": "Generate a dark matte-green abstract still: a single lit amber candle-wick flame as a minimalist vector-realistic object on charcoal green backdrop, soft rim light, 16:10, placed behind or beside the hero console. Optional 1:1 amber line drawing of a workbench for the guardrails section. No text, UI screenshots, faces or logos in images.",
+    "sources": [
+      {
+        "title": "agent-eval-lab live demo",
+        "url": "https://poojabhather99.github.io/agent-eval-lab/",
+        "observed": "Fetched live: a small monospace page with a heading, an 'Ask the agent' input, a ReAct loop shown as thought, tool call, observation and final answer, plus a runner for 15 evaluation cases."
+      },
+      {
+        "title": "ReAct pattern entry, Agent Patterns Catalog",
+        "url": "https://agentpatternscatalog.github.io/patterns/patterns/react.html",
+        "observed": "Search result read (not fetched in full): describes interleaving one thought, one tool call and one observation per step, which informed the stepwise run trace."
+      },
+      {
+        "title": "Hiflylabs agent-demo repository README",
+        "url": "https://github.com/Hiflylabs/agent-demo",
+        "observed": "Search result read (not fetched in full): demo of classification, tool-calling and answering stages for agent frameworks, informing the plan, search, read, answer structure."
+      }
+    ],
+    "generation_rules": [
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column at 390px without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, package install, backend or external fonts.",
+      "Implement only honest static interactions (filters, sort, copy, tabs) and announce result counts. Never show fake live data, fake accounts, or invented metrics as real; label sample numbers as demo or replace with the user's real figures.",
+      "Preserve this layout's structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "preview": "presets/previews/agent-studio/index.html",
+    "template_source": "presets/previews/agent-studio/index.html"
+  },
+  {
+    "id": "arena-board",
+    "name": "Arena board",
+    "summary": "Model leaderboard with a bold scoreboard hero, sortable and filterable ranking table with interval whiskers, head-to-head matrix and methodology notes.",
+    "best_for": [
+      "model evaluation leaderboards",
+      "benchmark results pages",
+      "comparison of tools or systems"
+    ],
+    "palette": {
+      "background": "#F6F8FC",
+      "text": "#0B1220",
+      "muted": "#566074",
+      "accent": "#1553FF",
+      "surface": "#E4EAF6"
+    },
+    "typography": {
+      "display": "Impact / Arial Narrow condensed uppercase; 48-128px fluid",
+      "body": "system-ui 16px/1.55; monospace tabular numbers"
+    },
+    "layout": [
+      "Scoreboard hero: giant condensed question headline beside a three-step podium in lime and pale blue.",
+      "Ranked table with sortable header buttons, category and licence selects and interval whiskers; scrolls horizontally in a bordered frame on mobile.",
+      "Head-to-head win matrix shaded by share, numbered methodology notes and FAQ disclosures."
+    ],
+    "motion": "No automatic animation. Sorting and filtering are user-triggered, announce results in a status region, and smooth scrolling is off under prefers-reduced-motion.",
+    "imagery_prompt": "Generate a bold flat vector-style graphic of an abstract three-step podium in cobalt blue and acid lime on pale blue-white, geometric, 3:2, used beside the hero headline. No text, numerals, engraved trophies, logos or real people in images.",
+    "sources": [
+      {
+        "title": "Swallow LLM Leaderboard about page",
+        "url": "https://swallow-llm.github.io/leaderboard/about.en.html",
+        "observed": "Fetched live: leaderboard documentation with About, Change log, Evaluation tasks and Evaluated models sections and one table; results presented as bar, radar and scatter charts under a CC-BY licence."
+      },
+      {
+        "title": "LLM Benchmark Dashboard",
+        "url": "https://techsocialnetwork.github.io/llm-benchmark-dashboard/",
+        "observed": "Fetched live: dashboard with stat tiles (Total Models, Best Overall), MMLU and HumanEval chart sections, four select filters, a search input and a model comparison tool."
+      },
+      {
+        "title": "LiveCodeBench project page",
+        "url": "https://livecodebench.github.io/",
+        "observed": "Fetched live: model-comparison text, open versus closed model discussion and a note on submitting models by pull request."
+      }
+    ],
+    "generation_rules": [
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column at 390px without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, package install, backend or external fonts.",
+      "Implement only honest static interactions (filters, sort, copy, tabs) and announce result counts. Never show fake live data, fake accounts, or invented metrics as real; label sample numbers as demo or replace with the user's real figures.",
+      "Preserve this layout's structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "preview": "presets/previews/arena-board/index.html",
+    "template_source": "presets/previews/arena-board/index.html"
+  },
+  {
+    "id": "dataset-atlas",
+    "name": "Dataset atlas",
+    "summary": "Dataset documentation page with sticky facts rail, row-sample viewer with split tabs, schema table, histogram and split panels, and a collection and ethics section.",
+    "best_for": [
+      "dataset cards and data documentation",
+      "open data releases",
+      "benchmark corpora"
+    ],
+    "palette": {
+      "background": "#EAF0EE",
+      "text": "#11262B",
+      "muted": "#4F666B",
+      "accent": "#0F7B7B",
+      "surface": "#FFFFFF"
+    },
+    "typography": {
+      "display": "Palatino / Georgia serif; bold, 37-70px fluid",
+      "body": "system-ui 16px/1.6; monospace for column names"
+    },
+    "layout": [
+      "Sticky dark top bar, then masthead with serif title, chips and a decorative mosaic of sample records.",
+      "Left facts rail beside content column: stat tiles, tabbed sample-row table (train / validation / test), schema table.",
+      "Statistics panels with inline-SVG histogram and a proportional split bar, then two-column collection and known-gaps section."
+    ],
+    "motion": "No automatic animation. Split tabs are user-triggered and update the caption; scrolling is not animated under prefers-reduced-motion.",
+    "imagery_prompt": "Generate a tight grid of 36 small abstract tiles in teal, sand and coral suggesting dataset records, flat vector, 3:2, for the masthead. Optional wide 16:5 shoreline texture in the same palette for the ethics section. No text, numbers, logos or photographs of people in images.",
+    "sources": [
+      {
+        "title": "Hugging Face Hub: Dataset Cards documentation",
+        "url": "https://huggingface.co/docs/hub/datasets-cards",
+        "observed": "Fetched live: sections What are Dataset Cards, Dataset card metadata, Dataset card creation guide and Linking a Paper; docs layout with side navigation and one table."
+      },
+      {
+        "title": "LiveCodeBench project page",
+        "url": "https://livecodebench.github.io/",
+        "observed": "Fetched live: a data-centric project page discussing contamination and continuously collected problems, in short headed sections."
+      },
+      {
+        "title": "Swallow LLM Leaderboard about page",
+        "url": "https://swallow-llm.github.io/leaderboard/about.en.html",
+        "observed": "Fetched live: describes tools, evaluated tasks and data licensing (CC-BY 4.0 data, MIT code) in plain headed sections."
+      }
+    ],
+    "generation_rules": [
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column at 390px without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, package install, backend or external fonts.",
+      "Implement only honest static interactions (filters, sort, copy, tabs) and announce result counts. Never show fake live data, fake accounts, or invented metrics as real; label sample numbers as demo or replace with the user's real figures.",
+      "Preserve this layout's structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "preview": "presets/previews/dataset-atlas/index.html",
+    "template_source": "presets/previews/dataset-atlas/index.html"
+  },
+  {
+    "id": "prompt-library",
+    "name": "Prompt library",
+    "summary": "Searchable prompt shelf of index-card tiles with category chips, highlighted fill-in blanks and copy buttons on a ruled-notebook background.",
+    "best_for": [
+      "prompt libraries and recipe collections",
+      "creator toolkits for AI image or text work",
+      "team-shared prompt catalogues"
+    ],
+    "palette": {
+      "background": "#EDF1F9",
+      "text": "#1A1F36",
+      "muted": "#5B6385",
+      "accent": "#E8504A",
+      "surface": "#FFFFFF"
+    },
+    "typography": {
+      "display": "Trebuchet MS / Gill Sans, 800 weight, tight tracking, 43-90px fluid",
+      "body": "system-ui 16px/1.6; monospace for prompt blocks"
+    },
+    "layout": [
+      "Hero with marker-highlighted headline beside a rotated stack of three index cards with hard offset shadows.",
+      "Sticky finder bar with search box and category chips above a three-column masonry of colour-topped prompt cards with highlighted blanks and a Copy button.",
+      "Dark three-step how-to band, then tip disclosures."
+    ],
+    "motion": "No automatic animation. Search, chips and copy feedback are user-triggered; scrolling is not animated under prefers-reduced-motion.",
+    "imagery_prompt": "Generate a flat paper-craft still life of three overlapping index cards with coloured top edges (coral, blue, mint) on a pale blue ruled notebook page, hard shadows, 4:3, for the hero. Optional 1:1 yellow highlighter close-up. No readable text, lettering, logos or screenshots in images.",
+    "sources": [
+      {
+        "title": "AI Prompt Library (shakirdmr)",
+        "url": "https://shakirdmr.github.io/ai-prompt-library/",
+        "observed": "Fetched live: category-led library with a 'Pick what you need' grid and a 4-step how-to (pick, find, copy from a code block, fill [brackets]); white and green palette."
+      },
+      {
+        "title": "Prompt Library kanban (ambatra)",
+        "url": "https://ambatra.github.io/prompt-library/",
+        "observed": "Fetched live: dark page titled Prompt Library with Kanban and Grid view toggles, All / Text / Image filters and a search-driven prompt list loaded by script."
+      },
+      {
+        "title": "The Prompt Collection README",
+        "url": "https://github.com/the-prompt-collection/the-prompt-collection.github.io",
+        "observed": "Search result read (page itself returned only a title): categorised prompts with tags, search and filters, and an editable prompt with a Copy button."
+      }
+    ],
+    "generation_rules": [
+      "Use semantic HTML with one h1, skip link, visible keyboard focus and descriptive alternative text. Reflow to one column at 390px without horizontal page overflow.",
+      "Use local files and relative links. Ship index.html and .nojekyll; no CDN, package install, backend or external fonts.",
+      "Implement only honest static interactions (filters, sort, copy, tabs) and announce result counts. Never show fake live data, fake accounts, or invented metrics as real; label sample numbers as demo or replace with the user's real figures.",
+      "Preserve this layout's structural hierarchy rather than applying only its colors to a generic landing-page card grid."
+    ],
+    "preview": "presets/previews/prompt-library/index.html",
+    "template_source": "presets/previews/prompt-library/index.html"
+  },
+  {
+    "id": "model-hub",
+    "name": "Material / Model releases",
+    "summary": "A silver-and-lavender release catalog with panoramic artwork, a structured release ledger and usable version tabs.",
+    "best_for": [
+      "Model creators",
+      "Checkpoint and workflow catalogs"
+    ],
+    "palette": {
+      "background": "#101116",
+      "text": "#F1F1F5",
+      "muted": "#B4B3C4",
+      "accent": "#C5B9FF",
+      "surface": "#191B24"
+    },
+    "typography": {
+      "display": "Segoe UI sans display, tightly tracked 48–96px responsive headings",
+      "body": "Segoe UI / Arial sans; 16px, 1.6 line height; local system fonts only"
+    },
+    "layout": [
+      "Panoramic fantasy portrait sits below a large type-led introduction.",
+      "Release rows pair a real raster image with type, title, description and detail link.",
+      "A split version inspector switches the release notes; field-note disclosures close the page."
+    ],
+    "motion": "No automatic animation. Controls respond on user action; reduced-motion disables transitions and smooth scrolling.",
+    "imagery_prompt": "Generate original fantasy portrait artwork with intricate horned headwear, silver ornaments, braided hair and teal eyes for a wide 18:5 banner. Generate a pale-haired underwater portrait in dark turquoise water with bubbles (3:4), plus a cinematic image-model showcase photograph (4:3). No text, logos or watermarks. Use actual local img elements; never SVG or CSS stand-ins.",
+    "generation_rules": [
+      "User content and explicit instructions override demo content. Keep this template’s distinctive structure instead of replacing it with generic cards.",
+      "All pictorial artwork must be an actual local img with descriptive alt text. Generate with ComfyUI; do not recreate the demo artwork with SVG or CSS.",
+      "Retain accessible navigation, visible keyboard focus, one h1, responsive layout and working controls.",
+      "Do not invent actual downloads, followers, model metrics, seeds, licenses or payment connections. Replace demo statements with verified data.",
+      "Use static relative paths and .nojekyll; no external resources, CDN or server dependency. Keep links honest: actual release downloads only when supplied."
+    ],
+    "sources": [
+      {
+        "title": "marduk191 public creator profile",
+        "url": "https://civitai.red/user/marduk191",
+        "observed": "User-supplied full profile excerpt shows model releases, workflows, image posts, an announcement with community/support links and a creator journey. Layout direction is adapted to this content, not a replica of platform chrome."
+      },
+      {
+        "title": "marduk191 profile and model-release artwork",
+        "url": "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/2d117b85-ad09-45ab-9efd-2e99af48b862/width=1800,optimized=true/ComfyUI_temp_yxgpt_00013_.jpeg",
+        "observed": "Local images were fetched from the profile image links and visually inspected: an ornate fantasy portrait with braided hair, teal eyes and horned headwear; a weathered FLUX .1 sign; and a pale-haired underwater portrait surrounded by bubbles. Captions and alternative text match those local files."
+      }
+    ],
+    "preview": "presets/previews/model-hub/index.html",
+    "template_source": "presets/previews/model-hub/index.html"
+  },
+  {
+    "id": "workflow-vault",
+    "name": "Blueprint / Workflow library",
+    "summary": "A cobalt workshop for image workflows with a visible process graph, filterable library and live requirements inspector.",
+    "best_for": [
+      "ComfyUI workflow authors",
+      "Technical image-creation studios"
+    ],
+    "palette": {
+      "background": "#0B1521",
+      "text": "#EEF5FF",
+      "muted": "#AABDD0",
+      "accent": "#79C7FF",
+      "surface": "#112337"
+    },
+    "typography": {
+      "display": "Segoe UI sans display, tightly tracked 48–96px responsive headings",
+      "body": "Segoe UI / Arial sans; 16px, 1.6 line height; local system fonts only"
+    },
+    "layout": [
+      "Split hero introduces the workflow beside a three-stage diagram and real output image.",
+      "A two-column library filters workflows while a sticky inspector shows the selected description and requirements.",
+      "A setup checklist and release-note disclosures make the technical handoff complete."
+    ],
+    "motion": "No automatic animation. Controls respond on user action; reduced-motion disables transitions and smooth scrolling.",
+    "imagery_prompt": "Generate original fantasy portrait artwork with intricate horned headwear, silver ornaments, braided hair and teal eyes for a wide 18:5 banner. Generate a pale-haired underwater portrait in dark turquoise water with bubbles (3:4), plus a cinematic image-model showcase photograph (4:3). No text, logos or watermarks. Use actual local img elements; never SVG or CSS stand-ins.",
+    "generation_rules": [
+      "User content and explicit instructions override demo content. Keep this template’s distinctive structure instead of replacing it with generic cards.",
+      "All pictorial artwork must be an actual local img with descriptive alt text. Generate with ComfyUI; do not recreate the demo artwork with SVG or CSS.",
+      "Retain accessible navigation, visible keyboard focus, one h1, responsive layout and working controls.",
+      "Do not invent actual downloads, followers, model metrics, seeds, licenses or payment connections. Replace demo statements with verified data.",
+      "Use static relative paths and .nojekyll; no external resources, CDN or server dependency. Keep links honest: actual release downloads only when supplied."
+    ],
+    "sources": [
+      {
+        "title": "marduk191 public creator profile",
+        "url": "https://civitai.red/user/marduk191",
+        "observed": "User-supplied full profile excerpt shows model releases, workflows, image posts, an announcement with community/support links and a creator journey. Layout direction is adapted to this content, not a replica of platform chrome."
+      },
+      {
+        "title": "marduk191 profile and model-release artwork",
+        "url": "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/2d117b85-ad09-45ab-9efd-2e99af48b862/width=1800,optimized=true/ComfyUI_temp_yxgpt_00013_.jpeg",
+        "observed": "Local images were fetched from the profile image links and visually inspected: an ornate fantasy portrait with braided hair, teal eyes and horned headwear; a weathered FLUX .1 sign; and a pale-haired underwater portrait surrounded by bubbles. Captions and alternative text match those local files."
+      }
+    ],
+    "preview": "presets/previews/workflow-vault/index.html",
+    "template_source": "presets/previews/workflow-vault/index.html"
+  },
+  {
+    "id": "creator-journey",
+    "name": "Fieldwork / Creator journey",
+    "summary": "A warm archival journal with fantasy artwork, interactive story chapters and a genuine reading-first timeline.",
+    "best_for": [
+      "Independent creator histories",
+      "Artist process journals"
+    ],
+    "palette": {
+      "background": "#201812",
+      "text": "#F4E9DB",
+      "muted": "#C9B5A0",
+      "accent": "#F6B789",
+      "surface": "#30231A"
+    },
+    "typography": {
+      "display": "Georgia serif editorial display",
+      "body": "Segoe UI / Arial sans; 16px, 1.6 line height; local system fonts only"
+    },
+    "layout": [
+      "Oversized serif title, editorial introduction and panoramic photographic study.",
+      "Four selectable narrative chapters sit beside a live detail panel.",
+      "An open vertical timeline leads into a portrait-led practice section and practical disclosures."
+    ],
+    "motion": "No automatic animation. Controls respond on user action; reduced-motion disables transitions and smooth scrolling.",
+    "imagery_prompt": "Generate original fantasy portrait artwork with intricate horned headwear, silver ornaments, braided hair and teal eyes for a wide 18:5 banner. Generate a pale-haired underwater portrait in dark turquoise water with bubbles (3:4), plus a cinematic image-model showcase photograph (4:3). No text, logos or watermarks. Use actual local img elements; never SVG or CSS stand-ins.",
+    "generation_rules": [
+      "User content and explicit instructions override demo content. Keep this template’s distinctive structure instead of replacing it with generic cards.",
+      "All pictorial artwork must be an actual local img with descriptive alt text. Generate with ComfyUI; do not recreate the demo artwork with SVG or CSS.",
+      "Retain accessible navigation, visible keyboard focus, one h1, responsive layout and working controls.",
+      "Do not invent actual downloads, followers, model metrics, seeds, licenses or payment connections. Replace demo statements with verified data.",
+      "Use static relative paths and .nojekyll; no external resources, CDN or server dependency. Keep links honest: actual release downloads only when supplied."
+    ],
+    "sources": [
+      {
+        "title": "marduk191 public creator profile",
+        "url": "https://civitai.red/user/marduk191",
+        "observed": "User-supplied full profile excerpt shows model releases, workflows, image posts, an announcement with community/support links and a creator journey. Layout direction is adapted to this content, not a replica of platform chrome."
+      },
+      {
+        "title": "marduk191 profile and model-release artwork",
+        "url": "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/2d117b85-ad09-45ab-9efd-2e99af48b862/width=1800,optimized=true/ComfyUI_temp_yxgpt_00013_.jpeg",
+        "observed": "Local images were fetched from the profile image links and visually inspected: an ornate fantasy portrait with braided hair, teal eyes and horned headwear; a weathered FLUX .1 sign; and a pale-haired underwater portrait surrounded by bubbles. Captions and alternative text match those local files."
+      }
+    ],
+    "preview": "presets/previews/creator-journey/index.html",
+    "template_source": "presets/previews/creator-journey/index.html"
+  },
+  {
+    "id": "render-gallery",
+    "name": "Afterimage / Image gallery",
+    "summary": "A light monochrome exhibition of real artwork with filtering, a native image viewer and an honest metadata panel.",
+    "best_for": [
+      "AI image portfolios",
+      "Artist exhibitions"
+    ],
+    "palette": {
+      "background": "#E9EAEC",
+      "text": "#16171B",
+      "muted": "#565960",
+      "accent": "#713F4A",
+      "surface": "#DFE0E4"
+    },
+    "typography": {
+      "display": "Georgia serif editorial display",
+      "body": "Segoe UI / Arial sans; 16px, 1.6 line height; local system fonts only"
+    },
+    "layout": [
+      "A serif gallery heading and panoramic hero lead to an asymmetric artwork grid.",
+      "Category filters hide/show works without altering the original files.",
+      "Native modal image viewer supports previous/next, Escape and arrow navigation, followed by methods and a clickable image index."
+    ],
+    "motion": "No automatic animation. Controls respond on user action; reduced-motion disables transitions and smooth scrolling.",
+    "imagery_prompt": "Generate original fantasy portrait artwork with intricate horned headwear, silver ornaments, braided hair and teal eyes for a wide 18:5 banner. Generate a pale-haired underwater portrait in dark turquoise water with bubbles (3:4), plus a cinematic image-model showcase photograph (4:3). No text, logos or watermarks. Use actual local img elements; never SVG or CSS stand-ins.",
+    "generation_rules": [
+      "User content and explicit instructions override demo content. Keep this template’s distinctive structure instead of replacing it with generic cards.",
+      "All pictorial artwork must be an actual local img with descriptive alt text. Generate with ComfyUI; do not recreate the demo artwork with SVG or CSS.",
+      "Retain accessible navigation, visible keyboard focus, one h1, responsive layout and working controls.",
+      "Do not invent actual downloads, followers, model metrics, seeds, licenses or payment connections. Replace demo statements with verified data.",
+      "Use static relative paths and .nojekyll; no external resources, CDN or server dependency. Keep links honest: actual release downloads only when supplied."
+    ],
+    "sources": [
+      {
+        "title": "marduk191 public creator profile",
+        "url": "https://civitai.red/user/marduk191",
+        "observed": "User-supplied full profile excerpt shows model releases, workflows, image posts, an announcement with community/support links and a creator journey. Layout direction is adapted to this content, not a replica of platform chrome."
+      },
+      {
+        "title": "marduk191 profile and model-release artwork",
+        "url": "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/2d117b85-ad09-45ab-9efd-2e99af48b862/width=1800,optimized=true/ComfyUI_temp_yxgpt_00013_.jpeg",
+        "observed": "Local images were fetched from the profile image links and visually inspected: an ornate fantasy portrait with braided hair, teal eyes and horned headwear; a weathered FLUX .1 sign; and a pale-haired underwater portrait surrounded by bubbles. Captions and alternative text match those local files."
+      }
+    ],
+    "preview": "presets/previews/render-gallery/index.html",
+    "template_source": "presets/previews/render-gallery/index.html"
+  },
+  {
+    "id": "creator-hub",
+    "name": "Offscript / Creator home",
+    "summary": "A coral-and-wine creator front door with a image-led hero, pinned update, project filters and community notes.",
+    "best_for": [
+      "AI creator homepages",
+      "Independent art-and-model communities"
+    ],
+    "palette": {
+      "background": "#1A1015",
+      "text": "#FFF0F0",
+      "muted": "#D4ADB9",
+      "accent": "#FFB0A2",
+      "surface": "#2D1822"
+    },
+    "typography": {
+      "display": "Segoe UI sans display, tightly tracked 48–96px responsive headings",
+      "body": "Segoe UI / Arial sans; 16px, 1.6 line height; local system fonts only"
+    },
+    "layout": [
+      "Asymmetric hero pairs bold typography with a framed release-cover photograph.",
+      "A studio notice and three filtered projects organize current releases and workflows.",
+      "Editorial studio notes and a platform directory with live destination explanations complete the creator homepage."
+    ],
+    "motion": "No automatic animation. Controls respond on user action; reduced-motion disables transitions and smooth scrolling.",
+    "imagery_prompt": "Generate original fantasy portrait artwork with intricate horned headwear, silver ornaments, braided hair and teal eyes for a wide 18:5 banner. Generate a pale-haired underwater portrait in dark turquoise water with bubbles (3:4), plus a cinematic image-model showcase photograph (4:3). No text, logos or watermarks. Use actual local img elements; never SVG or CSS stand-ins.",
+    "generation_rules": [
+      "User content and explicit instructions override demo content. Keep this template’s distinctive structure instead of replacing it with generic cards.",
+      "All pictorial artwork must be an actual local img with descriptive alt text. Generate with ComfyUI; do not recreate the demo artwork with SVG or CSS.",
+      "Retain accessible navigation, visible keyboard focus, one h1, responsive layout and working controls.",
+      "Do not invent actual downloads, followers, model metrics, seeds, licenses or payment connections. Replace demo statements with verified data.",
+      "Use static relative paths and .nojekyll; no external resources, CDN or server dependency. Keep links honest: actual release downloads only when supplied."
+    ],
+    "sources": [
+      {
+        "title": "marduk191 public creator profile",
+        "url": "https://civitai.red/user/marduk191",
+        "observed": "User-supplied full profile excerpt shows model releases, workflows, image posts, an announcement with community/support links and a creator journey. Layout direction is adapted to this content, not a replica of platform chrome."
+      },
+      {
+        "title": "marduk191 profile and model-release artwork",
+        "url": "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/2d117b85-ad09-45ab-9efd-2e99af48b862/width=1800,optimized=true/ComfyUI_temp_yxgpt_00013_.jpeg",
+        "observed": "Local images were fetched from the profile image links and visually inspected: an ornate fantasy portrait with braided hair, teal eyes and horned headwear; a weathered FLUX .1 sign; and a pale-haired underwater portrait surrounded by bubbles. Captions and alternative text match those local files."
+      }
+    ],
+    "preview": "presets/previews/creator-hub/index.html",
+    "template_source": "presets/previews/creator-hub/index.html"
+  }
+]

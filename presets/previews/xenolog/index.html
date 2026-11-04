@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Original Xenolog page template: a retro-futurist alien archive. Fictional demo content and original artwork."><title>Xenolog — original page template</title>
+<style>
+:root{--bg:#EFE6D0;--ink:#1E2B2F;--muted:#55645F;--accent:#C2410C;--surface:#DCE5D6;--teal:#0F6B6B;--gold:#E9A82B;--line:#1E2B2F}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Trebuchet MS",Verdana,system-ui,sans-serif}
+h1,h2,h3,.disp{font-family:"Century Gothic","Avant Garde","Trebuchet MS",system-ui,sans-serif;text-transform:uppercase;letter-spacing:.06em;line-height:1.05;margin:0}
+h1{font-size:clamp(2.6rem,8vw,6rem);font-weight:800}h2{font-size:clamp(1.6rem,3.4vw,2.4rem)}h3{font-size:1.15rem}
+p{margin:0 0 1rem;max-width:62ch}ul{margin:0;padding:0;list-style:none}
+a{color:var(--teal);text-underline-offset:.2em}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:4px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-80px;background:var(--ink);color:var(--bg);padding:10px 14px;z-index:9}.skip:focus{top:10px}
+button{font:inherit;cursor:pointer;min-height:44px;color:var(--ink)}
+.demo{background:var(--ink);color:var(--bg);font-size:.8rem;padding:8px 20px;text-align:center;letter-spacing:.04em}
+.shell{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+aside{background:var(--teal);color:#FFF6E0;padding:28px 22px;position:sticky;top:0;align-self:start;height:100vh;overflow:auto;border-right:6px solid var(--ink)}
+aside a{color:#FFF6E0}
+.mark{display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;font-size:1.2rem;margin-bottom:26px}
+aside nav li{border-top:2px dotted rgba(255,246,224,.5)}
+aside nav a{display:flex;justify-content:space-between;padding:12px 2px;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;font-size:.86rem}
+aside nav a:hover{color:var(--gold)}
+aside small{display:block;margin-top:26px;line-height:1.5;opacity:.9}
+.orbit{margin-top:22px;width:100%;max-width:200px}
+main{min-width:0}
+section{padding:clamp(44px,7vw,92px) clamp(20px,5vw,64px);border-bottom:4px solid var(--ink);scroll-margin-top:0}
+.hero{position:relative;overflow:hidden;background:var(--bg)}
+.hero .tag{display:inline-block;background:var(--accent);color:#FFF6E0;padding:4px 12px;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;font-weight:700;margin-bottom:18px}
+.hero p.lede{font-size:1.25rem;margin-top:22px}
+.burst{position:absolute;right:-60px;top:-40px;width:min(52vw,460px);opacity:.95;pointer-events:none}
+.row{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);padding:12px 22px;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;font-weight:700;border:3px solid var(--ink);border-radius:999px 999px 999px 4px}
+.btn.alt{background:transparent;color:var(--ink)}
+.head{display:flex;justify-content:space-between;gap:20px;align-items:end;flex-wrap:wrap;margin-bottom:26px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:3px solid var(--ink);background:transparent;padding:6px 16px;border-radius:999px;text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;font-weight:700}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.status{font-size:.9rem;color:var(--muted);min-height:1.5em}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.card{background:var(--surface);border:3px solid var(--ink);border-radius:26px 26px 26px 4px;padding:0;overflow:hidden;display:flex;flex-direction:column}
+.card button{all:unset;display:block;cursor:pointer;box-sizing:border-box;width:100%}
+.card button:focus-visible{outline:4px solid var(--accent);outline-offset:-4px}
+.plate{background:#F8F1DD;border-bottom:3px solid var(--ink);padding:10px}.plate svg{width:100%;height:auto;display:block}
+.card .meta{padding:14px 16px 18px}
+.card .no{font-size:.75rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.card h3{margin:2px 0 4px}.card .meta p{margin:0;font-size:.92rem;color:var(--muted)}
+[hidden]{display:none!important}
+.dossier{background:var(--surface);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,4vw,48px);align-items:start}
+.dossier .big{background:#F8F1DD;border:4px solid var(--ink);border-radius:50% 50% 12px 12px/38% 38% 12px 12px;padding:18px}
+.dossier .big svg{width:100%;height:auto;display:block}
+dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:18px 0}
+dt{font-weight:800;text-transform:uppercase;font-size:.8rem;letter-spacing:.1em;color:var(--teal)}dd{margin:0}
+.glyphs{background:var(--ink);color:var(--bg)}
+.glyphs h2{color:var(--gold)}
+.trans{display:grid;gap:16px;max-width:760px}
+.trans label{font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.82rem}
+.trans input{width:100%;font:inherit;font-size:1.2rem;padding:12px 16px;border:3px solid var(--gold);background:#0B1416;color:var(--bg);border-radius:12px}
+.out{font-size:2.4rem;line-height:1.5;letter-spacing:.2em;word-break:break-all;min-height:3.6rem;color:var(--gold);border:3px dashed rgba(239,230,208,.5);padding:12px 16px;border-radius:12px}
+.glyphs small{color:#C9CFC6}
+.log{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+.log li{border-top:6px solid var(--accent);padding-top:12px}.log b{display:block;text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;color:var(--teal)}
+details{border:3px solid var(--ink);border-radius:14px;background:var(--surface);margin-bottom:10px}
+summary{padding:14px 18px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;list-style:none}summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--accent)}details[open] summary::before{content:"− "}
+details p{padding:0 18px;margin-bottom:14px}
+footer{padding:28px clamp(20px,5vw,64px);font-size:.85rem;color:var(--muted)}
+@media(max-width:900px){.shell{grid-template-columns:1fr}aside{position:static;height:auto;border-right:0;border-bottom:6px solid var(--ink)}aside nav ul{display:flex;flex-wrap:wrap;gap:0 18px}aside nav li{border-top:0}aside nav a span+span{display:none}aside nav a{padding:8px 0}.orbit,aside small{display:none}.dossier{grid-template-columns:1fr}.log{grid-template-columns:1fr}.burst{width:60vw;right:-80px;opacity:.22}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style></head><body>
+<a class="skip" href="#top">Skip to content</a>
+<div class="demo">Demo template · all species, places and numbers below are fictional sample content.</div>
+<div class="shell">
+<aside>
+<a class="mark" href="#top"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="6" fill="#E9A82B"/><path d="M20 1l3 12 12-3-9 9 9 9-12-3-3 12-3-12-12 3 9-9-9-9 12 3z" fill="none" stroke="#FFF6E0" stroke-width="2"/></svg>Xenolog</a>
+<nav aria-label="Archive sections"><ul>
+<li><a href="#archive"><span>Archive</span><span>01</span></a></li>
+<li><a href="#dossier"><span>Dossier</span><span>02</span></a></li>
+<li><a href="#glyphs"><span>Glyph desk</span><span>03</span></a></li>
+<li><a href="#method"><span>Method</span><span>04</span></a></li>
+</ul></nav>
+<svg class="orbit" viewBox="0 0 200 200" role="img" aria-label="Sample orbital diagram"><ellipse cx="100" cy="100" rx="90" ry="36" fill="none" stroke="#FFF6E0" stroke-width="2" transform="rotate(-24 100 100)"/><ellipse cx="100" cy="100" rx="64" ry="24" fill="none" stroke="#E9A82B" stroke-width="2" stroke-dasharray="4 6" transform="rotate(30 100 100)"/><circle cx="100" cy="100" r="22" fill="#E9A82B"/><circle cx="168" cy="72" r="7" fill="#FFF6E0"/><circle cx="52" cy="128" r="5" fill="#C2410C"/></svg>
+<small>Archive of the fictional Quillon Reach survey. Demo content for a worldbuilding site.</small>
+</aside>
+<main id="top">
+<section class="hero" aria-labelledby="h-title">
+<svg class="burst" viewBox="0 0 400 400" aria-hidden="true"><g fill="none" stroke="#1E2B2F" stroke-width="5"><path d="M200 12l28 110 102-48-48 100 110 30-110 30 48 100-102-48-28 110-28-110-102 48 48-100-110-30 110-30-48-100 102 48z" fill="#E9A82B"/><circle cx="200" cy="200" r="80" fill="#C2410C"/><circle cx="200" cy="200" r="40" fill="#EFE6D0"/></g></svg>
+<span class="tag">Survey catalogue · demo</span>
+<h1 id="h-title">The Xenolog</h1>
+<p class="lede">A pocket archive of the living things, tongues and machines found beyond the Quillon Reach. Illustrated in the optimistic style of a space-age field manual.</p>
+<div class="row"><a class="btn" href="#archive">Open the archive</a><a class="btn alt" href="#glyphs">Try the glyph desk</a></div>
+</section>
+
+<section id="archive" aria-labelledby="h-arch">
+<div class="head"><div><h2 id="h-arch">Specimen archive</h2><p class="status" id="count" role="status">Showing 6 of 6 entries (demo).</p></div>
+<div class="chips" role="group" aria-label="Filter by phylum">
+<button type="button" class="chip" data-f="all" aria-pressed="true">All</button>
+<button type="button" class="chip" data-f="drifter" aria-pressed="false">Drifters</button>
+<button type="button" class="chip" data-f="builder" aria-pressed="false">Builders</button>
+<button type="button" class="chip" data-f="signal" aria-pressed="false">Signals</button></div></div>
+<ul class="cards" id="cards">
+<li class="card" data-k="drifter"><button type="button" data-pick="0"><div class="plate"><svg viewBox="0 0 200 130" role="img" aria-label="Sample art: a jellyfish-like drifter"><rect width="200" height="130" fill="#F8F1DD"/><path d="M40 60a60 50 0 0 1 120 0z" fill="#E9A82B" stroke="#1E2B2F" stroke-width="4"/><g stroke="#0F6B6B" stroke-width="4" fill="none" stroke-linecap="round"><path d="M55 62q-8 25 0 50M85 62q-8 25 0 55M115 62q8 25 0 55M145 62q8 25 0 50"/></g><circle cx="80" cy="45" r="6" fill="#1E2B2F"/><circle cx="120" cy="45" r="6" fill="#1E2B2F"/></svg></div><div class="meta"><span class="no">No. 014 · Drifter</span><h3>Lantern Mantle</h3><p>Sky-swimmer that glows when it hears music.</p></div></button></li>
+<li class="card" data-k="builder"><button type="button" data-pick="1"><div class="plate"><svg viewBox="0 0 200 130" role="img" aria-label="Sample art: a tower-building creature"><rect width="200" height="130" fill="#F8F1DD"/><path d="M60 120V70l20-30 20 30v50z M110 120V50l25-40 25 40v70z" fill="#0F6B6B" stroke="#1E2B2F" stroke-width="4"/><circle cx="135" cy="60" r="9" fill="#E9A82B" stroke="#1E2B2F" stroke-width="3"/><path d="M30 120h150" stroke="#1E2B2F" stroke-width="5"/></svg></div><div class="meta"><span class="no">No. 022 · Builder</span><h3>Spire Weavers</h3><p>Colonies that grow resin towers in a single season.</p></div></button></li>
+<li class="card" data-k="signal"><button type="button" data-pick="2"><div class="plate"><svg viewBox="0 0 200 130" role="img" aria-label="Sample art: concentric signal rings"><rect width="200" height="130" fill="#F8F1DD"/><g fill="none" stroke="#C2410C" stroke-width="5"><circle cx="100" cy="65" r="14"/><circle cx="100" cy="65" r="34"/><circle cx="100" cy="65" r="54" stroke="#1E2B2F"/></g><circle cx="100" cy="65" r="7" fill="#1E2B2F"/></svg></div><div class="meta"><span class="no">No. 031 · Signal</span><h3>Hollow Chorus</h3><p>A repeating radio phrase from an empty moon.</p></div></button></li>
+<li class="card" data-k="drifter"><button type="button" data-pick="3"><div class="plate"><svg viewBox="0 0 200 130" role="img" aria-label="Sample art: a spiral shell creature"><rect width="200" height="130" fill="#F8F1DD"/><path d="M100 65m0 0a10 10 0 1 1 10 10a22 22 0 1 1-22-22a36 36 0 1 1 36 36a50 50 0 1 1-50-50" fill="none" stroke="#0F6B6B" stroke-width="7" stroke-linecap="round"/><circle cx="150" cy="105" r="7" fill="#C2410C"/></svg></div><div class="meta"><span class="no">No. 037 · Drifter</span><h3>Coil Pilgrim</h3><p>Slow traveller that migrates once per century.</p></div></button></li>
+<li class="card" data-k="builder"><button type="button" data-pick="4"><div class="plate"><svg viewBox="0 0 200 130" role="img" aria-label="Sample art: a hexagon-cell machine"><rect width="200" height="130" fill="#F8F1DD"/><g fill="#E9A82B" stroke="#1E2B2F" stroke-width="4"><path d="M70 35l22 12v26l-22 12-22-12V47z"/><path d="M114 35l22 12v26l-22 12-22-12V47z" fill="#0F6B6B"/><path d="M92 70l22 12v26l-22 12-22-12V82z" fill="#C2410C"/></g></svg></div><div class="meta"><span class="no">No. 045 · Builder</span><h3>Honeycomb Engine</h3><p>Ruin-machine that still sorts light by colour.</p></div></button></li>
+<li class="card" data-k="signal"><button type="button" data-pick="5"><div class="plate"><svg viewBox="0 0 200 130" role="img" aria-label="Sample art: a waveform"><rect width="200" height="130" fill="#F8F1DD"/><path d="M10 65h30l8-40 14 80 14-60 12 40 10-20h92" fill="none" stroke="#1E2B2F" stroke-width="5" stroke-linejoin="round"/><circle cx="48" cy="25" r="6" fill="#C2410C"/></svg></div><div class="meta"><span class="no">No. 052 · Signal</span><h3>Pulse Lullaby</h3><p>A tide-locked heartbeat carried on a carrier wave.</p></div></button></li>
+</ul>
+</section>
+
+<section id="dossier" class="dossier" aria-labelledby="h-dos">
+<div class="big"><svg id="dart" viewBox="0 0 200 200" role="img" aria-label="Sample art of the selected specimen"><circle cx="100" cy="100" r="86" fill="#DCE5D6" stroke="#1E2B2F" stroke-width="4"/><path d="M45 100a55 50 0 0 1 110 0z" fill="#E9A82B" stroke="#1E2B2F" stroke-width="4"/><g stroke="#0F6B6B" stroke-width="5" fill="none" stroke-linecap="round"><path d="M62 102q-8 25 0 45M88 102q-8 25 0 50M114 102q8 25 0 50M140 102q8 25 0 45"/></g></svg></div>
+<div>
+<h2 id="h-dos">Dossier: <span id="dname">Lantern Mantle</span></h2>
+<dl><dt>Catalogue</dt><dd id="dno">No. 014 · Drifter</dd><dt>Habitat</dt><dd id="dhab">High cloud decks of the gas giant Orrel.</dd><dt>Span</dt><dd id="dspan">4–9 m (demo figure)</dd><dt>Threat</dt><dd id="dthr">Harmless; curious.</dd></dl>
+<p id="dtext">Pick any card in the archive to read its field note here. Entries are sample text to show a dossier layout.</p>
+<a class="btn alt" href="#archive">Back to archive</a>
+</div>
+</section>
+
+<section id="glyphs" class="glyphs" aria-labelledby="h-gl">
+<h2 id="h-gl">Glyph desk</h2>
+<p>Type a word. The desk swaps each letter for a made-up Xenolog sign. It is a toy cipher for the demo, not a language.</p>
+<div class="trans"><label for="gin">Your message</label><input id="gin" type="text" value="hello orrel" maxlength="40" autocomplete="off"><div class="out" id="gout" aria-live="polite"></div><small>Sample ciphers only; nothing here is a real script.</small></div>
+</section>
+
+<section id="method" aria-labelledby="h-me">
+<h2 id="h-me">How the survey works</h2>
+<ul class="log"><li><b>Observe</b><p>Log what the specimen does before naming it.</p></li><li><b>Sketch</b><p>Every entry gets a plate, drawn flat and honest.</p></li><li><b>Cross-reference</b><p>Link creatures to signals, places and machines.</p></li></ul>
+<div style="margin-top:28px">
+<details><summary>Can I add my own species?</summary><p>Yes. Replace the demo entries with your own worldbuilding notes and plates.</p></details>
+<details><summary>Are the numbers real?</summary><p>No. Every figure on this page is placeholder demo data.</p></details></div>
+</section>
+<footer>Xenolog demo template · original sample art · swap in your own archive.</footer>
+</main></div>
+<script>
+(function(){
+var D=[
+["Lantern Mantle","No. 014 · Drifter","High cloud decks of the gas giant Orrel.","4–9 m (demo figure)","Harmless; curious.","Hangs in warm updrafts and brightens in rhythm with nearby sound. Survey crews call it the first audience."],
+["Spire Weavers","No. 022 · Builder","Cold basalt plains of Tesk.","Colony 300 m wide (demo)","Territorial near towers.","Secretes pale resin that hardens into spires. Each colony leaves one tower unfinished."],
+["Hollow Chorus","No. 031 · Signal","Orbit of the dead moon Ivi.","Wavelength 21 m (demo)","None known.","A phrase of seven tones repeats every nine hours. No transmitter has been found."],
+["Coil Pilgrim","No. 037 · Drifter","Salt flats of Marrow Basin.","12 m shell (demo)","Slow, but heavy.","Crosses the basin once per century and leaves a spiral track visible from orbit."],
+["Honeycomb Engine","No. 045 · Builder","Buried vault, Kell Ridge.","6 m cells (demo)","Dormant.","Sorts incoming light into colour bins. Nobody can say who it was built for."],
+["Pulse Lullaby","No. 052 · Signal","Tide-locked world Sum.","Carrier 1.4 kHz (demo)","None known.","A steady heartbeat carried on a carrier wave, slowing as the sun sets."]];
+var cards=[].slice.call(document.querySelectorAll("#cards li")),chips=[].slice.call(document.querySelectorAll(".chip"));
+chips.forEach(function(c){c.addEventListener("click",function(){var f=c.getAttribute("data-f"),n=0;chips.forEach(function(x){x.setAttribute("aria-pressed",x===c?"true":"false")});cards.forEach(function(k){var show=f==="all"||k.getAttribute("data-k")===f;k.hidden=!show;if(show)n++});document.getElementById("count").textContent="Showing "+n+" of 6 entries (demo)."})});
+cards.forEach(function(k){var b=k.querySelector("button");b.addEventListener("click",function(){var d=D[+b.getAttribute("data-pick")];document.getElementById("dname").textContent=d[0];document.getElementById("dno").textContent=d[1];document.getElementById("dhab").textContent=d[2];document.getElementById("dspan").textContent=d[3];document.getElementById("dthr").textContent=d[4];document.getElementById("dtext").textContent=d[5];var s=k.querySelector("svg").cloneNode(true),t=document.getElementById("dart");t.innerHTML=s.innerHTML;t.setAttribute("viewBox",s.getAttribute("viewBox"));t.setAttribute("aria-label","Sample art of "+d[0]);document.getElementById("dossier").scrollIntoView({block:"start"})})});
+var G="◐◑◒◓△▽◇○□☆⊕⊗⌖⌬⍟⏣⏢⬡⬢◬◭◮◉◍◎☽☾",inp=document.getElementById("gin"),out=document.getElementById("gout");
+function r(){var s=inp.value.toLowerCase(),o="";for(var i=0;i<s.length;i++){var c=s.charCodeAt(i);o+=(c>=97&&c<=122)?G.charAt((c-97)%G.length):(s.charAt(i)===" "?"  ":s.charAt(i))}out.textContent=o}
+inp.addEventListener("input",r);r();
+})();
+</script></body></html>

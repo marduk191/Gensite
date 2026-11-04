@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Dial-up BBS main menu page template in ANSI-style blocks. Demo content for a fictional board.">
+<title>Neon Harbor BBS — ANSI main menu page template (demo)</title>
+<style>
+:root{--bg:#00007A;--ink:#E8E8E8;--muted:#B8C4FF;--acc:#FFFF55;--cy:#55FFFF;--mg:#FF77FF;--surf:#0A0A9A;--line:#55FFFF;--mono:"Perfect DOS VGA 437","Lucida Console","Courier New",monospace}
+*{box-sizing:border-box}
+body{margin:0;background:#000;color:var(--ink);font:16px/1.5 var(--mono);padding:clamp(0px,2vw,24px)}
+h1,h2,h3,p,ul,ol,pre,dl,dd{margin:0}ul,ol{padding:0;list-style:none}
+a{color:var(--cy)}
+a:focus-visible,button:focus-visible{outline:3px dashed var(--acc);outline-offset:2px}
+.skip{position:absolute;left:8px;top:-80px;background:var(--acc);color:#000;padding:8px 12px;z-index:9}.skip:focus{top:8px}
+.term{width:min(1000px,100%);margin:0 auto;background:var(--bg);border:4px double var(--cy);padding:clamp(12px,2.5vw,26px)}
+.top{display:flex;flex-wrap:wrap;gap:4px 20px;justify-content:space-between;background:#AAA;color:#000;padding:4px 10px;font-size:.85rem}
+.logo{display:block;margin:18px 0 4px;font-size:clamp(7px,1.9vw,17px);line-height:1;white-space:pre;overflow:hidden;color:var(--mg)}
+.logo span{color:var(--cy)}
+h1{font-size:clamp(1.6rem,5vw,2.8rem);line-height:1.1;color:var(--acc);letter-spacing:.06em;text-transform:uppercase}
+.sub{color:var(--muted);max-width:62ch;margin:8px 0}
+.demo{background:#000;border-left:6px solid var(--acc);padding:6px 12px;margin:14px 0;color:var(--ink);font-size:.9rem}
+.grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:18px;margin-top:20px}
+.panel{border:2px solid var(--line);background:var(--surf);padding:0}
+.panel h2{background:var(--line);color:#000;font-size:.95rem;padding:3px 12px;text-transform:uppercase;letter-spacing:.1em}
+.panel>div,.panel>ul,.panel>ol,.panel>dl{padding:12px 14px}
+.menu li+li{margin-top:4px}
+.menu button{font:inherit;width:100%;text-align:left;background:none;color:var(--ink);border:0;padding:8px 10px;min-height:44px;cursor:pointer;display:flex;gap:1ch}
+.menu button b{color:var(--acc);font-weight:400}
+.menu button:hover{background:var(--cy);color:#000}.menu button:hover b{color:#000}
+.menu button[aria-pressed=true]{background:var(--ink);color:#000}.menu button[aria-pressed=true] b{color:#000}
+.stage[hidden]{display:none}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:5px 8px;border-bottom:1px dotted var(--muted);vertical-align:top}
+th{color:var(--acc);font-weight:400;text-transform:uppercase;font-size:.8rem;letter-spacing:.08em}
+.tag{color:var(--mg)}
+.led{color:#7CFF7C}
+.doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.door{border:1px solid var(--line);padding:10px;background:#000}
+.door h3{color:var(--acc);font-size:1rem;margin-bottom:4px}
+.door p{color:var(--muted);font-size:.9rem}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:3px 2ch;font-size:.92rem}dt{color:var(--muted)}
+.prompt{margin-top:20px;border-top:2px solid var(--line);padding-top:12px}
+.prompt kbd{background:var(--ink);color:#000;padding:0 6px;font-family:inherit}
+.bottom{background:#AAA;color:#000;padding:4px 10px;margin-top:14px;font-size:.85rem;display:flex;flex-wrap:wrap;gap:4px 20px}
+@media (max-width:760px){.grid{grid-template-columns:1fr}.doors{grid-template-columns:1fr}body{font-size:15px}.top{font-size:.78rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head>
+<body>
+<a class="skip" href="#main">Skip to the menu</a>
+<div class="term">
+<header>
+<div class="top"><span>NEON HARBOR BBS</span><span>node 1 of 4 (demo)</span><span>14.4k connect (demo)</span></div>
+<pre class="logo" aria-hidden="true"><span> _  _ ___ ___  _  _   _  _   _   ___ ___  ___  ___
+| \| | __/ _ \| \| | | || | /_\ | _ \ _ )/ _ \| _ \
+| .` | _| (_) | .` | | __ |/ _ \|   / _ \ (_) |   /
+|_|\_|___\___/|_|\_| |_||_/_/ \_\_|_\___/\___/|_|_\</span></pre>
+<p class="sub" style="color:var(--mg)">░▒▓█ welcome, caller. you are the 4,242nd caller (demo) █▓▒░</p>
+<h1>Neon Harbor BBS</h1>
+<p class="sub">A page template for community boards, clubs and hobby groups: a hotkey main menu, message areas, door games and a caller list. Press a letter key or use the buttons.</p>
+<p class="demo">This is a demo template. The board, callers and games are fictional sample content.</p>
+</header>
+<main id="main">
+<div class="grid">
+<section aria-labelledby="h-menu">
+<div class="panel">
+<h2 id="h-menu">Main menu</h2>
+<ul class="menu" id="menu">
+<li><button type="button" data-k="m" aria-pressed="true"><b>[M]</b> Message boards</button></li>
+<li><button type="button" data-k="d" aria-pressed="false"><b>[D]</b> Door games</button></li>
+<li><button type="button" data-k="f" aria-pressed="false"><b>[F]</b> File library</button></li>
+<li><button type="button" data-k="w" aria-pressed="false"><b>[W]</b> Who is online</button></li>
+<li><button type="button" data-k="s" aria-pressed="false"><b>[S]</b> SysOp notes</button></li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="h-stage" aria-live="polite">
+<div class="panel">
+<h2 id="h-stage">Area</h2>
+<div class="stage" id="area-m">
+<table><caption class="tag" style="text-align:left;padding-bottom:6px">Message areas (demo counts)</caption>
+<thead><tr><th scope="col">#</th><th scope="col">Board</th><th scope="col">Msgs</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>General chat &amp; hellos</td><td>312</td></tr>
+<tr><td>2</td><td>Tracker music swap</td><td>148</td></tr>
+<tr><td>3</td><td>Pixel &amp; ANSI art corner</td><td>97</td></tr>
+<tr><td>4</td><td>Hardware for sale / trade</td><td>61</td></tr>
+<tr><td>5</td><td>Local meetups</td><td>23</td></tr>
+</tbody></table>
+</div>
+<div class="stage" id="area-d" hidden>
+<div class="doors">
+<article class="door"><h3>Star Trader</h3><p>Turn-based space trading for one more day of turns. Demo blurb.</p></article>
+<article class="door"><h3>Dungeon of Dust</h3><p>Text dungeon crawl with a very patient shopkeeper. Demo blurb.</p></article>
+<article class="door"><h3>Word Foundry</h3><p>Daily word puzzle for the whole board. Demo blurb.</p></article>
+<article class="door"><h3>Harbor Slots</h3><p>Play-money only. No prizes, no stakes. Demo blurb.</p></article>
+</div>
+</div>
+<div class="stage" id="area-f" hidden>
+<table><thead><tr><th scope="col">File</th><th scope="col">Size</th><th scope="col">About</th></tr></thead>
+<tbody>
+<tr><td>HARBOR1.ANS</td><td>14K</td><td>Welcome screen art pack</td></tr>
+<tr><td>FONTS437.ZIP</td><td>82K</td><td>Bitmap font samples</td></tr>
+<tr><td>TUNE_01.MOD</td><td>41K</td><td>Tracker module, original</td></tr>
+<tr><td>HOWTO.TXT</td><td>6K</td><td>First-call guide</td></tr>
+</tbody></table>
+</div>
+<div class="stage" id="area-w" hidden>
+<table><thead><tr><th scope="col">Node</th><th scope="col">Handle</th><th scope="col">Doing</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>WaveRunner</td><td><span class="led">reading mail</span></td></tr>
+<tr><td>2</td><td>PixelPete</td><td><span class="led">in a door game</span></td></tr>
+<tr><td>3</td><td>Cobalt_Moth</td><td><span class="led">browsing files</span></td></tr>
+<tr><td>4</td><td>(waiting for call)</td><td>—</td></tr>
+</tbody></table>
+</div>
+<div class="stage" id="area-s" hidden>
+<dl><dt>SysOp</dt><dd>Captain Lantern (fictional)</dd><dt>Hours</dt><dd>Open 24 hours except Sunday backups</dd><dt>Rules</dt><dd>Be kind. No spam. Keep art original.</dd><dt>Voice line</dt><dd>None. Leave a message on board 1.</dd></dl>
+</div>
+</div>
+</section>
+</div>
+<section class="prompt" aria-labelledby="h-prompt">
+<h2 id="h-prompt" style="font-size:1rem;color:var(--acc)">Command:</h2>
+<p>Press <kbd>M</kbd> <kbd>D</kbd> <kbd>F</kbd> <kbd>W</kbd> <kbd>S</kbd> to switch areas. Time left today: 60 minutes (demo).</p>
+</section>
+<section class="prompt" aria-labelledby="h-news">
+<h2 id="h-news" style="font-size:1rem;color:var(--acc)">Bulletins</h2>
+<ul>
+<li><span class="tag">*</span> Board 3 is hosting an ANSI art pack drive this month. Demo bulletin.</li>
+<li><span class="tag">*</span> Node 4 is down for a new modem. Demo bulletin.</li>
+<li><span class="tag">*</span> Meetup at the library, first Saturday, bring a cable. Demo bulletin.</li>
+</ul>
+</section>
+</main>
+<div class="bottom"><span>NEON HARBOR BBS — demo template</span><span>fictional board</span><span>no real callers</span></div>
+</div>
+<script>
+(function(){
+var b=document.querySelectorAll('#menu button'),h=document.getElementById('h-stage');
+var names={m:'Message boards',d:'Door games',f:'File library',w:'Who is online',s:'SysOp notes'};
+function go(k){
+if(!names[k])return;
+b.forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-k')===k?'true':'false')});
+document.querySelectorAll('.stage').forEach(function(s){s.hidden=s.id!=='area-'+k});
+h.textContent=names[k];
+}
+b.forEach(function(x){x.addEventListener('click',function(){go(x.getAttribute('data-k'))})});
+document.addEventListener('keydown',function(e){
+if(e.ctrlKey||e.metaKey||e.altKey)return;
+var t=e.target&&e.target.tagName;if(t==='INPUT'||t==='TEXTAREA')return;
+go(String(e.key).toLowerCase());
+});
+})();
+</script>
+</body></html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Digital Garden: a linked-note index with growth stages, stacked note panes and backlinks. Fictional demo content.">
+<title>Digital garden — original page template (demo)</title>
+<style>
+:root{--bg:#EEF1E3;--ink:#23301F;--muted:#58654F;--accent:#5C7F2E;--surface:#DFE6CB;--paper:#FAFBF4;--line:#B9C49E;--focus:#B4400E}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:17px/1.65 Georgia,"Iowan Old Style",serif;color:var(--ink);background:var(--bg)}
+h1,h2,h3,h4,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;min-height:44px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-80px;background:var(--ink);color:var(--bg);padding:10px 14px;z-index:9}
+.skip:focus{top:12px}
+.sans{font-family:system-ui,"Segoe UI",sans-serif}
+.demo{margin:0;padding:8px 18px;background:var(--ink);color:var(--bg);font:.78rem/1.4 system-ui,sans-serif;text-align:center}
+.wrap{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 36px)}
+aside{padding:40px 28px;border-right:1px solid var(--line);background:var(--surface);position:sticky;top:0;align-self:start;height:calc(100vh - 36px);overflow:auto}
+h1{font-size:2.5rem;line-height:1;letter-spacing:-.03em;font-style:italic}
+.tag{margin:12px 0 24px;color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.filters button{font:600 .82rem system-ui,sans-serif;border:1.5px solid var(--ink);background:transparent;border-radius:30px;padding:4px 14px}
+.filters button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.index a{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:center;padding:8px 6px;text-decoration:none;border-bottom:1px dotted var(--muted)}
+.index a:hover{background:var(--paper)}
+.index small{font:.72rem system-ui,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.gl{width:20px;height:20px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.count{font:.82rem system-ui,sans-serif;color:var(--muted);margin-top:14px;min-height:1.4em}
+main{min-width:0;padding:40px 0 40px 28px}
+.intro{max-width:56ch;padding-right:28px;margin-bottom:28px}
+.intro h2{font-size:1.9rem;line-height:1.15;margin-bottom:10px}
+.stack{display:flex;gap:0;overflow-x:auto;padding-bottom:20px;scroll-snap-type:x proximity}
+.pane{flex:0 0 min(400px,86vw);min-height:420px;background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--accent);padding:22px 24px;margin-right:-1px;box-shadow:-6px 0 14px rgba(35,48,31,.08);scroll-snap-align:start;position:relative}
+.pane:target,.pane.hl{background:#fff;outline:2px solid var(--accent)}
+.pane header{display:flex;justify-content:space-between;align-items:center}
+.stage{display:inline-flex;gap:6px;align-items:center;font:600 .74rem system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.close{border:0;background:transparent;font-size:1.4rem;width:44px}
+.pane h3{font-size:1.7rem;line-height:1.1;margin:8px 0 14px}
+.pane p+p{margin-top:12px}
+.pane h4{font:700 .74rem system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;margin:22px 0 6px;color:var(--muted)}
+.pane[data-stage=seedling]{border-left-color:#A6B96F}
+.pane[data-stage=evergreen]{border-left-color:#2F4D1B}
+.wl{text-decoration:underline dotted 2px;text-underline-offset:.22em;background:rgba(92,127,46,.12);padding:0 2px}
+.back li{display:inline-block;margin:0 10px 6px 0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px;padding-right:28px}
+.row section{background:var(--surface);padding:22px;border-radius:4px}
+.row h2{font-size:1.25rem;margin-bottom:8px}
+[hidden]{display:none!important}
+@media (max-width:860px){.wrap{grid-template-columns:1fr}aside{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}main{padding:28px 0 28px 18px}.row{grid-template-columns:1fr;padding-right:18px}.intro{padding-right:18px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#notes">Skip to notes</a>
+<p class="demo">Demo template: the notes, stages and links below are fictional sample content.</p>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="g-seed" viewBox="0 0 20 20"><path d="M10 17v-6M10 11C10 8 8 7 5 7c0 3 2 4 5 4zM10 11c0-3 2-4 5-4 0 3-2 4-5 4z"/></symbol><symbol id="g-bud" viewBox="0 0 20 20"><path d="M10 18V9M10 9c-3 0-4-3-2-5 1 1 2 2 2 5zM10 9c3 0 4-3 2-5-1 1-2 2-2 5zM6 14c2 0 3-1 4-2M14 14c-2 0-3-1-4-2"/></symbol><symbol id="g-tree" viewBox="0 0 20 20"><path d="M10 18v-4M10 3l5 6h-3l4 5H4l4-5H5z"/></symbol></svg>
+<div class="wrap">
+<aside>
+<h1>The Slow Garden</h1>
+<p class="tag">A sample linked-note index. Tended, not published.</p>
+<div class="filters" role="group" aria-label="Filter by growth stage">
+<button type="button" data-f="all" aria-pressed="true">All</button>
+<button type="button" data-f="seedling" aria-pressed="false">Seedling</button>
+<button type="button" data-f="budding" aria-pressed="false">Budding</button>
+<button type="button" data-f="evergreen" aria-pressed="false">Evergreen</button>
+</div>
+<nav aria-label="Note index"><ul class="index" id="index">
+<li data-stage="evergreen"><a href="#n-slow-tools"><svg class="gl" aria-hidden="true"><use href="#g-tree"></use></svg><span>Slow tools</span><small>evergreen</small></a></li>
+<li data-stage="budding"><a href="#n-small-pages"><svg class="gl" aria-hidden="true"><use href="#g-bud"></use></svg><span>Small pages</span><small>budding</small></a></li>
+<li data-stage="budding"><a href="#n-tending"><svg class="gl" aria-hidden="true"><use href="#g-bud"></use></svg><span>Tending notes</span><small>budding</small></a></li>
+<li data-stage="seedling"><a href="#n-seed-bank"><svg class="gl" aria-hidden="true"><use href="#g-seed"></use></svg><span>Seed bank</span><small>seedling</small></a></li>
+<li data-stage="seedling"><a href="#n-walking-maps"><svg class="gl" aria-hidden="true"><use href="#g-seed"></use></svg><span>Walking maps</span><small>seedling</small></a></li>
+<li data-stage="evergreen"><a href="#n-link-etiquette"><svg class="gl" aria-hidden="true"><use href="#g-tree"></use></svg><span>Link etiquette</span><small>evergreen</small></a></li>
+</ul></nav>
+<p class="count" id="count" role="status"></p>
+</aside>
+<main id="notes">
+<section class="intro" aria-labelledby="h-intro">
+<h2 id="h-intro">Notes are open on the table, side by side.</h2>
+<p>Follow a dotted link and the next note opens beside this one. Growth stage tells you how much to trust a note. Everything here is demo text.</p>
+</section>
+<section aria-labelledby="h-stack">
+<h2 id="h-stack" class="sans" style="font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px;color:var(--muted)">Open notes</h2>
+<div class="stack" id="stack">
+<article class="pane" id="n-slow-tools" data-stage="evergreen" aria-labelledby="t-slow-tools">
+<header><span class="stage"><svg class="gl" aria-hidden="true"><use href="#g-tree"></use></svg>evergreen</span><button type="button" class="close" aria-label="Close note Slow tools">×</button></header>
+<h3 id="t-slow-tools">Slow tools</h3>
+<p>Tools that ask you to wait make you decide what you really want. Pairs well with <a class="wl" href="#n-small-pages">small pages</a> and <a class="wl" href="#n-tending">tending notes</a>.</p>
+<p>Writing by hand, a kettle, a film camera. Each adds friction on purpose, and the friction filters ideas. Sample note text, not a real essay.</p>
+<h4>Linked from</h4>
+<ul class="back"><li><a class="wl" href="#n-small-pages">Small pages</a></li><li><a class="wl" href="#n-walking-maps">Walking maps</a></li></ul>
+</article>
+<article class="pane" id="n-small-pages" data-stage="budding" aria-labelledby="t-small-pages">
+<header><span class="stage"><svg class="gl" aria-hidden="true"><use href="#g-bud"></use></svg>budding</span><button type="button" class="close" aria-label="Close note Small pages">×</button></header>
+<h3 id="t-small-pages">Small pages</h3>
+<p>A page that fits in one screen is easier to finish, and easier to keep true. See <a class="wl" href="#n-slow-tools">slow tools</a>.</p>
+<p>Rule of thumb from this demo garden: one idea, one page, three links out. If a note needs a table of contents it is probably two notes.</p>
+<h4>Linked from</h4>
+<ul class="back"><li><a class="wl" href="#n-slow-tools">Slow tools</a></li><li><a class="wl" href="#n-link-etiquette">Link etiquette</a></li></ul>
+</article>
+<article class="pane" id="n-tending" data-stage="budding" aria-labelledby="t-tending">
+<header><span class="stage"><svg class="gl" aria-hidden="true"><use href="#g-bud"></use></svg>budding</span><button type="button" class="close" aria-label="Close note Tending notes">×</button></header>
+<h3 id="t-tending">Tending notes</h3>
+<p>Revisit, prune, link. A note is never finished, only less wrong than before. Related: <a class="wl" href="#n-seed-bank">seed bank</a>.</p>
+<p>Set aside Sunday for gardening: merge duplicates, add one backlink per note, change a stage only if the text earned it.</p>
+<h4>Linked from</h4>
+<ul class="back"><li><a class="wl" href="#n-slow-tools">Slow tools</a></li><li><a class="wl" href="#n-seed-bank">Seed bank</a></li></ul>
+</article>
+<article class="pane" id="n-seed-bank" data-stage="seedling" aria-labelledby="t-seed-bank">
+<header><span class="stage"><svg class="gl" aria-hidden="true"><use href="#g-seed"></use></svg>seedling</span><button type="button" class="close" aria-label="Close note Seed bank">×</button></header>
+<h3 id="t-seed-bank">Seed bank</h3>
+<p>A holding pen for half-thoughts. Nothing here is promised to grow. Feeds <a class="wl" href="#n-tending">tending notes</a>.</p>
+<p>Three lines per seed: the odd observation, why it itched, one question. Demo entries only.</p>
+<h4>Linked from</h4>
+<ul class="back"><li><a class="wl" href="#n-tending">Tending notes</a></li></ul>
+</article>
+<article class="pane" id="n-walking-maps" data-stage="seedling" aria-labelledby="t-walking-maps">
+<header><span class="stage"><svg class="gl" aria-hidden="true"><use href="#g-seed"></use></svg>seedling</span><button type="button" class="close" aria-label="Close note Walking maps">×</button></header>
+<h3 id="t-walking-maps">Walking maps</h3>
+<p>Draw the route you remember, then compare it with the street. The gap is the interesting part.</p>
+<p>Idea only so far. Might become a workshop; might not. Linked from <a class="wl" href="#n-slow-tools">slow tools</a>.</p>
+<h4>Linked from</h4>
+<ul class="back"><li>No backlinks yet.</li></ul>
+</article>
+<article class="pane" id="n-link-etiquette" data-stage="evergreen" aria-labelledby="t-link-etiquette">
+<header><span class="stage"><svg class="gl" aria-hidden="true"><use href="#g-tree"></use></svg>evergreen</span><button type="button" class="close" aria-label="Close note Link etiquette">×</button></header>
+<h3 id="t-link-etiquette">Link etiquette</h3>
+<p>Link generously, quote sparingly, and say why you linked. Compare <a class="wl" href="#n-small-pages">small pages</a>.</p>
+<p>A link with a reason beats ten links without. Dotted underline marks a note in this garden; solid underline leaves it.</p>
+<h4>Linked from</h4>
+<ul class="back"><li>No backlinks yet.</li></ul>
+</article>
+</div>
+</section>
+<div class="row">
+<section aria-labelledby="h-how">
+<h2 id="h-how">How stages work</h2>
+<p>Seedling: a hunch. Budding: shaped but unproven. Evergreen: reread and still true. Sample rules; change them freely.</p>
+</section>
+<section aria-labelledby="h-about">
+<h2 id="h-about">About this garden</h2>
+<p>A demo of a note index with backlinks. No search is wired up and nothing is stored.</p>
+</section>
+</div>
+</main>
+</div>
+<script>
+(function(){
+var panes=[].slice.call(document.querySelectorAll('.pane'));
+var cnt=document.getElementById('count');
+var open={'n-slow-tools':1,'n-small-pages':1,'n-tending':1};
+function sync(){
+panes.forEach(function(p){p.hidden=!open[p.id];});
+var n=panes.filter(function(p){return !p.hidden;}).length;
+cnt.textContent=n+' of '+panes.length+' notes open';
+}
+function show(id){
+open[id]=1;sync();
+var p=document.getElementById(id);
+p.classList.add('hl');
+setTimeout(function(){p.classList.remove('hl');},1400);
+p.scrollIntoView({inline:'start',block:'nearest'});
+}
+document.addEventListener('click',function(e){
+var a=e.target.closest&&e.target.closest('a[href^="#n-"]');
+if(a){e.preventDefault();show(a.getAttribute('href').slice(1));return;}
+var c=e.target.closest&&e.target.closest('.close');
+if(c){delete open[c.closest('.pane').id];sync();}
+});
+[].slice.call(document.querySelectorAll('.filters button')).forEach(function(b){
+b.addEventListener('click',function(){
+[].slice.call(document.querySelectorAll('.filters button')).forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});
+var f=b.getAttribute('data-f'),shown=0;
+[].slice.call(document.querySelectorAll('#index li')).forEach(function(li){
+var ok=f==='all'||li.getAttribute('data-stage')===f;li.hidden=!ok;if(ok)shown++;
+});
+cnt.textContent=shown+' notes shown in the index';
+});
+});
+sync();
+})();
+</script>
+</body>
+</html>

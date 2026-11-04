@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Motion Reel: a demo 3D and motion artist reel page template with big stills, a chapter timeline and credits. Fictional sample content.">
+<title>Motion Reel — demo 3D and motion artist template</title>
+<style>
+:root{--bg:#EDEAE3;--ink:#0F0F10;--muted:#5C5A55;--accent:#E5391F;--surface:#DDD9CF;--mono:ui-monospace,"Cascadia Mono",Consolas,monospace;--sans:"Helvetica Neue","Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--sans)}
+h1,h2,h3,p,figure,dl,dd,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+.skip{position:absolute;left:12px;top:-80px;background:var(--accent);color:#fff;padding:10px 16px;z-index:50}
+.skip:focus{top:12px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{padding-inline:clamp(16px,3.4vw,48px)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:16px;border-bottom:2px solid var(--ink)}
+.top a.logo{font:700 .95rem var(--mono);text-decoration:none;letter-spacing:.04em;display:flex;gap:10px;align-items:center}
+.rec{width:12px;height:12px;border-radius:50%;background:var(--accent);display:inline-block}
+.top ul{display:flex;gap:4px;flex-wrap:wrap}
+.top li a{display:inline-block;font:.8rem var(--mono);padding:12px 12px;text-decoration:none;text-transform:uppercase;letter-spacing:.08em}
+.top li a:hover{background:var(--ink);color:var(--bg)}
+.demo{font:.78rem var(--mono);color:var(--muted);padding-block:8px;border-bottom:1px solid var(--ink)}
+.title{padding-block:clamp(28px,6vw,70px) 24px;display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
+h1{font:900 clamp(4rem,17vw,15rem)/.78 var(--sans);letter-spacing:-.06em;text-transform:uppercase}
+h1 span{color:var(--accent)}
+.meta{font:.82rem/1.7 var(--mono);text-transform:uppercase;max-width:30ch}
+.meta b{display:block;color:var(--accent)}
+.stagebox{background:var(--ink);padding:clamp(8px,1.4vw,18px);position:relative}
+.stagebox::before,.stagebox::after{content:"";position:absolute;left:0;right:0;height:8px;background:repeating-linear-gradient(90deg,var(--bg) 0 14px,transparent 14px 28px);opacity:.9;mask:none}
+.stagebox::before{top:5px}.stagebox::after{bottom:5px}
+.stage{position:relative;aspect-ratio:2.39/1;overflow:hidden;background:#000}
+.stage [role=tabpanel]{position:absolute;inset:0}
+.stage [role=tabpanel][hidden]{display:none}
+.stage svg{width:100%;height:100%}
+.burn{position:absolute;left:14px;bottom:10px;right:14px;display:flex;justify-content:space-between;font:700 clamp(.65rem,1.3vw,.95rem) var(--mono);color:#fff;text-shadow:0 1px 3px #000;pointer-events:none}
+.timeline{display:flex;gap:4px;margin-top:14px}
+.timeline [role=tab]{flex:var(--w);min-width:0;background:var(--surface);color:var(--ink);border:0;border-top:6px solid var(--ink);padding:12px 12px 14px;text-align:left;font:700 .85rem/1.2 var(--mono);cursor:pointer;min-height:56px}
+.timeline [role=tab] small{display:block;font-weight:400;color:var(--muted);margin-top:4px;font-size:.72rem}
+.timeline [aria-selected=true]{background:var(--bg);border-top-color:var(--accent);box-shadow:inset 0 0 0 2px var(--ink);color:var(--ink)}
+.timeline [aria-selected=true]::before{content:"▶ ";color:var(--accent)}
+.ruler{height:12px;margin-top:6px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 10%);opacity:.45}
+section{padding-block:clamp(40px,7vw,90px) 0}
+h2{font:900 clamp(2rem,5vw,3.8rem)/.95 var(--sans);letter-spacing:-.04em;text-transform:uppercase;margin-bottom:24px}
+h2 span{color:var(--accent)}
+.credit{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(20px,5vw,70px)}
+.credit dl{display:grid;grid-template-columns:auto 1fr;gap:0 24px;border-top:2px solid var(--ink);font-family:var(--mono);font-size:.9rem}
+.credit dt,.credit dd{padding:12px 0;border-bottom:1px solid rgba(15,15,16,.25)}
+.credit dt{color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.credit p{color:var(--muted);max-width:50ch}
+.pass{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.pass figure{background:var(--ink);color:var(--bg);position:relative}
+.pass figcaption{font:.78rem var(--mono);padding:10px 12px;text-transform:uppercase;letter-spacing:.08em}
+.pass svg{aspect-ratio:1;height:auto}
+.wire use{--t:none;--l:none;--r:none;stroke:#7fe0ff;stroke-width:1.4}
+.clay use{--t:#c9c5ba;--l:#8f8b82;--r:#6a675f}
+.cube{vector-effect:non-scaling-stroke}
+.tl-t{fill:var(--t)}.tl-l{fill:var(--l)}.tl-r{fill:var(--r)}
+details{border-top:2px solid var(--ink);padding:12px 0}
+summary{cursor:pointer;font:700 1.1rem var(--sans);min-height:44px;display:list-item}
+details p{color:var(--muted);margin-top:6px;max-width:60ch}
+.cta{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--accent);color:#fff;padding:clamp(26px,5vw,56px);margin-top:clamp(40px,7vw,90px)}
+.cta h2{margin:0;font-size:clamp(2rem,6vw,5rem)}
+.cta a{background:var(--ink);color:#fff;padding:16px 26px;font:700 .9rem var(--mono);text-decoration:none;text-transform:uppercase;letter-spacing:.08em;min-height:44px}
+.cta a:hover{background:#fff;color:var(--ink)}
+footer{padding-block:24px;font:.8rem var(--mono);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(max-width:760px){.credit{grid-template-columns:1fr}.pass{grid-template-columns:1fr}.timeline{flex-direction:column}.timeline [role=tab]{flex:none}.stage{aspect-ratio:16/10}.stage svg{height:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="wrap">
+<div class="top"><a class="logo" href="#top"><i class="rec"></i>NOA KESTREL / REEL 26</a>
+<nav aria-label="Primary"><ul><li><a href="#reel">Reel</a></li><li><a href="#breakdown">Breakdown</a></li><li><a href="#credits">Credits</a></li><li><a href="#contact">Contact</a></li></ul></nav></div>
+<p class="demo">DEMO TEMPLATE · Noa Kestrel is a fictional 3D and motion artist. Stills are sample SVG, timecodes are placeholders.</p>
+</header>
+<main id="main">
+<section id="top" class="wrap title" aria-labelledby="h1" style="padding-top:clamp(28px,6vw,70px)">
+<h1 id="h1">Motion<br><span>reel</span></h1>
+<p class="meta"><b>3D · Motion · Lookdev</b>Four sample shots, 00:48 total. Select a chapter to change the still and credits.</p>
+</section>
+
+<section id="reel" class="wrap" aria-labelledby="reel-h" style="padding-top:20px">
+<h2 id="reel-h" style="position:absolute;left:-9999px">Reel viewer</h2>
+<div class="stagebox"><div class="stage" id="stage">
+
+<div role="tabpanel" id="p0" aria-labelledby="t0">
+<svg viewBox="0 0 1000 418" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample still: a stack of isometric cubes in coral and cream on a sunset gradient">
+<defs><linearGradient id="gs1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6C9A8"/><stop offset="1" stop-color="#E5391F"/></linearGradient>
+<symbol id="cube" viewBox="0 0 174 200"><polygon class="tl-t" points="87,0 174,50 87,100 0,50" stroke="inherit"/><polygon class="tl-l" points="0,50 87,100 87,200 0,150"/><polygon class="tl-r" points="174,50 87,100 87,200 174,150"/></symbol></defs>
+<rect width="1000" height="418" fill="url(#gs1)"/>
+<ellipse cx="520" cy="392" rx="330" ry="26" fill="#0F0F10" opacity=".25"/>
+<use href="#cube" x="300" y="210" width="130" height="150" style="--t:#FFF1DF;--l:#E8B58F;--r:#C77453"/>
+<use href="#cube" x="430" y="210" width="130" height="150" style="--t:#FFF1DF;--l:#F2926F;--r:#C34627"/>
+<use href="#cube" x="560" y="210" width="130" height="150" style="--t:#FFF1DF;--l:#E8B58F;--r:#C77453"/>
+<use href="#cube" x="365" y="124" width="130" height="150" style="--t:#FFF1DF;--l:#0F0F10;--r:#3a3a3d"/>
+<use href="#cube" x="495" y="124" width="130" height="150" style="--t:#FFF1DF;--l:#F2926F;--r:#C34627"/>
+<use href="#cube" x="430" y="40" width="130" height="150" style="--t:#FFF1DF;--l:#E8B58F;--r:#C77453"/>
+</svg></div>
+
+<div role="tabpanel" id="p1" aria-labelledby="t1" hidden>
+<svg viewBox="0 0 1000 418" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample still: glossy teal and amber spheres on a dark green studio floor">
+<defs><radialGradient id="rg1" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FFE9B0"/><stop offset=".45" stop-color="#F0A63A"/><stop offset="1" stop-color="#8a4a0a"/></radialGradient>
+<radialGradient id="rg2" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#D4FFF3"/><stop offset=".45" stop-color="#2EC4B6"/><stop offset="1" stop-color="#0a4a48"/></radialGradient>
+<radialGradient id="bgr" cx=".5" cy=".4" r=".9"><stop offset="0" stop-color="#1C5A57"/><stop offset="1" stop-color="#06201F"/></radialGradient></defs>
+<rect width="1000" height="418" fill="url(#bgr)"/>
+<ellipse cx="500" cy="380" rx="420" ry="30" fill="#000" opacity=".35"/>
+<circle cx="330" cy="260" r="110" fill="url(#rg2)"/><circle cx="560" cy="210" r="150" fill="url(#rg1)"/><circle cx="740" cy="300" r="72" fill="url(#rg2)"/><circle cx="190" cy="330" r="48" fill="url(#rg1)"/>
+<ellipse cx="300" cy="215" rx="30" ry="14" fill="#fff" opacity=".55" transform="rotate(-30 300 215)"/><ellipse cx="520" cy="145" rx="42" ry="18" fill="#fff" opacity=".5" transform="rotate(-30 520 145)"/>
+</svg></div>
+
+<div role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+<svg viewBox="0 0 1000 418" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample still: twisting ribbons of orange, pink and violet over a deep indigo ground">
+<defs><linearGradient id="lg1" x1="0" x2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#E5391F"/></linearGradient><linearGradient id="lg2" x1="0" x2="1"><stop offset="0" stop-color="#FF6FA8"/><stop offset="1" stop-color="#8E5BFF"/></linearGradient></defs>
+<rect width="1000" height="418" fill="#17122E"/>
+<g fill="none" stroke-linecap="round"><path d="M-20 330C200 60 380 420 560 200S860 40 1040 220" stroke="url(#lg1)" stroke-width="64"/><path d="M-20 250C220 400 360 40 540 270S840 380 1040 120" stroke="url(#lg2)" stroke-width="44" opacity=".92"/><path d="M-20 330C200 60 380 420 560 200S860 40 1040 220" stroke="#fff" stroke-width="4" opacity=".35" transform="translate(0 -14)"/><path d="M-20 140C260 40 340 300 600 330S880 360 1040 330" stroke="#FFD27A" stroke-width="12" opacity=".8"/></g>
+</svg></div>
+
+<div role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+<svg viewBox="0 0 1000 418" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample still: a round podium lit by two light beams on a grey studio wall">
+<defs><linearGradient id="bm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+<rect width="1000" height="418" fill="#CFCABD"/><rect y="300" width="1000" height="118" fill="#B7B1A2"/>
+<polygon points="200,0 300,0 560,330 380,330" fill="url(#bm)"/><polygon points="800,0 700,0 440,330 620,330" fill="url(#bm)"/>
+<ellipse cx="500" cy="350" rx="190" ry="36" fill="#0F0F10" opacity=".25"/>
+<path d="M330 300V340C330 362 670 362 670 340V300Z" fill="#E5391F"/><ellipse cx="500" cy="300" rx="170" ry="34" fill="#FF7A5C"/><ellipse cx="500" cy="296" rx="120" ry="22" fill="#0F0F10"/>
+<circle cx="500" cy="200" r="64" fill="#0F0F10"/><ellipse cx="480" cy="178" rx="20" ry="10" fill="#fff" opacity=".4" transform="rotate(-30 480 178)"/>
+</svg></div>
+
+<div class="burn" aria-hidden="true"><span id="tc">00:00:00:00</span><span>DEMO · NOT A REAL REEL</span></div>
+</div></div>
+
+<div class="timeline" role="tablist" aria-label="Reel chapters" id="tabs">
+<button type="button" role="tab" id="t0" aria-selected="true" aria-controls="p0" style="--w:12">01 Stack<small>00:00 · 12s</small></button>
+<button type="button" role="tab" id="t1" aria-selected="false" aria-controls="p1" tabindex="-1" style="--w:14">02 Gloss<small>00:12 · 14s</small></button>
+<button type="button" role="tab" id="t2" aria-selected="false" aria-controls="p2" tabindex="-1" style="--w:10">03 Ribbon<small>00:26 · 10s</small></button>
+<button type="button" role="tab" id="t3" aria-selected="false" aria-controls="p3" tabindex="-1" style="--w:12">04 Podium<small>00:36 · 12s</small></button>
+</div>
+<div class="ruler" aria-hidden="true"></div>
+</section>
+
+<section id="credits" class="wrap" aria-labelledby="cr-h">
+<div class="credit"><div><h2 id="cr-h">Shot <span id="cn">01</span><br>credits</h2><p id="cdesc">A stack of faceted blocks built to loop. Sample copy for a fictional shot.</p></div>
+<dl id="cdl"></dl></div>
+</section>
+
+<section id="breakdown" class="wrap" aria-labelledby="bd-h">
+<h2 id="bd-h">Break<span>down</span></h2>
+<div class="pass"><figure class="wire"><svg viewBox="0 0 300 300" role="img" aria-label="Sample wireframe pass of a cube"><rect width="300" height="300" fill="#0F0F10"/><use href="#cube" x="75" y="60" width="150" height="172" style="--t:none;--l:none;--r:none" stroke="#7fe0ff"/></svg><figcaption>Wire</figcaption></figure>
+<figure class="clay"><svg viewBox="0 0 300 300" role="img" aria-label="Sample clay pass of a cube"><rect width="300" height="300" fill="#2a2a2c"/><use href="#cube" x="75" y="60" width="150" height="172" style="--t:#c9c5ba;--l:#8f8b82;--r:#6a675f"/></svg><figcaption>Clay</figcaption></figure>
+<figure><svg viewBox="0 0 300 300" role="img" aria-label="Sample final pass of a cube"><rect width="300" height="300" fill="#E5391F"/><use href="#cube" x="75" y="60" width="150" height="172" style="--t:#FFF1DF;--l:#F2926F;--r:#C34627"/></svg><figcaption>Final</figcaption></figure></div>
+<details style="margin-top:30px"><summary>Software and render times (sample)</summary><p>Replace with your real tools. Any times shown on a live page should come from your actual project files, not this demo.</p></details>
+<details><summary>Available for freelance?</summary><p>Demo status only. Add your real availability and contact details.</p></details>
+</section>
+
+<section id="contact" class="wrap" aria-labelledby="ct-h">
+<div class="cta"><h2 id="ct-h">Got a shot?</h2><a href="#top">Back to the reel</a></div>
+</section>
+</main>
+<footer class="wrap"><span>Motion Reel · demo page template</span><a href="#main">Top</a></footer>
+<script>
+(function(){
+var C=[
+{n:'01',tc:'00:00:00:00',d:'A stack of faceted blocks built to loop. Sample copy for a fictional shot.',c:[['Direction','N. Kestrel'],['Modelling','N. Kestrel'],['Lighting','A. Ferro (sample)'],['Music','Placeholder track']]},
+{n:'02',tc:'00:00:12:00',d:'Glossy spheres on a dark floor, lit for reflections. Sample copy.',c:[['Direction','N. Kestrel'],['Shading','M. Oyelaran (sample)'],['Render','Local GPU box'],['Sound','Placeholder foley']]},
+{n:'03',tc:'00:00:26:00',d:'Overlapping ribbons driven by one curve and a colour ramp. Sample copy.',c:[['Direction','N. Kestrel'],['Animation','N. Kestrel'],['Colour','J. Liang (sample)'],['Music','Placeholder track']]},
+{n:'04',tc:'00:00:36:00',d:'A calm podium shot with two soft key lights. Sample copy.',c:[['Direction','N. Kestrel'],['Layout','P. Dumont (sample)'],['Lighting','N. Kestrel'],['Edit','Placeholder']]}];
+var tabs=[].slice.call(document.querySelectorAll('[role=tab]')),cdl=document.getElementById('cdl');
+function show(i,focus){tabs.forEach(function(t,j){var on=j===i;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1;document.getElementById('p'+j).hidden=!on});
+var d=C[i];document.getElementById('tc').textContent=d.tc;document.getElementById('cn').textContent=d.n;document.getElementById('cdesc').textContent=d.d;
+cdl.innerHTML=d.c.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'}).join('');if(focus)tabs[i].focus()}
+tabs.forEach(function(t,i){t.addEventListener('click',function(){show(i)});t.addEventListener('keydown',function(e){var k=e.key;if(k==='ArrowRight')show((i+1)%4,true);else if(k==='ArrowLeft')show((i+3)%4,true);else return;e.preventDefault()})});
+show(0);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Original open-source project landing page template. Demo content for a fictional library called Lattice."><title>Lattice — repo showcase page template (demo)</title>
+<style>
+:root{--bg:#FBF8F1;--ink:#1B2236;--muted:#5A627A;--acc:#E4572E;--surf:#EFE9DB;--line:#D9D1BD;--mono:ui-monospace,SFMono-Regular,Consolas,Menlo,monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:1.5rem}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3,p,ul,figure,pre{margin:0}ul{padding:0;list-style:none}
+a{color:inherit;text-underline-offset:.2em}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-80px;background:var(--ink);color:var(--bg);padding:10px 14px;z-index:9}.skip:focus{top:10px}
+.wrap{max-width:1180px;margin:auto;padding-inline:clamp(18px,4vw,56px)}
+.demo{background:var(--ink);color:var(--surf);font:.8rem/1.4 var(--mono);padding:8px 0}
+header .bar{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-block:22px;flex-wrap:wrap}
+.logo{display:flex;gap:10px;align-items:center;font-weight:800;font-size:1.25rem;text-decoration:none;letter-spacing:-.02em}
+nav ul{display:flex;gap:22px;flex-wrap:wrap}nav a{text-decoration:none;font-weight:600}nav a:hover{color:var(--acc)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,64px);align-items:center;padding-block:clamp(36px,7vw,90px)}
+.badge{display:inline-block;font:700 .78rem var(--mono);border:2px solid var(--ink);padding:3px 10px;border-radius:99px;margin-bottom:20px}
+h1{font-size:clamp(2.8rem,7vw,5.6rem);line-height:.95;letter-spacing:-.05em;font-weight:900}
+h1 em{font-style:normal;color:var(--acc)}
+.lede{margin-top:22px;font-size:1.2rem;max-width:34em;color:var(--muted)}
+.cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 22px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);font-weight:700;text-decoration:none;box-shadow:4px 4px 0 var(--acc)}
+.btn.alt{background:transparent;color:var(--ink);box-shadow:none}
+.lattice{width:100%;height:auto;display:block}
+h2{font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.035em;line-height:1.05}
+section{padding-block:clamp(36px,6vw,76px)}
+.kicker{font:700 .8rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:10px}
+.install{background:var(--ink);color:#F4EFE2;border-radius:6px;overflow:hidden;box-shadow:8px 8px 0 var(--acc)}
+.tabs{display:flex;border-bottom:1px solid #3A4262;flex-wrap:wrap}
+.tabs button{background:none;border:0;color:#AAB1C8;font:600 .9rem var(--mono);padding:14px 20px;min-height:44px;cursor:pointer;border-bottom:3px solid transparent}
+.tabs button[aria-selected=true]{color:#fff;border-color:var(--acc)}
+.tabs .copy{margin-left:auto;color:var(--acc)}
+.install pre{padding:22px;font:1rem/1.7 var(--mono);overflow-x:auto}.install pre span{color:#8FD0A8}
+.status{font:.82rem var(--mono);color:#AAB1C8;padding:0 22px 14px;min-height:2em}
+.two{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,5vw,64px);align-items:center}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:30px}
+.cell{background:var(--surf);border:1px solid var(--line);padding:24px;border-radius:4px}
+.cell h3{font-size:1.25rem;letter-spacing:-.02em;margin-bottom:8px}.cell p{color:var(--muted)}
+.c1{grid-column:span 3;grid-row:span 2;background:var(--ink);color:var(--bg)}.c1 p{color:#C9CEDF}
+.c2,.c3{grid-column:span 3}.c4,.c5,.c6{grid-column:span 2}
+.big{font:900 4.5rem/1 system-ui;letter-spacing:-.06em;color:var(--acc);margin:18px 0 6px}
+.strip{display:flex;flex-wrap:wrap;gap:0;margin-top:28px}
+.strip li{margin-right:-14px}
+.strip svg{width:76px;height:84px;display:block;transition:transform .2s}.strip a:hover svg,.strip a:focus-visible svg{transform:translateY(-6px)}
+.strip a{display:block}
+.rows{border-top:2px solid var(--ink);margin-top:26px}
+details{border-bottom:1px solid var(--line);padding:14px 0}summary{font-weight:700;cursor:pointer;min-height:32px}details p{color:var(--muted);margin-top:8px;max-width:60ch}
+footer{background:var(--ink);color:var(--surf);padding-block:36px;font-size:.9rem}
+@media(max-width:820px){.hero,.two{grid-template-columns:1fr}.bento{grid-template-columns:1fr 1fr}.c1,.c2,.c3,.c4,.c5,.c6{grid-column:span 2;grid-row:auto}.c4,.c5{grid-column:span 1}}
+@media(max-width:480px){.bento{grid-template-columns:1fr}.c4,.c5{grid-column:span 2}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="demo"><div class="wrap">This is a demo template. Lattice is a fictional library; all numbers and names are sample content.</div></div>
+<header><div class="wrap bar">
+<a class="logo" href="#top"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2l11 6.5v13L15 28 4 21.500v-13z" fill="none" stroke="#1B2236" stroke-width="3"/><circle cx="15" cy="15" r="4" fill="#E4572E"/></svg>Lattice</a>
+<nav aria-label="Primary"><ul><li><a href="#install">Install</a></li><li><a href="#features">Features</a></li><li><a href="#people">Contributors</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
+</div></header>
+<main id="main">
+<section id="top" aria-labelledby="h1"><div class="wrap hero">
+<div><p class="badge">v2.4.0 · MIT · demo</p>
+<h1 id="h1">Small graphs, <em>solid</em> builds.</h1>
+<p class="lede">Lattice is a sample open-source library that turns plain config into dependency graphs. Replace this line with what your project really does.</p>
+<div class="cta"><a class="btn" href="#install">Get started</a><a class="btn alt" href="#features">Read the features</a></div></div>
+<svg class="lattice" viewBox="0 0 400 360" role="img" aria-label="Sample art: connected hexagonal nodes"><rect width="400" height="360" fill="#EFE9DB"/><g fill="none" stroke="#1B2236" stroke-width="3"><path d="M200 60l60 35v70l-60 35-60-35V95z"/><path d="M80 170l60 35v70l-60 35-60-35v-70z" stroke-dasharray="6 6"/><path d="M320 170l60 35v70l-60 35-60-35v-70z"/><path d="M140 165L80 170M260 165l60 5"/></g><g fill="#E4572E"><circle cx="200" cy="130" r="12"/><circle cx="80" cy="240" r="9"/></g><circle cx="320" cy="240" r="9" fill="#1B2236"/><text x="20" y="344" font-family="monospace" font-size="12" fill="#5A627A">sample art</text></svg>
+</div></section>
+
+<section id="install" aria-labelledby="h-install"><div class="wrap two">
+<div><p class="kicker">Quick start</p><h2 id="h-install">Three lines to a working graph.</h2><p style="margin-top:14px;color:var(--muted)">Pick your package manager. The copy button copies the visible command.</p></div>
+<div class="install"><div class="tabs" role="tablist" aria-label="Package manager">
+<button type="button" role="tab" aria-selected="true" data-cmd="npm install lattice-demo">npm</button>
+<button type="button" role="tab" aria-selected="false" data-cmd="pip install lattice-demo">pip</button>
+<button type="button" role="tab" aria-selected="false" data-cmd="cargo add lattice-demo">cargo</button>
+<button type="button" class="copy" id="copy">Copy</button></div>
+<pre><code id="cmd"><span>$</span> npm install lattice-demo</code></pre><p class="status" id="status" role="status"></p></div>
+</div></section>
+
+<section id="features" aria-labelledby="h-feat"><div class="wrap">
+<p class="kicker">Features</p><h2 id="h-feat">Why people reach for it</h2>
+<div class="bento">
+<article class="cell c1"><h3>Zero-config graphs</h3><p>Describe nodes in a plain file and Lattice resolves order, cycles and parallel branches for you.</p><p class="big">0</p><p>dependencies in this demo</p></article>
+<article class="cell c2"><h3>Readable errors</h3><p>Cycle reports name the exact edge that closed the loop.</p></article>
+<article class="cell c3"><h3>Plugin friendly</h3><p>Small hooks, typed events, no global state.</p></article>
+<article class="cell c4"><h3>Fast</h3><p>Sample claim — replace with measured results.</p></article>
+<article class="cell c5"><h3>Typed</h3><p>Ships declarations.</p></article>
+<article class="cell c6"><h3>Tested</h3><p>Demo badge, not a real score.</p></article>
+</div></div></section>
+
+<section id="people" aria-labelledby="h-people"><div class="wrap">
+<p class="kicker">Community</p><h2 id="h-people">Built in the open by sample people.</h2>
+<ul class="strip" aria-label="Demo contributors">
+<li><a href="#people" aria-label="Contributor Ada, demo"><svg viewBox="0 0 76 84"><path d="M38 2l34 20v40L38 82 4 62V22z" fill="#E4572E" stroke="#FBF8F1" stroke-width="4"/><text x="38" y="52" text-anchor="middle" font-size="26" font-weight="800" fill="#FBF8F1" font-family="system-ui">A</text></svg></a></li>
+<li><a href="#people" aria-label="Contributor Bo, demo"><svg viewBox="0 0 76 84"><path d="M38 2l34 20v40L38 82 4 62V22z" fill="#1B2236" stroke="#FBF8F1" stroke-width="4"/><text x="38" y="52" text-anchor="middle" font-size="26" font-weight="800" fill="#FBF8F1" font-family="system-ui">B</text></svg></a></li>
+<li><a href="#people" aria-label="Contributor Cy, demo"><svg viewBox="0 0 76 84"><path d="M38 2l34 20v40L38 82 4 62V22z" fill="#8FA89B" stroke="#FBF8F1" stroke-width="4"/><text x="38" y="52" text-anchor="middle" font-size="26" font-weight="800" fill="#1B2236" font-family="system-ui">C</text></svg></a></li>
+<li><a href="#people" aria-label="Contributor Dee, demo"><svg viewBox="0 0 76 84"><path d="M38 2l34 20v40L38 82 4 62V22z" fill="#EFE9DB" stroke="#1B2236" stroke-width="4"/><text x="38" y="52" text-anchor="middle" font-size="26" font-weight="800" fill="#1B2236" font-family="system-ui">D</text></svg></a></li>
+<li><a href="#people" aria-label="Contributor Eli, demo"><svg viewBox="0 0 76 84"><path d="M38 2l34 20v40L38 82 4 62V22z" fill="#E4572E" stroke="#FBF8F1" stroke-width="4"/><text x="38" y="52" text-anchor="middle" font-size="26" font-weight="800" fill="#FBF8F1" font-family="system-ui">E</text></svg></a></li>
+<li><a href="#people" aria-label="And more demo contributors"><svg viewBox="0 0 76 84"><path d="M38 2l34 20v40L38 82 4 62V22z" fill="#1B2236" stroke="#FBF8F1" stroke-width="4"/><text x="38" y="52" text-anchor="middle" font-size="22" font-weight="800" fill="#FBF8F1" font-family="system-ui">+42</text></svg></a></li>
+</ul>
+<p style="margin-top:20px;color:var(--muted)">Sample count: 47 contributors (demo number). Link each hexagon to a real profile.</p>
+</div></section>
+
+<section id="faq" aria-labelledby="h-faq"><div class="wrap two">
+<div><p class="kicker">Questions</p><h2 id="h-faq">Before you adopt it</h2></div>
+<div class="rows">
+<details><summary>Which licence does it use?</summary><p>The demo says MIT. Put your real licence and a link to the file here.</p></details>
+<details><summary>How do I report a bug?</summary><p>Open an issue in the repository with a minimal example. Replace with your real issue link.</p></details>
+<details><summary>Can I contribute docs?</summary><p>Yes. Describe the branch, test and review flow your project uses.</p></details>
+</div></div></section>
+</main>
+<footer><div class="wrap"><p>Lattice demo template · fictional project · no real package exists under this name.</p></div></footer>
+<script>
+(function(){var tabs=document.querySelectorAll('[role=tab]'),cmd=document.getElementById('cmd'),st=document.getElementById('status'),cur='npm install lattice-demo';
+tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(function(x){x.setAttribute('aria-selected','false')});t.setAttribute('aria-selected','true');cur=t.getAttribute('data-cmd');cmd.innerHTML='<span>$</span> '+cur;st.textContent=''})});
+document.getElementById('copy').addEventListener('click',function(){var ok=function(){st.textContent='Copied: '+cur},no=function(){st.textContent='Copy not available here; select the command and copy it.'};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(cur).then(ok,no)}else{no()}})})();
+</script>
+</body></html>

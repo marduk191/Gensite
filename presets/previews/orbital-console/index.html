@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Original mission-control dashboard page template with telemetry panels, an orbit diagram and an event log. Fictional demo content.">
+<title>Meridian Station Console — demo page template</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#060c13;--ink:#d8e9f3;--muted:#8fa7b9;--accent:#4fd8c8;--amber:#ffb454;--surface:#0e1a26;--line:#1f3a4d;--focus:#ffe066}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+body{margin:0;background:var(--bg) radial-gradient(circle at 80% -10%,#10304a,transparent 50%);background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px);background-size:32px 32px;color:var(--ink);font:15.5px/1.55 ui-monospace,"Cascadia Mono",Consolas,Menlo,monospace}
+h1,h2,h3,p,figure,ul,dl,dd,table{margin:0}
+h1,h2,h3{font-family:"Segoe UI",system-ui,sans-serif;text-transform:uppercase;letter-spacing:.14em;line-height:1.15}
+a{color:var(--accent);text-underline-offset:.2em}
+button{font:inherit;color:inherit;cursor:pointer;min-height:44px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-80px;background:#fff;color:#000;padding:10px 14px;z-index:9}
+.skip:focus{top:10px}
+[hidden]{display:none!important}
+.wrap{max-width:1360px;margin:auto;padding:0 clamp(12px,3vw,32px)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:14px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.brand{font-family:"Segoe UI",sans-serif;font-weight:700;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.brand i{color:var(--accent);font-style:normal}
+.top nav{display:flex;gap:6px;flex-wrap:wrap}
+.top nav a{color:var(--muted);padding:10px 14px;text-decoration:none;border:1px solid transparent;text-transform:uppercase;letter-spacing:.1em;font-size:.82rem}
+.top nav a:hover{border-color:var(--line);color:var(--accent)}
+.demo{font-size:.78rem;color:var(--amber);padding:8px 0;letter-spacing:.06em}
+.hero{padding:30px 0 20px;display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:end}
+.kicker{color:var(--accent);letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;margin-bottom:12px}
+h1{font-size:clamp(2rem,4.8vw,3.8rem);font-weight:300}
+h1 b{font-weight:800;color:var(--accent)}
+.hero p{color:var(--muted);max-width:56ch;margin-top:14px}
+.clock{border:1px solid var(--line);background:var(--surface);padding:14px 18px;text-align:right}
+.clock small{display:block;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;font-size:.72rem}
+.clock strong{font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:.06em;color:var(--ink);font-weight:400}
+.panel{position:relative;background:var(--surface);border:1px solid var(--line);padding:16px 18px 18px}
+.panel::before,.panel::after{content:"";position:absolute;width:14px;height:14px;border:2px solid var(--accent)}
+.panel::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.panel::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.panel h2{font-size:.82rem;color:var(--accent);display:flex;justify-content:space-between;gap:8px;margin-bottom:14px}
+.panel h2 span{color:var(--muted);letter-spacing:.06em}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:10px}
+.g-orbit{grid-column:span 7}.g-tele{grid-column:span 5}.g-sys{grid-column:span 5}.g-log{grid-column:span 7}
+.orbit{width:100%;height:auto;display:block}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.stat{border:1px solid var(--line);padding:10px 12px}
+.stat small{color:var(--muted);text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;display:block}
+.stat b{font-size:1.5rem;font-weight:400}
+.stat b u{text-decoration:none;font-size:.8rem;color:var(--muted)}
+.bar{display:grid;grid-template-columns:90px 1fr 52px;gap:10px;align-items:center;margin-top:8px;font-size:.85rem}
+.track{height:10px;background:#0a131c;border:1px solid var(--line)}
+.fill{height:100%;background:var(--accent);width:var(--w)}
+.fill.warn{background:var(--amber)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tab{background:transparent;border:1px solid var(--line);padding:4px 14px;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;color:var(--muted)}
+.tab[aria-pressed=true]{background:var(--accent);color:#04201d;border-color:var(--accent);font-weight:700}
+.sysrow{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);align-items:center}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;background:var(--accent)}
+.dot.w{background:var(--amber);border-radius:2px}
+.status{color:var(--muted);font-size:.82rem;margin-bottom:8px}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:8px 8px;border-top:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;font-weight:400;border-top:0}
+td.w{color:var(--amber)}
+.table-scroll{overflow-x:auto}
+.sec{margin-top:36px}
+.sec>h2{font-size:1rem;color:var(--accent);margin-bottom:12px}
+.crew{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.crew .panel p{color:var(--muted);font-size:.9rem}
+.crew h3{font-size:.95rem;margin-bottom:6px}
+details{border-top:1px solid var(--line);padding:6px 0}
+summary{cursor:pointer;min-height:44px;padding:10px 0;text-transform:uppercase;letter-spacing:.1em;font-size:.85rem}
+footer{margin:50px 0 30px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+@media(max-width:1000px){.g-orbit,.g-tele,.g-sys,.g-log{grid-column:1/-1}.crew{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.clock{text-align:left}}
+@media(max-width:560px){body{font-size:15px}.crew{grid-template-columns:1fr}.bar{grid-template-columns:70px 1fr 48px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header class="top"><a class="brand" href="./index.html">Meridian<i>/</i>Station</a>
+<nav aria-label="Main navigation"><a href="#orbit">Orbit</a><a href="#telemetry">Telemetry</a><a href="#systems">Systems</a><a href="#log">Event log</a><a href="#crew">Crew</a></nav></header>
+<p class="demo">DEMO TEMPLATE · All stations, crews, readings and times are fictional sample values, not live data.</p>
+</div>
+<main id="main" class="wrap">
+<section class="hero" aria-labelledby="h1">
+<div><p class="kicker">Orbital operations · Sample dashboard</p><h1 id="h1">Meridian Station <b>Console</b></h1>
+<p>A fictional mission-control page: orbit view, telemetry channels, subsystem status and an event log in one dense but readable grid. Values below are static demo samples; press the buttons to switch the sample view.</p></div>
+<div class="clock panel"><small>Mission elapsed time (static demo)</small><strong>T+ 142:07:33</strong><small>Next pass · AOS 04:12 UTC (sample)</small></div>
+</section>
+
+<div class="grid">
+<section id="orbit" class="panel g-orbit" aria-labelledby="h-orbit">
+<h2 id="h-orbit">Orbit track <span>Sample diagram</span></h2>
+<svg class="orbit" viewBox="0 0 640 340" role="img" aria-label="Original demo diagram: a station orbiting a planet, with a ground station marker">
+<defs><radialGradient id="pl" cx=".35" cy=".3"><stop offset="0" stop-color="#2e7aa6"/><stop offset="1" stop-color="#0b2236"/></radialGradient></defs>
+<g stroke="#1f3a4d" stroke-width="1"><path d="M0 85h640M0 170h640M0 255h640M107 0v340M213 0v340M320 0v340M427 0v340M533 0v340"/></g>
+<ellipse cx="320" cy="170" rx="250" ry="110" fill="none" stroke="#4fd8c8" stroke-width="2" stroke-dasharray="6 6"/>
+<ellipse cx="320" cy="170" rx="290" ry="140" fill="none" stroke="#1f3a4d" stroke-width="1.5"/>
+<circle cx="320" cy="170" r="78" fill="url(#pl)" stroke="#4fd8c8" stroke-width="1.5"/>
+<path d="M262 150q58 -22 116 0M254 175q66 -20 132 0M262 200q58 -18 116 0" fill="none" stroke="#7fd6ff" stroke-opacity=".35"/>
+<g transform="translate(528 128)"><rect x="-9" y="-6" width="18" height="12" fill="#ffb454"/><path d="M-30 0h21M9 0h21M-30-8v16M30-8v16" stroke="#ffb454" stroke-width="3"/></g>
+<text x="470" y="96" fill="#ffb454" font-size="13">MS-1 (demo)</text>
+<g fill="#4fd8c8"><circle cx="278" cy="228" r="4"/></g><path d="M278 228l-70 50" stroke="#4fd8c8" stroke-width="1" stroke-dasharray="3 4"/><text x="120" y="296" fill="#4fd8c8" font-size="13">GROUND STN ALPHA</text>
+<text x="14" y="22" fill="#8fa7b9" font-size="12">ALT 410 KM · INC 51.6 DEG (SAMPLE)</text>
+</svg>
+</section>
+
+<section id="telemetry" class="panel g-tele" aria-labelledby="h-tele">
+<h2 id="h-tele">Telemetry <span>Demo values</span></h2>
+<div class="tabs" role="group" aria-label="Telemetry channel group">
+<button type="button" class="tab" data-ch="power" aria-pressed="true">Power</button>
+<button type="button" class="tab" data-ch="thermal" aria-pressed="false">Thermal</button>
+<button type="button" class="tab" data-ch="comms" aria-pressed="false">Comms</button>
+</div>
+<p class="status" role="status" aria-live="polite" id="ch-status">Channel group: Power (sample)</p>
+<div class="stats"><div class="stat"><small>Bus voltage</small><b id="s1">28.4 <u>V</u></b></div><div class="stat"><small>Load</small><b id="s2">61 <u>%</u></b></div></div>
+<div class="bar"><span>Array A</span><div class="track"><div class="fill" id="b1" style="--w:82%"></div></div><span id="v1">82%</span></div>
+<div class="bar"><span>Array B</span><div class="track"><div class="fill" id="b2" style="--w:74%"></div></div><span id="v2">74%</span></div>
+<div class="bar"><span>Battery</span><div class="track"><div class="fill warn" id="b3" style="--w:38%"></div></div><span id="v3">38%</span></div>
+</section>
+
+<section id="systems" class="panel g-sys" aria-labelledby="h-sys">
+<h2 id="h-sys">Subsystems <span>5 listed</span></h2>
+<div class="sysrow"><span><i class="dot"></i>Life support</span><span>Nominal</span></div>
+<div class="sysrow"><span><i class="dot"></i>Guidance</span><span>Nominal</span></div>
+<div class="sysrow"><span><i class="dot w"></i>Thermal loop B</span><span>Watch</span></div>
+<div class="sysrow"><span><i class="dot"></i>Comms relay</span><span>Nominal</span></div>
+<div class="sysrow"><span><i class="dot w"></i>Docking port 2</span><span>Standby</span></div>
+</section>
+
+<section id="log" class="panel g-log" aria-labelledby="h-log">
+<h2 id="h-log">Event log <span>Sample entries</span></h2>
+<div class="table-scroll"><table>
+<thead><tr><th scope="col">Time</th><th scope="col">Source</th><th scope="col">Event</th></tr></thead>
+<tbody>
+<tr><td>03:58</td><td>GUIDE</td><td>Orbit trim completed within sample tolerance.</td></tr>
+<tr><td>03:41</td><td>COMMS</td><td>Relay handoff to Ground Station Alpha.</td></tr>
+<tr><td class="w">03:12</td><td class="w">THERM</td><td class="w">Loop B coolant temperature above sample caution line.</td></tr>
+<tr><td>02:50</td><td>CREW</td><td>Daily systems check logged by Dr. Imara Voss (fictional).</td></tr>
+</tbody></table></div>
+</section>
+</div>
+
+<section id="crew" class="sec" aria-labelledby="h-crew">
+<h2 id="h-crew">Crew and flight team</h2>
+<div class="crew">
+<div class="panel"><h3>Commander</h3><p>Imara Voss. Sample bio: twelve invented missions and a fondness for tea.</p></div>
+<div class="panel"><h3>Flight engineer</h3><p>Teodor Lindqvist. Handles thermal loops and the ship’s sense of humour.</p></div>
+<div class="panel"><h3>Science lead</h3><p>Anaya Okoye. Runs the microgravity plant experiment in bay three.</p></div>
+<div class="panel"><h3>Capcom</h3><p>Rowan Mercer. The calm voice on the ground at every handoff.</p></div>
+</div>
+<details><summary>About this demo layout</summary><p class="status">Panels use bracketed corners, a monospace readout and one cyan accent, with amber reserved for cautions. Replace all sample names and values with your own project data.</p></details>
+</section>
+</main>
+<div class="wrap"><footer><span>Meridian Station Console · Fictional template demo</span><a href="#main">Back to top</a></footer></div>
+<script>
+var C={power:{g:"Power",s:["28.4 <u>V</u>","61 <u>%</u>"],l:["Array A","Array B","Battery"],v:[82,74,38]},
+thermal:{g:"Thermal",s:["21.6 <u>C</u>","2.1 <u>kW</u>"],l:["Loop A","Loop B","Radiator"],v:[55,88,47]},
+comms:{g:"Comms",s:["-92 <u>dBm</u>","12 <u>Mb/s</u>"],l:["Uplink","Downlink","Relay"],v:[91,76,64]}};
+document.querySelectorAll('[data-ch]').forEach(function(b){b.addEventListener('click',function(){
+var d=C[b.dataset.ch];
+document.querySelectorAll('[data-ch]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+document.getElementById('s1').innerHTML=d.s[0];document.getElementById('s2').innerHTML=d.s[1];
+for(var i=0;i<3;i++){var f=document.getElementById('b'+(i+1));f.style.setProperty('--w',d.v[i]+'%');f.classList.toggle('warn',d.v[i]<50||d.v[i]>85);
+var row=f.closest('.bar');row.firstElementChild.textContent=d.l[i];document.getElementById('v'+(i+1)).textContent=d.v[i]+'%';}
+document.getElementById('ch-status').textContent='Channel group: '+d.g+' (sample)';
+})});
+</script>
+</body>
+</html>

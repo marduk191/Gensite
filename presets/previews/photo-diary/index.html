@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Photo Diary: a photographer's dated diary with full-bleed frames and a contact-sheet index. Fictional demo content and original sample art.">
+<title>Photo diary — original page template (demo)</title>
+<style>
+:root{--bg:#ECE6DA;--ink:#15130F;--muted:#5E574B;--accent:#C8321E;--surface:#D9D1C0;--focus:#1D4ED8}
+body.dim{--bg:#15130F;--ink:#ECE6DA;--muted:#A89F8D;--surface:#26221B;--focus:#8FB4FF}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:10px}
+body{margin:0;font:18px/1.6 Georgia,"Times New Roman",serif;color:var(--ink);background:var(--bg);transition:background .3s,color .3s}
+h1,h2,h3,p,ul,figure{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;min-height:44px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-80px;background:var(--ink);color:var(--bg);padding:10px 14px;z-index:9}
+.skip:focus{top:12px}
+.mono{font-family:ui-monospace,Consolas,monospace}
+.demo{margin:0;padding:8px 18px;background:var(--accent);color:#fff;font:.78rem/1.4 ui-monospace,Consolas,monospace;text-align:center}
+.bar{display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,4vw,56px);font:.8rem ui-monospace,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase}
+.bar nav{display:flex;gap:22px;align-items:center}
+.bar a{text-decoration:none}
+.bar a:hover{text-decoration:underline}
+.bar button{border:1.5px solid var(--ink);background:transparent;padding:4px 14px;border-radius:30px;font:inherit}
+.cover{padding:clamp(30px,6vw,90px) clamp(18px,4vw,56px) 36px}
+.cover h1{font-size:clamp(3.4rem,13vw,11rem);line-height:.84;letter-spacing:-.05em;font-weight:400;font-style:italic}
+.cover h1 em{color:var(--accent);font-style:normal}
+.cover p{max-width:44ch;margin-top:22px;color:var(--muted)}
+.sheet{background:#15130F;color:#ECE6DA;padding:22px 0 18px;margin:20px 0 0;position:relative}
+.sheet::before,.sheet::after{content:"";display:block;height:12px;margin:0 0 12px;background:repeating-linear-gradient(90deg,#ECE6DA 0 14px,transparent 14px 30px);opacity:.75;-webkit-mask:linear-gradient(#000 0 0)}
+.sheet::after{margin:12px 0 0}
+.sheet h2{font:.74rem ui-monospace,Consolas,monospace;letter-spacing:.2em;text-transform:uppercase;padding:0 clamp(18px,4vw,56px);margin-bottom:12px;color:#A89F8D}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 clamp(18px,4vw,56px)}
+.strip a{display:block;position:relative;outline-offset:-3px}
+.strip svg{width:100%;aspect-ratio:3/2;display:block;filter:saturate(.9)}
+.strip span{position:absolute;left:6px;bottom:4px;font:.72rem ui-monospace,Consolas,monospace;color:#F2C063}
+.strip a:hover svg{outline:2px solid var(--accent)}
+.strip a:focus-visible{outline-color:#8FB4FF}
+.frame{margin-top:clamp(40px,8vw,110px)}
+.frame figure{position:relative}
+.frame figure svg{display:block;width:100%;height:min(86vh,56.25vw);min-height:260px}
+.frame figcaption{position:absolute;right:14px;bottom:10px;font:.72rem ui-monospace,Consolas,monospace;color:#fff;background:rgba(21,19,15,.62);padding:2px 10px}
+.entry{display:grid;grid-template-columns:200px minmax(0,60ch);gap:clamp(18px,4vw,64px);padding:26px clamp(18px,4vw,56px) 0}
+.date{font:italic 1rem Georgia,serif;color:var(--accent)}
+.date b{display:block;font-size:4.2rem;line-height:.9;font-style:normal;font-weight:400;color:var(--ink)}
+.entry h3{font-size:1.9rem;line-height:1.1;font-weight:400;margin-bottom:10px}
+.exif{margin-top:14px;font:.78rem ui-monospace,Consolas,monospace;color:var(--muted);border-top:1px solid var(--muted);padding-top:8px;display:inline-block}
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,4vw,64px);padding:clamp(50px,8vw,110px) clamp(18px,4vw,56px)}
+.notes section{border-top:4px solid var(--accent);padding-top:14px}
+.notes h2{font-size:1.6rem;font-weight:400;margin-bottom:8px}
+footer{padding:26px clamp(18px,4vw,56px);font:.78rem ui-monospace,Consolas,monospace;color:var(--muted);background:var(--surface)}
+@media (max-width:760px){.strip{grid-template-columns:repeat(2,1fr)}.entry,.notes{grid-template-columns:1fr}.bar nav a{display:none}.date b{display:inline;font-size:2.6rem;margin-right:8px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#frames">Skip to frames</a>
+<p class="demo">Demo template: diary text, camera settings and artwork are fictional samples, not real photographs.</p>
+<header class="bar">
+<span>Mina Okafor — diary (sample)</span>
+<nav aria-label="Primary"><a href="#sheet">Contact sheet</a><a href="#frames">Frames</a><a href="#about">About</a><button type="button" id="dim" aria-pressed="false">Dim the room</button></nav>
+</header>
+<main id="main">
+<section class="cover" aria-labelledby="h1">
+<h1 id="h1">Four weeks, <em>four</em> frames.</h1>
+<p>A photographer's dated diary. One picture kept per outing, one paragraph about why. Entirely sample content for this template.</p>
+</section>
+<section class="sheet" id="sheet" aria-labelledby="h-sheet">
+<h2 id="h-sheet">Contact sheet · tap a frame</h2>
+<ul class="strip"><li><a href="#fog"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample thumbnail of Ridge before the bus"><rect width="1600" height="900" fill="#E6D9C3"/><circle cx="1130" cy="300" r="110" fill="#F4C9A0"/><path d="M0 520C200 430 330 470 520 400s330-60 520 40 360-20 560 30V900H0z" fill="#C7B49C"/><path d="M0 610C240 520 420 590 640 520s420 40 640-40 220 20 320 0V900H0z" fill="#9C8B78"/><path d="M0 720C300 660 520 740 800 690s560 20 800-30V900H0z" fill="#5E5547"/><rect y="560" width="1600" height="60" fill="#ECE6DA" opacity=".35"/></svg><span>01</span></a></li><li><a href="#window"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample thumbnail of Light on the landing"><rect width="1600" height="900" fill="#2B2620"/><path d="M360 0h520L1260 900H640z" fill="#E9B872" opacity=".9"/><path d="M520 0h120l380 900H900z" fill="#F6DDA8" opacity=".55"/><rect x="1180" y="420" width="120" height="480" fill="#15130F"/><path d="M1240 430c-80-120-40-220 40-250-10 90 60 130 0 250zM1240 430c70-90 150-70 170-10-90-10-120 20-170 10z" fill="#15130F"/></svg><span>02</span></a></li><li><a href="#night"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample thumbnail of Rain, last tram"><rect width="1600" height="900" fill="#14182B"/><g fill="#242B4A"><rect x="80" y="160" width="340" height="740"/><rect x="460" y="260" width="280" height="640"/><rect x="1020" y="120" width="300" height="780"/><rect x="1360" y="300" width="240" height="600"/></g><g fill="#F2C063"><rect x="120" y="220" width="40" height="52"/><rect x="200" y="340" width="40" height="52"/><rect x="300" y="220" width="40" height="52"/><rect x="520" y="340" width="40" height="52"/><rect x="1080" y="200" width="40" height="52"/><rect x="1180" y="420" width="40" height="52"/><rect x="1420" y="400" width="40" height="52"/></g><circle cx="800" cy="520" r="90" fill="#F2C063" opacity=".25"/><circle cx="800" cy="520" r="22" fill="#FFE9B0"/><path d="M0 760h1600v140H0z" fill="#0C0F1D"/><path d="M700 780h200M650 830h300" stroke="#F2C063" stroke-width="8" opacity=".35"/></svg><span>03</span></a></li><li><a href="#shore"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample thumbnail of Two boats, no wind"><rect width="1600" height="560" fill="#D8E1DC"/><rect y="560" width="1600" height="340" fill="#7C9A9A"/><rect y="556" width="1600" height="8" fill="#F1F4EF"/><path d="M420 520h300l-40 50H460z" fill="#C8321E"/><path d="M570 520V400l90 120z" fill="#ECE6DA"/><path d="M1060 530h220l-30 40h-160z" fill="#15130F"/><path d="M420 590h300M470 620h200M1060 596h220" stroke="#5F7B7B" stroke-width="6"/></svg><span>04</span></a></li></ul>
+</section>
+<section id="frames" aria-label="Diary frames">
+<article class="frame" id="fog" aria-labelledby="t-fog">
+<figure><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample art, demo: Ridge before the bus"><rect width="1600" height="900" fill="#E6D9C3"/><circle cx="1130" cy="300" r="110" fill="#F4C9A0"/><path d="M0 520C200 430 330 470 520 400s330-60 520 40 360-20 560 30V900H0z" fill="#C7B49C"/><path d="M0 610C240 520 420 590 640 520s420 40 640-40 220 20 320 0V900H0z" fill="#9C8B78"/><path d="M0 720C300 660 520 740 800 690s560 20 800-30V900H0z" fill="#5E5547"/><rect y="560" width="1600" height="60" fill="#ECE6DA" opacity=".35"/></svg><figcaption>Frame 01 · sample art</figcaption></figure>
+<div class="entry"><p class="date"><b>12</b> Oct</p><div><h3 id="t-fog">Ridge before the bus</h3><p>Out of bed at five for a fog that lasted eleven minutes. The ridge came and went like a thought I could not hold. Sample diary text.</p><p class="exif">35 mm · f/8 · 1/125 · ISO 200 (demo values)</p></div></div>
+</article>
+<article class="frame" id="window" aria-labelledby="t-window">
+<figure><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample art, demo: Light on the landing"><rect width="1600" height="900" fill="#2B2620"/><path d="M360 0h520L1260 900H640z" fill="#E9B872" opacity=".9"/><path d="M520 0h120l380 900H900z" fill="#F6DDA8" opacity=".55"/><rect x="1180" y="420" width="120" height="480" fill="#15130F"/><path d="M1240 430c-80-120-40-220 40-250-10 90 60 130 0 250zM1240 430c70-90 150-70 170-10-90-10-120 20-170 10z" fill="#15130F"/></svg><figcaption>Frame 02 · sample art</figcaption></figure>
+<div class="entry"><p class="date"><b>19</b> Oct</p><div><h3 id="t-window">Light on the landing</h3><p>The afternoon squeezes through one window and decorates the stairwell for a short while. I wait and press once. Sample diary text.</p><p class="exif">50 mm · f/4 · 1/60 · ISO 400 (demo values)</p></div></div>
+</article>
+<article class="frame" id="night" aria-labelledby="t-night">
+<figure><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample art, demo: Rain, last tram"><rect width="1600" height="900" fill="#14182B"/><g fill="#242B4A"><rect x="80" y="160" width="340" height="740"/><rect x="460" y="260" width="280" height="640"/><rect x="1020" y="120" width="300" height="780"/><rect x="1360" y="300" width="240" height="600"/></g><g fill="#F2C063"><rect x="120" y="220" width="40" height="52"/><rect x="200" y="340" width="40" height="52"/><rect x="300" y="220" width="40" height="52"/><rect x="520" y="340" width="40" height="52"/><rect x="1080" y="200" width="40" height="52"/><rect x="1180" y="420" width="40" height="52"/><rect x="1420" y="400" width="40" height="52"/></g><circle cx="800" cy="520" r="90" fill="#F2C063" opacity=".25"/><circle cx="800" cy="520" r="22" fill="#FFE9B0"/><path d="M0 760h1600v140H0z" fill="#0C0F1D"/><path d="M700 780h200M650 830h300" stroke="#F2C063" stroke-width="8" opacity=".35"/></svg><figcaption>Frame 03 · sample art</figcaption></figure>
+<div class="entry"><p class="date"><b>27</b> Oct</p><div><h3 id="t-night">Rain, last tram</h3><p>Everything wet becomes a second street. I held the camera on a bin for the long exposure and apologised to nobody. Sample diary text.</p><p class="exif">28 mm · f/2 · 1/30 · ISO 1600 (demo values)</p></div></div>
+</article>
+<article class="frame" id="shore" aria-labelledby="t-shore">
+<figure><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample art, demo: Two boats, no wind"><rect width="1600" height="560" fill="#D8E1DC"/><rect y="560" width="1600" height="340" fill="#7C9A9A"/><rect y="556" width="1600" height="8" fill="#F1F4EF"/><path d="M420 520h300l-40 50H460z" fill="#C8321E"/><path d="M570 520V400l90 120z" fill="#ECE6DA"/><path d="M1060 530h220l-30 40h-160z" fill="#15130F"/><path d="M420 590h300M470 620h200M1060 596h220" stroke="#5F7B7B" stroke-width="6"/></svg><figcaption>Frame 04 · sample art</figcaption></figure>
+<div class="entry"><p class="date"><b>3</b> Nov</p><div><h3 id="t-shore">Two boats, no wind</h3><p>The water forgot to move, so I forgot to hurry. Seven frames of the same quiet; this is the one I kept. Sample diary text.</p><p class="exif">85 mm · f/5.6 · 1/500 · ISO 100 (demo values)</p></div></div>
+</article>
+</section>
+<div class="notes">
+<section id="about" aria-labelledby="h-about"><h2 id="h-about">About the diary</h2><p>Mina is an invented photographer. Replace this with who you are, what you shoot, and how often you write.</p></section>
+<section id="gear" aria-labelledby="h-gear"><h2 id="h-gear">Kit this month</h2><p>One body, two lenses, a scarf for the lens when it rains. Demo list only.</p></section>
+</div>
+</main>
+<footer>Demo photo diary template. Sample art is drawn in SVG; real pages use generated or supplied photographs.</footer>
+<script>
+(function(){
+var b=document.getElementById('dim');
+b.addEventListener('click',function(){
+var on=document.body.classList.toggle('dim');
+b.setAttribute('aria-pressed',String(on));
+});
+})();
+</script>
+</body>
+</html>

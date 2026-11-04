@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saltwrack Tidepool Journal — demo template</title>
+<meta name="description" content="A demo marine journal template with a tide-level slider that reveals intertidal zones, a tide table and dated entries. Fictional sample content.">
+<style>
+:root{--deep:#04243A;--sea:#0B4A66;--ink:#E6F6F7;--muted:#8FC4D1;--coral:#FF7F6B;--foam:#BFE8EC;--sand:#F2DDB4}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#0E6E8C 0,#0B4A66 520px,#04243A 1400px,#021826 100%);color:var(--ink);font:17px/1.65 "Trebuchet MS","Gill Sans",system-ui,sans-serif;min-height:100vh}
+a{color:var(--coral)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--coral);color:#04243A;padding:.5rem .9rem;z-index:9;font-weight:700}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.2rem 0;flex-wrap:wrap}
+.brand{font:700 1.15rem Georgia,serif;font-style:italic;letter-spacing:.02em}
+.nav nav{display:flex;gap:1.3rem;flex-wrap:wrap}
+.nav a{color:var(--foam);text-decoration:none;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase}
+.nav a:hover{color:#fff;text-decoration:underline}
+.hero{padding:3rem 0 0;position:relative}
+.hero .kick{display:inline-block;background:rgba(4,36,58,.55);border:1px solid var(--foam);padding:.25rem .8rem;border-radius:99px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--foam);margin:0 0 1.2rem}
+h1{font:italic 700 clamp(3rem,9vw,7rem)/.92 Georgia,"Times New Roman",serif;margin:0 0 1.2rem;letter-spacing:-.02em}
+h1 span{color:var(--sand);display:block}
+.lede{max-width:36rem;font-size:1.2rem;color:var(--foam);margin:0 0 3rem}
+.wave{display:block;width:100%;height:auto;margin-bottom:-2px}
+.zones{background:#0A3F59;border-top:2px solid var(--foam);padding:2.5rem 0 3rem}
+h2{font:italic 700 clamp(2rem,4.5vw,3.2rem)/1.05 Georgia,serif;margin:0 0 .6rem}
+.sub{color:var(--muted);margin:0 0 1.6rem;max-width:40rem}
+.tide{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:1.5rem;align-items:stretch}
+.strata{border:2px solid var(--foam);border-radius:14px;overflow:hidden;position:relative;background:var(--deep)}
+.zone{position:relative;padding:1rem 1.2rem;border-bottom:1px dashed rgba(191,232,236,.4);min-height:104px;transition:opacity .4s}
+.zone:last-of-type{border-bottom:none}
+.zone h3{margin:0;font:700 1.15rem Georgia,serif;font-style:italic}
+.zone p{margin:.2rem 0 .4rem;font-size:.95rem;color:var(--ink)}
+.zone .sp{display:flex;gap:.4rem;flex-wrap:wrap}
+.chip{background:var(--sea);border:1px solid var(--muted);color:var(--ink);font-size:.78rem;padding:.12rem .6rem;border-radius:99px}
+.z1{background:#0E5B7A}.z2{background:#0B4A66}.z3{background:#083A53}.z4{background:#052C42}
+.zone.dry{opacity:.45;filter:saturate(.3)}
+.zone.dry::after{content:"exposed at this tide";position:absolute;right:1rem;top:.8rem;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sand)}
+.water{position:absolute;left:0;right:0;top:0;height:0;background:linear-gradient(180deg,rgba(255,127,107,.0),rgba(142,215,232,.22));border-bottom:3px solid var(--coral);pointer-events:none;z-index:2;transition:height .3s}
+.side{background:var(--deep);border:2px solid var(--foam);border-radius:14px;padding:1rem;display:flex;flex-direction:column;align-items:center;gap:.8rem;text-align:center}
+.side output{font:700 2rem Georgia,serif;color:var(--coral);display:block;line-height:1}
+.side small{color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-size:.7rem}
+.vert{writing-mode:vertical-lr;direction:rtl;width:36px;flex:1;min-height:200px;accent-color:#FF7F6B}
+section.s{padding:4rem 0 1rem}
+.entries{display:grid;grid-template-columns:1.3fr 1fr;gap:1.6rem}
+.card{background:rgba(4,36,58,.7);border:1px solid var(--muted);border-radius:14px;padding:1.4rem}
+.card.big{grid-row:span 2}
+.card time{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
+.card h3{font:italic 700 1.5rem/1.15 Georgia,serif;margin:.3rem 0 .6rem}
+.card p{margin:0 0 .6rem;color:var(--ink)}
+.card svg{width:100%;height:auto;display:block;border-radius:8px;margin-top:.6rem}
+.ttbl{width:100%;border-collapse:collapse;background:rgba(4,36,58,.6);border:1px solid var(--muted)}
+.ttbl th,.ttbl td{padding:.7rem .8rem;text-align:left;border-bottom:1px solid rgba(143,196,209,.35)}
+.ttbl th{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.tw{overflow-x:auto}
+details{border-bottom:1px solid rgba(143,196,209,.4);padding:.8rem 0}
+summary{cursor:pointer;font:italic 700 1.15rem Georgia,serif}
+details p{margin:.5rem 0 0;color:var(--foam)}
+footer{margin-top:5rem;padding:2rem 0 3rem;border-top:1px solid rgba(143,196,209,.35);color:var(--muted);font-size:.9rem}
+@media (max-width:760px){
+.tide{grid-template-columns:1fr}
+.vert{writing-mode:horizontal-tb;direction:ltr;width:100%;min-height:0;height:36px}
+.side{flex-direction:column}
+.entries{grid-template-columns:1fr}
+.card.big{grid-row:auto}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header class="nav">
+<div class="brand">Saltwrack · a tidepool journal</div>
+<nav aria-label="Primary"><a href="#zones">Zones</a><a href="#entries">Entries</a><a href="#tides">Tides</a><a href="#kit">Kit</a></nav>
+</header>
+<div class="hero">
+<p class="kick">Demo template · fictional shore</p>
+<h1>What the sea<span>leaves behind</span></h1>
+<p class="lede">Notes from one rocky shore at low water. Species, tide heights and dates below are invented demo content to be replaced with your own.</p>
+</div>
+</div>
+<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C180 0 300 80 480 40 S800 0 960 40 S1280 80 1440 30 L1440 90 L0 90z" fill="#0A3F59"/><path d="M0 60 C200 30 320 90 520 58 S860 30 1020 62 S1300 85 1440 52" fill="none" stroke="#BFE8EC" stroke-width="2" opacity=".6"/></svg>
+<main id="main">
+<section class="zones" id="zones" aria-labelledby="zones-h">
+<div class="wrap">
+<h2 id="zones-h">Read the shore by the tide</h2>
+<p class="sub">Drag the tide slider. The waterline drops through four zones and zones left exposed fade, showing who lives where. Sample creatures only.</p>
+<div class="tide">
+<div class="strata" id="strata">
+<div class="water" id="water"></div>
+<div class="zone z1" data-lv="75"><h3>Splash zone</h3><p>Wet only in spray and storm surf.</p><div class="sp"><span class="chip">periwinkle</span><span class="chip">lichen crust</span></div></div>
+<div class="zone z2" data-lv="50"><h3>High pools</h3><p>Warm, salty and shallow; barnacle country.</p><div class="sp"><span class="chip">acorn barnacle</span><span class="chip">limpet</span></div></div>
+<div class="zone z3" data-lv="25"><h3>Mid shore</h3><p>Weed-draped ledges and mussel beds.</p><div class="sp"><span class="chip">bladder wrack</span><span class="chip">blue mussel</span><span class="chip">shore crab</span></div></div>
+<div class="zone z4" data-lv="0"><h3>Low pools</h3><p>Cool and rarely uncovered; the rich ones.</p><div class="sp"><span class="chip">sea star</span><span class="chip">anemone</span><span class="chip">kelp frond</span></div></div>
+</div>
+<div class="side">
+<small>Tide height</small>
+<output id="tout" for="lvl">2.4 m</output>
+<input class="vert" id="lvl" type="range" min="0" max="100" value="70" aria-label="Tide level, sample from low to high">
+<small id="tstate">Rising · demo</small>
+</div>
+</div>
+</div>
+</section>
+
+<div class="wrap">
+<section class="s" id="entries" aria-labelledby="ent-h">
+<h2 id="ent-h">Journal entries</h2>
+<p class="sub">Three sample dispatches in a changing layout. Swap in real notes, counts and sketches.</p>
+<div class="entries">
+<article class="card big"><time>Spring tide · sample date</time><h3>The star in the low pool</h3><p>The ledge was slick and cold. Under an overhang, a single orange sea star clung to the rock, arms folded. We counted eleven anemones in the same pool and left the stones as we found them.</p>
+<svg viewBox="0 0 400 160" role="img" aria-label="Sample illustration of a starfish in a rock pool"><rect width="400" height="160" fill="#083A53"/><path d="M0 120 C80 100 160 130 240 112 S360 100 400 116 L400 160 L0 160z" fill="#052C42"/><path d="M200 40 L214 74 L250 76 L222 98 L232 134 L200 114 L168 134 L178 98 L150 76 L186 74z" fill="#FF7F6B" stroke="#F2DDB4" stroke-width="2"/><g fill="#F2DDB4"><circle cx="200" cy="82" r="3"/><circle cx="188" cy="92" r="2.5"/><circle cx="212" cy="92" r="2.5"/></g></svg></article>
+<article class="card"><time>Neap tide · sample date</time><h3>Mussel weather</h3><p>Flat grey sky, flat grey sea. The mussels were closed tight, waiting.</p></article>
+<article class="card"><time>Dusk walk · sample date</time><h3>Crab on the move</h3><p>A shore crab crossed the weed in no hurry at all. Nothing else stirred.</p></article>
+</div>
+</section>
+
+<section class="s" id="tides" aria-labelledby="td-h">
+<h2 id="td-h">Tide table</h2>
+<p class="sub">Sample values for a demo shore. Always use official tide predictions for real outings.</p>
+<div class="tw"><table class="ttbl">
+<thead><tr><th scope="col">Day</th><th scope="col">Low</th><th scope="col">High</th><th scope="col">Best for</th></tr></thead>
+<tbody>
+<tr><td>Sat</td><td>06:12 · 0.3 m</td><td>12:24 · 3.1 m</td><td>Low pools</td></tr>
+<tr><td>Sun</td><td>06:58 · 0.4 m</td><td>13:09 · 3.0 m</td><td>Mid shore</td></tr>
+<tr><td>Mon</td><td>07:41 · 0.7 m</td><td>13:50 · 2.8 m</td><td>Rest day</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="s" id="kit" aria-labelledby="kit-h">
+<h2 id="kit-h">Tidepool etiquette</h2>
+<details><summary>Look, don't lift</summary><p>Wet your hands first, move slowly and put every stone back the way it was.</p></details>
+<details><summary>Watch the water</summary><p>Turn back before the rising tide cuts off your route. Check the real forecast.</p></details>
+<details><summary>What to carry</summary><p>Grippy boots, a hand lens, a notebook and a waterproof pencil.</p></details>
+</section>
+<footer><p>Saltwrack is a fictional demo template. Sea art is original inline SVG.</p></footer>
+</div>
+</main>
+<script>
+(function(){
+var r=document.getElementById('lvl'),w=document.getElementById('water'),zs=document.querySelectorAll('.zone'),o=document.getElementById('tout'),st=document.getElementById('strata'),ts=document.getElementById('tstate');
+function upd(){
+var v=+r.value;
+o.textContent=(v*0.034).toFixed(1)+' m';
+var h=st.clientHeight,top=(1-v/100)*h;
+w.style.top=top+'px';w.style.height=(h-top)+'px';
+var n=0;
+zs.forEach(function(z){var lv=+z.getAttribute('data-lv');var dry=v<lv;z.classList.toggle('dry',dry);if(!dry)n++});
+ts.textContent=n+' of 4 zones under water · demo';
+}
+r.addEventListener('input',upd);window.addEventListener('resize',upd);upd();
+})();
+</script>
+</body>
+</html>

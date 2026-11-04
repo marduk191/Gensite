@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Original cyberpunk megacity page template: dense angular panels, district feed and neon skyline. Fictional demo content.">
+<title>NEON KOWLOON-9 Sector Feed — demo page template</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#0a0614;--ink:#f1eaff;--muted:#a99bd0;--mag:#ff2bd6;--cy:#19e3ff;--surface:#170d2e;--line:#3a2468;--focus:#fff25c}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Segoe UI",system-ui,sans-serif;background-image:repeating-linear-gradient(0deg,#ffffff06 0 1px,#0000 1px 4px),radial-gradient(circle at 15% 0,#3b0f55,transparent 45%),radial-gradient(circle at 90% 30%,#06324a,transparent 40%)}
+h1,h2,h3,p,figure,ul,dl,dd{margin:0}
+h1,h2,h3{font-family:Impact,"Arial Narrow Bold","Segoe UI",sans-serif;text-transform:uppercase;letter-spacing:.04em;line-height:1}
+a{color:var(--cy);text-underline-offset:.2em}
+button{font:inherit;color:inherit;cursor:pointer;min-height:44px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-80px;background:#fff;color:#000;padding:10px 14px;z-index:9}
+.skip:focus{top:10px}
+[hidden]{display:none!important}
+.wrap{max-width:1320px;margin:auto;padding:0 clamp(12px,3vw,32px)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;flex-wrap:wrap}
+.brand{font-family:Impact,sans-serif;font-size:1.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;text-shadow:2px 0 var(--mag),-2px 0 var(--cy)}
+.top nav{display:flex;gap:4px;flex-wrap:wrap}
+.top nav a{padding:10px 16px;color:var(--ink);text-decoration:none;text-transform:uppercase;letter-spacing:.14em;font-size:.8rem;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);background:var(--surface)}
+.top nav a:hover{background:var(--mag)}
+.ticker{border-block:1px solid var(--line);font-size:.8rem;color:var(--cy);padding:6px 0;letter-spacing:.12em;text-transform:uppercase;display:flex;gap:28px;flex-wrap:wrap}
+.ticker span:last-child{color:var(--mag)}
+.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:26px;padding:34px 0 20px;align-items:center}
+.tag{display:inline-block;background:var(--cy);color:#04141a;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.75rem;padding:4px 12px;clip-path:polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+h1{font-size:clamp(3rem,9vw,7rem);margin:16px 0;text-shadow:3px 0 var(--mag),-3px 0 var(--cy)}
+.hero p.lead{color:var(--muted);max-width:50ch}
+.cta{display:inline-block;margin-top:22px;background:var(--mag);color:#190018;font-weight:800;text-transform:uppercase;letter-spacing:.14em;padding:14px 28px;text-decoration:none;clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%)}
+.cta.alt{background:transparent;color:var(--cy);box-shadow:inset 0 0 0 2px var(--cy);margin-left:8px;clip-path:none}
+.sky{width:100%;display:block;border:1px solid var(--line)}
+figcaption{font-size:.75rem;color:var(--muted);margin-top:6px;letter-spacing:.08em;text-transform:uppercase}
+.panel{background:linear-gradient(160deg,#1c0f38,var(--surface));padding:20px 22px 22px;clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));position:relative;border-left:3px solid var(--cy)}
+.panel.m{border-left-color:var(--mag)}
+h2{font-size:clamp(1.8rem,3.5vw,2.8rem);margin-bottom:14px;text-shadow:2px 0 var(--mag)}
+h3{font-size:1.35rem;color:var(--ink);margin-bottom:6px}
+.sec{margin-top:54px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px;align-items:center}
+.chip{background:transparent;border:1px solid var(--cy);color:var(--cy);padding:4px 16px;text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.chip[aria-pressed=true]{background:var(--cy);color:#04141a;font-weight:700}
+.status{font-size:.82rem;color:var(--muted);margin-left:auto}
+.districts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.d .num{font-family:Impact,sans-serif;font-size:2.6rem;color:var(--mag);line-height:1}
+.d .meta{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cy);margin-bottom:8px}
+.d p{color:var(--muted);font-size:.93rem}
+.risk{display:flex;gap:3px;margin-top:12px}
+.risk i{width:100%;height:6px;background:#2b1a52}
+.risk i.on{background:var(--mag)}
+.cols{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+.feed{list-style:none;padding:0;margin:0}
+.feed li{display:grid;grid-template-columns:70px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.feed time{font-family:"Cascadia Mono",Consolas,monospace;color:var(--cy);font-size:.85rem}
+.feed b{color:var(--mag)}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:9px 6px;border-top:1px solid var(--line)}
+th{font-weight:400;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;border-top:0}
+td:last-child{color:var(--cy);text-align:right}th:last-child{text-align:right}
+details{border-top:1px solid var(--line);padding:4px 0}
+summary{cursor:pointer;min-height:44px;padding:10px 0;font-weight:600}
+details p{color:var(--muted);padding-bottom:12px}
+footer{margin:70px 0 30px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+@media(max-width:1000px){.districts{grid-template-columns:repeat(2,1fr)}.hero,.cols{grid-template-columns:1fr}}
+@media(max-width:560px){body{font-size:15px}.districts{grid-template-columns:1fr}.cta.alt{margin:10px 0 0}.status{margin-left:0;width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header class="top"><a class="brand" href="./index.html">Neon Kowloon-9</a>
+<nav aria-label="Main navigation"><a href="#districts">Districts</a><a href="#feed">Feed</a><a href="#market">Market</a></nav></header>
+<p class="ticker"><span>Demo template</span><span>Fictional city, factions and prices</span><span>Rain probability 94% (sample)</span></p>
+</div>
+<main id="main" class="wrap">
+<section class="hero" aria-labelledby="h1">
+<div><span class="tag">Sector feed · Sample</span>
+<h1 id="h1">Neon<br>Kowloon-9</h1>
+<p class="lead">A rain-soaked megacity of stacked districts, noodle smoke and corporate glass. This demo page shows a dense, angular panel system with magenta and cyan signals — swap in your own city, game or setting.</p>
+<a class="cta" href="#districts">Enter the districts</a><a class="cta alt" href="#feed">Read the feed</a></div>
+<figure>
+<svg class="sky" viewBox="0 0 640 420" role="img" aria-label="Original demo artwork: a neon skyline with towers, signs and a rain-streaked moon">
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a0b4a"/><stop offset="1" stop-color="#0a0614"/></linearGradient></defs>
+<rect width="640" height="420" fill="url(#g)"/>
+<circle cx="470" cy="100" r="52" fill="#ff2bd6" opacity=".85"/><circle cx="470" cy="100" r="52" fill="none" stroke="#19e3ff" stroke-width="2"/>
+<g fill="#150a2a" stroke="#3a2468" stroke-width="2"><rect x="20" y="170" width="70" height="250"/><rect x="100" y="110" width="60" height="310"/><rect x="170" y="200" width="80" height="220"/><rect x="260" y="70" width="70" height="350"/><rect x="340" y="190" width="90" height="230"/><rect x="440" y="140" width="64" height="280"/><rect x="514" y="210" width="106" height="210"/></g>
+<g fill="#19e3ff"><rect x="34" y="190" width="10" height="6"/><rect x="60" y="230" width="10" height="6"/><rect x="114" y="140" width="10" height="6"/><rect x="134" y="200" width="10" height="6"/><rect x="274" y="110" width="10" height="6"/><rect x="300" y="170" width="10" height="6"/><rect x="354" y="230" width="10" height="6"/><rect x="460" y="190" width="10" height="6"/><rect x="540" y="250" width="10" height="6"/></g>
+<g fill="#ff2bd6"><rect x="40" y="260" width="10" height="6"/><rect x="118" y="270" width="10" height="6"/><rect x="190" y="240" width="10" height="6"/><rect x="280" y="210" width="10" height="6"/><rect x="380" y="260" width="10" height="6"/><rect x="560" y="290" width="10" height="6"/></g>
+<rect x="266" y="40" width="58" height="22" fill="#ff2bd6"/><rect x="104" y="84" width="50" height="16" fill="#19e3ff"/><rect x="444" y="118" width="56" height="14" fill="#ff2bd6"/>
+<g stroke="#19e3ff" stroke-opacity=".35" stroke-width="1.5"><path d="M60 0l-14 420M180 0l-14 420M300 0l-14 420M420 0l-14 420M540 0l-14 420M600 0l-14 420"/></g>
+<path d="M0 360h640" stroke="#ff2bd6" stroke-width="3"/><path d="M0 380h640" stroke="#19e3ff" stroke-width="1.5" stroke-dasharray="14 10"/>
+</svg>
+<figcaption>Original demo artwork · Not a real place</figcaption>
+</figure>
+</section>
+
+<section id="districts" class="sec" aria-labelledby="h-d" data-filter-group>
+<h2 id="h-d">Districts</h2>
+<div class="bar" role="group" aria-label="Filter districts by zone type">
+<button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+<button type="button" class="chip" data-filter="corp" aria-pressed="false">Corporate</button>
+<button type="button" class="chip" data-filter="street" aria-pressed="false">Street</button>
+<p class="status" role="status" aria-live="polite">4 districts shown</p>
+</div>
+<div class="districts">
+<article class="panel d" data-category="corp"><p class="num">01</p><p class="meta">Corporate · Upper</p><h3>Glass Crown</h3><p>Mirror towers above the cloud line. Clean air, expensive silence, constant surveillance.</p><div class="risk" aria-label="Danger level 1 of 5 (sample)"><i class="on"></i><i></i><i></i><i></i><i></i></div></article>
+<article class="panel m d" data-category="street"><p class="num">02</p><p class="meta">Street · Mid</p><h3>Noodle Canyon</h3><p>Steam, signage, and ten thousand tiny kitchens stacked into one humming ravine.</p><div class="risk" aria-label="Danger level 3 of 5 (sample)"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></article>
+<article class="panel d" data-category="corp"><p class="num">03</p><p class="meta">Corporate · Mid</p><h3>Helix Arcology</h3><p>A spiral campus that houses its own tram, its own school, and its own laws.</p><div class="risk" aria-label="Danger level 2 of 5 (sample)"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></article>
+<article class="panel m d" data-category="street"><p class="num">04</p><p class="meta">Street · Lower</p><h3>The Drain</h3><p>Where the rain finally lands. Flooded markets, borrowed power and no cameras that work.</p><div class="risk" aria-label="Danger level 5 of 5 (sample)"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></article>
+</div>
+</section>
+
+<section id="feed" class="sec" aria-labelledby="h-f">
+<h2 id="h-f">Sector feed</h2>
+<div class="cols">
+<div class="panel m"><ul class="feed">
+<li><time>23:48</time><p><b>Blackout in Noodle Canyon.</b> Power returned after nine minutes. A rumour says the vendors voted for it. (Sample item)</p></li>
+<li><time>23:12</time><p><b>Helix Arcology</b> announces a new tram line. Residents of The Drain are not on the map. (Sample item)</p></li>
+<li><time>22:30</time><p><b>Drone swarm sighted</b> over Glass Crown, later identified as a wedding. (Sample item)</p></li>
+<li><time>21:05</time><p><b>Rain advisory:</b> acid index high. Carry a hood. (Sample item)</p></li>
+</ul></div>
+<div class="panel" id="market">
+<h3>Street market · Demo prices</h3>
+<div class="table-scroll"><table><thead><tr><th scope="col">Item</th><th scope="col">District</th><th scope="col">Price</th></tr></thead>
+<tbody>
+<tr><td>Ramen, double</td><td>Noodle Canyon</td><td>9 cr</td></tr>
+<tr><td>Rain shell</td><td>The Drain</td><td>40 cr</td></tr>
+<tr><td>Signal cloak</td><td>Helix</td><td>310 cr</td></tr>
+<tr><td>Tram pass</td><td>Glass Crown</td><td>75 cr</td></tr>
+</tbody></table></div>
+<details><summary>About these prices</summary><p>All currency and prices are invented for this demo. They imply no real economy and no real brands.</p></details>
+</div>
+</div>
+</section>
+</main>
+<div class="wrap"><footer><span>Neon Kowloon-9 · Fictional template demo</span><a href="#main">Back to top</a></footer></div>
+<script>
+document.querySelectorAll('[data-filter]').forEach(function(b){b.addEventListener('click',function(){
+var g=b.closest('[data-filter-group]'),v=b.dataset.filter,n=0;
+g.querySelectorAll('[data-filter]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+g.querySelectorAll('[data-category]').forEach(function(c){c.hidden=v!=='all'&&c.dataset.category!==v;if(!c.hidden)n++});
+g.querySelector('[role="status"]').textContent=n+' district'+(n===1?'':'s')+' shown';
+})});
+</script>
+</body>
+</html>

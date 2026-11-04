@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Original Pop Comic page template: halftone comic panels with bold outlines. Fictional demo content."><title>Pop Comic — original page template</title>
+<style>
+:root{--bg:#FFE14D;--ink:#111111;--muted:#3B3B3B;--accent:#E3262E;--surface:#FFFFFF;--blue:#1C57F2;--pink:#FF6FB5;--cyan:#33C9F5;--b:4px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:17px/1.55 "Comic Sans MS","Chalkboard SE","Trebuchet MS",system-ui,sans-serif;background-color:var(--bg);background-image:radial-gradient(rgba(227,38,46,.22) 22%,transparent 24%);background-size:16px 16px}
+h1,h2,h3,.shout{font-family:Impact,"Arial Black","Haettenschweiler",system-ui,sans-serif;text-transform:uppercase;letter-spacing:.02em;line-height:.98;margin:0;font-weight:900}
+h1{font-size:clamp(3.2rem,12vw,8.5rem);color:var(--surface);-webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:6px 6px 0 var(--ink)}
+h2{font-size:clamp(2rem,5vw,3.4rem)}h3{font-size:1.5rem}
+p{margin:0 0 .8rem}ul{margin:0;padding:0;list-style:none}
+a{color:var(--blue);font-weight:700}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:5px solid var(--blue);outline-offset:3px;background-color:var(--cyan)}
+.skip{position:absolute;left:10px;top:-80px;background:var(--ink);color:var(--surface);padding:10px 14px;z-index:20}.skip:focus{top:8px}
+.wrap{max-width:1180px;margin:auto;padding:0 20px}
+.demo{background:var(--ink);color:var(--bg);text-align:center;font-weight:700;font-size:.82rem;padding:7px 12px;letter-spacing:.05em}
+header.top{display:flex;gap:16px;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:18px 0}
+.logo{font-family:Impact,"Arial Black",system-ui,sans-serif;font-size:1.7rem;background:var(--accent);color:var(--surface);border:var(--b) solid var(--ink);padding:2px 14px;transform:rotate(-3deg);box-shadow:5px 5px 0 var(--ink);text-decoration:none;text-transform:uppercase}
+nav ul{display:flex;gap:10px;flex-wrap:wrap}
+nav a{display:inline-block;background:var(--surface);color:var(--ink);text-decoration:none;border:var(--b) solid var(--ink);padding:6px 14px;font-family:Impact,"Arial Black",sans-serif;text-transform:uppercase;box-shadow:4px 4px 0 var(--ink)}
+nav a:hover{background:var(--cyan)}
+.panel{position:relative;background:var(--surface);border:var(--b) solid var(--ink);box-shadow:8px 8px 0 var(--ink);padding:18px;overflow:hidden}
+.panel .cap{position:absolute;left:0;top:0;background:var(--bg);border-right:var(--b) solid var(--ink);border-bottom:var(--b) solid var(--ink);padding:3px 10px;font-weight:700;font-size:.8rem;text-transform:uppercase;z-index:2}
+.dots{background-image:radial-gradient(var(--ink) 20%,transparent 22%);background-size:10px 10px}
+.cover{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;padding:24px 0 40px}
+.cover .main{background:var(--blue);padding:30px 24px 28px;position:relative}
+.cover .main::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(255,255,255,.3) 20%,transparent 22%) 0 0/14px 14px;pointer-events:none}
+.cover .main>*{position:relative}
+.kicker{display:inline-block;background:var(--accent);color:var(--surface);border:3px solid var(--ink);padding:2px 12px;font-family:Impact,sans-serif;text-transform:uppercase;transform:rotate(-2deg)}
+.cover .main p.lede{color:var(--surface);font-weight:700;font-size:1.2rem;margin-top:20px;max-width:34ch;text-shadow:2px 2px 0 var(--ink)}
+.btn{display:inline-block;margin-top:14px;background:var(--bg);color:var(--ink);border:var(--b) solid var(--ink);padding:10px 22px;font-family:Impact,sans-serif;font-size:1.2rem;text-transform:uppercase;text-decoration:none;box-shadow:5px 5px 0 var(--ink)}
+.btn:hover{background:var(--pink)}
+.boom{width:100%;height:auto;display:block}
+.issue{padding:30px 0}
+.issue>h2{display:inline-block;background:var(--surface);border:var(--b) solid var(--ink);padding:4px 16px;box-shadow:6px 6px 0 var(--ink);margin-bottom:26px;transform:rotate(1deg)}
+.sub{margin:-12px 0 24px;font-weight:700}
+.page{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:16px}
+.p1{grid-column:1/4;grid-row:1/3}.p2{grid-column:4/7}.p3{grid-column:4/5}.p4{grid-column:5/7}.p5{grid-column:1/7}
+.page .panel{padding:0;display:flex;flex-direction:column}
+.page .panel svg{width:100%;height:100%;display:block;flex:1;min-height:150px}
+.page .panel.on{outline:6px solid var(--accent);outline-offset:-2px}
+.bubble{position:absolute;background:var(--surface);border:3px solid var(--ink);border-radius:50%/60%;padding:8px 16px;font-weight:700;max-width:70%;z-index:3;line-height:1.25;font-size:.95rem}
+.bubble::after{content:"";position:absolute;left:24px;bottom:-16px;border:9px solid transparent;border-top:16px solid var(--ink)}
+.bubble.r::after{left:auto;right:28px}
+.box{position:absolute;left:10px;bottom:10px;background:var(--bg);border:3px solid var(--ink);padding:3px 10px;font-weight:700;font-size:.85rem;z-index:3}
+.reader{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:22px}
+.reader button,.tab{font:inherit;font-family:Impact,sans-serif;text-transform:uppercase;font-size:1.1rem;min-height:44px;background:var(--surface);color:var(--ink);border:var(--b) solid var(--ink);padding:6px 20px;box-shadow:4px 4px 0 var(--ink);cursor:pointer}
+.reader button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.reader span{font-weight:700;background:var(--surface);border:3px solid var(--ink);padding:2px 10px}
+.cast{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.hero-card{padding:0}.hero-card .img{background-color:var(--cyan);border-bottom:var(--b) solid var(--ink);padding:10px}
+.hero-card:nth-child(2) .img{background-color:var(--pink)}.hero-card:nth-child(3) .img{background-color:var(--bg)}
+.hero-card .img svg{width:100%;height:auto;display:block}
+.hero-card .txt{padding:14px 16px 18px}.hero-card .txt p{margin:0}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.tab[aria-selected=true]{background:var(--accent);color:var(--surface)}
+.shelf li{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:3px dashed var(--ink)}
+.shelf b{font-family:Impact,sans-serif;font-size:1.3rem;text-transform:uppercase}
+.tag{background:var(--pink);border:3px solid var(--ink);padding:1px 10px;font-weight:700;white-space:nowrap}
+[hidden]{display:none!important}
+details{background:var(--surface);border:var(--b) solid var(--ink);margin-bottom:12px;box-shadow:5px 5px 0 var(--ink)}
+summary{padding:12px 16px;font-family:Impact,sans-serif;text-transform:uppercase;font-size:1.2rem;cursor:pointer}
+details p{padding:0 16px;margin:0 0 12px}
+footer{background:var(--ink);color:var(--bg);padding:26px 0;margin-top:40px;font-weight:700}
+@media(max-width:820px){.cover{grid-template-columns:1fr}.page{grid-template-columns:1fr 1fr}.p1,.p2,.p5{grid-column:1/3}.p1{grid-row:auto}.p3,.p4{grid-column:auto}.cast{grid-template-columns:1fr}.bubble{max-width:80%}}
+@media(max-width:480px){.page{grid-template-columns:1fr}.p1,.p2,.p3,.p4,.p5{grid-column:1}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="demo">Demo template · Captain Static and every name here are made up for this sample.</div>
+<div class="wrap">
+<header class="top"><a class="logo" href="#main">Pow!Press</a>
+<nav aria-label="Primary"><ul><li><a href="#issue">Issue #1</a></li><li><a href="#cast">Cast</a></li><li><a href="#shelf">Shelf</a></li><li><a href="#faq">FAQ</a></li></ul></nav></header>
+<main id="main">
+<section class="cover" aria-labelledby="t">
+<div class="panel main"><span class="kicker">Issue #1 · Demo cover</span>
+<h1 id="t">Captain<br>Static!</h1>
+<p class="lede">One tiny hero, one very large laundromat, and a sock-eating villain with a plan.</p>
+<a class="btn" href="#issue">Read page one</a></div>
+<div class="panel dots" style="background-color:var(--pink)"><span class="cap">Sample art</span>
+<svg class="boom" viewBox="0 0 300 300" role="img" aria-label="Sample art: a yellow explosion starburst with the word POW"><path d="M150 8l26 62 56-38-10 66 66 4-48 46 44 50-64-6 6 66-54-36-32 58-30-60-56 34 8-66-66 6 44-50-48-46 66-6-10-64 56 36z" fill="#FFE14D" stroke="#111" stroke-width="7" stroke-linejoin="round"/><text x="150" y="172" text-anchor="middle" font-family="Impact,Arial Black,sans-serif" font-size="68" fill="#E3262E" stroke="#111" stroke-width="5" paint-order="stroke">POW!</text></svg></div>
+</section>
+
+<section class="issue" id="issue" aria-labelledby="ih">
+<h2 id="ih">Issue #1 · Wash Day</h2>
+<p class="sub">A sample comic page built from CSS panels. Use the buttons to follow the panels in reading order.</p>
+<div class="page" id="page">
+<div class="panel p1 dots" style="background-color:var(--cyan)"><span class="cap">Panel 1</span>
+<div class="bubble" style="left:14%;top:16%">Another quiet night at the Spin-Cycle Mall…</div>
+<svg viewBox="0 0 300 300" role="img" aria-label="Sample art: a tiny hero standing before rows of washing machines"><rect y="190" width="300" height="110" fill="#1C57F2"/><g fill="#fff" stroke="#111" stroke-width="5"><rect x="12" y="110" width="74" height="100" rx="6"/><rect x="104" y="110" width="74" height="100" rx="6"/><rect x="196" y="110" width="74" height="100" rx="6"/></g><g fill="#FF6FB5" stroke="#111" stroke-width="5"><circle cx="49" cy="160" r="22"/><circle cx="141" cy="160" r="22"/><circle cx="233" cy="160" r="22"/></g><circle cx="150" cy="238" r="16" fill="#FFE14D" stroke="#111" stroke-width="5"/><path d="M132 254h36l8 36h-52z" fill="#E3262E" stroke="#111" stroke-width="5"/></svg>
+<span class="box">11:58 PM</span></div>
+<div class="panel p2" style="background-color:var(--bg)"><span class="cap">Panel 2</span>
+<div class="bubble r" style="right:8%;top:20%">Mwa-ha! Every sock is MINE!</div>
+<svg viewBox="0 0 300 150" role="img" aria-label="Sample art: a purple sock-shaped villain with a cape"><path d="M120 20h60v70l40 30q10 20-10 22h-80q-24-4-14-30z" fill="#7C3AED" stroke="#111" stroke-width="5" stroke-linejoin="round"/><circle cx="144" cy="52" r="6" fill="#fff" stroke="#111" stroke-width="3"/><circle cx="164" cy="52" r="6" fill="#fff" stroke="#111" stroke-width="3"/><path d="M130 72q16 12 36 0" fill="none" stroke="#111" stroke-width="5"/></svg></div>
+<div class="panel p3 dots" style="background-color:var(--pink)"><span class="cap">Panel 3</span>
+<svg viewBox="0 0 150 150" role="img" aria-label="Sample art: a lightning bolt"><path d="M85 8L30 84h34l-12 58 62-84H80z" fill="#FFE14D" stroke="#111" stroke-width="6" stroke-linejoin="round"/></svg></div>
+<div class="panel p4" style="background-color:var(--surface)"><span class="cap">Panel 4</span>
+<div class="bubble" style="left:8%;top:30%">ZAP! Static, assemble!</div>
+<svg viewBox="0 0 300 150" role="img" aria-label="Sample art: radiating action lines"><g stroke="#111" stroke-width="5">
+<path d="M150 75L10 10M150 75L10 75M150 75L10 140M150 75L150 4M150 75L290 10M150 75L290 75M150 75L290 140"/></g><circle cx="150" cy="75" r="26" fill="#E3262E" stroke="#111" stroke-width="5"/></svg></div>
+<div class="panel p5 dots" style="background-color:var(--blue)"><span class="cap">Panel 5</span>
+<div class="bubble r" style="right:6%;top:14%">To be continued in the real story you write.</div>
+<svg viewBox="0 0 600 130" role="img" aria-label="Sample art: skyline silhouette under a yellow sun"><circle cx="500" cy="60" r="46" fill="#FFE14D" stroke="#111" stroke-width="5"/><path d="M0 130V80h60V50h50v40h50V30h60v60h70V60h60v70z" fill="#111"/></svg></div>
+</div>
+<div class="reader"><button type="button" id="prev">‹ Prev panel</button><button type="button" id="next">Next panel ›</button><span id="where" role="status">Panel 1 of 5</span></div>
+</section>
+
+<section id="cast" aria-labelledby="ch"><h2 id="ch" class="shout" style="margin-bottom:24px;text-shadow:3px 3px 0 var(--surface)">The cast</h2>
+<ul class="cast">
+<li class="panel hero-card"><div class="img dots"><svg viewBox="0 0 160 120" role="img" aria-label="Sample art: tiny hero portrait"><circle cx="80" cy="60" r="38" fill="#FFE14D" stroke="#111" stroke-width="5"/><path d="M52 52h56v14H52z" fill="#E3262E" stroke="#111" stroke-width="4"/></svg></div><div class="txt"><h3>Captain Static</h3><p>Powered by laundry-day lightning. Allergic to dryer lint.</p></div></li>
+<li class="panel hero-card"><div class="img dots"><svg viewBox="0 0 160 120" role="img" aria-label="Sample art: sock villain portrait"><path d="M62 14h40v50l26 26q8 14-8 16H60q-22-4-12-24z" fill="#7C3AED" stroke="#111" stroke-width="5"/></svg></div><div class="txt"><h3>The Odd Sock</h3><p>Lost its pair. Plans to take everyone else’s.</p></div></li>
+<li class="panel hero-card"><div class="img dots"><svg viewBox="0 0 160 120" role="img" aria-label="Sample art: friendly robot portrait"><rect x="40" y="26" width="80" height="66" rx="10" fill="#33C9F5" stroke="#111" stroke-width="5"/><circle cx="64" cy="58" r="9" fill="#fff" stroke="#111" stroke-width="4"/><circle cx="96" cy="58" r="9" fill="#fff" stroke="#111" stroke-width="4"/></svg></div><div class="txt"><h3>Dryer Bot 9</h3><p>Warm hugs, warmer exhaust. Mostly on your side.</p></div></li>
+</ul></section>
+
+<section id="shelf" class="issue" aria-labelledby="sh"><h2 id="sh">The shelf</h2>
+<div class="tabs" role="tablist" aria-label="Shelf view">
+<button type="button" class="tab" role="tab" id="t1" aria-selected="true" aria-controls="v1">Issues</button>
+<button type="button" class="tab" role="tab" id="t2" aria-selected="false" aria-controls="v2" tabindex="-1">Extras</button></div>
+<div class="panel" id="v1" role="tabpanel" aria-labelledby="t1"><ul class="shelf"><li><b>#1 Wash Day</b><span class="tag">Sample</span></li><li><b>#2 Spin Cycle</b><span class="tag">Coming soon (demo)</span></li><li><b>#3 Permanent Press</b><span class="tag">Coming soon (demo)</span></li></ul></div>
+<div class="panel" id="v2" role="tabpanel" aria-labelledby="t2" hidden><ul class="shelf"><li><b>Pin-up poster</b><span class="tag">Sample</span></li><li><b>Sound-effect sticker sheet</b><span class="tag">Sample</span></li></ul></div>
+</section>
+
+<section id="faq" aria-labelledby="fh"><h2 id="fh" class="shout" style="margin-bottom:22px;text-shadow:3px 3px 0 var(--surface)">Fast answers</h2>
+<details><summary>Is this a real comic?</summary><p>No. It is a demo template with invented characters. Replace everything with your own story.</p></details>
+<details><summary>Can I use my own art?</summary><p>Yes. Swap each sample SVG for your own panel illustration and keep the bubbles as text.</p></details>
+</section>
+</main></div>
+<footer><div class="wrap">Pop Comic demo template · original sample art · halftone dots are pure CSS.</div></footer>
+<script>
+(function(){
+var P=[].slice.call(document.querySelectorAll("#page .panel")),i=0,w=document.getElementById("where");
+function go(n){i=(n+P.length)%P.length;P.forEach(function(p,k){p.classList.toggle("on",k===i)});w.textContent="Panel "+(i+1)+" of "+P.length}
+document.getElementById("next").addEventListener("click",function(){go(i+1)});
+document.getElementById("prev").addEventListener("click",function(){go(i-1)});
+var T=[document.getElementById("t1"),document.getElementById("t2")],V=[document.getElementById("v1"),document.getElementById("v2")];
+function tab(n){T.forEach(function(t,k){t.setAttribute("aria-selected",k===n?"true":"false");t.tabIndex=k===n?0:-1;V[k].hidden=k!==n})}
+T.forEach(function(t,k){t.addEventListener("click",function(){tab(k)});t.addEventListener("keydown",function(e){if(e.key==="ArrowRight"||e.key==="ArrowLeft"){var n=1-k;tab(n);T[n].focus()}})});
+})();
+</script></body></html>
