@@ -11,7 +11,7 @@ import threading
 import time
 
 STARTED = time.perf_counter()
-from PySide6.QtCore import Qt, QThread, Signal, QUrl
+from PySide6.QtCore import Qt, QThread, Signal, QUrl, QObject, QEvent
 from PySide6.QtGui import QAction, QColor, QFont, QIcon, QPainter, QPixmap, QPen, QLinearGradient
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
     QHBoxLayout, QLabel, QPushButton, QPlainTextEdit, QLineEdit, QFormLayout,
@@ -117,7 +117,8 @@ QProgressBar::chunk { background:#c08b68; }
 
 
 # The live theme is a single authored stylesheet, not accumulated legacy skins.
-QSS = (Path(__file__).resolve().parent / 'native_theme.qss').read_text(encoding='utf-8')
+_THEME_DIR = Path(__file__).resolve().parent
+QSS = (_THEME_DIR / 'native_theme.qss').read_text(encoding='utf-8').replace('@ICONS@', (_THEME_DIR / 'icons').as_posix())
 
 
 def style_window_title(window):
@@ -128,9 +129,21 @@ def style_window_title(window):
     hwnd = int(window.winId())
     apply = ctypes.windll.dwmapi.DwmSetWindowAttribute
     apply.argtypes = [ctypes.c_void_p, ctypes.c_uint, ctypes.c_void_p, ctypes.c_uint]
-    for attribute, value in ((20, 1), (35, 0x00191412), (36, 0x00E5E9EB)):
+    for attribute, value in ((20, 1), (35, 0x001E1916), (36, 0x00EBE8E7)):
         color = ctypes.c_uint(value)
         apply(hwnd, attribute, ctypes.byref(color), ctypes.sizeof(color))
+
+
+class DarkTitleBars(QObject):
+    """Give every top-level dialog the same dark native caption as the main window."""
+
+    def eventFilter(self, obj, event):
+        if event.type() == QEvent.Type.Show and isinstance(obj, QDialog):
+            try:
+                style_window_title(obj)
+            except (OSError, AttributeError):
+                pass
+        return False
 
 
 def app_icon():
@@ -218,19 +231,27 @@ class PublishDialog(QDialog):
         self.studio = studio
         self.readiness = {}
         self.setWindowTitle('Publish to GitHub Pages')
-        self.resize(620, 560)
+        self.resize(640, 580)
         layout = QVBoxLayout(self)
+        layout.setContentsMargins(22,20,22,18)
+        layout.setSpacing(10)
         title = QLabel('A live home for your website.')
-        title.setObjectName('hero')
+        title.setObjectName('dialogTitle')
         layout.addWidget(title)
         self.validation = validate_site(studio.site)
         self.preflight = QLabel(('Static preflight passed · '+str(len(self.validation['files']))+' files') if self.validation['valid'] else 'Preflight failed: '+'; '.join(self.validation['errors']))
+        self.preflight.setObjectName('muted')
         self.preflight.setWordWrap(True)
         layout.addWidget(self.preflight)
         self.status = QLabel('Checking Git and GitHub CLI…' if check_status else 'GitHub not checked')
+        self.status.setObjectName('muted')
         self.status.setWordWrap(True)
         layout.addWidget(self.status)
         form = QFormLayout()
+        form.setContentsMargins(0,6,0,2)
+        form.setLabelAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+        form.setHorizontalSpacing(14)
+        form.setVerticalSpacing(10)
         self.repository = QLineEdit(studio.state.get('form',{}).get('repository',''))
         self.repository.setPlaceholderText('owner/repository — exact target')
         form.addRow('Repository', self.repository)
@@ -378,6 +399,10 @@ class MainWindow(QMainWindow):
         self.resize(1440, 920)
         self.setMinimumSize(1000, 680)
         self.setStyleSheet(QSS)
+        self._title_bars = DarkTitleBars(self)
+        QApplication.instance().installEventFilter(self._title_bars)
+        self.statusBar().setSizeGripEnabled(False)
+        self.statusBar().setContentsMargins(10, 0, 0, 0)
         self.actions = {}
         toolbar = QToolBar('Studio')
         toolbar.setMovable(False)
@@ -390,7 +415,7 @@ class MainWindow(QMainWindow):
         mark.setPixmap(app_icon().pixmap(32,32))
         brand_layout.addWidget(mark)
         wordmark = QLabel('GENSITE')
-        wordmark.setStyleSheet('font-weight:600; letter-spacing:2px; color:#dce2ef;')
+        wordmark.setObjectName('wordmark')
         brand_layout.addWidget(wordmark)
         toolbar.addWidget(brand)
         for name, shortcut in [('New','Ctrl+N'), ('Open','Ctrl+O'), ('Save','Ctrl+S'), ('Revise','Ctrl+R')]:
@@ -406,11 +431,11 @@ class MainWindow(QMainWindow):
         self.project_label.setMaximumWidth(220)
         self.project_label.setMinimumWidth(0)
         self.project_label.setSizePolicy(QSizePolicy.Policy.Ignored,QSizePolicy.Policy.Preferred)
-        self.project_label.setStyleSheet('color:#9daac2; font-size:11px;')
+        self.project_label.setObjectName('projectLabel')
         toolbar.addWidget(self.project_label)
         for name in ['Activity', 'Settings', 'Publish']:
             action = QAction(name, self)
-            action.setIcon(icon(name))
+            action.setIcon(icon(name, '#1a1512' if name == 'Publish' else '#acb5c8'))
             toolbar.addAction(action)
             self.actions[name] = action
             if name == 'Publish':
@@ -422,8 +447,10 @@ class MainWindow(QMainWindow):
         central_layout.setSpacing(0)
         central_layout.addWidget(self.stack,1)
         self.job_panel = QWidget()
+        self.job_panel.setObjectName('jobPanel')
         jl = QVBoxLayout(self.job_panel)
-        jl.setContentsMargins(16,8,16,8)
+        jl.setContentsMargins(16,10,16,10)
+        jl.setSpacing(8)
         jr = QHBoxLayout()
         self.job_label = QLabel('Ready')
         jr.addWidget(self.job_label,1)
@@ -457,12 +484,13 @@ class MainWindow(QMainWindow):
         self.template_stack.setMaximumWidth(520)
         self.template_stack.addWidget(self.atmosphere)
         self.template_preview_panel = QWidget()
+        self.template_preview_panel.setObjectName('templatePreview')
         template_layout = QVBoxLayout(self.template_preview_panel)
-        template_layout.setContentsMargins(12, 16, 12, 12)
+        template_layout.setContentsMargins(16, 16, 16, 16)
         template_layout.setSpacing(10)
         self.template_preview_title = QLabel('Template preview')
         self.template_preview_title.setWordWrap(True)
-        self.template_preview_title.setStyleSheet('font-size:16px; font-weight:600;')
+        self.template_preview_title.setObjectName('previewTitle')
         template_layout.addWidget(self.template_preview_title)
         self.template_preview_layout = template_layout
         self.template_stack.addWidget(self.template_preview_panel)
@@ -471,8 +499,9 @@ class MainWindow(QMainWindow):
         card.setObjectName('promptWorkspace')
         card.setMaximumWidth(960)
         layout = QVBoxLayout(card)
-        layout.setContentsMargins(48,24,48,24)
+        layout.setContentsMargins(48,28,48,28)
         layout.setSpacing(12)
+        layout.addStretch(1)
         title = QLabel('What are we building?')
         title.setObjectName('hero')
         layout.addWidget(title)
@@ -500,7 +529,8 @@ class MainWindow(QMainWindow):
         examples.addStretch()
         layout.addLayout(examples)
         template_row = QHBoxLayout()
-        template_row.addWidget(QLabel('Page template'))
+        template_row.setSpacing(10)
+        template_row.addWidget(self._field_label('Page template'))
         self.preset_combo = QComboBox()
         self.preset_combo.addItem('Custom · Start from your brief','')
         self.preset_preview_button = QPushButton('Preview template')
@@ -536,15 +566,19 @@ class MainWindow(QMainWindow):
         self.options_toggle.toggled.connect(lambda on: self.options_toggle.setText(('▾' if on else '▸')+'  Generation options — style, number of images, art direction'))
         layout.addWidget(self.options_panel)
         row = QHBoxLayout()
+        row.setSpacing(10)
         self.style = QComboBox()
         self.style.setEditable(True)
         self.style.addItems(['Editorial & refined', 'Minimal & architectural', 'Warm & organic', 'Bold & expressive', 'Clean & professional'])
         self.style.setCurrentText(self.state.get('form', {}).get('style', 'Editorial & refined'))
-        row.addWidget(QLabel('Style'))
+        row.addWidget(self._field_label('Style'))
         row.addWidget(self.style, 1)
-        row.addWidget(QLabel('Images'))
+        images_label = QLabel('Images')
+        images_label.setObjectName('fieldLabel')
+        row.addWidget(images_label)
         self.image_count = QSpinBox()
         self.image_count.setRange(0, 12)
+        self.image_count.setFixedWidth(84)
         self.image_count.setValue(int(self.state.get('form', {}).get('image_count', 1)))
         row.addWidget(self.image_count)
         options_layout.addLayout(row)
@@ -552,7 +586,8 @@ class MainWindow(QMainWindow):
         self.art.setPlaceholderText('Image art direction — lighting, composition, subject, mood')
         options_layout.addWidget(self.art)
         llm_row = QHBoxLayout()
-        llm_row.addWidget(QLabel('Text model'))
+        llm_row.setSpacing(10)
+        llm_row.addWidget(self._field_label('Text model'))
         self.llm_combo = QComboBox()
         self.llm_combo.setEditable(True)
         self.llm_combo.setToolTip('Who writes the website code. Hermes (default), or the loopback URL of an OpenAI-compatible server such as llama.cpp. You can type any http://127.0.0.1:PORT/v1 address.')
@@ -585,6 +620,7 @@ class MainWindow(QMainWindow):
         self.support_button.clicked.connect(self.show_support)
         footer.addWidget(self.support_button)
         layout.addLayout(footer)
+        layout.addStretch(1)
         # Scroll instead of compressing: opening options or the activity panel
         # must never squash fields into each other on small/scaled displays.
         card_scroll = QScrollArea()
@@ -593,7 +629,6 @@ class MainWindow(QMainWindow):
         card_scroll.setWidgetResizable(True)
         card_scroll.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignVCenter)
         card_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        card_scroll.setStyleSheet('QScrollArea#promptScroll, QScrollArea#promptScroll > QWidget > QWidget { background:transparent; }')
         card_scroll.setWidget(card)
         self.card_scroll = card_scroll
         outer.addWidget(card_scroll, 3)
@@ -614,11 +649,25 @@ class MainWindow(QMainWindow):
         buttons.insertWidget(1,self.resume_button)
         self.stack.currentChanged.connect(self._sync_workspace_actions)
         self._sync_workspace_actions()
+        self._pad_spinboxes(self.new_view)
         self.root_ready_seconds = time.perf_counter() - STARTED
 
     def showEvent(self, event):
         super().showEvent(event)
         style_window_title(self)
+
+    @staticmethod
+    def _pad_spinboxes(root):
+        # Qt ignores stylesheet left padding on the spin box's inner editor.
+        for box in root.findChildren(QSpinBox):
+            box.lineEdit().setTextMargins(8, 0, 0, 0)
+
+    @staticmethod
+    def _field_label(text):
+        label = QLabel(text)
+        label.setObjectName('fieldLabel')
+        label.setFixedWidth(100)
+        return label
 
     def _sync_workspace_actions(self, *_):
         editing = self.stack.currentWidget() is not self.new_view
@@ -703,7 +752,10 @@ class MainWindow(QMainWindow):
             dialog.setWindowTitle('Page template · '+preset['name'])
             dialog.resize(1050,760)
             layout = QVBoxLayout(dialog)
+            layout.setContentsMargins(16,14,16,14)
+            layout.setSpacing(10)
             info = QLabel(preset['summary']+'\nThis is a template preview, not your generated project. Your content and images are created by Generate.')
+            info.setObjectName('muted')
             info.setWordWrap(True)
             layout.addWidget(info)
             server = SiteServer(path.parent,'template-preview')
@@ -726,7 +778,7 @@ class MainWindow(QMainWindow):
         dialog.setWindowTitle('Support development')
         dialog.resize(580, 780)
         layout = QVBoxLayout(dialog)
-        layout.setContentsMargins(0, 0, 0, 8)
+        layout.setContentsMargins(0, 0, 0, 12)
         canvas = SiteCanvas(dialog)
         canvas.external_links = True  # Ko-fi / Cash App / PayPal open in the system browser
         failure = QLabel('Could not load the page. Check your connection, or open ' + SUPPORT_URL + ' in a browser.')
@@ -738,6 +790,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(canvas, 1)
         layout.addWidget(failure)
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
+        buttons.setContentsMargins(0, 0, 12, 0)
         buttons.rejected.connect(dialog.reject)
         layout.addWidget(buttons)
         canvas.open(SUPPORT_URL, 'https://marduk191.github.io', edit=False)
@@ -821,21 +874,27 @@ class MainWindow(QMainWindow):
         self.site_prompt_button.clicked.connect(self.revise_whole_site)
         layout.addWidget(site_bar)
         split = QSplitter()
+        split.setHandleWidth(1)
         layout.addWidget(split, 1)
         left = QWidget()
         left.setObjectName('navigator')
         left.setMinimumWidth(180)
         left.setMaximumWidth(330)
         ll = QVBoxLayout(left)
-        ll.setContentsMargins(8,0,8,8)
+        ll.setContentsMargins(10,0,10,10)
+        ll.setSpacing(2)
         label = QLabel('WORKSPACE')
         label.setObjectName('panelTitle')
         ll.addWidget(label)
         self.pages = QTreeWidget()
         self.pages.setHeaderLabel('PAGES')
+        self.pages.setRootIsDecorated(False)
+        self.pages.setIndentation(0)
         ll.addWidget(self.pages, 1)
         self.outline = QTreeWidget()
         self.outline.setHeaderLabel('DOCUMENT OUTLINE')
+        self.outline.setRootIsDecorated(False)
+        self.outline.setIndentation(0)
         ll.addWidget(self.outline, 2)
         label = QLabel('ASSETS')
         label.setObjectName('panelTitle')
@@ -847,26 +906,33 @@ class MainWindow(QMainWindow):
         cl = QVBoxLayout(center)
         cl.setContentsMargins(0,0,0,0)
         cl.setSpacing(0)
-        tools = QHBoxLayout()
-        tools.setContentsMargins(12,9,12,9)
+        tools_bar = QWidget()
+        tools_bar.setObjectName('canvasTools')
+        tools = QHBoxLayout(tools_bar)
+        tools.setContentsMargins(12,8,12,8)
+        tools.setSpacing(8)
         self.mode = QComboBox()
         self.mode.addItems(['Edit', 'Preview'])
+        self.mode.setMinimumWidth(110)
         tools.addWidget(self.mode)
         self.location = QLabel('index.html')
         self.location.setObjectName('muted')
+        self.location.setContentsMargins(6, 0, 0, 0)
         tools.addWidget(self.location, 1)
         self.viewport = QComboBox()
         self.viewport.addItems(['Full width', 'Tablet · 768', 'Mobile · 390'])
         tools.addWidget(self.viewport)
         self.reload_button = QPushButton('Reload')
         tools.addWidget(self.reload_button)
-        cl.addLayout(tools)
+        cl.addWidget(tools_bar)
         self.tabs = QTabWidget()
+        self.tabs.setDocumentMode(True)
         cl.addWidget(self.tabs, 1)
         self.scroll = QScrollArea()
+        self.scroll.setFrameShape(QFrame.Shape.NoFrame)
         self.scroll.setWidgetResizable(True)
         self.canvas_host = QWidget()
-        self.canvas_host.setStyleSheet('background:#161c25;')
+        self.canvas_host.setObjectName('canvasHost')
         self.canvas_layout = QVBoxLayout(self.canvas_host)
         self.canvas_layout.setContentsMargins(20,20,20,20)
         from .native_canvas import SiteCanvas
@@ -876,10 +942,12 @@ class MainWindow(QMainWindow):
         self.tabs.addTab(self.scroll, 'Canvas')
         self.code = QPlainTextEdit()
         self.code.setFont(QFont('Cascadia Code', 11))
+        self.code.setStyleSheet('QPlainTextEdit { border:0; border-radius:0; background:#0d0f12; padding:12px; }')
         self.code.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
         self.tabs.addTab(self.code, 'Code')
         split.addWidget(center)
         inspector_scroll = QScrollArea()
+        inspector_scroll.setFrameShape(QFrame.Shape.NoFrame)
         inspector_scroll.setWidgetResizable(True)
         inspector_scroll.setMinimumWidth(260)
         inspector_scroll.setMaximumWidth(360)
@@ -887,20 +955,23 @@ class MainWindow(QMainWindow):
         inspector.setObjectName('inspector')
         il = QVBoxLayout(inspector)
         il.setContentsMargins(16,0,16,16)
+        il.setSpacing(6)
         title = QLabel('ELEMENT INSPECTOR')
         title.setObjectName('panelTitle')
         il.addWidget(title)
         self.element_label = QLabel('Select an element on the canvas')
+        self.element_label.setObjectName('muted')
         self.element_label.setTextFormat(Qt.TextFormat.PlainText)
         self.element_label.setWordWrap(True)
         il.addWidget(self.element_label)
         self.inspector_form = QWidget()
         self.inspector_form.setObjectName('inspectorForm')
         form = QFormLayout(self.inspector_form)
-        form.setContentsMargins(0,16,0,0)
+        form.setContentsMargins(0,12,0,0)
         form.setRowWrapPolicy(QFormLayout.RowWrapPolicy.DontWrapRows)
+        form.setLabelAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         form.setHorizontalSpacing(12)
-        form.setVerticalSpacing(12)
+        form.setVerticalSpacing(10)
         self.element_text = QPlainTextEdit()
         self.element_text.setMaximumHeight(100)
         form.addRow('Text', self.element_text)
@@ -911,10 +982,12 @@ class MainWindow(QMainWindow):
         color_row = QWidget()
         cr = QHBoxLayout(color_row)
         cr.setContentsMargins(0,0,0,0)
+        cr.setSpacing(6)
         self.color = QLineEdit()
         cr.addWidget(self.color)
         color_button = QPushButton('…')
-        color_button.setMaximumWidth(40)
+        color_button.setObjectName('iconButton')
+        color_button.setToolTip('Pick a color')
         color_button.clicked.connect(self.choose_color)
         cr.addWidget(color_button)
         form.addRow('Color', color_row)
@@ -962,6 +1035,7 @@ class MainWindow(QMainWindow):
         inspector_scroll.setWidget(inspector)
         split.addWidget(inspector_scroll)
         split.setSizes([210, 930, 290])
+        self._pad_spinboxes(self.editor)
         split.setStretchFactor(1, 1)
         self.pages.itemClicked.connect(lambda item, column: self.switch_page(item.data(0, Qt.ItemDataRole.UserRole)))
         self.outline.itemClicked.connect(lambda item, column: self.canvas.select(item.data(0, Qt.ItemDataRole.UserRole)))
@@ -1025,6 +1099,8 @@ class MainWindow(QMainWindow):
         self.color.setText(selection.get('color',''))
         self.background.setText(selection.get('backgroundColor',''))
         self.font.setText(selection.get('fontFamily',''))
+        for field in (self.color, self.background, self.font):
+            field.setCursorPosition(0)  # show the start of long values, not the clipped tail
         for widget, key in [(self.font_size,'fontSize'), (self.padding,'padding')]:
             try:
                 widget.setValue(round(float(selection.get(key,'0').replace('px',''))))
@@ -1364,17 +1440,27 @@ class MainWindow(QMainWindow):
     def settings_dialog(self):
         dialog = QDialog(self)
         dialog.setWindowTitle('Workspace settings')
-        dialog.resize(680,320)
+        dialog.resize(700,360)
         layout = QVBoxLayout(dialog)
+        layout.setContentsMargins(22,20,22,18)
+        layout.setSpacing(14)
+        heading = QLabel('Settings')
+        heading.setObjectName('dialogTitle')
+        layout.addWidget(heading)
         note = QLabel('Reuse existing local services. These settings never edit Hermes config or workflow node values; model/provider are passed per run.')
+        note.setObjectName('muted')
         note.setWordWrap(True)
         layout.addWidget(note)
         form = QFormLayout()
+        form.setLabelAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+        form.setHorizontalSpacing(14)
+        form.setVerticalSpacing(10)
         inputs = {}
         for key, label in [('comfy_url','ComfyUI loopback URL'),('workflow','ComfyUI API workflow'),('hermes_command','Hermes executable'),('hermes_model','Hermes model (optional)'),('hermes_provider','Hermes provider (optional)')]:
             row = QWidget()
             rl = QHBoxLayout(row)
             rl.setContentsMargins(0,0,0,0)
+            rl.setSpacing(6)
             field = QLineEdit(getattr(self.settings,key))
             inputs[key] = field
             rl.addWidget(field,1)
@@ -1388,12 +1474,18 @@ class MainWindow(QMainWindow):
                 rl.addWidget(choose)
             form.addRow(label,row)
         layout.addLayout(form)
+        layout.addStretch(1)
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Save|QDialogButtonBox.StandardButton.Cancel)
-        layout.addWidget(buttons)
+        buttons.button(QDialogButtonBox.StandardButton.Save).setObjectName('primary')
+        check = QPushButton('Check connections')
+        check.setToolTip('Read-only check of ComfyUI, the workflow and the text model')
+        button_row = QHBoxLayout()
+        button_row.addWidget(check)
+        button_row.addStretch(1)
+        button_row.addWidget(buttons)
+        layout.addLayout(button_row)
         buttons.accepted.connect(dialog.accept)
         buttons.rejected.connect(dialog.reject)
-        check = QPushButton('Check connections (read-only)')
-        layout.addWidget(check)
         def save_values():
             settings = replace(self.settings, **{key:field.text().strip() for key,field in inputs.items()})
             # Engine validates loopback URLs without invoking any service.
