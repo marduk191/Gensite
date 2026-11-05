@@ -26,6 +26,7 @@ from .native_assets import icon, thumbnail
 
 ROOT = Path(__file__).resolve().parents[1]  # repository root; data folders live here
 HERMES_CHOICE = 'Hermes (default)'
+SUPPORT_URL = 'https://marduk191.github.io/ghdonate.html'
 QSS = '''
 QWidget { background:#17191f; color:#e1e4ed; font-family:"Segoe UI"; font-size:13px; }
 QMainWindow, QDialog { background:#17191f; }
@@ -573,7 +574,16 @@ class MainWindow(QMainWindow):
         note = QLabel('Built for GitHub Pages · Nothing published until you confirm')
         note.setObjectName('muted')
         note.setWordWrap(True)
-        layout.addWidget(note)
+        footer = QHBoxLayout()
+        footer.addWidget(note, 1)
+        self.support_button = QPushButton('Support development')
+        self.support_button.setObjectName('donate')
+        self.support_button.setFlat(True)
+        self.support_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.support_button.setToolTip('Opens the donation page in a preview window')
+        self.support_button.clicked.connect(self.show_support)
+        footer.addWidget(self.support_button)
+        layout.addLayout(footer)
         # Scroll instead of compressing: opening options or the activity panel
         # must never squash fields into each other on small/scaled displays.
         card_scroll = QScrollArea()
@@ -707,6 +717,30 @@ class MainWindow(QMainWindow):
             server.close()
         except (ImportError,OSError,ValueError,KeyError) as exc:
             self.error(str(exc))
+
+    def show_support(self):
+        """Show the donation page in a preview window (same isolated canvas as template previews)."""
+        from .native_canvas import SiteCanvas
+        dialog = QDialog(self)
+        dialog.setWindowTitle('Support development')
+        dialog.resize(580, 780)
+        layout = QVBoxLayout(dialog)
+        layout.setContentsMargins(0, 0, 0, 8)
+        canvas = SiteCanvas(dialog)
+        failure = QLabel('Could not load the page. Check your connection, or open ' + SUPPORT_URL + ' in a browser.')
+        failure.setObjectName('muted')
+        failure.setWordWrap(True)
+        failure.setContentsMargins(12, 0, 12, 0)
+        failure.hide()
+        canvas.loaded.connect(lambda ok: failure.setVisible(not ok))
+        layout.addWidget(canvas, 1)
+        layout.addWidget(failure)
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
+        buttons.rejected.connect(dialog.reject)
+        layout.addWidget(buttons)
+        canvas.open(SUPPORT_URL, 'https://marduk191.github.io', edit=False)
+        dialog.exec()
+        canvas.dispose()
 
     def open_dialog(self):
         folder = QFileDialog.getExistingDirectory(self, 'Open generated website or project', str(ROOT/'projects'))

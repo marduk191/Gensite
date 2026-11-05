@@ -40,6 +40,8 @@ QPushButton#chip { background:transparent; border:1px solid #363c47; border-radi
 QPushButton#chip:hover { background:#292d36; color:#edece8; border-color:#7a695e; }
 QPushButton#optionsToggle { background:#1f232b; border:1px solid #363c47; border-radius:7px; text-align:left; color:#d6dae2; padding:9px 12px; }
 QPushButton#optionsToggle:hover { color:#efbe99; border-color:#7a695e; }
+QPushButton#donate { background:transparent; border:none; color:#aab1bf; padding:4px 2px; font-size:12px; text-decoration:underline; }
+QPushButton#donate:hover { color:#efbe99; }
 QWidget#navigator { background:#1b1e25; }
 QWidget#siteBar { background:#1b1e25; border-bottom:1px solid #2c313b; }
 QLineEdit#sitePrompt { min-height:26px; padding:6px 12px; }

@@ -73,6 +73,10 @@ assets/               application artwork
 
 Element and property editing plus a source editor; no drag-and-drop layout construction and no visual undo stack. Text replacement can replace nested inline markup, and dynamic page scripts can affect the serialized DOM, so use source editing when you need exact control. Image generation needs a ComfyUI install with the nodes and models listed in `workflows/README.md`.
 
+## Support
+
+The startup page has a **Support development** link that opens the [donation page](https://marduk191.github.io/ghdonate.html) in a preview window.
+
 ## License
 
 Apache License 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE). Sites and images you generate are yours; the bundled templates and artwork are covered by the same license unless a file states otherwise.
