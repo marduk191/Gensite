@@ -36,7 +36,7 @@ Then open **Settings** and set:
 1. Choose **New**, enter the website name and describe what you want.
 2. Choose **Custom** or a page template. **Preview template** shows the example page without replacing your project.
 3. Open **Generation options** for style, image count and image art direction.
-4. Select **Generate website**. Progress appears in Activity; Cancel stops only that job.
+4. Select **Generate website**. A progress panel opens at the bottom while the job runs; **Cancel job** stops only that job, and **Close** dismisses the log afterwards.
 5. Generated source and assets are saved in `projects/<job>/site/`.
 
 ## Edit and preview
@@ -80,7 +80,7 @@ This was developed using qwen flash next on the strata project here: https://git
 
 ## Support
 
-The startup page has a **Support development** link that opens the [donation page](https://marduk191.github.io/ghdonate.html) in a preview window.
+The header has a **Support development** button that opens the [donation page](https://marduk191.github.io/ghdonate.html) in a preview window.
 
 ## License
 

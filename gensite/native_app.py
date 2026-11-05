@@ -316,7 +316,7 @@ class MainWindow(QMainWindow):
         self.statusBar().setSizeGripEnabled(False)
         self.statusBar().setContentsMargins(10, 0, 0, 0)
         self.actions = {}
-        toolbar = QToolBar('Studio')
+        toolbar = self.toolbar = QToolBar('Studio')
         toolbar.setMovable(False)
         toolbar.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
         self.addToolBar(toolbar)
@@ -345,13 +345,15 @@ class MainWindow(QMainWindow):
         self.project_label.setSizePolicy(QSizePolicy.Policy.Ignored,QSizePolicy.Policy.Preferred)
         self.project_label.setObjectName('projectLabel')
         toolbar.addWidget(self.project_label)
-        for name in ['Activity', 'Settings', 'Publish']:
-            action = QAction(name, self)
+        for name in ['Support', 'Settings', 'Publish']:
+            action = QAction('Support development' if name == 'Support' else name, self)
             action.setIcon(icon(name, PALETTE['on_accent'] if name == 'Publish' else PALETTE['soft']))
             toolbar.addAction(action)
             self.actions[name] = action
             if name == 'Publish':
                 toolbar.widgetForAction(action).setObjectName('publishTool')
+        self.actions['Support'].setToolTip('Support development · opens the donation page')
+        self.actions['Support'].triggered.connect(self.show_support)
         self.stack = QStackedWidget()
         central = QWidget()
         central_layout = QVBoxLayout(central)
@@ -367,7 +369,7 @@ class MainWindow(QMainWindow):
         self.job_label = QLabel('Ready')
         jr.addWidget(self.job_label,1)
         self.cancel_button = QPushButton('Cancel job')
-        self.cancel_button.clicked.connect(self.cancel_job)
+        self.cancel_button.clicked.connect(self.cancel_or_close_job)
         jr.addWidget(self.cancel_button)
         jl.addLayout(jr)
         self.progress = QProgressBar()
@@ -378,9 +380,7 @@ class MainWindow(QMainWindow):
         self.activity.setMaximumBlockCount(600)
         self.activity.setMaximumHeight(110)
         jl.addWidget(self.activity)
-        self.job_panel.hide()
-        self.actions['Activity'].setCheckable(True)
-        self.actions['Activity'].toggled.connect(self.job_panel.setVisible)
+        self.job_panel.hide()  # shown by run_job; stays after a job until closed
         central_layout.addWidget(self.job_panel)
         self.setCentralWidget(central)
         self.new_view = QWidget()
@@ -522,16 +522,7 @@ class MainWindow(QMainWindow):
         note = QLabel('Built for GitHub Pages · Nothing published until you confirm')
         note.setObjectName('muted')
         note.setWordWrap(True)
-        footer = QHBoxLayout()
-        footer.addWidget(note, 1)
-        self.support_button = QPushButton('Support development')
-        self.support_button.setObjectName('donate')
-        self.support_button.setFlat(True)
-        self.support_button.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.support_button.setToolTip('Opens the donation page in a preview window')
-        self.support_button.clicked.connect(self.show_support)
-        footer.addWidget(self.support_button)
-        layout.addLayout(footer)
+        layout.addWidget(note)
         layout.addStretch(1)
         # Scroll instead of compressing: opening options or the activity panel
         # must never squash fields into each other on small/scaled displays.
@@ -1270,8 +1261,9 @@ class MainWindow(QMainWindow):
         self.job_result = None
         self.job_error = ''
         self.job_label.setText(title)
-        self.actions['Activity'].setChecked(True)
+        self.job_panel.show()
         self.progress.show()
+        self.cancel_button.setText('Cancel job')
         self.cancel_button.setEnabled(True)
         self.activity.appendPlainText(title)
         self.generate_button.setEnabled(False)
@@ -1290,7 +1282,8 @@ class MainWindow(QMainWindow):
         def finish():
             self.busy = False
             self.progress.hide()
-            self.cancel_button.setEnabled(False)
+            self.cancel_button.setText('Close')
+            self.cancel_button.setEnabled(True)
             self.generate_button.setEnabled(True)
             for key, action in self.actions.items():
                 action.setEnabled(key not in {'Save','Revise','Publish'} or bool(self.site))
@@ -1311,6 +1304,12 @@ class MainWindow(QMainWindow):
         job.finished.connect(finish)
         job.start()
         return True
+
+    def cancel_or_close_job(self):
+        if self.busy:
+            self.cancel_job()
+        else:
+            self.job_panel.hide()
 
     def cancel_job(self):
         if self.worker and self.busy:
@@ -1352,7 +1351,7 @@ class MainWindow(QMainWindow):
         self.run_job('Generating '+name,lambda log,cancel:self.generation_engine(log,cancel).generate(brief,name,count),self.generation_complete)
 
     def generation_complete(self, site):
-        self.actions['Activity'].setChecked(False)
+        self.job_panel.hide()
         self.open_site(site)
         self.statusBar().showMessage('Website generated · Select any element to refine it')
 

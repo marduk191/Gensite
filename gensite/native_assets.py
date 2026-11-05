@@ -12,7 +12,7 @@ PATHS = {
  'Revise':'<path d="m4 17-1 4 4-1L20 7l-3-3zM14 7l3 3"/>',
  'Settings':'<path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/>',
  'Publish':'<path d="M12 16V3m-5 5 5-5 5 5M4 15v6h16v-6"/>',
- 'Activity':'<path d="M3 12h4l3-7 4 14 3-7h4"/>',
+ 'Support':'<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.1a4.3 4.3 0 0 1 7.5 2.7C19.5 15.4 12 20 12 20z"/>',
  'Page':'<path d="M5 2h9l5 5v15H5zM14 2v6h5M8 12h8M8 16h6"/>',
  'Arrow':'<path d="M4 12h16m-6-6 6 6-6 6"/>',
  'Code':'<path d="m8 6-6 6 6 6m8-12 6 6-6 6m-5-1 2-10"/>',

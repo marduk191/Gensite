@@ -77,8 +77,6 @@ QPushButton#chip { background:transparent; border:1px solid @border@; border-rad
 QPushButton#chip:hover { background:@raised@; color:@text@; border-color:@accent_line@; }
 QPushButton#optionsToggle { background:transparent; border:1px solid @border@; border-radius:6px; text-align:left; color:@soft@; padding:8px 12px; }
 QPushButton#optionsToggle:hover, QPushButton#optionsToggle:checked { color:@accent_text@; border-color:@accent_line@; }
-QPushButton#donate { background:transparent; border:0; color:@muted@; padding:2px 0; font-size:12px; text-decoration:underline; }
-QPushButton#donate:hover { color:@accent_text@; }
 QPushButton#iconButton { padding:7px 0; min-width:36px; max-width:36px; }
 
 /* Studio surfaces */
