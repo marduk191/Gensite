@@ -727,6 +727,7 @@ class MainWindow(QMainWindow):
         layout = QVBoxLayout(dialog)
         layout.setContentsMargins(0, 0, 0, 8)
         canvas = SiteCanvas(dialog)
+        canvas.external_links = True  # Ko-fi / Cash App / PayPal open in the system browser
         failure = QLabel('Could not load the page. Check your connection, or open ' + SUPPORT_URL + ' in a browser.')
         failure.setObjectName('muted')
         failure.setWordWrap(True)

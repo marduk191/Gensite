@@ -2,7 +2,8 @@
 import json
 import secrets
 from pathlib import Path
-from PySide6.QtCore import QUrl, Signal
+from PySide6.QtCore import QTimer, QUrl, Signal
+from PySide6.QtGui import QDesktopServices
 from PySide6.QtWebEngineCore import QWebEnginePage, QWebEngineProfile, QWebEngineScript, QWebEngineSettings
 from PySide6.QtWebEngineWidgets import QWebEngineView
 
@@ -94,6 +95,16 @@ EDITOR_JS = r'''
 '''
 
 
+class ExternalLinkPage(QWebEnginePage):
+    """Throwaway page for target=_blank links: hands the URL to the system browser."""
+
+    def acceptNavigationRequest(self, url, kind, isMainFrame):
+        if url.scheme() in {'http', 'https'}:
+            QDesktopServices.openUrl(url)
+        QTimer.singleShot(0, self.deleteLater)
+        return False
+
+
 class CanvasPage(QWebEnginePage):
     selection = Signal(dict)
 
@@ -102,6 +113,7 @@ class CanvasPage(QWebEnginePage):
         self.token = 'GENSITE-'+secrets.token_hex(24)+':'
         self.origin = ''
         self.preview = False
+        self.external_links = False  # only for trusted info pages (e.g. Support); never generated sites
 
     def javaScriptConsoleMessage(self, level, message, line, source):
         if message.startswith(self.token) and len(message) < 40000:
@@ -114,12 +126,17 @@ class CanvasPage(QWebEnginePage):
 
     def acceptNavigationRequest(self, url, kind, isMainFrame):
         if isMainFrame:
+            if self.external_links and kind == QWebEnginePage.NavigationType.NavigationTypeLinkClicked and url.scheme() in {'http', 'https'}:
+                QDesktopServices.openUrl(url)
+                return False
             if self.preview and url.scheme() in {'http','https'}:
                 return True
             return url.toString().startswith(self.origin+'/') or url.toString() == 'about:blank'
         return True
 
     def createWindow(self, kind):
+        if self.external_links:
+            return ExternalLinkPage(self.profile(), self)
         return None
 
 
@@ -133,6 +150,7 @@ class SiteCanvas(QWebEngineView):
         self.profile.setPersistentCookiesPolicy(QWebEngineProfile.PersistentCookiesPolicy.NoPersistentCookies)
         self._install_page()
         self.edit = True
+        self.external_links = False
         self.ready = False
         self.loadFinished.connect(self._finished)
         self.setMinimumSize(1, 1)
@@ -163,6 +181,7 @@ class SiteCanvas(QWebEngineView):
         self.edit = edit
         self.canvas_page.origin = origin
         self.canvas_page.preview = not edit
+        self.canvas_page.external_links = self.external_links and not edit
         self.page().scripts().clear()
         if edit:
             script = QWebEngineScript()
