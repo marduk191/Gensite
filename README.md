@@ -4,6 +4,8 @@
 
 A Windows desktop workspace for generating, editing, previewing and publishing static websites to GitHub Pages.
 
+**Version 1.0** · [Releases](https://github.com/marduk191/Gensite/releases) · `python -m gensite --version`
+
 - Describe a site in the app. A text model writes the pages (existing [Hermes](https://hermes-agent.nousresearch.com/) install, or any local OpenAI-compatible endpoint). Your local [ComfyUI](https://github.com/comfyanonymous/ComfyUI) generates the images.
 - Pick one of 51 original page templates to steer the design. Selecting a template previews it live; **Custom** restores the opening artwork.
 - Edit visually (text, color, size, padding, images) or in source, then preview the saved files over HTTP with GitHub Pages-style repository paths.

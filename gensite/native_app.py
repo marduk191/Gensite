@@ -20,6 +20,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
     QDialog, QDialogButtonBox, QCheckBox, QProgressBar, QColorDialog, QFrame,
     QSizePolicy, QInputDialog)
 
+from . import __version__
 from .engine import Settings, Engine, safe_name
 from .publisher import Publisher, validate_site
 from .native_assets import icon, thumbnail
@@ -372,7 +373,7 @@ class MainWindow(QMainWindow):
         self.job_error = ''
         self.dirty = False
         self.selection = {}
-        self.setWindowTitle('Gensite — Website studio')
+        self.setWindowTitle('Gensite '+__version__+' — Website studio')
         self.setWindowIcon(app_icon())
         self.resize(1440, 920)
         self.setMinimumSize(1000, 680)
@@ -1464,6 +1465,7 @@ def main():
     parser.add_argument('--open', type=Path, help='Open a generated project or site folder')
     parser.add_argument('--state', type=Path, help='Alternative settings file for isolated testing')
     parser.add_argument('--check', action='store_true', help='Verify native runtime without opening a window')
+    parser.add_argument('--version', action='version', version='Gensite '+__version__)
     args = parser.parse_args()
     if args.check:
         print('Gensite native runtime ready · Python '+sys.version.split()[0])
@@ -1472,6 +1474,7 @@ def main():
         sys.stderr = sys.stdout = open(ROOT/'native-app.log','a',encoding='utf-8',buffering=1)
     app = QApplication(sys.argv)
     app.setApplicationName('Gensite')
+    app.setApplicationVersion(__version__)
     app.setStyle('Fusion')
     def exception_hook(kind, value, trace):
         import traceback
