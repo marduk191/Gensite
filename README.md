@@ -6,7 +6,7 @@ A Windows desktop workspace for generating, editing, previewing and publishing s
 
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/44855833-1076-42a7-b93e-20df6032237f" />
 
-**Version 1.0** · [Releases](https://github.com/marduk191/Gensite/releases) · `python -m gensite --version`
+**Version 1.1** · [Releases](https://github.com/marduk191/Gensite/releases) · `python -m gensite --version`
 
 - Describe a site in the app. A text model writes the pages (existing [Hermes](https://hermes-agent.nousresearch.com/) install, or any local OpenAI-compatible endpoint). Your local [ComfyUI](https://github.com/comfyanonymous/ComfyUI) generates the images.
 - Pick one of 51 original page templates to steer the design. Selecting a template previews it live; **Custom** restores the opening artwork.
