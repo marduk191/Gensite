@@ -132,6 +132,7 @@ class Engine:
         self._research_mode = False
         self._project_catalogs = {}
         self._web_search_log = []
+        self._context_tokens = False  # unknown until the endpoint is asked once
         self._llm_protocol_log = []
         self._web_reference_hosts = set()
         # Set by the native UI; headless callers keep the HTTP reader.
@@ -258,6 +259,63 @@ class Engine:
             raise RuntimeError('The LLM endpoint lists no models; set the LLM model in Settings.')
         return str(models[0]['id'])
 
+    def _context_window(self):
+        """Endpoint context size in tokens, or None when the server does not say.
+
+        llama.cpp and Strata report n_ctx in /v1/models meta and /props. Asked once per job.
+        """
+        if self._context_tokens is not False:
+            return self._context_tokens
+        self._context_tokens = None
+        try:
+            listing = self._http_llm('/models', timeout=8)
+            for model in listing.get('data', []) if isinstance(listing, dict) else []:
+                n_ctx = isinstance(model, dict) and isinstance(model.get('meta'), dict) and model['meta'].get('n_ctx')
+                if isinstance(n_ctx, int) and n_ctx > 0:
+                    self._context_tokens = n_ctx
+                    break
+        except RuntimeError:
+            pass
+        return self._context_tokens
+
+    @staticmethod
+    def _estimated_tokens(body):
+        # Conservative: measured ~3.1 characters per token on real research requests.
+        return len(json.dumps({k: body[k] for k in ('messages', 'tools') if k in body}, ensure_ascii=False)) // 3 + 256
+
+    def _fit_context(self, body):
+        """Keep prompt + answer room inside the model's context window.
+
+        Endpoints such as Strata reject oversized prompts instead of truncating them.
+        Already-used page evidence is shortened first (largest first, URL/title kept);
+        catalog markers, the brief and the answer budget are never cut. Full evidence
+        stays in web_search.json.
+        """
+        n_ctx = self._context_window()
+        if not n_ctx:
+            return
+        room = lambda: n_ctx - int(body.get('max_tokens') or 0) - self._estimated_tokens(body)
+        if room() >= 0:
+            return
+        evidence = [m for m in body.get('messages', []) if m.get('role') == 'tool' and isinstance(m.get('content'), str)
+                    and len(m['content']) > 600 and '"catalog_id"' not in m['content']]
+        trimmed = 0
+        for message in sorted(evidence, key=lambda m: len(m['content']), reverse=True):
+            try:
+                original = json.loads(message['content'])
+            except ValueError:
+                original = {}
+            keep = {k: str(original[k])[:300] for k in ('url', 'title', 'error') if isinstance(original, dict) and k in original}
+            message['content'] = json.dumps(keep | {'note': 'Page evidence omitted from this request to fit the local model context window; it was read earlier in this job and is saved in web_search.json.'}, ensure_ascii=False)
+            trimmed += 1
+            if room() >= 0:
+                break
+        if trimmed:
+            self._emit(f'Shortened {trimmed} earlier web page result(s) to fit the local model context window ({n_ctx} tokens).')
+        if room() < 0:
+            raise RuntimeError(f'This request needs about {self._estimated_tokens(body) + int(body.get("max_tokens") or 0)} tokens but the local model context window is {n_ctx}. '
+                               'Shorten the brief, use fewer reference pages, or load the model with a larger context.')
+
     def _http_llm(self, path, data=None, *, timeout=8):
         payload = None if data is None else json.dumps(data).encode('utf-8')
         request = urllib.request.Request(self._llm + path, data=payload, headers={'Content-Type':'application/json'} if payload is not None else {})
@@ -272,6 +330,7 @@ class Engine:
     def _stream_llm(self, body, project):
         """Read one OpenAI streaming turn, including fragmented function calls."""
         self._cancelled()
+        self._fit_context(body)
         request = urllib.request.Request(self._llm + '/chat/completions', data=json.dumps(body).encode('utf-8'), headers={'Content-Type':'application/json'})
         chunks, calls, rejected = [], {}, []
         finish_reason = None
@@ -411,12 +470,15 @@ class Engine:
             self._emit('Reference web tool unavailable: '+str(exc)[:300])
         self._web_search_log.append({'call':call, 'result':result})
         _json_write(project/'web_search.json', self._web_search_log)
-        if self._research_mode:
+        return {'role':'tool', 'tool_call_id':call['id'], 'content':json.dumps(self._tool_content(result), ensure_ascii=False)}
+
+    def _tool_content(self, result):
+        """The one model-facing form of saved tool evidence (first use, retries and repairs alike)."""
+        from . import reference_web
+        if getattr(self, '_research_mode', False):
             from .research_policy import compact_research_page
-            message=compact_research_page(result)
-        else:
-            message=reference_web.prompt_reference(result)
-        return {'role':'tool', 'tool_call_id':call['id'], 'content':json.dumps(message, ensure_ascii=False)}
+            return compact_research_page(result)
+        return reference_web.prompt_reference(result)
 
     def _run_llm(self, project, rules, brief, image_count, correction=''):
         """Generate the site text with a local OpenAI-compatible chat endpoint.
@@ -471,7 +533,7 @@ class Engine:
         # Reuse their actual tool messages without issuing another network call.
         for entry in self._web_search_log:
             body['messages'].append({'role':'assistant', 'content':None, 'tool_calls':[entry['call']]})
-            body['messages'].append({'role':'tool', 'tool_call_id':entry['call']['id'], 'content':json.dumps(reference_web.prompt_reference(entry['result']), ensure_ascii=False)})
+            body['messages'].append({'role':'tool', 'tool_call_id':entry['call']['id'], 'content':json.dumps(self._tool_content(entry['result']), ensure_ascii=False)})
         self._emit(f'Generating site text with local model {model} at {self._llm}. Transcript: llm-output.txt')
         recoveries = 0
         research_followups = 0

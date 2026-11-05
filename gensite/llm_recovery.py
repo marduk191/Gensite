@@ -100,7 +100,7 @@ def _request(e, project, rules, brief, data, target, missing, issue, number):
     # repeat browser/search work while repairing generated HTML.
     for entry in e._web_search_log:
         messages.append({'role':'assistant','content':None,'tool_calls':[entry['call']]})
-        messages.append({'role':'tool','tool_call_id':entry['call']['id'],'content':json.dumps(reference_web.prompt_reference(entry['result']),ensure_ascii=False)})
+        messages.append({'role':'tool','tool_call_id':entry['call']['id'],'content':json.dumps(e._tool_content(entry['result']),ensure_ascii=False)})
     messages.append({'role':'user','content':contract+'\nThis is a repair of saved output. Do not rewrite the other existing pages or request more research.'})
     from . import project_catalog
     body={'model':e._llm_model(),'stream':True,'temperature':0.3,'max_tokens':8000 if target else 4000,
