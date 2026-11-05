@@ -105,6 +105,10 @@ def _json_write(path, data):
     temporary.replace(path)
 
 
+class ComfyUnreachable(RuntimeError):
+    """ComfyUI did not answer in time or the connection dropped (not an HTTP error reply)."""
+
+
 class ToolProtocolError(RuntimeError):
     """Endpoint rejected tool syntax; its raw text must never be executed."""
 
@@ -118,6 +122,8 @@ class Engine:
     hermes_budget = 900
     image_budget = 1800
     poll_interval = 0.5
+    comfy_read_timeout = 30   # one /history or /view request
+    comfy_retry_window = 120  # how long a stalled-but-running ComfyUI is retried
 
     def __init__(self, settings, log, cancel):
         self.settings = settings
@@ -184,8 +190,31 @@ class Engine:
         except urllib.error.HTTPError as exc:
             detail = exc.read(8192).decode('utf-8', 'replace')
             raise RuntimeError(f'ComfyUI {path}: HTTP {exc.code}: {detail}') from exc
-        except (OSError, ValueError) as exc:
+        except OSError as exc:
+            raise ComfyUnreachable(f'ComfyUI {path}: {exc}. Check the loopback URL and running service.') from exc
+        except ValueError as exc:
             raise RuntimeError(f'ComfyUI {path}: {exc}. Check the loopback URL and running service.') from exc
+
+    def _http_patient(self, path, *, binary=False, what='a request'):
+        """Retry a read that ComfyUI is merely slow to answer.
+
+        Right after rendering, ComfyUI can stop answering HTTP for several seconds while
+        it saves and frees memory. Timeouts and dropped connections are retried within
+        comfy_retry_window; HTTP error replies and bad data still fail immediately.
+        """
+        give_up = time.monotonic() + self.comfy_retry_window
+        warned = False
+        while True:
+            self._cancelled()
+            try:
+                return self._http(path, binary=binary, timeout=self.comfy_read_timeout)
+            except ComfyUnreachable:
+                if time.monotonic() >= give_up:
+                    raise
+                if not warned:
+                    self._emit(f'ComfyUI is slow to respond to {what}; retrying for up to {self.comfy_retry_window}s.')
+                    warned = True
+                self.cancel.wait(min(2.0, max(self.poll_interval, 0.1)))
 
     def _workflow(self):
         path = ROOT/self.settings.workflow  # absolute settings paths override ROOT
@@ -643,7 +672,7 @@ class Engine:
             deadline = time.monotonic() + self.image_budget
             while True:
                 self._cancelled()
-                history = self._http('/history/'+quote(actual,safe=''),timeout=4)
+                history = self._http_patient('/history/'+quote(actual,safe=''), what=f'the status check for image {number}')
                 record = history.get(actual)
                 if record:
                     _json_write(project/f'history-image-{number}.json',history)
@@ -659,7 +688,7 @@ class Engine:
                             raise RuntimeError('ComfyUI output 461 has no valid image filename')
                         query = urlencode({'filename':entry['filename'],'subfolder':entry.get('subfolder',''),'type':entry.get('type','output')})
                         self._cancelled()
-                        content = self._http('/view?'+query,binary=True,timeout=8)
+                        content = self._http_patient('/view?'+query, binary=True, what=f'the download of image {number}')
                         if not content.startswith(b'\x89PNG\r\n\x1a\n'):
                             raise RuntimeError('ComfyUI /view did not return a PNG image; preserve PNG workflow output.')
                         self._cancelled()
