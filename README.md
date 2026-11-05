@@ -76,7 +76,8 @@ assets/               application artwork
 Element and property editing plus a source editor; no drag-and-drop layout construction and no visual undo stack. Text replacement can replace nested inline markup, and dynamic page scripts can affect the serialized DOM, so use source editing when you need exact control. Image generation needs a ComfyUI install with the nodes and models listed in `workflows/README.md`.
 
 This was developed using qwen flash next on the strata project here: https://github.com/Niko1221/Strata
-<img width="602" height="992" alt="image" src="https://github.com/user-attachments/assets/2c38f4bf-b063-4b28-a476-258f4e28a4aa" />
+<img width="569" height="340" alt="image" src="https://github.com/user-attachments/assets/d50d4d25-71f2-44b4-8c3a-a8c40964ca7e" />
+
 
 ## Support
 
