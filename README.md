@@ -1,8 +1,10 @@
-<img width="1437" height="945" alt="image" src="https://github.com/user-attachments/assets/9bde1612-4d88-48e4-8ad0-5497f9a49127" />
-
 # Gensite
 
 A Windows desktop workspace for generating, editing, previewing and publishing static websites to GitHub Pages.
+
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/f0c2a89d-bdf3-4b78-bff6-a317d88a01f4" />
+
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/44855833-1076-42a7-b93e-20df6032237f" />
 
 **Version 1.0** · [Releases](https://github.com/marduk191/Gensite/releases) · `python -m gensite --version`
 
