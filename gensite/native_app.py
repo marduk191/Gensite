@@ -11,7 +11,7 @@ import threading
 import time
 
 STARTED = time.perf_counter()
-from PySide6.QtCore import Qt, QThread, Signal, QUrl, QObject, QEvent
+from PySide6.QtCore import Qt, QThread, Signal, QUrl, QObject, QEvent, QTimer
 from PySide6.QtGui import QAction, QColor, QFont, QIcon, QPainter, QPixmap, QPen, QLinearGradient
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
     QHBoxLayout, QLabel, QPushButton, QPlainTextEdit, QLineEdit, QFormLayout,
@@ -24,101 +24,13 @@ from . import __version__
 from .engine import Settings, Engine, safe_name
 from .publisher import Publisher, validate_site
 from .native_assets import icon, thumbnail
+from .palette import PALETTE, colorref, rgb, stylesheet, support_page_css
 
 ROOT = Path(__file__).resolve().parents[1]  # repository root; data folders live here
 HERMES_CHOICE = 'Hermes (default)'
 SUPPORT_URL = 'https://marduk191.github.io/ghdonate.html'
-QSS = '''
-QWidget { background:#17191f; color:#e1e4ed; font-family:"Segoe UI"; font-size:13px; }
-QMainWindow, QDialog { background:#17191f; }
-QToolBar { background:#1d2028; border:0; border-bottom:1px solid #343844; spacing:8px; padding:9px; }
-QToolButton { background:transparent; border:1px solid transparent; border-radius:5px; padding:7px 10px; }
-QToolButton:hover { background:#303544; }
-QToolButton:disabled { color:#697184; }
-QToolBar QLabel, QToolBar QWidget { background:transparent; }
-QToolButton#publishTool { background:#b9c9ff; color:#16223e; font-weight:600; }
-QToolButton#publishTool:disabled { background:#252c3b; color:#697184; }
-QLineEdit, QPlainTextEdit, QComboBox, QSpinBox { background:#111319; border:1px solid #383d4b; border-radius:5px; padding:8px; selection-background-color:#5369b8; }
-QLineEdit:focus, QPlainTextEdit:focus { border:1px solid #8a9dff; }
-QPushButton { background:#2a2e3a; border:1px solid #414757; border-radius:5px; padding:9px 16px; }
-QPushButton:hover { background:#3b4255; border-color:#8193df; }
-QPushButton:disabled { color:#6f7586; background:#22252e; }
-QPushButton#primary { background:#bdc8ff; color:#161d38; border:0; font-weight:600; }
-QLabel#eyebrow { color:#9caaf2; font-size:11px; font-weight:700; }
-QLabel#hero { font-size:32px; font-weight:600; color:#f1f2f8; }
-QLabel#muted { color:#989fb1; }
-QLabel#panelTitle { font-size:11px; font-weight:700; color:#9ca4b8; padding:14px 7px; }
-QWidget#navigator { background:#1c2028; }
-QWidget#inspector { background:#20242d; }
-QWidget#composer { background:#20242d; border:1px solid #363d4b; border-radius:12px; }
-QWidget#composer QLabel, QWidget#inspector QLabel, QWidget#navigator QLabel { background:transparent; border:0; }
-QWidget#inspectorForm { background:transparent; }
-QPushButton#chip { background:transparent; border:1px solid #3b4352; color:#b7c1d5; padding:6px 10px; font-size:11px; }
-QHeaderView::section { background:#1c2028; color:#929db3; border:0; padding:8px 4px; font-size:10px; font-weight:600; }
-QScrollBar:vertical { background:transparent; width:8px; margin:2px; }
-QScrollBar::handle:vertical { background:#454e62; border-radius:3px; min-height:30px; }
-QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height:0; }
-QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical { background:transparent; }
-QTreeWidget { background:#191c23; border:0; outline:none; padding:6px; }
-QTreeWidget::item { padding:8px 4px; }
-QTreeWidget::item:selected { background:#343c58; border-radius:4px; }
-QTabWidget::pane { border:0; }
-QTabBar::tab { background:#20242d; padding:11px 22px; border-bottom:2px solid transparent; }
-QTabBar::tab:selected { color:#c7d0ff; border-bottom:2px solid #aabaff; }
-QSplitter::handle { background:#343844; width:1px; }
-QScrollArea { background:#0d0f14; border:0; }
-QProgressBar { border:0; background:#282e3e; max-height:4px; }
-QProgressBar::chunk { background:#aabaff; }
-QStatusBar { color:#a5adc0; background:#1d2028; border-top:1px solid #343844; }
-QCheckBox { spacing:8px; }
-QDialogButtonBox QPushButton { min-width:80px; }
-'''
-
-
-# Marduk191 artwork direction: storm slate, silver seams, copper active controls.
-# Static material cues only; no textures behind fields or animated effects.
-QSS += '''
-QWidget { background:#1e2530; color:#dce2ec; }
-QMainWindow, QDialog { background:#1e2530; }
-QToolBar { background:qlineargradient(x1:0,y1:0,x2:0,y2:1,stop:0 #363c4d,stop:1 #272e3d); border-top:1px solid #73768e; border-bottom:1px solid #60677e; }
-QToolBar QLabel, QToolBar QWidget { background:transparent; color:#e0e4ed; }
-QToolButton { color:#d4dce9; background:transparent; }
-QToolButton:hover { background:#424a5e; border-color:#69758d; }
-QToolButton:disabled { color:#7c879c; }
-QToolButton#publishTool { background:#bb825e; color:#121a28; border:1px solid #e2b28f; font-weight:600; }
-QToolButton#publishTool:disabled { background:#373d49; color:#8992a2; border-color:#4c5466; }
-QWidget#navigator, QWidget#inspector { background:#262d38; }
-QWidget#composer { background:#29313f; border:1px solid #667087; border-radius:9px; }
-QWidget#inspectorForm { background:transparent; }
-QLineEdit, QPlainTextEdit, QComboBox, QSpinBox { background:#19212c; color:#e2e7f0; border:1px solid #4b566b; selection-background-color:#4c5477; selection-color:white; }
-QLineEdit:focus, QPlainTextEdit:focus { border:1px solid #a1aad8; }
-QPushButton { background:#333d4e; color:#e0e5ef; border:1px solid #626d83; }
-QPushButton:hover { background:#424b60; border-color:#a1a9ce; }
-QPushButton:disabled { background:#2b3341; color:#7e899e; }
-QPushButton#primary { background:#bf8965; color:#151b26; border:1px solid #e4b799; font-weight:600; }
-QPushButton#primary:disabled { background:#363f50; color:#8995a9; border-color:#505c73; }
-QPushButton#chip { background:#242c39; color:#c0c9dc; border:1px solid #515d74; }
-QLabel#hero { color:#edf0f7; }
-QLabel#muted { color:#a3afc3; }
-QLabel#panelTitle { color:#b2bdd0; }
-QTreeWidget { background:#262d38; color:#ced7e6; }
-QTreeWidget::item:selected { background:#40465e; color:#f2c9ac; }
-QTreeWidget::item:hover { background:#343d50; }
-QHeaderView::section { background:#262d38; color:#9eaac0; }
-QTabBar::tab { background:#252e3c; color:#a9b5cb; }
-QTabBar::tab:selected { background:#303a4a; color:#edc3a5; border-bottom:2px solid #c08b68; }
-QSplitter::handle { background:#596379; }
-QScrollArea { background:#161c25; }
-QScrollBar::handle:vertical { background:#66738a; }
-QStatusBar { color:#a8b4c9; background:#252d3b; border-top:1px solid #556077; }
-QProgressBar { background:#374254; }
-QProgressBar::chunk { background:#c08b68; }
-'''
-
-
 # The live theme is a single authored stylesheet, not accumulated legacy skins.
-_THEME_DIR = Path(__file__).resolve().parent
-QSS = (_THEME_DIR / 'native_theme.qss').read_text(encoding='utf-8').replace('@ICONS@', (_THEME_DIR / 'icons').as_posix())
+QSS = stylesheet()
 
 
 def style_window_title(window):
@@ -129,7 +41,7 @@ def style_window_title(window):
     hwnd = int(window.winId())
     apply = ctypes.windll.dwmapi.DwmSetWindowAttribute
     apply.argtypes = [ctypes.c_void_p, ctypes.c_uint, ctypes.c_void_p, ctypes.c_uint]
-    for attribute, value in ((20, 1), (35, 0x001E1916), (36, 0x00EBE8E7)):
+    for attribute, value in ((20, 1), (35, colorref('surface')), (36, colorref('text'))):
         color = ctypes.c_uint(value)
         apply(hwnd, attribute, ctypes.byref(color), ctypes.sizeof(color))
 
@@ -151,21 +63,21 @@ def app_icon():
     pix.fill(Qt.GlobalColor.transparent)
     p = QPainter(pix)
     p.setRenderHint(QPainter.RenderHint.Antialiasing)
-    p.setBrush(QColor('#242d3c'))
+    p.setBrush(QColor(PALETTE['raised']))
     p.setPen(Qt.PenStyle.NoPen)
     p.drawRoundedRect(2, 2, 60, 60, 15, 15)
     silver = QLinearGradient(10,10,54,54)
-    silver.setColorAt(0,QColor('#f0f3f6'))
-    silver.setColorAt(.4,QColor('#aeb9c9'))
-    silver.setColorAt(.68,QColor('#73829c'))
-    silver.setColorAt(1,QColor('#d9dfe9'))
+    silver.setColorAt(0,QColor('#f3f2ef'))
+    silver.setColorAt(.4,QColor('#bcbfc5'))
+    silver.setColorAt(.68,QColor('#7c818b'))
+    silver.setColorAt(1,QColor('#dfe0e3'))
     p.setBrush(Qt.BrushStyle.NoBrush)
     pen = QPen(silver,7)
     pen.setCapStyle(Qt.PenCapStyle.RoundCap)
     p.setPen(pen)
     p.drawArc(13,13,38,38,36*16,285*16)
     p.drawLine(34,33,51,33)
-    p.setPen(QPen(QColor('#c28b67'),1))
+    p.setPen(QPen(QColor(PALETTE['accent']),1))
     p.drawLine(18,55,47,55)
     p.end()
     return QIcon(pix)
@@ -191,18 +103,18 @@ class AtmospherePanel(QWidget):
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        painter.fillRect(self.rect(),QColor('#182330'))
+        painter.fillRect(self.rect(),QColor(PALETTE['base']))
         if not self.scaled.isNull():
             painter.drawPixmap((self.width()-self.scaled.width())//2,(self.height()-self.scaled.height())//2,self.scaled)
         shade = QLinearGradient(0,self.height()*.4,0,self.height())
-        shade.setColorAt(0,QColor(14,22,33,0))
-        shade.setColorAt(1,QColor(14,22,33,225))
+        shade.setColorAt(0,QColor(*rgb('base'),0))
+        shade.setColorAt(1,QColor(*rgb('base'),225))
         painter.fillRect(self.rect(),shade)
         painter.drawPixmap(28,28,self.mark)
-        painter.setPen(QColor('#eef1f5'))
+        painter.setPen(QColor(PALETTE['heading']))
         painter.setFont(QFont('Segoe UI',36,QFont.Weight.DemiBold))
         painter.drawText(32,self.height()-66,'Gensite')
-        painter.setPen(QColor('#d4deec'))
+        painter.setPen(QColor(PALETTE['soft']))
         painter.setFont(QFont('Segoe UI',12))
         painter.drawText(34,self.height()-36,'Make a place on the web.')
         painter.end()
@@ -435,7 +347,7 @@ class MainWindow(QMainWindow):
         toolbar.addWidget(self.project_label)
         for name in ['Activity', 'Settings', 'Publish']:
             action = QAction(name, self)
-            action.setIcon(icon(name, '#1a1512' if name == 'Publish' else '#acb5c8'))
+            action.setIcon(icon(name, PALETTE['on_accent'] if name == 'Publish' else PALETTE['soft']))
             toolbar.addAction(action)
             self.actions[name] = action
             if name == 'Publish':
@@ -603,7 +515,7 @@ class MainWindow(QMainWindow):
         buttons.addWidget(self.open_button)
         buttons.addStretch()
         self.generate_button = QPushButton('Generate website')
-        self.generate_button.setIcon(icon('Arrow','#151b26'))
+        self.generate_button.setIcon(icon('Arrow',PALETTE['on_accent']))
         self.generate_button.setObjectName('primary')
         buttons.addWidget(self.generate_button)
         layout.addLayout(buttons)
@@ -772,27 +684,69 @@ class MainWindow(QMainWindow):
             self.error(str(exc))
 
     def show_support(self):
-        """Show the donation page in a preview window (same isolated canvas as template previews)."""
+        """Show the donation page in its own window, sized to the page and matching its colours."""
         from .native_canvas import SiteCanvas
         dialog = QDialog(self)
+        dialog.setObjectName('supportWindow')
         dialog.setWindowTitle('Support development')
-        dialog.resize(580, 780)
+        dialog.resize(560, 640)
         layout = QVBoxLayout(dialog)
-        layout.setContentsMargins(0, 0, 0, 12)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(0)
+        body = QStackedWidget()
+        status = QLabel('Loading the support page…')
+        status.setObjectName('supportStatus')
+        status.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        status.setWordWrap(True)
+        status.setContentsMargins(24, 0, 24, 0)
         canvas = SiteCanvas(dialog)
         canvas.external_links = True  # Ko-fi / Cash App / PayPal open in the system browser
-        failure = QLabel('Could not load the page. Check your connection, or open ' + SUPPORT_URL + ' in a browser.')
-        failure.setObjectName('muted')
-        failure.setWordWrap(True)
-        failure.setContentsMargins(12, 0, 12, 0)
-        failure.hide()
-        canvas.loaded.connect(lambda ok: failure.setVisible(not ok))
-        layout.addWidget(canvas, 1)
-        layout.addWidget(failure)
-        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
-        buttons.setContentsMargins(0, 0, 12, 0)
-        buttons.rejected.connect(dialog.reject)
-        layout.addWidget(buttons)
+        canvas.page().setBackgroundColor(QColor(PALETTE['base']))  # no white flash while loading
+        body.addWidget(status)
+        body.addWidget(canvas)
+        layout.addWidget(body, 1)
+        footer = QWidget()
+        footer.setObjectName('supportFooter')
+        footer_layout = QHBoxLayout(footer)
+        footer_layout.setContentsMargins(18, 10, 14, 10)
+        note = QLabel('Payment links open in your browser.')
+        note.setObjectName('supportNote')
+        footer_layout.addWidget(note, 1)
+        close = QPushButton('Close')
+        close.clicked.connect(dialog.reject)
+        footer_layout.addWidget(close)
+        layout.addWidget(footer)
+
+        def fit(height):
+            # Size the window to the restyled page, within the screen.
+            if not isinstance(height, (int, float)) or height <= 0:
+                return
+            screen = (self.screen() or QApplication.primaryScreen()).availableGeometry()
+            wanted = int(height) + footer.sizeHint().height() + 2
+            dialog.resize(dialog.width(), max(420, min(wanted, int(screen.height() * 0.92))))
+            frame = dialog.frameGeometry()
+            frame.moveCenter(self.frameGeometry().center())
+            frame.moveTop(max(screen.top(), min(frame.top(), screen.bottom() - frame.height())))
+            dialog.move(frame.topLeft())
+
+        def measure():
+            canvas.evaluate("(()=>{const c=document.querySelector('.donation-container');"
+                            "return Math.ceil(c?c.getBoundingClientRect().bottom+28:document.documentElement.scrollHeight)})()", fit)
+
+        def styled(_):
+            # Show the page only once it wears the app colours; measure after it has real width.
+            body.setCurrentWidget(canvas)
+            QTimer.singleShot(60, measure)
+
+        def loaded(ok):
+            if not ok:
+                status.setText('Could not load the page. Check your connection, or open ' + SUPPORT_URL + ' in a browser.')
+                body.setCurrentWidget(status)
+                return
+            canvas.evaluate("(()=>{const s=document.createElement('style');s.textContent=%s;"
+                            "document.head.appendChild(s);return true})()" % json.dumps(support_page_css()), styled)
+
+        canvas.loaded.connect(loaded)
         canvas.open(SUPPORT_URL, 'https://marduk191.github.io', edit=False)
         dialog.exec()
         canvas.dispose()
@@ -942,7 +896,7 @@ class MainWindow(QMainWindow):
         self.tabs.addTab(self.scroll, 'Canvas')
         self.code = QPlainTextEdit()
         self.code.setFont(QFont('Cascadia Code', 11))
-        self.code.setStyleSheet('QPlainTextEdit { border:0; border-radius:0; background:#0d0f12; padding:12px; }')
+        self.code.setObjectName('codeEditor')
         self.code.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
         self.tabs.addTab(self.code, 'Code')
         split.addWidget(center)
@@ -1011,7 +965,7 @@ class MainWindow(QMainWindow):
         self.image_width.setRange(0, 20000)
         self.image_width.setSuffix(' px')
         self.image_width.setSpecialValueText('Auto')
-        self.image_width.setToolTip('Image width in pixels (height follows). You can also drag the blue square at the image corner on the canvas. Auto = the site\'s own sizing.')
+        self.image_width.setToolTip('Image width in pixels (height follows). You can also drag the square handle at the image corner on the canvas. Auto = the site\'s own sizing.')
         form.addRow('Width', self.image_width)
         image_button = QPushButton('Replace image…')
         self.image_button = image_button

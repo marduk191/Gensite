@@ -3,6 +3,8 @@ from PySide6.QtCore import QByteArray, QSize, QRectF, Qt
 from PySide6.QtGui import QIcon, QPixmap, QPainter, QImageReader
 from PySide6.QtSvg import QSvgRenderer
 
+from .palette import PALETTE
+
 PATHS = {
  'New':'<path d="M12 5v14M5 12h14"/>',
  'Open':'<path d="M3 8V5h6l2 3h10l-3 11H3z"/><path d="M3 10h17"/>',
@@ -18,7 +20,7 @@ PATHS = {
 }
 
 
-def icon(name, color='#acb5c8', size=20):
+def icon(name, color=PALETTE['soft'], size=20):
     svg = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="'+color+'" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+PATHS.get(name,PATHS['Page'])+'</g></svg>'
     pix = QPixmap(size*2,size*2)
     pix.fill(Qt.GlobalColor.transparent)

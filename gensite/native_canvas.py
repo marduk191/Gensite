@@ -24,14 +24,14 @@ EDITOR_JS = r'''
   selected=e;
   if(!overlay){overlay=document.createElement('div');overlay.setAttribute('data-gensite-overlay','');document.documentElement.appendChild(overlay);}
   const r=e.getBoundingClientRect();
-  overlay.style.cssText=`pointer-events:none!important;position:fixed!important;z-index:2147483647!important;box-sizing:border-box!important;border:2px solid #2858d8!important;background:rgba(40,88,216,.04)!important;left:${r.left}px!important;top:${r.top}px!important;width:${r.width}px!important;height:${r.height}px!important;`;
+  overlay.style.cssText=`pointer-events:none!important;position:fixed!important;z-index:2147483647!important;box-sizing:border-box!important;border:2px solid #e6e6e6!important;box-shadow:0 0 0 1px rgba(17,19,23,.55)!important;background:rgba(230,230,230,.06)!important;left:${r.left}px!important;top:${r.top}px!important;width:${r.width}px!important;height:${r.height}px!important;`;
   let handle=overlay.querySelector('[data-gensite-handle]');
   if(e.tagName==='IMG'){
    if(!handle){
     handle=document.createElement('div');
     handle.setAttribute('data-gensite-handle','');
     handle.title='Drag to resize';
-    handle.style.cssText='position:absolute!important;right:2px!important;bottom:2px!important;width:16px!important;height:16px!important;box-sizing:border-box!important;background:#2858d8!important;border:2px solid #fff!important;border-radius:3px!important;cursor:nwse-resize!important;pointer-events:auto!important;touch-action:none!important;';
+    handle.style.cssText='position:absolute!important;right:2px!important;bottom:2px!important;width:16px!important;height:16px!important;box-sizing:border-box!important;background:#e6e6e6!important;border:2px solid #171717!important;box-shadow:0 0 0 1px rgba(17,19,23,.55)!important;border-radius:3px!important;cursor:nwse-resize!important;pointer-events:auto!important;touch-action:none!important;';
     handle.addEventListener('pointerdown',down=>{
      down.preventDefault();down.stopImmediatePropagation();
      const img=selected, startX=down.clientX, startW=img.getBoundingClientRect().width;
@@ -93,6 +93,20 @@ EDITOR_JS = r'''
  };
 })();
 '''
+
+
+def _scrollbar_js():
+    """Studio-coloured scrollbars for previews and the editor canvas.
+
+    Zero-specificity and inherited, so any scrollbar styling in the site itself wins.
+    The element carries the overlay marker, so snapshots never save it.
+    """
+    from .palette import PALETTE
+    css = ':where(:root){scrollbar-color:%s %s}' % (PALETTE['border_hi'], PALETTE['base'])
+    return ("(()=>{if(document.querySelector('style[data-gensite-scrollbars]'))return;"
+            "const s=document.createElement('style');s.setAttribute('data-gensite-overlay','');"
+            "s.setAttribute('data-gensite-scrollbars','');s.textContent=%s;"
+            "(document.head||document.documentElement).prepend(s);})();" % json.dumps(css))
 
 
 class ExternalLinkPage(QWebEnginePage):
@@ -183,6 +197,13 @@ class SiteCanvas(QWebEngineView):
         self.canvas_page.preview = not edit
         self.canvas_page.external_links = self.external_links and not edit
         self.page().scripts().clear()
+        bars = QWebEngineScript()
+        bars.setName('Gensite scrollbars')
+        bars.setInjectionPoint(QWebEngineScript.InjectionPoint.DocumentReady)
+        bars.setWorldId(QWebEngineScript.ScriptWorldId.ApplicationWorld)
+        bars.setRunsOnSubFrames(True)
+        bars.setSourceCode(_scrollbar_js())
+        self.page().scripts().insert(bars)
         if edit:
             script = QWebEngineScript()
             script.setName('Gensite isolated editor')
